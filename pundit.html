@@ -1,0 +1,1785 @@
+<!DOCTYPE html>
+<html lang="hi"><head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>भारतीय वैदिक अनुष्ठान केंद्र | Acharya Arvind</title>
+    <meta name="description" content="भारतीय वैदिक अनुष्ठान केंद्र — Acharya Arvind Ji: Authentic Vedic rituals, pooja, havan, sanskar, career guidance &amp; online consultations.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@300;400;500;600;700;800;900&amp;family=Cinzel:wght@400;600;700&amp;family=Inter:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
+
+    <style>
+    /* ═══════════════════════════════════════
+       DESIGN TOKENS
+    ═══════════════════════════════════════ */
+    :root {
+        --bg:          #FAF6F0;
+        --bg-alt:      #F5F0E6;
+        --white:       #FFFFFF;
+        --maroon:      #B35922;
+        --maroon-dk:   #8C4113;
+        --maroon-lt:   #D97236;
+        --gold:        #F28C0F;
+        --gold-lt:     #F2B035;
+        --gold-pale:   #FADAA5;
+        --gold-paler:  #FDF3E1;
+        --amber:       #D96B0B;
+        --text-dk:     #2D1F17;
+        --text-md:     #594236;
+        --text-lt:     #8C705F;
+        --border:      #E8D5B5;
+        --border-lt:   #F0E2CA;
+
+        --f-hindi:     'Noto Sans Devanagari', sans-serif;
+        --f-eng:       'Inter', sans-serif;
+        --f-serif:     'Cinzel', serif;
+
+        --shadow-sm:   0 1px 6px rgba(122,29,29,.08);
+        --shadow-md:   0 4px 20px rgba(122,29,29,.12);
+        --shadow-lg:   0 12px 48px rgba(122,29,29,.16);
+        --trans:       all .28s ease;
+    }
+
+    /* ═══════════════════════════════════════
+       RESET
+    ═══════════════════════════════════════ */
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior:smooth; font-size:16px; }
+    body { font-family:var(--f-eng); background:var(--bg); color:var(--text-dk); overflow-x:hidden; line-height:1.65; }
+    img  { display:block; max-width:100%; }
+    a    { text-decoration:none; color:inherit; }
+    ::-webkit-scrollbar        { width:6px; }
+    ::-webkit-scrollbar-track  { background:var(--bg-alt); }
+    ::-webkit-scrollbar-thumb  { background:var(--maroon); border-radius:3px; }
+
+    /* ═══════════════════════════════════════
+       NAVBAR
+    ═══════════════════════════════════════ */
+    .navbar {
+        position:fixed; inset:0 0 auto; z-index:1000;
+        height:70px; background:transparent;
+        display:flex; align-items:center; justify-content:space-between;
+        padding:0 3rem;
+        border-bottom:1px solid rgba(255,255,255,0.1);
+        transition:var(--trans);
+    }
+    .navbar.scrolled {
+        height:62px; background:var(--maroon-dk);
+        box-shadow:0 4px 24px rgba(0,0,0,.25);
+    }
+
+    /* Logo */
+    .nav-logo { display:flex; align-items:center; gap:10px; }
+    .nav-om   {
+        font-family:var(--f-hindi); font-size:2rem;
+        color:var(--gold); line-height:1;
+        filter:drop-shadow(0 0 6px rgba(192,139,42,.3));
+    }
+    .nav-logo-text { display:flex; flex-direction:column; }
+    .nav-logo-text .hin { font-family:var(--f-hindi); font-size:.75rem; font-weight:700; color:var(--white); line-height:1.3; }
+    .nav-logo-text .eng { font-family:var(--f-serif); font-size:.52rem; color:rgba(255,255,255,0.7); letter-spacing:1.8px; }
+
+    /* Nav links */
+    .nav-links { display:flex; align-items:center; gap:2.2rem; list-style:none; }
+    .nav-links a {
+        font-family:var(--f-eng); font-size:.8rem; font-weight:500;
+        color:rgba(255,255,255,0.85); letter-spacing:.4px; text-transform:uppercase;
+        position:relative; transition:var(--trans);
+    }
+    .nav-links a::after {
+        content:''; position:absolute; bottom:-4px; left:0;
+        width:0; height:2px; background:var(--gold); transition:var(--trans);
+    }
+    .nav-links a:hover { color:var(--maroon); }
+    .nav-links a:hover::after { width:100%; }
+    .nav-links .active { color:var(--maroon); }
+    .nav-links .active::after { width:100%; }
+
+    /* Book btn */
+    .btn-book {
+        display:inline-flex; align-items:center; gap:8px;
+        background:var(--maroon); color:var(--white);
+        padding:10px 22px; border:none; cursor:pointer;
+        font-family:var(--f-eng); font-size:.78rem; font-weight:600;
+        letter-spacing:.5px; text-transform:uppercase;
+        border-radius:30px; transition:var(--trans);
+    }
+    .btn-book:hover { background:var(--maroon-dk); transform:translateY(-1px); box-shadow:0 4px 14px rgba(122,29,29,.3); }
+
+    /* Hamburger */
+    .hamburger { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:5px; }
+    .hamburger span { display:block; width:24px; height:2px; background:var(--maroon); border-radius:2px; transition:var(--trans); }
+    .hamburger.open span:nth-child(1) { transform:rotate(45deg) translate(5px,5px); }
+    .hamburger.open span:nth-child(2) { opacity:0; }
+    .hamburger.open span:nth-child(3) { transform:rotate(-45deg) translate(5px,-5px); }
+
+    /* Mobile drawer */
+    .mobile-menu {
+        display:none; position:fixed;
+        top:70px; left:0; right:0;
+        background:var(--white); border-top:1px solid var(--border-lt);
+        padding:1.5rem 2rem; flex-direction:column; gap:1rem;
+        z-index:999; box-shadow:var(--shadow-md);
+    }
+    .mobile-menu.open { display:flex; }
+    .mobile-menu a {
+        font-family:var(--f-eng); font-size:.9rem; font-weight:500;
+        color:var(--text-md); text-transform:uppercase; letter-spacing:.5px;
+        padding:.6rem 0; border-bottom:1px solid var(--border-lt); transition:var(--trans);
+    }
+    .mobile-menu a:hover { color:var(--maroon); padding-left:8px; }
+
+    /* ═══════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════ */
+    .hero {
+        min-height:100vh;
+        background: linear-gradient(145deg, #A86121 0%, #8C4D0F 40%, #7B3E0A 100%);
+        display:flex; flex-direction:column;
+        padding-top:70px; overflow:hidden;
+        position: relative;
+    }
+    .hero::before {
+        content: ''; position: absolute; inset: 0;
+        background: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='800' height='800' viewBox='0 0 800 800'%3E%3Ccircle cx='400' cy='400' r='380' fill='none' stroke='rgba(255,200,100,0.06)' stroke-width='1'/%3E%3Ccircle cx='400' cy='400' r='300' fill='none' stroke='rgba(255,200,100,0.05)' stroke-width='1'/%3E%3Ccircle cx='400' cy='400' r='220' fill='none' stroke='rgba(255,200,100,0.04)' stroke-width='1'/%3E%3C/svg%3E") center/contain no-repeat;
+        pointer-events: none; opacity: 0.8;
+    }
+
+    /* Subtle mandala watermark */
+    .hero-watermark {
+        position:absolute; top:50%; left:50%;
+        transform:translate(-50%,-50%);
+        width:500px; height:500px; border-radius:50%;
+        border:1px solid rgba(192,139,42,.06);
+        pointer-events:none;
+    }
+    .hero-watermark::before {
+        content:''; position:absolute; inset:30px; border-radius:50%;
+        border:1px solid rgba(192,139,42,.05);
+    }
+    .hero-watermark::after {
+        content:''; position:absolute; inset:60px; border-radius:50%;
+        border:1px solid rgba(192,139,42,.04);
+    }
+
+    .hero-main {
+        flex:1; display:grid;
+        grid-template-columns:1fr 1.08fr;
+        align-items:center;
+        max-width:1280px; width:94%; margin:0 auto;
+        padding:2rem 0 0; gap:1rem; position:relative;
+    }
+
+    /* ── Hero Left ── */
+    .hero-left { }
+
+    .hero-badge {
+        display:inline-flex; align-items:center; gap:8px;
+        border:1px solid rgba(255,255,255,0.35); border-radius:6px;
+        padding:6px 16px; margin-bottom:1.5rem;
+        font-family:var(--f-hindi); font-size:.78rem; color:rgba(255,255,255,0.9);
+        background:rgba(255,255,255,0.1); backdrop-filter: blur(4px);
+    }
+    .hero-badge::before { content:'✺'; color:var(--gold-lt); font-size:.9rem; }
+    .hero-badge::before { content:'✺'; color:var(--gold); font-size:.9rem; }
+
+    .hero-h1 {
+        font-family:var(--f-hindi);
+        font-size:clamp(2.8rem, 6vw, 5rem);
+        font-weight:900; line-height:1.05;
+        margin-bottom:1.2rem;
+        letter-spacing:-1px;
+    }
+    .hero-h1 .line1 { color:#FFFFFF; display:block; }
+    .hero-h1 .line2 { color:var(--gold-lt); display:block; }
+
+    /* Trishul divider */
+    .trishul-div {
+        display:flex; align-items:center; gap:.8rem;
+        margin-bottom:1.3rem;
+    }
+    .trishul-div-line {
+        width:50px; height:1px;
+        background:linear-gradient(to right, transparent, var(--gold-lt));
+    }
+    .trishul-div-line.right {
+        background:linear-gradient(to left, transparent, var(--gold-lt));
+    }
+    .trishul-sym { color:var(--gold-lt); font-size:1rem; letter-spacing:2px; }
+
+    .hero-quote {
+        font-family:var(--f-hindi); font-size:1rem;
+        color:rgba(255,255,255,0.85); margin-bottom:.5rem;
+        font-weight:500; line-height:1.7;
+    }
+    .hero-quote::before { content:'"'; color:var(--gold-lt); font-size:1.2rem; }
+    .hero-quote::after  { content:'"'; color:var(--gold-lt); font-size:1.2rem; }
+    .hero-sub {
+        font-family:var(--f-eng); font-size:.92rem;
+        color:rgba(255,255,255,0.75); margin-bottom:2.2rem;
+        line-height:1.75; max-width:420px;
+    }
+
+    /* Hero buttons */
+    .hero-btns { display:flex; gap:1rem; flex-wrap:wrap; margin-bottom:2.5rem; }
+
+    .btn-fill {
+        display:inline-flex; align-items:center; gap:8px;
+        background:var(--maroon); color:var(--white);
+        padding:13px 26px; border-radius:30px; border:none; cursor:pointer;
+        font-family:var(--f-hindi); font-size:.92rem; font-weight:600;
+        transition:var(--trans); letter-spacing:.3px;
+    }
+    .btn-fill:hover { background:var(--maroon-dk); transform:translateY(-2px); box-shadow:0 6px 18px rgba(122,29,29,.3); }
+
+    .btn-ghost {
+        display:inline-flex; align-items:center; gap:8px;
+        background:transparent; color:var(--text-md);
+        padding:12px 24px; border-radius:30px;
+        border:1.5px solid var(--border); cursor:pointer;
+        font-family:var(--f-hindi); font-size:.92rem; font-weight:500;
+        transition:var(--trans);
+    }
+    .btn-ghost:hover { border-color:var(--maroon); color:var(--maroon); }
+
+    /* Stats Horizontal Redesign */
+    .hero-stats-bar {
+        display:flex; justify-content: space-between; align-items:center;
+        padding: 1.2rem 2rem; margin-top: 1.5rem;
+        background: rgba(255,255,255,0.12);
+        border: 1px solid rgba(255,255,255,0.2);
+        border-radius: 16px;
+        backdrop-filter: blur(8px);
+    }
+    .h-stat { 
+        display:flex; align-items:center; gap: 1rem;
+        position: relative; flex: 1; justify-content: center;
+    }
+    .h-stat:not(:last-child)::after {
+        content: ''; position: absolute; right: 0; top: 50%; transform: translateY(-50%);
+        height: 40px; width: 1px; background: rgba(255,255,255,0.2);
+    }
+    .h-stat-icon {
+        width: 44px; height: 44px; border-radius: 50%;
+        background: rgba(255,255,255,0.15);
+        border: 1px solid rgba(255,255,255,0.3);
+        color: var(--gold-lt);
+        display:flex; align-items:center; justify-content:center;
+        font-size:1.2rem; flex-shrink: 0;
+    }
+    .h-stat-text { display: flex; flex-direction: column; text-align: left; }
+    .h-stat-num {
+        font-family:var(--f-hindi); font-size:1.5rem;
+        font-weight:900; color:#FFFFFF; line-height:1;
+        margin-bottom: 0.15rem;
+    }
+    .h-stat-lbl {
+        font-family:var(--f-hindi); font-size:.78rem;
+        color:rgba(255,255,255,0.75); font-weight:600; line-height:1.2;
+    }
+
+    /* ── Hero Right (Photo) ── */
+    .hero-right { position:relative; display:flex; align-items:center; justify-content:center; }
+
+    /* ── Hero Right: Image Only ── */
+    .hero-right {
+        position:relative;
+        display:flex; align-items:flex-end; justify-content:center;
+        padding-bottom:0;
+        height:100%;
+        width: 100%;
+    }
+    .hero-photo-wrap {
+        position:relative;
+        width: 135%;
+        max-width: 1100px;
+        margin: -8rem -6rem -3rem auto;
+    }
+    .hero-photo {
+        width:100%; height:auto;
+        object-fit:contain; object-position:center bottom;
+        display:block; position:relative; z-index:2;
+    }
+
+
+    /* ── Quick Access Bar ── */
+    .quick-bar {
+        background: #FFEBCD;
+        border-top: 1px solid #E6D1BD;
+        border-bottom: 1px solid #E6D1BD;
+        padding: 1.5rem 2rem;
+        overflow-x: auto;
+    }
+    .quick-bar-inner {
+        max-width: 1200px; margin: 0 auto;
+        display: flex; gap: 1.2rem; justify-content: center; flex-wrap: wrap;
+    }
+    .q-item {
+        width: 110px; flex-shrink: 0;
+        background: #FFF8EC;
+        border: 1px solid #E6D1BD;
+        border-radius: 10px;
+        padding: 1rem .6rem .8rem;
+        display: flex; flex-direction: column; align-items: center; gap: .5rem;
+        cursor: pointer; transition: var(--trans);
+        text-align: center;
+    }
+    .q-item:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); border-color: var(--maroon); }
+    .q-item-icon {
+        width: 52px; height: 52px; border-radius: 50%;
+        background: #fff; border: 1px solid #D7CAB6;
+        display: flex; align-items: center; justify-content: center;
+        color: var(--maroon); font-size: 1.3rem;
+    }
+    .q-item-label {
+        font-family: var(--f-hindi); font-size: .72rem; font-weight: 700;
+        color: var(--text-dk); line-height: 1.3;
+    }
+
+    /* ── Feature strip ── */
+    .feature-strip {
+        background:var(--white);
+        border:1px solid var(--border-lt);
+        border-radius: 12px;
+        box-shadow: 0 4px 20px rgba(0,0,0,0.03);
+        max-width:1200px; margin:2rem auto;
+    }
+    .feature-strip-inner {
+        display:grid; grid-template-columns:repeat(4,1fr);
+        padding:0;
+    }
+    .feat {
+        display:flex; align-items:flex-start; gap:1rem;
+        padding:1.6rem 2rem;
+        border-right:1px solid var(--border-lt);
+        transition:var(--trans);
+    }
+    .feat:first-child { border-radius:12px 0 0 12px; }
+    .feat:last-child { border-right:none; border-radius:0 12px 12px 0; }
+    .feat:hover { background:var(--gold-paler); }
+    .feat-icon {
+        width:48px; height:48px; flex-shrink:0;
+        border-radius:50%; background:var(--gold-pale);
+        border:1px solid var(--border);
+        display:flex; align-items:center; justify-content:center;
+        font-size:1.3rem;
+    }
+    .feat-title { font-family:var(--f-hindi); font-size:.92rem; font-weight:700; color:var(--text-dk); margin-bottom:.3rem; }
+    .feat-desc  { font-family:var(--f-hindi); font-size:.75rem; color:var(--text-lt); line-height:1.6; }
+    .feat-line  { width:30px; height:2px; background:var(--gold); margin-top:.6rem; border-radius:2px; }
+
+    /* ═══════════════════════════════════════
+       SHARED SECTION STYLES
+    ═══════════════════════════════════════ */
+    .section { padding:5rem 2rem; }
+    .section.alt { background:var(--bg-alt); }
+    .section.white { background:var(--white); }
+
+    .s-wrap { max-width:1200px; margin:0 auto; }
+
+    .s-head { text-align:center; margin-bottom:3rem; }
+    .s-eye  { font-family:var(--f-hindi); font-size:.78rem; font-weight:600; color:var(--gold); letter-spacing:2px; text-transform:uppercase; display:block; margin-bottom:.6rem; }
+    .s-title {
+        font-family:var(--f-hindi);
+        font-size:clamp(1.6rem,3vw,2.4rem);
+        font-weight:800; color:var(--text-dk); line-height:1.2;
+    }
+    .s-title .g { color:var(--gold); }
+    .s-sub { font-family:var(--f-eng); font-size:.9rem; color:var(--text-lt); margin-top:.5rem; }
+    .s-rule {
+        display:flex; align-items:center; justify-content:center;
+        gap:.75rem; margin-top:1rem;
+    }
+    .s-rule::before, .s-rule::after {
+        content:''; width:55px; height:1px;
+        background:linear-gradient(to right,transparent,var(--gold));
+    }
+    .s-rule::after { background:linear-gradient(to left,transparent,var(--gold)); }
+    .s-rule-sym { color:var(--gold); font-size:.85rem; }
+
+    /* ═══════════════════════════════════════
+       ABOUT
+    ═══════════════════════════════════════ */
+    .about-grid {
+        display:grid; grid-template-columns:1fr 1.5fr;
+        gap:4rem; align-items:center;
+    }
+    .about-img-outer {
+        position:relative;
+        background:transparent;
+        /* subtle warm glow shadow instead of hard border */
+        filter:drop-shadow(0 8px 40px rgba(192,139,42,.22));
+    }
+    .about-photo {
+        width:100%; display:block;
+        object-fit:contain; object-position:center;
+        border-radius:8px;
+    }
+    .exp-card {
+        position:absolute; bottom:-18px; right:-14px;
+        background:var(--maroon); color:var(--white);
+        border:2px solid var(--gold-lt); border-radius:10px;
+        padding:.9rem 1.2rem; text-align:center;
+        box-shadow:var(--shadow-md);
+    }
+    .exp-card .n { font-family:var(--f-hindi); font-size:2rem; font-weight:900; color:var(--gold-lt); display:block; line-height:1; }
+    .exp-card .l { font-family:var(--f-hindi); font-size:.68rem; color:rgba(255,255,255,.8); margin-top:.2rem; display:block; }
+
+    .about-name { font-family:var(--f-hindi); font-size:clamp(1.5rem,3vw,2.2rem); font-weight:800; color:var(--text-dk); margin-bottom:.2rem; }
+    .about-role { font-family:var(--f-hindi); font-size:.92rem; color:var(--gold); font-weight:600; margin-bottom:1.4rem; }
+    .about-para { font-family:var(--f-eng); font-size:.93rem; color:var(--text-md); line-height:1.9; margin-bottom:1rem; }
+
+    .qual-list { display:flex; flex-wrap:wrap; gap:.6rem; margin:1.5rem 0 1.8rem; }
+    .qual-tag {
+        display:inline-flex; align-items:center; gap:5px;
+        padding:5px 14px; border-radius:20px;
+        background:var(--gold-paler); border:1px solid var(--border);
+        font-family:var(--f-hindi); font-size:.78rem; color:var(--text-md); font-weight:600;
+    }
+    .qual-tag::before { content:'✦'; color:var(--gold); font-size:.6rem; }
+
+    /* ═══════════════════════════════════════
+       SERVICES — TABBED LAYOUT
+    ═══════════════════════════════════════ */
+    /* Tab Switcher */
+    .svc-tabs {
+        display: flex; justify-content: center; gap: 0;
+        background: var(--gold-paler); border-radius: 50px;
+        padding: 6px; margin-bottom: 3rem;
+        border: 1px solid var(--gold-pale);
+        width: fit-content; margin: 0 auto 3rem;
+    }
+    .svc-tab-btn {
+        padding: 0.75rem 2rem; border-radius: 50px; border: none;
+        cursor: pointer; font-family: var(--f-hindi); font-size: 0.9rem; font-weight: 700;
+        background: transparent; color: var(--text-lt);
+        transition: var(--trans); display: flex; align-items: center; gap: 8px;
+    }
+    .svc-tab-btn.active {
+        background: var(--maroon); color: var(--white);
+        box-shadow: 0 4px 16px rgba(179,89,34,0.3);
+    }
+    .svc-tab-btn:not(.active):hover { color: var(--maroon); }
+
+    /* Tab Pane */
+    .svc-pane { display: none; }
+    .svc-pane.active { display: grid; }
+
+    /* Card Grid */
+    .svc-grid {
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.6rem;
+    }
+    .svc-card {
+        background: var(--white);
+        border: 1px solid var(--gold-pale);
+        border-radius: 16px;
+        padding: 2.2rem 1.8rem 2rem;
+        position: relative; overflow: hidden; transition: var(--trans);
+        text-align: center; display: flex; flex-direction: column; align-items: center;
+        box-shadow: var(--shadow-sm);
+    }
+    /* Top accent bar */
+    .svc-card::before {
+        content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+        background: linear-gradient(90deg, var(--gold), var(--maroon));
+        transform: scaleX(0); transform-origin: left; transition: var(--trans);
+    }
+    .svc-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-lg); border-color: var(--gold); }
+    .svc-card:hover::before { transform: scaleX(1); }
+
+    /* Badge — category tag top-right */
+    .svc-badge {
+        position: absolute; top: 1rem; right: 1rem;
+        font-family: var(--f-eng); font-size: .6rem; font-weight: 700;
+        text-transform: uppercase; letter-spacing: 1px;
+        padding: 3px 10px; border-radius: 20px;
+        background: var(--gold-paler); color: var(--maroon);
+        border: 1px solid var(--gold-pale);
+    }
+    .svc-card.astro .svc-badge { background: #EEF4FF; color: #3B5998; border-color: #C7D7F8; }
+
+    .svc-icon {
+        width: 70px; height: 70px; border-radius: 50%;
+        background: var(--gold-paler); border: 2px solid var(--gold-pale);
+        color: var(--maroon);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.8rem; margin: 0 auto 1.3rem; transition: var(--trans);
+    }
+    .svc-card.astro .svc-icon { background: #EEF4FF; border-color: #C7D7F8; color: #3B5998; }
+    .svc-card:hover .svc-icon { background: var(--maroon); color: var(--white); border-color: var(--maroon); transform: scale(1.1); }
+    .svc-card.astro:hover .svc-icon { background: #3B5998; color: #fff; border-color: #3B5998; }
+
+    .svc-title { font-family: var(--f-hindi); font-size: 1.05rem; font-weight: 800; color: var(--text-dk); margin-bottom: .2rem; }
+    .svc-hindi { font-family: var(--f-hindi); font-size: .78rem; color: var(--gold); font-weight: 700; margin-bottom: .8rem; }
+    .svc-card.astro .svc-hindi { color: #3B5998; }
+    .svc-desc  { font-family: var(--f-hindi); font-size: .85rem; color: var(--text-lt); line-height: 1.75; flex: 1; }
+    .svc-link  {
+        display: inline-flex; align-items: center; justify-content: center; gap: 6px;
+        margin-top: 1.3rem; padding: 0.6rem 1.6rem;
+        border: 1.5px solid var(--maroon); border-radius: 30px;
+        font-family: var(--f-eng); font-size: .78rem; font-weight: 700;
+        color: var(--maroon); transition: var(--trans); text-transform: uppercase; letter-spacing: 1px;
+    }
+    .svc-card.astro .svc-link { border-color: #3B5998; color: #3B5998; }
+    .svc-link:hover { background: var(--maroon); color: var(--white); }
+    .svc-card.astro .svc-link:hover { background: #3B5998; color: #fff; }
+
+    /* Bottom CTA below services */
+    .svc-cta-bar {
+        margin-top: 3rem; text-align: center;
+        padding: 2rem; background: var(--white);
+        border: 1px solid var(--gold-pale); border-radius: 16px;
+    }
+    .svc-cta-bar p { font-family: var(--f-hindi); font-size: 1rem; color: var(--text-md); margin-bottom: 1rem; }
+    .svc-cta-bar strong { color: var(--maroon); }
+
+    /* ═══════════════════════════════════════
+       TESTIMONIALS
+    ═══════════════════════════════════════ */
+    .testi-grid {
+        display:grid; grid-template-columns:repeat(3,1fr);
+        gap:1.4rem;
+    }
+    .testi-card {
+        background:var(--white); border:1px solid var(--border-lt);
+        border-radius:8px; padding:1.8rem;
+        position:relative; overflow:hidden; transition:var(--trans);
+    }
+    .testi-card:hover { box-shadow:var(--shadow-lg); border-color:var(--border); transform:translateY(-4px); }
+    .testi-q-mark { font-family:'Georgia',serif; font-size:3.8rem; color:var(--gold-pale); line-height:.7; margin-bottom:.8rem; }
+    .testi-text { font-family:var(--f-hindi); font-size:.9rem; color:var(--text-md); line-height:1.85; font-style:italic; margin-bottom:1.3rem; }
+    .testi-sep  { width:36px; height:2px; background:var(--gold); margin-bottom:1.1rem; border-radius:2px; }
+    .testi-row  { display:flex; align-items:center; gap:.9rem; }
+    .testi-av   {
+        width:42px; height:42px; border-radius:50%; flex-shrink:0;
+        background:var(--maroon); color:var(--white);
+        display:flex; align-items:center; justify-content:center;
+        font-family:var(--f-hindi); font-size:1.1rem; font-weight:700;
+        border:2px solid var(--gold-pale);
+    }
+    .testi-name  { font-family:var(--f-hindi); font-size:.88rem; font-weight:700; color:var(--text-dk); }
+    .testi-place { font-family:var(--f-eng); font-size:.72rem; color:var(--text-lt); }
+    .testi-stars { color:var(--gold); font-size:.82rem; margin-top:.2rem; letter-spacing:1px; }
+
+    /* ═══════════════════════════════════════
+       CONTACT
+    ═══════════════════════════════════════ */
+    .contact-grid {
+        display:grid; grid-template-columns:1fr 1.3fr;
+        gap:4rem; align-items:start;
+    }
+    .contact-h  { font-family:var(--f-hindi); font-size:1.6rem; font-weight:800; color:var(--text-dk); margin-bottom:.8rem; }
+    .contact-p  { font-family:var(--f-eng); font-size:.9rem; color:var(--text-lt); line-height:1.82; margin-bottom:1.8rem; }
+    .c-list { display:flex; flex-direction:column; gap:.9rem; }
+    .c-row  {
+        display:flex; align-items:flex-start; gap:.9rem;
+        padding:.9rem 1rem; background:var(--white);
+        border:1px solid var(--border-lt); border-radius:6px; transition:var(--trans);
+    }
+    .c-row:hover { border-color:var(--border); transform:translateX(4px); }
+    .c-ico  {
+        width:38px; height:38px; border-radius:6px;
+        background:var(--maroon); flex-shrink:0;
+        display:flex; align-items:center; justify-content:center; font-size:1rem;
+    }
+    .c-lbl { font-family:var(--f-eng); font-size:.62rem; letter-spacing:1.5px; text-transform:uppercase; color:var(--text-lt); }
+    .c-val { font-family:var(--f-hindi); font-size:.88rem; color:var(--text-dk); font-weight:600; }
+
+    /* Form */
+    .form-box {
+        background:var(--white); border:1px solid var(--border-lt);
+        border-radius:10px; padding:2.4rem 2rem;
+        box-shadow:var(--shadow-md);
+    }
+    .form-head { font-family:var(--f-hindi); font-size:1.2rem; font-weight:800; color:var(--text-dk); margin-bottom:1.6rem; text-align:center; }
+    .form-head .g { color:var(--gold); }
+    .f-row  { display:grid; grid-template-columns:1fr 1fr; gap:1.1rem; }
+    .f-grp  { margin-bottom:1.2rem; }
+    .f-lbl  {
+        display:block; font-family:var(--f-eng); font-size:.68rem;
+        font-weight:600; letter-spacing:1px; text-transform:uppercase;
+        color:var(--text-lt); margin-bottom:.4rem;
+    }
+    .f-inp, .f-sel, .f-ta {
+        width:100%; border:none; border-bottom:1.5px solid var(--border);
+        background:transparent; padding:8px 2px;
+        font-family:var(--f-hindi); font-size:.9rem; color:var(--text-dk);
+        outline:none; transition:var(--trans);
+    }
+    .f-inp::placeholder { color:rgba(74,40,0,.3); }
+    .f-inp:focus, .f-sel:focus, .f-ta:focus { border-bottom-color:var(--maroon); }
+    .f-ta { resize:vertical; min-height:100px; border:1.5px solid var(--border); padding:10px 12px; border-radius:4px; }
+    .f-ta:focus { border-color:var(--maroon); }
+    .f-sel { cursor:pointer; }
+    .f-btn {
+        width:100%; padding:13px; border:none; cursor:pointer;
+        background:var(--maroon); color:var(--white);
+        font-family:var(--f-hindi); font-size:.95rem; font-weight:700;
+        border-radius:4px; transition:var(--trans); letter-spacing:.3px;
+    }
+    .f-btn:hover { background:var(--maroon-dk); transform:translateY(-2px); box-shadow:0 6px 20px rgba(122,29,29,.3); }
+
+    /* ═══════════════════════════════════════
+       FOOTER
+    ═══════════════════════════════════════ */
+    .footer {
+        background:var(--maroon-dk); padding:3.5rem 2rem 1.5rem;
+        border-top:3px solid var(--gold);
+    }
+    .footer-grid {
+        display:grid; grid-template-columns:1.5fr 1fr 1fr;
+        gap:3rem; max-width:1200px; margin:0 auto 2.5rem;
+    }
+    .f-om   { font-family:var(--f-hindi); font-size:2.6rem; color:var(--gold-lt); display:block; margin-bottom:.5rem; }
+    .f-name { font-family:var(--f-hindi); font-size:.95rem; font-weight:700; color:rgba(255,255,255,.95); display:block; }
+    .f-sub  { font-family:var(--f-serif); font-size:.6rem; color:var(--gold-lt); letter-spacing:2px; }
+    .f-desc { font-family:var(--f-eng); font-size:.83rem; color:rgba(255,255,255,.5); line-height:1.75; margin-top:.9rem; }
+    .f-col-h { font-family:var(--f-eng); font-size:.7rem; letter-spacing:2px; text-transform:uppercase; color:var(--gold-lt); margin-bottom:1rem; padding-bottom:.5rem; border-bottom:1px solid rgba(255,255,255,.1); font-weight:600; }
+    .f-links { list-style:none; display:flex; flex-direction:column; gap:.55rem; }
+    .f-links a { font-family:var(--f-hindi); font-size:.85rem; color:rgba(255,255,255,.55); transition:var(--trans); display:flex; align-items:center; gap:6px; }
+    .f-links a::before { content:'›'; color:var(--gold); font-size:1.1rem; line-height:1; }
+    .f-links a:hover { color:var(--gold-lt); padding-left:4px; }
+    .f-bottom {
+        max-width:1200px; margin:0 auto;
+        padding-top:1.5rem; border-top:1px solid rgba(255,255,255,.08);
+        display:flex; justify-content:space-between; flex-wrap:wrap; gap:.5rem;
+        font-family:var(--f-hindi); font-size:.78rem; color:rgba(255,255,255,.35);
+    }
+    .f-bottom .g { color:var(--gold); }
+
+    /* ═══════════════════════════════════════
+       SIDE CHAT TAB
+    ═══════════════════════════════════════ */
+    .side-tab {
+        position:fixed; right:-82px; top:50%; transform:translateY(-50%);
+        background:var(--maroon); color:var(--white);
+        padding:.8rem 1rem; border-radius:6px 0 0 6px;
+        font-family:var(--f-hindi); font-size:.8rem; font-weight:600;
+        writing-mode:vertical-rl; text-orientation:mixed; letter-spacing:1.5px;
+        cursor:pointer; z-index:500; transition:var(--trans);
+        box-shadow:var(--shadow-md);
+    }
+    .side-tab:hover { right:0; }
+
+    /* WhatsApp */
+    .wa-btn {
+        position:fixed; bottom:1.8rem; right:1.8rem; z-index:999;
+        width:54px; height:54px; border-radius:50%;
+        background:#25D366; display:flex; align-items:center; justify-content:center;
+        font-size:1.6rem; box-shadow:0 4px 16px rgba(37,211,102,.45);
+        transition:var(--trans); animation:waBounce 3s ease-in-out infinite;
+    }
+    @keyframes waBounce { 0%,100%{transform:translateY(0);} 50%{transform:translateY(-7px);} }
+    .wa-btn:hover { transform:scale(1.1); animation:none; }
+
+    /* ═══════════════════════════════════════
+       REVEAL
+    ═══════════════════════════════════════ */
+    .reveal { opacity:0; transform:translateY(24px); transition:opacity .6s ease, transform .6s ease; }
+    .reveal.vis { opacity:1; transform:none; }
+
+    /* ═══════════════════════════════════════
+       RESPONSIVE
+    ═══════════════════════════════════════ */
+    @media(max-width:1024px) {
+        .svc-grid   { grid-template-columns:repeat(2,1fr); }
+        .testi-grid { grid-template-columns:repeat(2,1fr); }
+        .hero-main  { gap:1.5rem; }
+    }
+    @media(max-width:900px) {
+        .feature-strip-inner { grid-template-columns:repeat(2,1fr); }
+        .feat { border-bottom:1px solid var(--border-lt); }
+    }
+    @media(max-width:768px) {
+        .nav-links  { display:none; }
+        .btn-book   { display:none; }
+        .hamburger  { display:flex; }
+
+        .navbar    { padding:0 1.2rem; }
+        .hero-main {
+            grid-template-columns:1fr; text-align:center;
+            padding:1.5rem 0 1rem;
+        }
+        .hero-right { order:-1; }
+        .hero-photo-wrap { width:100%; margin:0 auto; right:0; }
+        .trishul-div { justify-content:center; }
+        .hero-sub   { margin:0 auto 2.2rem; }
+        .hero-btns  { justify-content:center; }
+        .hero-stats-bar { flex-direction: column; gap: 1.5rem; padding: 2rem; }
+        .h-stat { width: 100%; justify-content: flex-start; }
+        .h-stat:not(:last-child)::after { right: 0; top: auto; bottom: -0.75rem; width: 100%; height: 1px; transform: none; }
+
+        .about-grid   { grid-template-columns:1fr; gap:2.5rem; }
+        .exp-card     { bottom:-14px; right:6px; }
+        .svc-grid     { grid-template-columns:1fr; }
+        .testi-grid   { grid-template-columns:1fr; }
+        .contact-grid { grid-template-columns:1fr; gap:2.5rem; }
+        .footer-grid  { grid-template-columns:1fr; gap:2rem; }
+        .f-bottom     { flex-direction:column; text-align:center; }
+        .f-row        { grid-template-columns:1fr; }
+        .section      { padding:3.5rem 1.2rem; }
+    }
+    @media(max-width:480px) {
+        .hero-h1 { font-size:2.2rem; }
+        .feature-strip-inner { grid-template-columns:1fr; }
+        .feat { border-right:none; }
+    }
+    </style>
+</head>
+<body>
+
+<!-- ════════════════════════════════
+     NAVBAR
+════════════════════════════════ -->
+<nav class="navbar" id="navbar">
+    <a href="#home" class="nav-logo">
+        <span class="nav-om" contenteditable="false" style=""><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1em" height="1em" style="vertical-align: middle;"><text x="12" y="18" font-size="20" text-anchor="middle" font-family="sans-serif">ॐ</text></svg></span>
+        <div class="nav-logo-text">
+            <span class="hin" contenteditable="false" style="">भारतीय वैदिक अनुष्ठान केंद्र</span>
+            <span class="eng" contenteditable="false" style="">BHARATIYA VEDIC ANUSHTHAN KENDRA</span>
+        </div>
+    </a>
+
+    <ul class="nav-links">
+        <li><a href="#home" class="active" contenteditable="false" style="">Home</a></li>
+        <li><a href="#about" contenteditable="false" style="" class="">About Us</a></li>
+        <li><a href="#services" contenteditable="false" style="" class="">Services</a></li>
+        <li><a href="#testimonials" contenteditable="false" style="">Testimonials</a></li>
+        <li><a href="#contact" contenteditable="false" style="">Contact</a></li>
+    </ul>
+
+    <a href="#contact" class="btn-book">
+        <span contenteditable="false" style=""><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1em" height="1em" style="vertical-align: middle;"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg></span> Book Appointment
+    </a>
+
+    <button class="hamburger" id="hamburger" aria-label="Open menu" aria-expanded="false">
+        <span contenteditable="false" style=""></span><span contenteditable="false" style=""></span><span contenteditable="false" style=""></span>
+    </button>
+</nav>
+
+<nav class="mobile-menu" id="mobileMenu">
+    <a href="#home" onclick="closeMenu()">Home</a>
+    <a href="#about" onclick="closeMenu()">About Us</a>
+    <a href="#services" onclick="closeMenu()">Services</a>
+    <a href="#testimonials" onclick="closeMenu()">Testimonials</a>
+    <a href="#contact" onclick="closeMenu()">Contact</a>
+</nav>
+
+
+<!-- ════════════════════════════════
+     HERO
+════════════════════════════════ -->
+<section class="hero" id="home">
+    <div class="hero-main">
+
+        <!-- Left: Text -->
+        <div class="hero-left">
+            <div class="hero-badge"><span style="color:#b8860b;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1em" height="1em" style="vertical-align: middle;"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></span> प्रामाणिक वैदिक ज्योतिष</div>
+
+            <h1 class="hero-h1" contenteditable="false" style="">
+                <span class="line1" contenteditable="false" style="">भारतीय वैदिक</span>
+                <span class="line2" contenteditable="false" style="">अनुष्ठान केंद्र</span>
+            </h1>
+
+            <div class="trishul-div">
+                <div class="trishul-div-line"></div>
+                <span class="trishul-sym" contenteditable="false" style=""><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1em" height="1em" style="vertical-align: middle;"><path d="M12 4v16"/><path d="M12 4l-2 2"/><path d="M12 4l2 2"/><path d="M7 9a5 5 0 0 0 10 0"/><path d="M7 9V5"/><path d="M17 9V5"/><path d="M6 5h2"/><path d="M16 5h2"/></svg></span>
+                <div class="trishul-div-line right"></div>
+            </div>
+
+            <p class="hero-quote" contenteditable="false" style="">सही की राह से जानें अपने जीवन का भविष्य !</p>
+            <p class="hero-sub" contenteditable="false" style="">Discover the divine secrets of your destiny through authentic Vedic wisdom.</p>
+
+            <div class="hero-btns">
+                <a href="#contact" class="btn-fill">
+                    <span contenteditable="false" style=""><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1em" height="1em" style="vertical-align: middle;"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg></span> परामर्श बुक करें
+                </a>
+                <a href="#about" class="btn-ghost">
+                    <span contenteditable="false" style=""><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1em" height="1em" style="vertical-align: middle;"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span> हमारे बारे में जानें
+                </a>
+            </div>
+
+            <!-- Stats -->
+            <div class="hero-stats-bar">
+                <div class="h-stat">
+                    <div class="h-stat-icon" style="background: transparent; border: none; width: 44px; height: 44px;"><img src="exp-icon.png" style="width: 100%; height: 100%; object-fit: contain;"></div>
+                    <div>
+                        <span class="h-stat-num" data-target="15" data-sfx="+" contenteditable="false" style="">15+</span>
+                        <span class="h-stat-lbl" contenteditable="false" style="">वर्षों का अनुभव</span>
+                    </div>
+                </div>
+                <div class="h-stat-sep"></div>
+                <div class="h-stat">
+                    <div class="h-stat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1em" height="1em" style="vertical-align: middle;"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+                    <div>
+                        <span class="h-stat-num" data-target="5000" data-sfx="+" contenteditable="false" style="">5000+</span>
+                        <span class="h-stat-lbl" contenteditable="false" style="">सम्पन्न पूजाएं</span>
+                    </div>
+                </div>
+                <div class="h-stat-sep"></div>
+                <div class="h-stat">
+                    <div class="h-stat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1em" height="1em" style="vertical-align: middle;"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
+                    <div>
+                        <span class="h-stat-num" data-target="98" data-sfx="%" contenteditable="false" style="">98%</span>
+                        <span class="h-stat-lbl" contenteditable="false" style="">सटीकता दर</span>
+                    </div>
+                </div>
+                <div class="h-stat-sep"></div>
+                <div class="h-stat">
+                    <div class="h-stat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1em" height="1em" style="vertical-align: middle;"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+                    <div>
+                        <span class="h-stat-num" data-target="100" data-sfx="%" contenteditable="false" style="">100%</span>
+                        <span class="h-stat-lbl" contenteditable="false" style="">शास्त्र शुद्धता</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right: Photo Only -->
+        <div class="hero-right">
+            <div class="hero-photo-wrap" title="" style="transform: translate3d(-175px, -156px, 0px) scale(1.43771);">
+                <img src="acharya-arvind-hero.png" alt="Acharya Arvind Ji" class="hero-photo" loading="eager">
+            </div>
+        </div>
+
+    </div><!-- .hero-main -->
+
+
+    <!-- Feature strip pinned to bottom of hero -->
+    <div class="feature-strip">
+        <div class="feature-strip-inner">
+            <div class="feat">
+                <div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1em" height="1em" style="vertical-align: middle;"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+                <div>
+                    <div class="feat-title" contenteditable="false" style="">शास्त्र सम्मत पूजा विधि</div>
+                    <div class="feat-desc" contenteditable="false" style=""><span style="color:#b8860b;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1em" height="1em" style="vertical-align: middle;"><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41 1.41"/><path d="m19.07 4.93-1.41 1.41"/></svg></span> प्रामाणिक वैदिक ग्रंथों पर आधारित सटीक और प्रभावशाली समाधान।</div>
+                    <div class="feat-line"></div>
+                </div>
+            </div>
+            <div class="feat">
+                <div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1em" height="1em" style="vertical-align: middle;"><path d="M12 22s-8-6-8-12a8 8 0 0 1 16 0c0 6-8 12-8 12z"/><path d="M12 22s4-7 4-12"/><path d="M12 22s-4-7-4-12"/></svg></div>
+                <div>
+                    <div class="feat-title" contenteditable="false" style="">सभी प्रकार के अनुष्ठान</div>
+                    <div class="feat-desc" contenteditable="false" style="">गृह प्रवेश, विवाह, नवग्रह शांति सहित सभी प्रकार के वैदिक अनुष्ठान।</div>
+                    <div class="feat-line"></div>
+                </div>
+            </div>
+            <div class="feat">
+                <div class="feat-icon">🕐</div>
+                <div>
+                    <div class="feat-title" contenteditable="false" style="">24/7 उपलब्धता</div>
+                    <div class="feat-desc" contenteditable="false" style="">हमेशा आपके मार्गदर्शन के लिए तैयार और उपलब्ध।</div>
+                    <div class="feat-line"></div>
+                </div>
+            </div>
+            <div class="feat">
+                <div class="feat-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1em" height="1em" style="vertical-align: middle;"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></div>
+                <div>
+                    <div class="feat-title" contenteditable="false" style="">शास्त्र शुद्धता की गारंटी</div>
+                    <div class="feat-desc" contenteditable="false" style="">आपकी जानकारी पूरी तरह सुरक्षित और गोपनीय।</div>
+                    <div class="feat-line"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</section>
+
+<!-- ════════════════════════════════
+     QUICK ACCESS BAR
+════════════════════════════════ -->
+<div class="quick-bar">
+    <div class="quick-bar-inner">
+        <a href="#services" class="q-item"><div class="q-item-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.4em" height="1.4em"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div><span class="q-item-label">कुंडली देखें</span></a>
+        <a href="#services" class="q-item"><div class="q-item-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.4em" height="1.4em"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></div><span class="q-item-label">पूजा बुक करें</span></a>
+        <a href="#contact" class="q-item"><div class="q-item-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.4em" height="1.4em"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 11.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.77 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 5.55 5.55l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div><span class="q-item-label">परामर्श लें</span></a>
+        <a href="#services" class="q-item"><div class="q-item-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.4em" height="1.4em"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div><span class="q-item-label">कुंडली मिलान</span></a>
+        <a href="#services" class="q-item"><div class="q-item-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.4em" height="1.4em"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/><path d="M15 3v18"/></svg></div><span class="q-item-label">वास्तु शांति</span></a>
+        <a href="#services" class="q-item"><div class="q-item-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.4em" height="1.4em"><path d="M12 22V2"/><path d="m17 7-5-5-5 5"/><path d="M2 12h20"/><path d="M7 17H2"/><path d="M22 17h-5"/><path d="M12 17v5"/></svg></div><span class="q-item-label">विशेष हवन</span></a>
+        <a href="#services" class="q-item"><div class="q-item-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.4em" height="1.4em"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div><span class="q-item-label">सत्यनारायण कथा</span></a>
+        <a href="#services" class="q-item"><div class="q-item-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.4em" height="1.4em"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></div><span class="q-item-label">विद्यार्थी पूजा</span></a>
+    </div>
+</div>
+
+
+<!-- ════════════════════════════════
+     ABOUT
+════════════════════════════════ -->
+<section class="section white" id="about">
+    <div class="s-wrap">
+        <div class="s-head reveal vis">
+            <span class="s-eye" contenteditable="false">हमारे बारे में</span>
+            <h2 class="s-title" contenteditable="false">Acharya <span class="g" contenteditable="false">Arvind Ji</span></h2>
+            <p class="s-sub" contenteditable="false">वैदिक कर्मकांड विशेषज्ञ — Vedic Pundit & Ritual Specialist</p>
+            <div class="s-rule"><span class="s-rule-sym" contenteditable="false">✦</span></div>
+        </div>
+        <div class="about-grid">
+            <div class="reveal vis" style="position:relative;">
+                <div class="about-img-outer">
+                    <img src="acharya-arvind-pro.png" alt="Acharya Arvind Ji" class="about-photo">
+                </div>
+                <div class="exp-card" style="bottom:-14px;right:16px;">
+                    <span class="n" contenteditable="false" style="">15+</span>
+                    <span class="l" contenteditable="false" style="">Years Experience</span>
+                </div>
+            </div>
+            <div class="reveal vis">
+                <h3 class="about-name" contenteditable="false" style="">Acharya Arvind Ji</h3>
+                <p class="about-role" contenteditable="false" style="">पंडित | वैदिक कर्मकांड विशेषज्ञ | वास्तु एवं तंत्र विशेषज्ञ</p>
+                <p class="about-para" contenteditable="false" style="">
+                    पंडित अरविंद जी एक प्रख्यात वैदिक विद्वान हैं जिन्हें 15 वर्षों से भी अधिक का अनुभव है। उन्होंने प्राचीन गुरु-शिष्य परंपरा के अंतर्गत वेद, कर्मकांड और अनुष्ठान की दीक्षा प्राप्त की है। उनके अचूक मार्गदर्शन से हजारों परिवारों में सुख, शांति और समृद्धि आई है।
+                </p>
+                <p class="about-para" contenteditable="false" style="">
+                    Pandit Arvind is a renowned Vedic scholar trained under the ancient Guru-Shishya tradition. With deep expertise in conducting Havans, Grah Shanti Poojas, and traditional Sanskars, he has guided thousands across India and abroad through life's most pivotal decisions.
+                </p>
+                <div class="qual-list">
+                    <span class="qual-tag" contenteditable="false" style="">कर्मकांड विशेषज्ञ</span>
+                    <span class="qual-tag" contenteditable="false" style="">वास्तु विशेषज्ञ</span>
+                    <span class="qual-tag" contenteditable="false" style="">गृह प्रवेश पूजा</span>
+                    <span class="qual-tag" contenteditable="false" style="">नवग्रह शांति</span>
+                    <span class="qual-tag" contenteditable="false" style="">रुद्राभिषेक</span>
+                    <span class="qual-tag" contenteditable="false" style="">विवाह संस्कार</span>
+                </div>
+                <a href="#contact" class="btn-fill" style="display:inline-flex;"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1em" height="1em" style="vertical-align: middle;"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg> परामर्श लें</a>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ════════════════════════════════
+     SERVICES — PROBLEM-BASED
+════════════════════════════════ -->
+<section class="section alt" id="services">
+    <div class="s-wrap">
+        <div class="s-head reveal vis">
+            <span class="s-eye">आपकी समस्या, हमारा समाधान</span>
+            <h2 class="s-title">अपनी <span class="g">समस्या चुनें</span></h2>
+            <p class="s-sub">विद्यार्थी, करियर, विवाह या अन्य — हर समस्या का वैदिक समाधान एक ही जगह</p>
+            <div class="s-rule"><span class="s-rule-sym">✦</span></div>
+        </div>
+        <!-- Tab Buttons -->
+        <div class="svc-tabs">
+            <button class="svc-tab-btn active" onclick="switchTab(event,'student')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg> विद्यार्थी समस्या</button>
+            <button class="svc-tab-btn" onclick="switchTab(event,'career')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg> करियर समस्या</button>
+            <button class="svc-tab-btn" onclick="switchTab(event,'marriage')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg> विवाह समस्या</button>
+            <button class="svc-tab-btn" onclick="switchTab(event,'other')"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><circle cx="12" cy="12" r="10"/><path d="M12 8v4"/><path d="M12 16h.01"/></svg> अन्य सेवाएं</button>
+        </div>
+        <!-- Panes -->
+        <div class="svc-pane active svc-grid" id="tab-student">
+            <div class="svc-card reveal vis" onclick="openDrawer('s1')">
+                <span class="svc-badge">पूजा</span>
+                <div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg></div>
+                <h3 class="svc-title">विद्या प्राप्ति पूजा</h3>
+                <p class="svc-hindi">Vidya Prapti Pooja</p>
+                <p class="svc-desc">परीक्षा में सफलता और एकाग्रता के लिए</p>
+                <button class="svc-open-btn">विस्तार से जानें &rarr;</button>
+            </div>
+            <div class="svc-card reveal vis" onclick="openDrawer('s2')">
+                <span class="svc-badge">अनुष्ठान</span>
+                <div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/></svg></div>
+                <h3 class="svc-title">बुद्धि वर्धक अनुष्ठान</h3>
+                <p class="svc-hindi">Buddhi Vardhak Ritual</p>
+                <p class="svc-desc">बौद्धिक क्षमता और निर्णय शक्ति बढ़ाने के लिए</p>
+                <button class="svc-open-btn">विस्तार से जानें &rarr;</button>
+            </div>
+            <div class="svc-card reveal vis" onclick="openDrawer('s3')">
+                <span class="svc-badge">कुंडली</span>
+                <div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg></div>
+                <h3 class="svc-title">कुंडली: करियर दिशा</h3>
+                <p class="svc-hindi">Career Direction Reading</p>
+                <p class="svc-desc">कौन सा क्षेत्र रहेगा सबसे सफल?</p>
+                <button class="svc-open-btn">विस्तार से जानें &rarr;</button>
+            </div>
+            <div class="svc-card reveal vis" onclick="openDrawer('s4')">
+                <span class="svc-badge">साधना</span>
+                <div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+                <h3 class="svc-title">सरस्वती साधना</h3>
+                <p class="svc-hindi">Saraswati Sadhna</p>
+                <p class="svc-desc">ज्ञान और कला की देवी की आराधना</p>
+                <button class="svc-open-btn">विस्तार से जानें &rarr;</button>
+            </div>
+            <div class="svc-card reveal vis" onclick="openDrawer('s5')">
+                <span class="svc-badge">ग्रह शांति</span>
+                <div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg></div>
+                <h3 class="svc-title">राहु-केतु शांति</h3>
+                <p class="svc-hindi">Rahu-Ketu Shanti</p>
+                <p class="svc-desc">पढ़ाई में बाधाएं और भटकाव दूर करें</p>
+                <button class="svc-open-btn">विस्तार से जानें &rarr;</button>
+            </div>
+            <div class="svc-card reveal vis" onclick="openDrawer('s6')">
+                <span class="svc-badge">संस्कार</span>
+                <div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg></div>
+                <h3 class="svc-title">नामकरण एवं नक्षत्र परामर्श</h3>
+                <p class="svc-hindi">Namkaran & Nakshatra</p>
+                <p class="svc-desc">बच्चे के जन्म नक्षत्र अनुसार शुभ नाम</p>
+                <button class="svc-open-btn">विस्तार से जानें &rarr;</button>
+            </div>
+        </div>
+        <div class="svc-pane svc-grid" id="tab-career">
+            <div class="svc-card reveal vis" onclick="openDrawer('c1')">
+                <span class="svc-badge">कुंडली</span>
+                <div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg></div>
+                <h3 class="svc-title">करियर ज्योतिष विश्लेषण</h3>
+                <p class="svc-hindi">Career Astrology</p>
+                <p class="svc-desc">नौकरी, व्यापार या प्रोफेशन — क्या है आपके भाग्य में?</p>
+                <button class="svc-open-btn">विस्तार से जानें &rarr;</button>
+            </div>
+            <div class="svc-card reveal vis" onclick="openDrawer('c2')">
+                <span class="svc-badge">पूजा</span>
+                <div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></svg></div>
+                <h3 class="svc-title">व्यापार वृद्धि पूजा</h3>
+                <p class="svc-hindi">Business Prosperity Pooja</p>
+                <p class="svc-desc">व्यापार में बरकत और लक्ष्मी का आगमन</p>
+                <button class="svc-open-btn">विस्तार से जानें &rarr;</button>
+            </div>
+            <div class="svc-card reveal vis" onclick="openDrawer('c3')">
+                <span class="svc-badge">उपाय</span>
+                <div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg></div>
+                <h3 class="svc-title">नौकरी एवं पदोन्नति</h3>
+                <p class="svc-hindi">Job & Promotion Yantra</p>
+                <p class="svc-desc">इंटरव्यू में सफलता और प्रमोशन के लिए</p>
+                <button class="svc-open-btn">विस्तार से जानें &rarr;</button>
+            </div>
+            <div class="svc-card reveal vis" onclick="openDrawer('c4')">
+                <span class="svc-badge">वास्तु</span>
+                <div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/><path d="M15 3v18"/></svg></div>
+                <h3 class="svc-title">ऑफिस वास्तु</h3>
+                <p class="svc-hindi">Office Vastu Shastra</p>
+                <p class="svc-desc">कार्यस्थल की नकारात्मक ऊर्जा दूर करें</p>
+                <button class="svc-open-btn">विस्तार से जानें &rarr;</button>
+            </div>
+            <div class="svc-card reveal vis" onclick="openDrawer('c5')">
+                <span class="svc-badge">पूजा</span>
+                <div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg></div>
+                <h3 class="svc-title">उद्योग एवं कारखाना पूजा</h3>
+                <p class="svc-hindi">Industry Bhumi Puja</p>
+                <p class="svc-desc">नए उद्यम की सफल शुरुआत</p>
+                <button class="svc-open-btn">विस्तार से जानें &rarr;</button>
+            </div>
+            <div class="svc-card reveal vis" onclick="openDrawer('c6')">
+                <span class="svc-badge">ग्रह शांति</span>
+                <div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></div>
+                <h3 class="svc-title">शनि साढ़ेसाती शांति</h3>
+                <p class="svc-hindi">Shani Sade Sati Shanti</p>
+                <p class="svc-desc">शनि की साढ़ेसाती से करियर में रुकावट दूर करें</p>
+                <button class="svc-open-btn">विस्तार से जानें &rarr;</button>
+            </div>
+        </div>
+        <div class="svc-pane svc-grid" id="tab-marriage">
+            <div class="svc-card reveal vis" onclick="openDrawer('m1')">
+                <span class="svc-badge">विवाह</span>
+                <div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><circle cx="6" cy="12" r="4"/><circle cx="18" cy="12" r="4"/><path d="M10 12h4"/></svg></div>
+                <h3 class="svc-title">कुंडली मिलान</h3>
+                <p class="svc-hindi">Kundli Matching</p>
+                <p class="svc-desc">अष्टकूट और मंगल दोष की सटीक जांच</p>
+                <button class="svc-open-btn">विस्तार से जानें &rarr;</button>
+            </div>
+            <div class="svc-card reveal vis" onclick="openDrawer('m2')">
+                <span class="svc-badge">निवारण</span>
+                <div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg></div>
+                <h3 class="svc-title">विवाह बाधा निवारण</h3>
+                <p class="svc-hindi">Vivah Badha Nivaran</p>
+                <p class="svc-desc">विवाह में देरी और बाधाएं दूर करें</p>
+                <button class="svc-open-btn">विस्तार से जानें &rarr;</button>
+            </div>
+            <div class="svc-card reveal vis" onclick="openDrawer('m3')">
+                <span class="svc-badge">दोष शांति</span>
+                <div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg></div>
+                <h3 class="svc-title">मंगल दोष शांति</h3>
+                <p class="svc-hindi">Mangal Dosh Shanti</p>
+                <p class="svc-desc">मांगलिक दोष का स्थायी निवारण</p>
+                <button class="svc-open-btn">विस्तार से जानें &rarr;</button>
+            </div>
+            <div class="svc-card reveal vis" onclick="openDrawer('m4')">
+                <span class="svc-badge">परामर्श</span>
+                <div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
+                <h3 class="svc-title">संबंध परामर्श</h3>
+                <p class="svc-hindi">Relationship Counseling</p>
+                <p class="svc-desc">पति-पत्नी के रिश्ते में सुधार</p>
+                <button class="svc-open-btn">विस्तार से जानें &rarr;</button>
+            </div>
+            <div class="svc-card reveal vis" onclick="openDrawer('m5')">
+                <span class="svc-badge">संस्कार</span>
+                <div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div>
+                <h3 class="svc-title">विवाह संस्कार</h3>
+                <p class="svc-hindi">Vivah Sanskar</p>
+                <p class="svc-desc">शास्त्रोक्त विधि से विवाह का संपूर्ण आयोजन</p>
+                <button class="svc-open-btn">विस्तार से जानें &rarr;</button>
+            </div>
+            <div class="svc-card reveal vis" onclick="openDrawer('m6')">
+                <span class="svc-badge">अनुष्ठान</span>
+                <div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><path d="M12 22s-8-6-8-12a8 8 0 0 1 16 0c0 6-8 12-8 12z"/><path d="M12 22s4-8 4-12"/><path d="M12 22s-4-8-4-12"/><path d="M4 12c4-2 8-2 8 2 0-4 4-4 8-2"/></svg></div>
+                <h3 class="svc-title">प्रेम विवाह अनुष्ठान</h3>
+                <p class="svc-hindi">Love Marriage Ritual</p>
+                <p class="svc-desc">परिवार की सहमति और प्रेम विवाह के लिए</p>
+                <button class="svc-open-btn">विस्तार से जानें &rarr;</button>
+            </div>
+        </div>
+        <div class="svc-pane svc-grid" id="tab-other">
+            <div class="svc-card reveal vis" onclick="openDrawer('o1')">
+                <span class="svc-badge">पूजा</span>
+                <div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg></div>
+                <h3 class="svc-title">गृह शांति पूजा</h3>
+                <p class="svc-hindi">Grah Shanti Pooja</p>
+                <p class="svc-desc">घर में सुख, शांति और समृद्धि के लिए</p>
+                <button class="svc-open-btn">विस्तार से जानें &rarr;</button>
+            </div>
+            <div class="svc-card reveal vis" onclick="openDrawer('o2')">
+                <span class="svc-badge">अभिषेक</span>
+                <div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><path d="M12 22s-8-6-8-12a8 8 0 0 1 16 0c0 6-8 12-8 12z"/><path d="M12 22s4-8 4-12"/><path d="M12 22s-4-8-4-12"/><path d="M4 12c4-2 8-2 8 2 0-4 4-4 8-2"/></svg></div>
+                <h3 class="svc-title">रुद्राभिषेक</h3>
+                <p class="svc-hindi">Rudrabhishek</p>
+                <p class="svc-desc">शिवजी की कृपा से जीवन में सुख-शांति</p>
+                <button class="svc-open-btn">विस्तार से जानें &rarr;</button>
+            </div>
+            <div class="svc-card reveal vis" onclick="openDrawer('o3')">
+                <span class="svc-badge">कथा</span>
+                <div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg></div>
+                <h3 class="svc-title">सत्यनारायण कथा</h3>
+                <p class="svc-hindi">Satyanarayan Katha</p>
+                <p class="svc-desc">घर में मांगलिक कार्यों के लिए</p>
+                <button class="svc-open-btn">विस्तार से जानें &rarr;</button>
+            </div>
+            <div class="svc-card reveal vis" onclick="openDrawer('o4')">
+                <span class="svc-badge">वास्तु</span>
+                <div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+                <h3 class="svc-title">वास्तु शांति</h3>
+                <p class="svc-hindi">Vastu Shanti</p>
+                <p class="svc-desc">नए घर में प्रवेश से पहले</p>
+                <button class="svc-open-btn">विस्तार से जानें &rarr;</button>
+            </div>
+            <div class="svc-card reveal vis" onclick="openDrawer('o5')">
+                <span class="svc-badge">ऑनलाइन</span>
+                <div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 11.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.77 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 5.55 5.55l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+                <h3 class="svc-title">ऑनलाइन परामर्श</h3>
+                <p class="svc-hindi">Online Consultation</p>
+                <p class="svc-desc">घर बैठे वीडियो कॉल या WhatsApp पर</p>
+                <button class="svc-open-btn">विस्तार से जानें &rarr;</button>
+            </div>
+            <div class="svc-card reveal vis" onclick="openDrawer('o6')">
+                <span class="svc-badge">दोष शांति</span>
+                <div class="svc-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg></div>
+                <h3 class="svc-title">पितृ दोष निवारण</h3>
+                <p class="svc-hindi">Pitr Dosh Nivaran</p>
+                <p class="svc-desc">पूर्वजों की आत्मा की शांति के लिए</p>
+                <button class="svc-open-btn">विस्तार से जानें &rarr;</button>
+            </div>
+        </div>
+        <!-- Bottom CTA -->
+        <div class="svc-cta-bar reveal vis">
+            <p>कोई और समस्या है? <strong>सीधे बात करें</strong> — हम हर वैदिक समाधान के लिए तैयार हैं।</p>
+            <a href="#contact" class="btn-fill">निःशुल्क परामर्श लें &rarr;</a>
+        </div>
+    </div>
+</section>
+
+<!-- ════ SERVICE DRAWER ════ -->
+<div class="svc-overlay" id="svcOverlay" onclick="closeDrawer()"></div>
+<div class="svc-drawer" id="svcDrawer">
+    <div class="drawer-head">
+        <button class="drawer-close" onclick="closeDrawer()">✕</button>
+        <div class="drawer-icon" id="drawerIcon"></div>
+        <div class="drawer-badge" id="drawerBadge"></div>
+        <div class="drawer-title" id="drawerTitle"></div>
+        <div class="drawer-eng"  id="drawerEng"></div>
+    </div>
+    <div class="drawer-body">
+        <p class="drawer-desc" id="drawerDesc"></p>
+        <ul class="drawer-benefits" id="drawerBenefits"></ul>
+    </div>
+    <div class="drawer-foot">
+        <button class="drawer-btn-primary" onclick="bookNow()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" width="1em" height="1em"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg>
+            अभी बुक करें — Book Now
+        </button>
+        <button class="drawer-btn-wa" onclick="whatsApp()">
+            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor" width="1em" height="1em"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 0 1-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 0 1-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 0 1 2.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0 0 12.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
+            WhatsApp पर पूछें
+        </button>
+    </div>
+</div>
+
+
+<!-- ════════════════════════════════
+     TESTIMONIALS
+════════════════════════════════ -->
+<section class="section white" id="testimonials">
+    <div class="s-wrap">
+        <div class="s-head reveal">
+            <span class="s-eye" contenteditable="false">ग्राहकों के अनुभव</span>
+            <h2 class="s-title" contenteditable="false">What Our <span class="g" contenteditable="false">Clients Say</span></h2>
+            <p class="s-sub" contenteditable="false">हमारे सम्पन्न पूजाएंों के विचार</p>
+            <div class="s-rule"><span class="s-rule-sym" contenteditable="false">✦</span></div>
+        </div>
+        <div class="testi-grid">
+            <div class="testi-card reveal">
+                <div class="testi-q-mark">"</div>
+                <p class="testi-text" contenteditable="false" style="">आचार्य अरविंद जी ने मेरी कुंडली देखकर जो बताया वो बिल्कुल सच निकला। उनकी भविष्यवाणी से मेरे जीवन में बड़ा बदलाव आया। अत्यंत ज्ञानी और अनुभवी ज्योतिषी हैं।</p>
+                <div class="testi-sep"></div>
+                <div class="testi-row">
+                    <div class="testi-av">R</div>
+                    <div>
+                        <div class="testi-name">Rajesh Sharma</div>
+                        <div class="testi-place">नई दिल्ली, Delhi</div>
+                        <div class="testi-stars">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testi-card reveal">
+                <div class="testi-q-mark">"</div>
+                <p class="testi-text" contenteditable="false" style="">I was skeptical about astrology, but after my session with Acharya Arvind Ji, I'm a true believer. His birth chart reading was incredibly accurate and helped me make the right career decisions.</p>
+                <div class="testi-sep"></div>
+                <div class="testi-row">
+                    <div class="testi-av">P</div>
+                    <div>
+                        <div class="testi-name">Priya Malhotra</div>
+                        <div class="testi-place">Mumbai, Maharashtra</div>
+                        <div class="testi-stars">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+            <div class="testi-card reveal">
+                <div class="testi-q-mark">"</div>
+                <p class="testi-text" contenteditable="false" style="">रुद्राभिषेक के लिए आचार्य जी से संपर्क किया था। उन्होंने बहुत विस्तार से सब समझाया। हमारी शादी बहुत सुखी है। भगवान उन्हें दीर्घायु दें।</p>
+                <div class="testi-sep"></div>
+                <div class="testi-row">
+                    <div class="testi-av">S</div>
+                    <div>
+                        <div class="testi-name">Suresh &amp; Kavita Gupta</div>
+                        <div class="testi-place">जयपुर, Rajasthan</div>
+                        <div class="testi-stars">★★★★★</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ════════════════════════════════
+     CONTACT
+════════════════════════════════ -->
+<section class="section alt" id="contact">
+    <div class="s-wrap">
+        <div class="s-head reveal">
+            <span class="s-eye" contenteditable="false">संपर्क करें</span>
+            <h2 class="s-title" contenteditable="false">Book Your <span class="g" contenteditable="false">Consultation</span></h2>
+            <p class="s-sub" contenteditable="false">परामर्श के लिए अभी संपर्क करें — We'd love to guide you</p>
+            <div class="s-rule"><span class="s-rule-sym" contenteditable="false">✦</span></div>
+        </div>
+        <div class="contact-grid">
+            <div class="reveal">
+                <h3 class="contact-h" contenteditable="false" style="">Get in Touch</h3>
+                <p class="contact-p" contenteditable="false" style="">आचार्य अरविंद जी से सीधे संपर्क करें और अपनी जिंदगी के सवालों का जवाब पाएं। हम आपकी हर समस्या का समाधान ज्योतिष के माध्यम से देने के लिए तत्पर हैं।</p>
+                <div class="c-list">
+                    <div class="c-row">
+                        <div class="c-ico">📍</div>
+                        <div>
+                            <div class="c-lbl">Location</div>
+                            <div class="c-val">भारतीय वैदिक अनुष्ठान केंद्र, भारत</div>
+                        </div>
+                    </div>
+                    <div class="c-row">
+                        <div class="c-ico">📞</div>
+                        <div>
+                            <div class="c-lbl">Phone / WhatsApp</div>
+                            <div class="c-val">+91 XXXXX XXXXX</div>
+                        </div>
+                    </div>
+                    <div class="c-row">
+                        <div class="c-ico">📧</div>
+                        <div>
+                            <div class="c-lbl">Email</div>
+                            <div class="c-val">pandit.arvind@anushthankendra.in</div>
+                        </div>
+                    </div>
+                    <div class="c-row">
+                        <div class="c-ico">🕐</div>
+                        <div>
+                            <div class="c-lbl">Consultation Hours</div>
+                            <div class="c-val">सोम–शनि: प्रातः 9 बजे – सायं 7 बजे</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-box reveal">
+                <p class="form-head" contenteditable="false" style="">परामर्श के लिए <span class="g" contenteditable="false" style="">फॉर्म भरें</span></p>
+                <form id="consult-form" novalidate="">
+                    <div class="f-row">
+                        <div class="f-grp">
+                            <label class="f-lbl" for="fn">Full Name</label>
+                            <input type="text" id="fn" class="f-inp" placeholder="Your full name" required="">
+                        </div>
+                        <div class="f-grp">
+                            <label class="f-lbl" for="fp">Phone / WhatsApp</label>
+                            <input type="tel" id="fp" class="f-inp" placeholder="+91 XXXXX XXXXX" required="">
+                        </div>
+                    </div>
+                    <div class="f-row">
+                        <div class="f-grp">
+                            <label class="f-lbl" for="fd">Date of Birth</label>
+                            <input type="date" id="fd" class="f-inp">
+                        </div>
+                        <div class="f-grp">
+                            <label class="f-lbl" for="fs">Service Required</label>
+                            <select id="fs" class="f-sel" required="">
+                                <option value="">Select a service</option>
+                                <option>Grah Shanti Pooja</option>
+                                <option>Maha Havan</option>
+                                <option>Vivah Sanskar</option>
+                                <option>Rudrabhishek</option>
+                                <option>Vastu Shanti</option>
+                                <option>Satyanarayan Katha</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="f-grp">
+                        <label class="f-lbl" for="fm">Message / Question</label>
+                        <textarea id="fm" class="f-ta" placeholder="अपना प्रश्न या संदेश लिखें..." required=""></textarea>
+                    </div>
+                    <button type="submit" class="f-btn" id="submitBtn">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1em" height="1em" style="vertical-align: middle;"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg> Submit — परामर्श बुक करें
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+<!-- ════════════════════════════════
+     FOOTER
+════════════════════════════════ -->
+<footer class="footer">
+    <div class="footer-grid">
+        <div>
+            <span class="f-om" contenteditable="false" style=""><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1em" height="1em" style="vertical-align: middle;"><text x="12" y="18" font-size="20" text-anchor="middle" font-family="sans-serif">ॐ</text></svg></span>
+            <span class="f-name" contenteditable="false" style="">भारतीय वैदिक अनुष्ठान केंद्र</span>
+            <span class="f-sub" contenteditable="false" style="">BHARATIYA VEDIC ANUSHTHAN KENDRA</span>
+            <p class="f-desc" contenteditable="false" style="">प्राचीन वैदिक ज्योतिष के माध्यम से आपके जीवन में प्रकाश लाना हमारा संकल्प है। Acharya Arvind के मार्गदर्शन में अपना भाग्य जानें।</p>
+        </div>
+        <div>
+            <div class="f-col-h">Quick Links</div>
+            <ul class="f-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About Acharya</a></li>
+                <li><a href="#services">Services</a></li>
+                <li><a href="#testimonials">Testimonials</a></li>
+                <li><a href="#contact">Contact Us</a></li>
+            </ul>
+        </div>
+        <div>
+            <div class="f-col-h">Our Services</div>
+            <ul class="f-links">
+                <li><a href="#services">गृह शांति पूजा</a></li>
+                <li><a href="#services">महायज्ञ एवं हवन</a></li>
+                <li><a href="#services">विवाह एवं अन्य संस्कार</a></li>
+                <li><a href="#services">रुद्राभिषेक</a></li>
+                <li><a href="#services">सत्यनारायण कथा</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="f-bottom">
+        <span contenteditable="false" style="">© 2025 भारतीय वैदिक अनुष्ठान केंद्र | Acharya Arvind</span>
+        <span contenteditable="false" style=""><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1em" height="1em" style="vertical-align: middle;"><text x="12" y="18" font-size="20" text-anchor="middle" font-family="sans-serif">ॐ</text></svg> नमः शिवाय &nbsp;·&nbsp; Made with <span class="g" contenteditable="false" style="">❤</span> in India 🇮🇳</span>
+    </div>
+</footer>
+
+<!-- Side tab -->
+<a href="#contact" class="side-tab">हमसे बात करें</a>
+
+<!-- WhatsApp -->
+<a href="https://wa.me/91XXXXXXXXXX" class="wa-btn" target="_blank" rel="noopener" aria-label="WhatsApp">💬</a>
+
+
+<script>
+
+/* ── Service Tab Switcher + Drawer ── */
+const SVC_DATA = {
+  's1': {icon:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>`, title:'विद्या प्राप्ति पूजा', eng:'Vidya Prapti Pooja', badge:'पूजा', desc:`परीक्षा में असफलता, पढ़ाई में मन न लगना, या स्मृति शक्ति की कमी — सरस्वती माता और बुध ग्रह की विशेष आराधना से इन सभी समस्याओं का समाधान।`, benefits:["एकाग्रता एवं स्मृति शक्ति में वृद्धि","परीक्षा में सफलता के लिए विशेष मंत्र जाप","विद्या बाधा निवारण हवन","शुभ मुहूर्त में पूजा का आयोजन"]},
+  's2': {icon:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><path d="M9.5 2A2.5 2.5 0 0 1 12 4.5v15a2.5 2.5 0 0 1-4.96-.46 2.5 2.5 0 0 1-2.96-3.08 3 3 0 0 1-.34-5.58 2.5 2.5 0 0 1 1.32-4.24 2.5 2.5 0 0 1 1.98-3A2.5 2.5 0 0 1 9.5 2Z"/><path d="M14.5 2A2.5 2.5 0 0 0 12 4.5v15a2.5 2.5 0 0 0 4.96-.46 2.5 2.5 0 0 0 2.96-3.08 3 3 0 0 0 .34-5.58 2.5 2.5 0 0 0-1.32-4.24 2.5 2.5 0 0 0-1.98-3A2.5 2.5 0 0 0 14.5 2Z"/></svg>`, title:'बुद्धि वर्धक अनुष्ठान', eng:'Buddhi Vardhak Ritual', badge:'अनुष्ठान', desc:`जीवन में सही निर्णय लेने की क्षमता, तीव्र बुद्धि और सकारात्मक सोच के लिए वैदिक अनुष्ठान।`, benefits:["गणेश एवं सरस्वती पूजन","1008 बुद्धि वर्धक मंत्र जाप","नकारात्मक विचारों का निवारण","आत्मविश्वास में वृद्धि"]},
+  's3': {icon:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>`, title:'कुंडली: करियर दिशा', eng:'Career Direction Reading', badge:'कुंडली', desc:`किस विषय में पढ़ाई करें, कौन सा करियर चुनें — कुंडली के ग्रहों की स्थिति से सटीक मार्गदर्शन।`, benefits:["राशि और लग्न के अनुसार करियर विश्लेषण","शिक्षा के लिए उपयुक्त समय-काल","दशा-अंतर्दशा का विशेष विश्लेषण","रत्न एवं उपाय परामर्श"]},
+  's4': {icon:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>`, title:'सरस्वती साधना', eng:'Saraswati Sadhna', badge:'साधना', desc:`बसंत पंचमी और विशेष तिथियों पर सरस्वती साधना — विद्यार्थियों के लिए अत्यंत फलदायी।`, benefits:["विशेष सरस्वती मंत्र दीक्षा","शैक्षणिक प्रदर्शन में सुधार","कला और रचनात्मकता में वृद्धि","ऑनलाइन भी उपलब्ध"]},
+  's5': {icon:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><circle cx="12" cy="12" r="10"/><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"/></svg>`, title:'राहु-केतु शांति', eng:'Rahu-Ketu Shanti', badge:'ग्रह शांति', desc:`राहु और केतु के कारण पढ़ाई में मन न लगना, बार-बार असफलता — इन ग्रहों की शांति से समस्या का समूल निवारण।`, benefits:["राहु-केतु ग्रह शांति हवन","काल सर्प दोष की जांच एवं निवारण","18,000 मंत्र जाप का आयोजन","विशेष यंत्र प्रदान"]},
+  's6': {icon:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></svg>`, title:'नामकरण एवं नक्षत्र परामर्श', eng:'Namkaran & Nakshatra', badge:'संस्कार', desc:`नवजात शिशु के लिए कुंडली बनाना, नक्षत्र देखना और शुभ अक्षर से नाम रखना — शास्त्रोक्त विधि से।`, benefits:["जन्म कुंडली निर्माण","नक्षत्र एवं राशि निर्धारण","शुभ नाम के अक्षर का निर्धारण","नामकरण संस्कार का आयोजन"]},
+  'c1': {icon:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><polyline points="22 7 13.5 15.5 8.5 10.5 2 17"/><polyline points="16 7 22 7 22 13"/></svg>`, title:'करियर ज्योतिष विश्लेषण', eng:'Career Astrology', badge:'कुंडली', desc:`आपकी कुंडली के दशम भाव और ग्रहों की स्थिति से सटीक करियर पूर्वानुमान — कब मिलेगी नौकरी, कब होगी तरक्की।`, benefits:["दशम भाव का विस्तृत विश्लेषण","शनि-राहु की दशा का आकलन","सर्वोत्तम करियर क्षेत्र की पहचान","उपाय एवं रत्न परामर्श"]},
+  'c2': {icon:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><circle cx="8" cy="8" r="6"/><path d="M18.09 10.37A6 6 0 1 1 10.34 18"/><path d="M7 6h1v4"/><path d="m16.71 13.88.7.71-2.82 2.82"/></svg>`, title:'व्यापार वृद्धि पूजा', eng:'Business Prosperity Pooja', badge:'पूजा', desc:`व्यापार में हानि, आर्थिक संकट या बिक्री में गिरावट — लक्ष्मी-गणेश पूजा और कुबेर यंत्र से व्यापार में समृद्धि।`, benefits:["श्री सूक्त एवं लक्ष्मी पूजन","कुबेर यंत्र स्थापना","व्यापारिक बाधा निवारण हवन","शुभ मुहूर्त परामर्श"]},
+  'c3': {icon:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><rect width="20" height="14" x="2" y="7" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>`, title:'नौकरी एवं पदोन्नति', eng:'Job & Promotion Yantra', badge:'उपाय', desc:`कई बार इंटरव्यू में असफलता या नौकरी में आगे न बढ़ना — विशेष मंत्र जाप और यंत्र से शीघ्र सफलता।`, benefits:["सफलता के लिए विशेष मंत्र दीक्षा","शनि एवं सूर्य ग्रह शांति","इंटरव्यू का शुभ मुहूर्त","करियर उपाय एवं रत्न"]},
+  'c4': {icon:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="M3 9h18"/><path d="M3 15h18"/><path d="M9 3v18"/><path d="M15 3v18"/></svg>`, title:'ऑफिस वास्तु', eng:'Office Vastu Shastra', badge:'वास्तु', desc:`ऑफिस या दुकान में वास्तु दोष से व्यापार हानि, कर्मचारियों में झगड़े — वास्तु शुद्धि से सकारात्मक माहौल।`, benefits:["ऑफिस का वास्तु निरीक्षण (ऑनलाइन/ऑफलाइन)","वास्तु दोष की पहचान","सरल उपाय और बदलाव","धन एवं समृद्धि के लिए यंत्र"]},
+  'c5': {icon:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><rect width="16" height="20" x="4" y="2" rx="2" ry="2"/><path d="M9 22v-4h6v4"/><path d="M8 6h.01"/><path d="M16 6h.01"/><path d="M12 6h.01"/><path d="M12 10h.01"/><path d="M12 14h.01"/><path d="M16 10h.01"/><path d="M16 14h.01"/><path d="M8 10h.01"/><path d="M8 14h.01"/></svg>`, title:'उद्योग एवं कारखाना पूजा', eng:'Industry Bhumi Puja', badge:'पूजा', desc:`नया व्यापार शुरू करते समय भूमि पूजन, उद्घाटन मुहूर्त और गृह प्रवेश — सफलता की पक्की नींव।`, benefits:["भूमि पूजन का शुभ मुहूर्त","उद्घाटन पूजा का आयोजन","ग्रह शांति एवं मंत्र जाप","वास्तु एवं दिशा परामर्श"]},
+  'c6': {icon:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>`, title:'शनि साढ़ेसाती शांति', eng:'Shani Sade Sati Shanti', badge:'ग्रह शांति', desc:`शनि की साढ़ेसाती या ढय्या के कारण करियर में नुकसान, अचानक नौकरी जाना — शनि शांति से मुक्ति।`, benefits:["शनि मंत्र जाप — 23,000 बार","शनि शांति हवन","नीलम या काले घोड़े की नाल के उपाय","पीपल एवं शमी पूजन"]},
+  'm1': {icon:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><circle cx="6" cy="12" r="4"/><circle cx="18" cy="12" r="4"/><path d="M10 12h4"/></svg>`, title:'कुंडली मिलान', eng:'Kundli Matching', badge:'विवाह', desc:`विवाह से पहले वर-वधू की कुंडली का विस्तृत मिलान — 36 गुण, मंगल दोष, नाड़ी दोष और दीर्घ आयु की जांच।`, benefits:["36 गुण मिलान का विस्तृत विश्लेषण","मंगल एवं नाड़ी दोष की जांच","दोष निवारण के उपाय","विवाह के लिए शुभ मुहूर्त"]},
+  'm2': {icon:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/></svg>`, title:'विवाह बाधा निवारण', eng:'Vivah Badha Nivaran', badge:'निवारण', desc:`उम्र बढ़ने के बावजूद विवाह न होना, बार-बार रिश्ता टूटना — विशेष पूजा और मंत्र से विवाह बाधा का स्थायी निवारण।`, benefits:["विवाह बाधा निवारण पूजा","मंगल दोष शांति हवन","स्वयंवर माल्यार्पण मंत्र जाप","शुक्र ग्रह को बलवान बनाने के उपाय"]},
+  'm3': {icon:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>`, title:'मंगल दोष शांति', eng:'Mangal Dosh Shanti', badge:'दोष शांति', desc:`मंगल दोष वाले जातकों के लिए कुम्भ विवाह, पीपल विवाह या विशेष हवन से दोष का निवारण।`, benefits:["मंगल दोष की गहन जांच","कुम्भ विवाह या पीपल विवाह","हनुमान चालीसा और मंगल मंत्र जाप","रत्न एवं यंत्र उपाय"]},
+  'm4': {icon:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>`, title:'संबंध परामर्श', eng:'Relationship Counseling', badge:'परामर्श', desc:`पति-पत्नी में क्लेश, अनबन, या तलाक की नौबत — ग्रहों की स्थिति देखकर सटीक उपाय और परामर्श।`, benefits:["दांपत्य जीवन का ज्योतिषीय विश्लेषण","प्रेम और विश्वास बढ़ाने के उपाय","तांत्रिक एवं मांत्रिक उपाय","काउंसलिंग सत्र (ऑनलाइन उपलब्ध)"]},
+  'm5': {icon:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>`, title:'विवाह संस्कार', eng:'Vivah Sanskar', badge:'संस्कार', desc:`वैदिक परंपरा के अनुसार सात फेरे, मंगलाष्टक, गोत्र प्रवर — संपूर्ण विवाह संस्कार का आयोजन।`, benefits:["शुभ मुहूर्त और लग्न निर्धारण","संपूर्ण विवाह विधि का संचालन","7 वचन, 7 फेरे और पाणिग्रहण","घर पर भी पंडित उपलब्ध"]},
+  'm6': {icon:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><path d="M12 22s-8-6-8-12a8 8 0 0 1 16 0c0 6-8 12-8 12z"/><path d="M12 22s4-8 4-12"/><path d="M12 22s-4-8-4-12"/><path d="M4 12c4-2 8-2 8 2 0-4 4-4 8-2"/></svg>`, title:'प्रेम विवाह अनुष्ठान', eng:'Love Marriage Ritual', badge:'अनुष्ठान', desc:`प्रेम विवाह में परिवार का विरोध या समाजिक बाधाएं — विशेष उपायों से सम्बन्ध में मधुरता और सफलता।`, benefits:["शुक्र ग्रह को बलवान बनाने के उपाय","मीठे व्यवहार के लिए मंत्र","परिवार में सहमति के उपाय","गोपनीय परामर्श उपलब्ध"]},
+  'o1': {icon:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>`, title:'गृह शांति पूजा', eng:'Grah Shanti Pooja', badge:'पूजा', desc:`घर में नकारात्मक ऊर्जा, बार-बार बीमारी, या आर्थिक तंगी — गृह शांति पूजा से घर का माहौल खुशहाल।`, benefits:["नवग्रह पूजन एवं हवन","वास्तु दोष निवारण मंत्र","घर के सभी सदस्यों की कुंडली आधारित उपाय","शांति पाठ एवं आरती"]},
+  'o2': {icon:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><path d="M12 22s-8-6-8-12a8 8 0 0 1 16 0c0 6-8 12-8 12z"/><path d="M12 22s4-8 4-12"/><path d="M12 22s-4-8-4-12"/><path d="M4 12c4-2 8-2 8 2 0-4 4-4 8-2"/></svg>`, title:'रुद्राभिषेक', eng:'Rudrabhishek', badge:'अभिषेक', desc:`बड़े से बड़े कष्ट, रोग या संकट में रुद्राभिषेक का प्रभाव अमोघ है। जल, दूध, पंचामृत से शिव का अभिषेक।`, benefits:["विधिपूर्वक रुद्राभिषेक का संचालन","रुद्राष्टाध्यायी पाठ","बिल्वपत्र एवं धतूरा अर्पण","समस्त कष्टों का निवारण"]},
+  'o3': {icon:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><path d="M6 8a6 6 0 0 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.94 1.94 0 0 0 3.4 0"/></svg>`, title:'सत्यनारायण कथा', eng:'Satyanarayan Katha', badge:'कथा', desc:`गृह प्रवेश, व्यापार शुरुआत, संतान प्राप्ति या किसी भी मांगलिक अवसर पर सत्यनारायण भगवान की कथा।`, benefits:["कथा पाठ का सम्पूर्ण संचालन","प्रसाद एवं आरती का आयोजन","घर पर एवं मंदिर में उपलब्ध","परिवार की विशेष कामना पूर्ति"]},
+  'o4': {icon:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>`, title:'वास्तु शांति', eng:'Vastu Shanti', badge:'वास्तु', desc:`नए घर में वास्तु दोष की जांच और निवारण — सुखी गृहस्थ जीवन की नींव।`, benefits:["घर का वास्तु निरीक्षण","दिशा एवं ऊर्जा का संतुलन","वास्तु शांति हवन","गृह प्रवेश का शुभ मुहूर्त"]},
+  'o5': {icon:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 11.5a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.77 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 8.91a16 16 0 0 0 5.55 5.55l.95-.95a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>`, title:'ऑनलाइन परामर्श', eng:'Online Consultation', badge:'ऑनलाइन', desc:`देश-विदेश में कहीं से भी — वीडियो कॉल, फोन या WhatsApp पर व्यक्तिगत परामर्श।`, benefits:["जन्म कुंडली विश्लेषण ऑनलाइन","किसी भी समस्या का समाधान","30 और 60 मिनट के सत्र उपलब्ध","रिकॉर्डिंग एवं लिखित रिपोर्ट"]},
+  'o6': {icon:`<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1.5em" height="1.5em"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" x2="9" y1="12" y2="12"/></svg>`, title:'पितृ दोष निवारण', eng:'Pitr Dosh Nivaran', badge:'दोष शांति', desc:`घर में अचानक बीमारी, सपने में पूर्वज दिखना, या संतान न होना — पितृ दोष निवारण से शांति।`, benefits:["पितृ पक्ष में विशेष तर्पण","श्राद्ध कर्म एवं पिंड दान","पितृ शांति यज्ञ","कुंडली में पितृ दोष की जांच"]}
+};
+
+function switchTab(e, tabId) {
+    document.querySelectorAll('.svc-tab-btn').forEach(b => b.classList.remove('active'));
+    e.currentTarget.classList.add('active');
+    document.querySelectorAll('.svc-pane').forEach(p => p.classList.remove('active'));
+    const pane = document.getElementById('tab-' + tabId);
+    if (pane) pane.classList.add('active');
+}
+
+function openDrawer(id) {
+    const d = SVC_DATA[id]; if(!d) return;
+    document.getElementById('drawerIcon').innerHTML  = d.icon;
+    document.getElementById('drawerBadge').textContent = d.badge;
+    document.getElementById('drawerTitle').textContent = d.title;
+    document.getElementById('drawerEng').textContent   = d.eng;
+    document.getElementById('drawerDesc').textContent  = d.desc;
+    const ul = document.getElementById('drawerBenefits');
+    ul.innerHTML = d.benefits.map(b => `<li>${b}</li>`).join('');
+    document.getElementById('svcOverlay').classList.add('open');
+    document.getElementById('svcDrawer').classList.add('open');
+    document.body.style.overflow = 'hidden';
+}
+
+function closeDrawer() {
+    document.getElementById('svcOverlay').classList.remove('open');
+    document.getElementById('svcDrawer').classList.remove('open');
+    document.body.style.overflow = '';
+}
+
+function bookNow() {
+    closeDrawer();
+    document.getElementById('contact').scrollIntoView({behavior:'smooth'});
+}
+
+function whatsApp() {
+    const title = document.getElementById('drawerTitle').textContent;
+    window.open('https://wa.me/91XXXXXXXXXX?text=' + encodeURIComponent('नमस्ते! मुझे ' + title + ' के बारे में जानकारी चाहिए।'), '_blank');
+}
+
+document.addEventListener('keydown', e => { if(e.key === 'Escape') closeDrawer(); });
+
+/* ── Navbar ── */
+const nav = document.getElementById('navbar');
+window.addEventListener('scroll', () => nav.classList.toggle('scrolled', scrollY > 60), {passive:true});
+
+/* ── Nav active on scroll ── */
+const sections = document.querySelectorAll('section[id]');
+const navAs    = document.querySelectorAll('.nav-links a');
+window.addEventListener('scroll', () => {
+    let cur = '';
+    sections.forEach(s => { if(scrollY >= s.offsetTop - 100) cur = s.id; });
+    navAs.forEach(a => {
+        a.classList.toggle('active', a.getAttribute('href') === '#' + cur);
+    });
+}, {passive:true});
+
+/* ── Hamburger ── */
+const hbg = document.getElementById('hamburger');
+const mob = document.getElementById('mobileMenu');
+hbg.addEventListener('click', () => {
+    const o = hbg.classList.toggle('open');
+    hbg.setAttribute('aria-expanded', String(o));
+    mob.classList.toggle('open', o);
+});
+function closeMenu() {
+    hbg.classList.remove('open');
+    hbg.setAttribute('aria-expanded','false');
+    mob.classList.remove('open');
+}
+document.addEventListener('click', e => {
+    if(!hbg.contains(e.target) && !mob.contains(e.target)) closeMenu();
+});
+
+/* ── Scroll reveal ── */
+const io = new IntersectionObserver(entries => {
+    entries.forEach((en, i) => {
+        if(en.isIntersecting) {
+            setTimeout(() => en.target.classList.add('vis'), i * 80);
+            io.unobserve(en.target);
+        }
+    });
+}, {threshold: 0.1});
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ── Counters ── */
+let counted = false;
+function runCounters() {
+    document.querySelectorAll('.h-stat-num').forEach(el => {
+        const target = +el.dataset.target || 0;
+        const sfx    = el.dataset.sfx || '';
+        let cur = 0; const inc = target / 60;
+        const t = setInterval(() => {
+            cur += inc;
+            if(cur >= target) { el.textContent = target + sfx; clearInterval(t); }
+            else               { el.textContent = Math.floor(cur) + sfx; }
+        }, 25);
+    });
+}
+new IntersectionObserver(entries => {
+    if(entries[0].isIntersecting && !counted) { counted = true; setTimeout(runCounters, 300); }
+}).observe(document.querySelector('.hero-stats-bar'));
+
+/* ── Form submit ── */
+document.getElementById('consult-form').addEventListener('submit', function(e) {
+    e.preventDefault();
+    const btn = document.getElementById('submitBtn');
+    btn.textContent = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1em" height="1em" style="vertical-align: middle;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Submitted — We will contact you shortly!';
+    btn.style.background = '#15803d';
+    btn.disabled = true;
+    setTimeout(() => {
+        btn.textContent = '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1em" height="1em" style="vertical-align: middle;"><rect width="18" height="18" x="3" y="4" rx="2" ry="2"/><line x1="16" x2="16" y1="2" y2="6"/><line x1="8" x2="8" y1="2" y2="6"/><line x1="3" x2="21" y1="10" y2="10"/></svg> Submit — परामर्श बुक करें';
+        btn.style.background = '';
+        btn.disabled = false;
+        this.reset();
+    }, 3500);
+});
+</script>
+<!-- VISUAL EDIT MODE SCRIPT (ADVANCED) -->
+<script>
+(function(){
+    // 1. Toggle Button
+    const editBtn = document.createElement('button');
+    editBtn.innerHTML = '⚙️ Enter Edit Mode';
+    editBtn.style.cssText = 'position:fixed; bottom:30px; left:30px; z-index:99999; padding:14px 24px; background:#8c1c1c; color:#fff; border:none; border-radius:30px; font-weight:bold; cursor:pointer; box-shadow:0 6px 16px rgba(0,0,0,0.3); font-family:sans-serif; font-size:16px; transition:0.3s;';
+    document.body.appendChild(editBtn);
+
+    // 2. Floating Toolbar
+    const toolbar = document.createElement('div');
+    toolbar.style.cssText = 'position:absolute; display:none; background:#222; border-radius:8px; box-shadow:0 4px 16px rgba(0,0,0,0.3); padding:8px 12px; z-index:100000; gap:12px; align-items:center; font-family:sans-serif; color:white; font-size:13px;';
+    
+    toolbar.innerHTML = `
+        <div style="display:flex; align-items:center; gap:4px;">
+            <span style="opacity:0.8;">Size:</span>
+            <button id="t-minus" style="background:#444; color:#fff; border:none; border-radius:4px; padding:4px 8px; cursor:pointer;">-</button>
+            <button id="t-plus" style="background:#444; color:#fff; border:none; border-radius:4px; padding:4px 8px; cursor:pointer;">+</button>
+        </div>
+        <div style="width:1px; height:20px; background:#444;"></div>
+        <div style="display:flex; align-items:center; gap:4px;">
+            <span style="opacity:0.8;">Color:</span>
+            <input type="color" id="t-color" style="width:24px; height:24px; border:none; padding:0; background:transparent; cursor:pointer;">
+        </div>
+        <div style="width:1px; height:20px; background:#444;"></div>
+        <div style="display:flex; align-items:center; gap:4px;">
+            <span style="opacity:0.8;">Font:</span>
+            <select id="t-font" style="background:#444; color:#fff; border:none; border-radius:4px; padding:4px; cursor:pointer; outline:none;">
+                <option value="var(--f-hindi)">Hindi (Noto)</option>
+                <option value="var(--f-sans)">English (Inter)</option>
+                <option value="Georgia, serif">Serif</option>
+            </select>
+        </div>
+    `;
+    document.body.appendChild(toolbar);
+
+    let isEditMode = false;
+    let dragItem = document.querySelector('.hero-photo-wrap');
+    if(!dragItem) dragItem = document.querySelector('.hero-photo');
+
+    const textElements = document.querySelectorAll('h1, h2, h3, p, span, .btn, .nav-links a, div.feat-title, div.feat-desc');
+    let activeTextEl = null;
+
+    let isDragging = false, currentX = 0, currentY = 0, initialX = 0, initialY = 0, xOffset = 0, yOffset = 0;
+    let currentScale = 1;
+    
+    // RGB to Hex helper for color picker
+    function rgbToHex(rgb) {
+        if(!rgb || !rgb.startsWith('rgb')) return '#ffffff';
+        let a = rgb.split("(")[1].split(")")[0].split(",");
+        return "#" + a.map(x => { let hex=parseInt(x).toString(16); return hex.length==1?"0"+hex:hex; }).join("");
+    }
+
+    editBtn.addEventListener('click', () => {
+        isEditMode = !isEditMode;
+        if (isEditMode) {
+            editBtn.innerHTML = '💾 Save Changes permanently';
+            editBtn.style.background = '#28a745';
+            
+            textElements.forEach(el => {
+                if(!el.closest('.s-head') && !el.closest('.stat') && !el.closest('.kundli-wheel')) { 
+                    el.contentEditable = "true";
+                    el.style.outline = "2px dashed rgba(200,0,0,0.4)";
+                    el.style.cursor = "text";
+                    el.addEventListener('click', handleTextClick);
+                }
+            });
+            
+            if(dragItem) {
+                dragItem.style.cursor = 'grab';
+                dragItem.style.outline = '2px dashed #28a745';
+                dragItem.title = "Drag to move, Scroll to resize";
+                dragItem.addEventListener('mousedown', dragStart);
+                document.addEventListener('mouseup', dragEnd);
+                document.addEventListener('mousemove', drag);
+                dragItem.addEventListener('wheel', scaleImage, {passive: false});
+            }
+            alert('🚀 Advanced Edit Mode Active!\n\n1. Click TEXT to edit it, change its color, font, and size via the pop-up toolbar.\n2. Click and DRAG the photo to move it.\n3. Scroll your mouse wheel over the photo to resize it.\n4. Click "Save Changes" when done.');
+        } else {
+            saveChanges();
+        }
+    });
+
+    function handleTextClick(e) {
+        if(!isEditMode) return;
+        e.stopPropagation();
+        activeTextEl = e.target;
+        
+        const rect = activeTextEl.getBoundingClientRect();
+        toolbar.style.top = (rect.top + window.scrollY - 50) + 'px';
+        toolbar.style.left = (rect.left + window.scrollX) + 'px';
+        toolbar.style.display = 'flex';
+        
+        const style = window.getComputedStyle(activeTextEl);
+        if(style.color.startsWith('rgb')) {
+            document.getElementById('t-color').value = rgbToHex(style.color);
+        }
+    }
+
+    // Close toolbar when clicking outside
+    document.addEventListener('click', (e) => {
+        if(isEditMode && toolbar.style.display === 'flex' && !toolbar.contains(e.target) && e.target !== activeTextEl) {
+            toolbar.style.display = 'none';
+            activeTextEl = null;
+        }
+    });
+
+    // Toolbar Actions
+    document.getElementById('t-minus').addEventListener('click', () => {
+        if(activeTextEl) {
+            let size = parseFloat(window.getComputedStyle(activeTextEl).fontSize);
+            activeTextEl.style.fontSize = (size - 2) + 'px';
+        }
+    });
+    document.getElementById('t-plus').addEventListener('click', () => {
+        if(activeTextEl) {
+            let size = parseFloat(window.getComputedStyle(activeTextEl).fontSize);
+            activeTextEl.style.fontSize = (size + 2) + 'px';
+        }
+    });
+    document.getElementById('t-color').addEventListener('input', (e) => {
+        if(activeTextEl) activeTextEl.style.color = e.target.value;
+    });
+    document.getElementById('t-font').addEventListener('change', (e) => {
+        if(activeTextEl) activeTextEl.style.fontFamily = e.target.value;
+    });
+    
+    // Image Drag/Scale
+    function dragStart(e) {
+        if (!isEditMode) return;
+        initialX = e.clientX - xOffset;
+        initialY = e.clientY - yOffset;
+        if (e.target === dragItem || dragItem.contains(e.target)) {
+            isDragging = true;
+            dragItem.style.cursor = 'grabbing';
+        }
+    }
+    function dragEnd(e) {
+        if(!isDragging) return;
+        initialX = currentX;
+        initialY = currentY;
+        isDragging = false;
+        dragItem.style.cursor = 'grab';
+    }
+    function drag(e) {
+        if (isDragging) {
+            e.preventDefault();
+            currentX = e.clientX - initialX;
+            currentY = e.clientY - initialY;
+            xOffset = currentX;
+            yOffset = currentY;
+            updateTransform();
+        }
+    }
+    function scaleImage(e) {
+        if (!isEditMode) return;
+        e.preventDefault();
+        currentScale += e.deltaY * -0.001;
+        currentScale = Math.min(Math.max(0.3, currentScale), 3);
+        updateTransform();
+    }
+    function updateTransform() {
+        if(dragItem) dragItem.style.transform = `translate3d(${currentX}px, ${currentY}px, 0) scale(${currentScale})`;
+    }
+    
+    // Save
+    async function saveChanges() {
+        toolbar.style.display = 'none';
+        activeTextEl = null;
+
+        textElements.forEach(el => {
+            el.contentEditable = "false";
+            el.style.outline = "";
+            el.style.cursor = "";
+            el.removeEventListener('click', handleTextClick);
+        });
+        if(dragItem) {
+            dragItem.style.cursor = '';
+            dragItem.style.outline = '';
+            dragItem.title = "";
+            dragItem.removeEventListener('mousedown', dragStart);
+            document.removeEventListener('mouseup', dragEnd);
+            document.removeEventListener('mousemove', drag);
+            dragItem.removeEventListener('wheel', scaleImage);
+        }
+        
+        editBtn.innerHTML = '⚙️ Enter Edit Mode';
+        editBtn.style.background = '#8c1c1c';
+        
+        const htmlContent = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+        
+        try {
+            if (window.showSaveFilePicker) {
+                const handle = await window.showSaveFilePicker({
+                    suggestedName: 'index.html',
+                    types: [{ description: 'HTML Document', accept: {'text/html': ['.html']} }],
+                });
+                const writable = await handle.createWritable();
+                await writable.write(htmlContent);
+                await writable.close();
+                alert('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="1em" height="1em" style="vertical-align: middle;"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg> Success! Your changes have been permanently saved to index.html.');
+            } else {
+                throw new Error("API not supported");
+            }
+        } catch (err) {
+            const blob = new Blob([htmlContent], {type: "text/html"});
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement("a");
+            a.href = url;
+            a.download = "index.html";
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+            alert('Your browser downloaded the updated file. Please replace your old index.html with this new downloaded file.');
+        }
+    }
+})();
+</script><button style="position: fixed; bottom: 30px; left: 30px; z-index: 99999; padding: 14px 24px; background: rgb(140, 28, 28); color: rgb(255, 255, 255); border-width: medium; border-style: none; border-color: currentcolor; border-image: initial; border-radius: 30px; font-weight: bold; cursor: pointer; box-shadow: rgba(0, 0, 0, 0.3) 0px 6px 16px; font-family: sans-serif; font-size: 16px; transition: 0.3s;">⚙️ Enter Edit Mode</button><div style="position: absolute; display: none; background: rgb(34, 34, 34); border-radius: 8px; box-shadow: rgba(0, 0, 0, 0.3) 0px 4px 16px; padding: 8px 12px; z-index: 100000; gap: 12px; align-items: center; font-family: sans-serif; color: white; font-size: 13px;">
+        <div style="display:flex; align-items:center; gap:4px;">
+            <span style="opacity: 0.8;" contenteditable="false">Size:</span>
+            <button id="t-minus" style="background:#444; color:#fff; border:none; border-radius:4px; padding:4px 8px; cursor:pointer;">-</button>
+            <button id="t-plus" style="background:#444; color:#fff; border:none; border-radius:4px; padding:4px 8px; cursor:pointer;">+</button>
+        </div>
+        <div style="width:1px; height:20px; background:#444;"></div>
+        <div style="display:flex; align-items:center; gap:4px;">
+            <span style="opacity: 0.8;" contenteditable="false">Color:</span>
+            <input type="color" id="t-color" style="width:24px; height:24px; border:none; padding:0; background:transparent; cursor:pointer;">
+        </div>
+        <div style="width:1px; height:20px; background:#444;"></div>
+        <div style="display:flex; align-items:center; gap:4px;">
+            <span style="opacity: 0.8;" contenteditable="false">Font:</span>
+            <select id="t-font" style="background:#444; color:#fff; border:none; border-radius:4px; padding:4px; cursor:pointer; outline:none;">
+                <option value="var(--f-hindi)">Hindi (Noto)</option>
+                <option value="var(--f-sans)">English (Inter)</option>
+                <option value="Georgia, serif">Serif</option>
+            </select>
+        </div>
+    </div>
+
+
+</body></html>

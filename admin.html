@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>भारतीय वैदिक ज्योतिष केंद्र | Admin Dashboard</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg:         #FBF4EC;
+            --bg-dark:    #F2EADB;
+            --white:      #FFFFFF;
+            --maroon:     #7B1D1D;
+            --maroon-dk:  #4D0C0C;
+            --gold:       #C08B2A;
+            --gold-lt:    #D8A94A;
+            --text-dk:    #1C0B00;
+            --text-lt:    #7A5535;
+            --border:     #E8D7B8;
+            --border-lt:  #F2E5CE;
+            --sh-sm: 0 4px 18px rgba(90,20,0,.04);
+            --sh-md: 0 10px 35px rgba(90,20,0,.07);
+            --sh-lg: 0 20px 55px rgba(90,20,0,.11);
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--bg);
+            color: var(--text-dk);
+            min-height: 100vh;
+            display: flex;
+        }
+
+        /* Sidebar Navigation */
+        .sidebar {
+            width: 260px;
+            background: var(--maroon-dk);
+            color: #fff;
+            padding: 30px 20px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            box-shadow: 4px 0 25px rgba(0,0,0,0.1);
+        }
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            text-decoration: none;
+            color: #fff;
+        }
+        .logo-om {
+            font-family: 'Inter', sans-serif;
+            font-size: 2.2rem;
+            color: var(--gold-lt);
+            font-weight: 700;
+        }
+        .logo-text h1 {
+            font-size: 0.85rem;
+            letter-spacing: 0.5px;
+            color: var(--gold-lt);
+            font-weight: 700;
+        }
+        .logo-text p {
+            font-size: 0.52rem;
+            color: rgba(255,255,255,0.6);
+            letter-spacing: 1.5px;
+        }
+        .nav-menu {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            list-style: none;
+        }
+        .nav-item a {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 12px 16px;
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.88rem;
+            font-weight: 500;
+            border-radius: 6px;
+            transition: all 0.3s;
+        }
+        .nav-item.active a, .nav-item a:hover {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+        }
+
+        /* Main Content Panel */
+        .main-panel {
+            flex: 1;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+            overflow-y: auto;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--border);
+            padding-bottom: 20px;
+        }
+        .header h2 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            color: var(--maroon);
+            font-weight: 700;
+        }
+        .btn-action {
+            background: var(--gold);
+            color: #fff;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .btn-action:hover {
+            background: var(--maroon);
+            transform: translateY(-1.5px);
+        }
+
+        /* Stats Cards */
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+        .stats-card {
+            background: #fff;
+            padding: 24px;
+            border-radius: 12px;
+            border: 1px solid var(--border-lt);
+            box-shadow: var(--sh-sm);
+        }
+        .stats-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-lt);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+        .stats-number {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--maroon);
+        }
+
+        /* Table Card */
+        .table-card {
+            background: #white;
+            background-color: #fff;
+            border: 1px solid var(--border-lt);
+            border-radius: 12px;
+            box-shadow: var(--sh-sm);
+            overflow: hidden;
+        }
+        .table-header {
+            padding: 20px 24px;
+            border-bottom: 1px solid var(--border-lt);
+            font-weight: 700;
+            color: var(--text-dk);
+        }
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            text-align: left;
+        }
+        th, td {
+            padding: 16px 24px;
+            border-bottom: 1px solid var(--border-lt);
+            font-size: 0.88rem;
+        }
+        th {
+            background: var(--bg-dark);
+            color: var(--text-lt);
+            font-weight: 600;
+        }
+        tr:hover td {
+            background: rgba(251, 244, 236, 0.4);
+        }
+        .empty-state {
+            padding: 40px;
+            text-align: center;
+            color: var(--text-lt);
+            font-style: italic;
+        }
+        .btn-delete {
+            background: none;
+            border: none;
+            color: #ef4444;
+            cursor: pointer;
+            font-weight: 600;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <a href="index.html" class="logo">
+            <span class="logo-om">ॐ</span>
+            <div class="logo-text">
+                <h1>ज्योतिष केंद्र</h1>
+                <p>ADMIN PORTAL</p>
+            </div>
+        </a>
+        <ul class="nav-menu">
+            <li class="nav-item active"><a href="#">📊 Consultations</a></li>
+            <li class="nav-item"><a href="index.html?edit=true" target="_blank">📐 Visual Editor</a></li>
+        </ul>
+    </div>
+
+    <!-- MAIN PANEL -->
+    <div class="main-panel">
+        <div class="header">
+            <h2>Consultation Requests</h2>
+            <a href="index.html" class="btn-action">🌐 View Live Website</a>
+        </div>
+
+        <!-- STATS -->
+        <div class="stats-grid">
+            <div class="stats-card">
+                <div class="stats-title">Total Inquiries</div>
+                <div class="stats-number" id="inquiryCount">0</div>
+            </div>
+            <div class="stats-card">
+                <div class="stats-title">Pending Action</div>
+                <div class="stats-number" id="pendingCount">0</div>
+            </div>
+            <div class="stats-card">
+                <div class="stats-title">Vedic Consultations</div>
+                <div class="stats-number">Active</div>
+            </div>
+        </div>
+
+        <!-- TABLE -->
+        <div class="table-card">
+            <div class="table-header">Inquiry List</div>
+            <div class="table-container">
+                <table id="submissionsTable">
+                    <thead>
+                        <tr>
+                            <th>Date</th>
+                            <th>Name</th>
+                            <th>WhatsApp</th>
+                            <th>Date of Birth</th>
+                            <th>Service</th>
+                            <th>Question</th>
+                            <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody id="tableBody">
+                        <!-- Submissions will load here -->
+                    </tbody>
+                </table>
+                <div class="empty-state" id="emptyState" style="display: none;">
+                    No consultation requests received yet.
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Load submissions from localStorage
+        function loadSubmissions() {
+            const tableBody = document.getElementById('tableBody');
+            const emptyState = document.getElementById('emptyState');
+            const inquiryCount = document.getElementById('inquiryCount');
+            const pendingCount = document.getElementById('pendingCount');
+            
+            // Get submissions array from localStorage
+            const submissions = JSON.parse(localStorage.getItem('vedic_consultations') || '[]');
+            
+            inquiryCount.textContent = submissions.length;
+            pendingCount.textContent = submissions.length;
+
+            if (submissions.length === 0) {
+                tableBody.innerHTML = '';
+                emptyState.style.display = 'block';
+                return;
+            }
+
+            emptyState.style.display = 'none';
+            tableBody.innerHTML = submissions.map((sub, index) => `
+                <tr>
+                    <td>${sub.date || new Date().toLocaleDateString()}</td>
+                    <td><strong>${escapeHtml(sub.name)}</strong></td>
+                    <td><a href="https://wa.me/${sub.phone.replace(/[^0-9]/g, '')}" target="_blank" style="color:var(--maroon); font-weight:600;">${escapeHtml(sub.phone)} 💬</a></td>
+                    <td>${escapeHtml(sub.dob)}</td>
+                    <td><span style="background:var(--bg-dark); padding: 4px 8px; border-radius:4px; font-size:0.8rem; font-weight:500;">${escapeHtml(sub.service)}</span></td>
+                    <td>${escapeHtml(sub.message)}</td>
+                    <td><button class="btn-delete" onclick="deleteSubmission(${index})">Delete</button></td>
+                </tr>
+            `).reverse().join(''); // Show newest first
+        }
+
+        function deleteSubmission(index) {
+            if (confirm('Are you sure you want to delete this inquiry?')) {
+                const submissions = JSON.parse(localStorage.getItem('vedic_consultations') || '[]');
+                // Submissions table is reversed in display, delete correct index
+                const realIndex = submissions.length - 1 - index;
+                submissions.splice(realIndex, 1);
+                localStorage.setItem('vedic_consultations', JSON.stringify(submissions));
+                loadSubmissions();
+            }
+        }
+
+        function escapeHtml(text) {
+            if (!text) return '';
+            return text
+                .replace(/&/g, "&amp;")
+                .replace(/</g, "&lt;")
+                .replace(/>/g, "&gt;")
+                .replace(/"/g, "&quot;")
+                .replace(/'/g, "&#039;");
+        }
+
+        // Initialize table load
+        document.addEventListener('DOMContentLoaded', loadSubmissions);
+    </script>
+</body>
+</html>
