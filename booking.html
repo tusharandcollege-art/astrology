@@ -189,6 +189,88 @@ a { text-decoration:none; color:inherit }
         </a>
         <a href="https://wa.me/919876543210" target="_blank" rel="noopener" class="btn-direct-wa">
           <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.461c-1.78 0-3.525-.479-5.057-1.386l-.363-.215-3.76.986.998-3.666-.236-.375c-.996-1.584-1.524-3.419-1.524-5.304 0-5.423 4.412-9.835 9.837-9.835 2.628 0 5.097 1.023 6.953 2.88 1.857 1.856 2.88 4.326 2.879 6.954-.001 5.424-4.413 9.837-9.837 9.837m0-18.421c-4.73 0-8.577 3.846-8.577 8.584 0 1.688.49 3.328 1.418 4.743l.217.334-.932 3.421 3.501-.918.327.194c1.373.815 2.946 1.246 4.545 1.246 4.732 0 8.578-3.846 8.578-8.584 0-2.292-.893-4.447-2.518-6.071-1.625-1.624-3.78-2.517-6.069-2.517z"/></svg>
+          💬 व्हाट्सएप पर अभी बात करें
+        </a>
+      </div>
+
+      <div class="trust-pills">
+        <div class="trust-item"><span>✓</span> 100% गोपनीय</div>
+        <div class="trust-item"><span>✓</span> 15+ वर्ष अनुभव</div>
+        <div class="trust-item"><span>✓</span> शास्त्र-सम्मत</div>
+        <div class="trust-item"><span>✓</span> व्यक्तिगत समाधान</div>
+      </div>
+    </div>
+
+    <!-- RIGHT COLUMN: Fast Easy Scheduler Form -->
+    <div class="form-card">
+      <div class="form-title">
+        <span>🗓️ कॉल शेड्यूल करें (Schedule Call)</span>
+      </div>
+
+      <form id="schForm">
+        <div class="f-row">
+          <div class="f-grp">
+            <label for="sName">पूरा नाम (Full Name) *</label>
+            <input type="text" id="sName" placeholder="आपका नाम (Your Name)" required>
+          </div>
+          <div class="f-grp">
+            <label for="sPhone">मोबाइल / WhatsApp (Phone Number) *</label>
+            <input type="tel" id="sPhone" placeholder="+91 XXXXXXXXXX" required>
+          </div>
+        </div>
+
+        <div class="f-row">
+          <div class="f-grp">
+            <label for="sDate">तिथि (Select Date) *</label>
+            <input type="date" id="sDate" required>
+          </div>
+          <div class="f-grp">
+            <label for="sTopic">मुख्य समस्या (Main Problem) *</label>
+            <select id="sTopic" onchange="toggleOtherProblem(this)" required>
+              <option value="">समस्या चुनें (Select Problem)</option>
+              <option value="Marriage &amp; Relationship">विवाह एवं प्रेम संबंध (Marriage &amp; Relationship)</option>
+              <option value="Career, Job &amp; Business">करियर, नौकरी एवं व्यापार (Career &amp; Business)</option>
+              <option value="Vastu &amp; Property">गृह, वास्तु एवं संपत्ति (Vastu &amp; Property)</option>
+              <option value="Janam Kundli &amp; Horoscope">जन्म कुंडली एवं भविष्य (Janam Kundli)</option>
+              <option value="Remedies &amp; Gemstones">रत्न एवं वैदिक उपाय (Remedies &amp; Gemstones)</option>
+              <option value="Other">अन्य समस्या - स्वयं लिखें (Other / Type Manually)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Manual Problem Input -->
+        <div class="f-grp" id="manualProbGrp" style="display:none; margin-bottom:10px">
+          <label for="sManualTopic">अपनी समस्या लिखें (Write Your Problem)</label>
+          <input type="text" id="sManualTopic" placeholder="अपनी समस्या यहाँ लिखें...">
+        </div>
+
+        <span class="slots-lbl">पसंद का समय स्लॉट (Select Time Slot) *</span>
+        <div class="mini-slots">
+          <div class="slot-chip selected" onclick="selectSlot(this, '09:30 AM - 10:30 AM')">09:30 AM</div>
+          <div class="slot-chip" onclick="selectSlot(this, '11:00 AM - 12:00 PM')">11:00 AM</div>
+          <div class="slot-chip" onclick="selectSlot(this, '02:30 PM - 03:30 PM')">02:30 PM</div>
+          <div class="slot-chip" onclick="selectSlot(this, '04:30 PM - 05:30 PM')">04:30 PM</div>
+          <div class="slot-chip" onclick="selectSlot(this, '07:00 PM - 08:00 PM')">07:00 PM</div>
+          <div class="slot-chip" onclick="selectSlot(this, '08:30 PM - 09:30 PM')">08:30 PM</div>
+        </div>
+
+        <button type="submit" class="btn-submit-sch" id="schBtn">
+          ⚡ कॉल बुक करें (Confirm Schedule)
+        </button>
+      </form>
+
+      <div class="confirm-box" id="cBox">
+        <div class="confirm-title">✓ कॉल सफलतापूर्वक शेड्यूल हो गई है!</div>
+        <div class="confirm-desc" id="cDesc">आचार्य अरविंद जी तय समय पर आपसे सीधे संपर्क करेंगे।</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- Floating WhatsApp FAB -->
+<a href="https://wa.me/919876543210" class="chat-fab" target="_blank" rel="noopener" title="WhatsApp Chat">
+  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.461c-1.78 0-3.525-.479-5.057-1.386l-.363-.215-3.76.986.998-3.666-.236-.375c-.996-1.584-1.524-3.419-1.524-5.304 0-5.423 4.412-9.835 9.837-9.835 2.628 0 5.097 1.023 6.953 2.88 1.857 1.856 2.88 4.326 2.879 6.954-.001 5.424-4.413 9.837-9.837 9.837m0-18.421c-4.73 0-8.577 3.846-8.577 8.584 0 1.688.49 3.328 1.418 4.743l.217.334-.932 3.421 3.501-.918.327.194c1.373.815 2.946 1.246 4.545 1.246 4.732 0 8.578-3.846 8.578-8.584 0-2.292-.893-4.447-2.518-6.071-1.625-1.624-3.78-2.517-6.069-2.517z"/></svg>
 </a>
 
 <script>
