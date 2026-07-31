@@ -2,976 +2,1160 @@
 <html lang="hi">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>भारतीय वैदिक ज्योतिष केंद्र | Acharya Arvind</title>
 <meta name="description" content="भारत के सबसे विश्वसनीय वैदिक ज्योतिष — आचार्य अरविंद जी से परामर्श लें।">
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Noto+Sans+Devanagari:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@700;900&family=Cinzel:wght@500;600;700&family=Noto+Sans+Devanagari:wght@300;400;500;600;700;800;900&family=Inter:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
 
 <style>
-/* ══════════════════════════════════════
-   DESIGN TOKENS
-══════════════════════════════════════ */
-:root {
-  --c:           #FAF7F0;       /* cream page bg */
-  --w:           #FFFFFF;
-  --m:           #8B1A1A;       /* deep maroon */
-  --md:          #6B1010;       /* darker maroon */
-  --ml:          #A82020;       /* lighter maroon */
-  --g:           #C9980A;       /* gold */
-  --gl:          #E4B84D;       /* gold light */
-  --gb:          rgba(201,152,10,.09); /* gold bg tint */
-  --t:           #1E0E04;       /* text dark */
-  --tm:          #5B3A20;       /* text mid */
-  --ts:          #9A7B5E;       /* text soft */
-  --br:          #E8D5B4;       /* border */
-  --fh:          'Noto Sans Devanagari', sans-serif;
-  --fe:          'Inter', sans-serif;
-  --fc:          'Cinzel', serif;
-  --sh:          0 2px 16px rgba(30,14,4,.07);
-  --shm:         0 6px 30px rgba(139,26,26,.18);
-  --tr:          all .25s cubic-bezier(.4,0,.2,1);
+/* ═══════════════════════════════════════════
+   TOKENS
+═══════════════════════════════════════════ */
+:root{
+  --maroon:    #7A1010;
+  --maroon-d:  #4E0A0A;
+  --maroon-l:  #9E1818;
+  --gold:      #D4A017;
+  --gold-l:    #F0C94D;
+  --gold-d:    #A87900;
+  --cream:     #FDF8EF;
+  --sand:      #F5EDDA;
+  --white:     #FFFFFF;
+  --dark:      #120404;
+  --t1:        #1A0808;
+  --t2:        #5C3018;
+  --t3:        #9A7050;
+  --border:    #E4CFA0;
+
+  --fh: 'Noto Sans Devanagari',sans-serif;
+  --fc: 'Cinzel',serif;
+  --fcd: 'Cinzel Decorative',serif;
+  --fe: 'Inter',sans-serif;
+
+  /* hero bg */
+  --hero-bg: linear-gradient(160deg,#4E0A0A 0%,#7A1010 40%,#5C0E0E 70%,#3A0606 100%);
 }
 
-*, *::before, *::after { margin:0; padding:0; box-sizing:border-box }
-html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent }
-body {
-  background: #E8DDD0;
-  display: flex;
-  justify-content: center;
-  min-height: 100vh;
-  font-family: var(--fe);
-}
-a { text-decoration: none; color: inherit }
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent}
+a{text-decoration:none;color:inherit}
+img{display:block;width:100%;height:100%;object-fit:cover}
 
-/* ══════════════════════════════════════
-   PHONE FRAME / APP WRAPPER
-══════════════════════════════════════ */
-.app {
-  width: 100%;
-  max-width: 430px;
-  background: var(--c);
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh;
-  position: relative;
-  overflow-x: hidden;
-  box-shadow: 0 0 60px rgba(0,0,0,.25), 0 0 0 1px rgba(255,255,255,.12);
-  padding-bottom: 72px;      /* space for trust bar */
+body{
+  background:#2A1A10;
+  display:flex;justify-content:center;align-items:flex-start;
+  min-height:100vh;
+  font-family:var(--fe);
 }
 
-/* ══════════════════════════════════════
-   TOPBAR / NAV
-══════════════════════════════════════ */
-.nav {
-  position: sticky; top: 0; z-index: 200;
-  height: 64px;
-  padding: 0 16px;
-  display: flex; align-items: center; justify-content: space-between;
-  background: rgba(250,247,240,.96);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-bottom: 1px solid rgba(232,213,180,.6);
+/* ═══════════════════════════════════════════
+   APP SHELL
+═══════════════════════════════════════════ */
+.app{
+  width:100%;max-width:430px;
+  background:var(--cream);
+  min-height:100vh;
+  position:relative;
+  overflow-x:hidden;
+  display:flex;flex-direction:column;
+  box-shadow:0 0 80px rgba(0,0,0,.6),0 0 0 1px rgba(255,255,255,.06);
+  padding-bottom:76px;
 }
 
-.logo { display: flex; align-items: center; gap: 9px }
-.logo-om {
-  width: 40px; height: 40px;
-  background: linear-gradient(135deg, #8B1A1A 0%, #6B1010 100%);
-  border-radius: 12px;
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--fh);
-  font-size: 1.4rem;
-  color: var(--gl);
-  flex-shrink: 0;
-  box-shadow: 0 3px 10px rgba(139,26,26,.3);
-}
-.logo-words {}
-.logo-hi {
-  font-family: var(--fh);
-  font-size: .95rem;
-  font-weight: 800;
-  color: var(--m);
-  line-height: 1.2;
-  display: block;
-}
-.logo-en {
-  font-family: var(--fc);
-  font-size: .44rem;
-  letter-spacing: 1.5px;
-  color: var(--ts);
-  text-transform: uppercase;
-  display: block;
-  margin-top: 1px;
+/* ═══════════════════════════════════════════
+   NAV
+═══════════════════════════════════════════ */
+.nav{
+  position:sticky;top:0;z-index:300;
+  height:66px;padding:0 16px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(74,10,10,.97);
+  backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  border-bottom:1px solid rgba(212,160,23,.2);
 }
 
-.nav-r { display: flex; align-items: center; gap: 10px }
-.nav-book {
-  background: linear-gradient(135deg, var(--m) 0%, var(--md) 100%);
-  color: #fff;
-  font-family: var(--fc);
-  font-size: .62rem;
-  font-weight: 700;
-  letter-spacing: .8px;
-  text-transform: uppercase;
-  padding: 8px 15px;
-  border-radius: 50px;
-  border: none;
-  cursor: pointer;
-  white-space: nowrap;
-  box-shadow: var(--shm);
-  transition: var(--tr);
-  display: flex; align-items: center; gap: 5px;
+.logo{display:flex;align-items:center;gap:10px}
+.logo-mark{
+  width:42px;height:42px;border-radius:13px;
+  background:linear-gradient(135deg,#D4A017,#F0C94D);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--fh);font-size:1.5rem;color:#4E0A0A;
+  box-shadow:0 3px 12px rgba(212,160,23,.4),inset 0 1px 0 rgba(255,255,255,.3);
+  flex-shrink:0;
 }
-.nav-book:active { transform: scale(.97) }
-.hbg {
-  background: none; border: none; cursor: pointer;
-  width: 36px; height: 36px;
-  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
-  border-radius: 10px;
-  transition: var(--tr);
+.logo-text{}
+.logo-hi{
+  font-family:var(--fh);font-size:.9rem;font-weight:800;
+  color:#fff;line-height:1.2;display:block;
+  text-shadow:0 1px 6px rgba(0,0,0,.4);
 }
-.hbg:active { background: var(--gb) }
-.hbg b { display: block; width: 22px; height: 2px; background: var(--m); border-radius: 2px; transition: var(--tr) }
+.logo-en{
+  font-family:var(--fc);font-size:.42rem;letter-spacing:1.8px;
+  color:rgba(212,160,23,.8);text-transform:uppercase;display:block;margin-top:1px;
+}
+
+.nav-r{display:flex;align-items:center;gap:10px}
+.nav-book{
+  background:linear-gradient(135deg,var(--gold),var(--gold-d));
+  color:var(--maroon-d);
+  font-family:var(--fc);font-size:.62rem;font-weight:700;letter-spacing:.8px;
+  text-transform:uppercase;padding:9px 16px;border-radius:50px;border:none;
+  cursor:pointer;white-space:nowrap;
+  box-shadow:0 4px 16px rgba(212,160,23,.45),inset 0 1px 0 rgba(255,255,255,.35);
+  transition:all .22s ease;display:flex;align-items:center;gap:5px;
+}
+.nav-book:active{transform:scale(.96)}
+.hbg{
+  background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);
+  border-radius:10px;width:38px;height:38px;cursor:pointer;
+  display:flex;flex-direction:column;align-items:center;justify-content:center;gap:5px;
+  transition:all .2s ease;
+}
+.hbg:active{background:rgba(255,255,255,.2)}
+.hbg b{display:block;width:20px;height:2px;background:#fff;border-radius:2px}
 
 /* ── DRAWER ── */
-.drawer-overlay {
-  position: fixed; inset: 0; background: rgba(0,0,0,.55);
-  z-index: 900; display: none; opacity: 0;
-  transition: opacity .3s ease;
+.overlay{
+  position:fixed;inset:0;background:rgba(0,0,0,.7);z-index:800;
+  opacity:0;pointer-events:none;transition:opacity .3s ease;backdrop-filter:blur(4px);
 }
-.drawer-overlay.on { display: block; opacity: 1 }
-.drawer {
-  position: fixed; top: 0; right: -100%; bottom: 0;
-  width: 78%; max-width: 300px;
-  background: var(--w);
-  z-index: 901;
-  display: flex; flex-direction: column;
-  box-shadow: -8px 0 40px rgba(0,0,0,.2);
-  transition: right .32s cubic-bezier(.4,0,.2,1);
-  padding: 0;
+.overlay.on{opacity:1;pointer-events:all}
+.drawer{
+  position:fixed;top:0;right:-100%;bottom:0;
+  width:80%;max-width:310px;z-index:900;
+  display:flex;flex-direction:column;
+  transition:right .32s cubic-bezier(.4,0,.2,1);
+  background:var(--dark);
 }
-.drawer.on { right: 0 }
-.drawer-head {
-  height: 64px; padding: 0 20px;
-  display: flex; align-items: center; justify-content: space-between;
-  border-bottom: 1px solid var(--br);
-  background: linear-gradient(135deg, var(--m) 0%, var(--md) 100%);
+.drawer.on{right:0}
+.dr-head{
+  padding:20px 18px 16px;
+  background:var(--hero-bg);
+  border-bottom:1px solid rgba(212,160,23,.2);
 }
-.drawer-head-title { font-family: var(--fh); font-size: .8rem; font-weight: 800; color: #fff }
-.drawer-close {
-  background: rgba(255,255,255,.15); border: none; cursor: pointer;
-  width: 32px; height: 32px; border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  color: #fff; font-size: 1rem; transition: var(--tr);
+.dr-head-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px}
+.dr-close{
+  background:rgba(255,255,255,.1);border:none;color:#fff;
+  width:32px;height:32px;border-radius:50%;cursor:pointer;font-size:1rem;
+  display:flex;align-items:center;justify-content:center;transition:all .2s;
 }
-.drawer-close:hover { background: rgba(255,255,255,.3) }
-.drawer-links { flex: 1; padding: 12px 0; overflow-y: auto }
-.drawer-links a {
-  display: flex; align-items: center; gap: 12px;
-  padding: 14px 20px;
-  font-family: var(--fh); font-size: .82rem; font-weight: 700; color: var(--tm);
-  border-bottom: 1px solid rgba(232,213,180,.4);
-  transition: var(--tr);
+.dr-close:hover{background:rgba(255,255,255,.2)}
+.dr-title{font-family:var(--fh);font-size:.9rem;font-weight:800;color:#fff}
+.dr-subtitle{font-family:var(--fc);font-size:.55rem;letter-spacing:2px;color:rgba(212,160,23,.8);text-transform:uppercase}
+.dr-links{flex:1;overflow-y:auto;padding:8px 0}
+.dr-link{
+  display:flex;align-items:center;gap:14px;padding:15px 20px;
+  font-family:var(--fh);font-size:.82rem;font-weight:700;
+  color:rgba(255,255,255,.8);
+  border-bottom:1px solid rgba(255,255,255,.06);
+  transition:all .2s;
 }
-.drawer-links a .dl-icon { color: var(--g); font-size: 1.05rem; width: 20px; text-align: center; flex-shrink: 0 }
-.drawer-links a:hover, .drawer-links a:active { background: var(--gb); color: var(--m) }
-.drawer-foot { padding: 16px 20px; border-top: 1px solid var(--br) }
-.drawer-cta {
-  width: 100%; padding: 13px;
-  background: linear-gradient(135deg, var(--m) 0%, var(--md) 100%);
-  color: #fff; border: none; border-radius: 12px;
-  font-family: var(--fh); font-size: .85rem; font-weight: 800;
-  cursor: pointer; box-shadow: var(--shm); transition: var(--tr);
+.dr-link:hover,.dr-link:active{background:rgba(212,160,23,.12);color:var(--gold-l)}
+.dr-icon{
+  width:34px;height:34px;border-radius:10px;
+  background:rgba(212,160,23,.12);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;flex-shrink:0;
 }
-.drawer-cta:active { transform: scale(.98) }
+.dr-foot{padding:18px;border-top:1px solid rgba(255,255,255,.08)}
+.dr-cta{
+  width:100%;padding:14px;border:none;border-radius:14px;cursor:pointer;
+  background:linear-gradient(135deg,var(--gold),var(--gold-d));
+  color:var(--maroon-d);font-family:var(--fh);font-size:.88rem;font-weight:900;
+  box-shadow:0 4px 20px rgba(212,160,23,.35);transition:all .22s;
+}
+.dr-cta:active{transform:scale(.98)}
 
-/* ══════════════════════════════════════
-   HERO
-══════════════════════════════════════ */
-.hero {
-  position: relative; overflow: hidden;
-  padding: 24px 18px 20px;
-  background: var(--c);
+/* ═══════════════════════════════════════════
+   HERO — DARK LUXURY
+═══════════════════════════════════════════ */
+.hero{
+  background:var(--hero-bg);
+  position:relative;overflow:hidden;
+  padding:26px 18px 30px;
 }
-/* Decorative background gradient blobs */
-.hero::before {
-  content: '';
-  position: absolute; top: -80px; right: -60px;
-  width: 240px; height: 240px;
-  background: radial-gradient(circle, rgba(201,152,10,.12) 0%, transparent 70%);
-  border-radius: 50%; pointer-events: none;
+/* mandala glow blobs */
+.hero-glow{
+  position:absolute;border-radius:50%;pointer-events:none;
 }
-.hero::after {
-  content: '';
-  position: absolute; bottom: -50px; left: -40px;
-  width: 200px; height: 200px;
-  background: radial-gradient(circle, rgba(139,26,26,.07) 0%, transparent 70%);
-  border-radius: 50%; pointer-events: none;
+.glow-1{
+  width:300px;height:300px;
+  top:-120px;right:-80px;
+  background:radial-gradient(circle,rgba(212,160,23,.18) 0%,transparent 70%);
 }
-
-/* Badge */
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 7px;
-  background: var(--w);
-  border: 1px solid var(--br);
-  border-radius: 50px;
-  padding: 6px 14px;
-  font-family: var(--fh);
-  font-size: .72rem; font-weight: 700;
-  color: var(--m);
-  margin-bottom: 16px;
-  box-shadow: var(--sh);
+.glow-2{
+  width:220px;height:220px;
+  bottom:-80px;left:-60px;
+  background:radial-gradient(circle,rgba(122,16,16,.5) 0%,transparent 70%);
 }
-.hero-badge-dot {
-  width: 7px; height: 7px; border-radius: 50%;
-  background: var(--g); flex-shrink: 0;
-  animation: pulse-dot 2s ease infinite;
-}
-@keyframes pulse-dot {
-  0%,100% { opacity:1; transform: scale(1) }
-  50%      { opacity:.6; transform: scale(1.3) }
+.glow-3{
+  width:180px;height:180px;
+  top:30%;left:50%;transform:translateX(-50%);
+  background:radial-gradient(circle,rgba(212,160,23,.06) 0%,transparent 70%);
 }
 
-/* Two-col hero layout */
-.hero-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: center; position: relative; z-index: 1 }
+/* spinning mandala ring */
+.mandala-ring{
+  position:absolute;top:-40px;right:-40px;
+  width:200px;height:200px;
+  border-radius:50%;
+  border:1px solid rgba(212,160,23,.12);
+  animation:spin-slow 30s linear infinite;
+  pointer-events:none;
+}
+.mandala-ring::before{
+  content:'';position:absolute;inset:14px;border-radius:50%;
+  border:1px dashed rgba(212,160,23,.1);
+}
+.mandala-ring::after{
+  content:'';position:absolute;inset:28px;border-radius:50%;
+  border:1px solid rgba(212,160,23,.06);
+}
+@keyframes spin-slow{to{transform:rotate(360deg)}}
 
-/* LEFT */
-.hero-left {}
-.hero-h1 { margin-bottom: 10px }
-.h1-a {
-  display: block;
-  font-family: var(--fh);
-  font-size: 1.75rem; font-weight: 900;
-  color: var(--m); line-height: 1.15;
+/* scattered stars */
+.star{
+  position:absolute;border-radius:50%;
+  background:var(--gold-l);animation:twinkle 3s ease infinite;
+  pointer-events:none;
 }
-.h1-b {
-  display: block;
-  font-family: var(--fh);
-  font-size: 1.75rem; font-weight: 900;
-  background: linear-gradient(135deg, #C9980A 0%, #E4B84D 100%);
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text;
-  line-height: 1.15;
-}
-.hero-div {
-  display: flex; align-items: center; gap: 8px;
-  margin: 10px 0 10px;
-}
-.hero-div-line { flex: 1; height: 1px; background: var(--br) }
-.hero-div-sym { color: var(--g); font-size: .85rem }
-.hero-acharya {
-  font-family: var(--fc); font-size: .58rem;
-  letter-spacing: 3.5px; color: var(--ts);
-  text-transform: uppercase; margin-bottom: 8px;
-}
-.hero-quote {
-  font-family: var(--fh); font-size: .88rem; font-weight: 700;
-  color: var(--t); line-height: 1.5; margin-bottom: 8px;
-}
-.hero-sub {
-  font-family: var(--fe); font-size: .7rem; font-style: italic;
-  color: var(--ts); line-height: 1.5;
+.star:nth-child(1){width:3px;height:3px;top:15%;left:12%;animation-delay:0s}
+.star:nth-child(2){width:2px;height:2px;top:28%;left:80%;animation-delay:.8s}
+.star:nth-child(3){width:2px;height:2px;top:60%;left:6%;animation-delay:1.6s}
+.star:nth-child(4){width:3px;height:3px;top:72%;left:90%;animation-delay:.4s}
+@keyframes twinkle{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.2;transform:scale(.5)}}
+
+/* hero grid */
+.hero-grid{
+  display:grid;grid-template-columns:52% 48%;
+  align-items:center;gap:0;
+  position:relative;z-index:2;
 }
 
-/* RIGHT — portrait */
-.hero-right { position: relative; display: flex; justify-content: center }
-.portrait {
-  position: relative;
-  width: 148px; height: 178px;
+/* badge */
+.hero-badge{
+  display:inline-flex;align-items:center;gap:7px;
+  background:rgba(212,160,23,.15);
+  border:1px solid rgba(212,160,23,.3);
+  border-radius:50px;padding:6px 13px;
+  font-family:var(--fh);font-size:.7rem;font-weight:700;color:var(--gold-l);
+  margin-bottom:14px;
+  backdrop-filter:blur(8px);
 }
-.portrait-ring {
-  position: absolute; inset: -7px;
-  border-radius: 50%;
-  border: 1.5px dashed rgba(201,152,10,.45);
+.badge-pulse{
+  width:6px;height:6px;border-radius:50%;background:var(--gold-l);flex-shrink:0;
+  animation:pulse-badge 2s ease infinite;
 }
-.portrait-ring2 {
-  position: absolute; inset: -14px;
-  border-radius: 50%;
-  border: 1px solid rgba(201,152,10,.18);
+@keyframes pulse-badge{0%,100%{box-shadow:0 0 0 0 rgba(240,201,77,.5)}50%{box-shadow:0 0 0 5px rgba(240,201,77,0)}}
+
+.hero-h1{margin-bottom:10px}
+.h1-line1{
+  display:block;
+  font-family:var(--fh);font-size:1.8rem;font-weight:900;
+  color:#fff;line-height:1.15;
+  text-shadow:0 2px 20px rgba(0,0,0,.4);
 }
-.portrait-img {
-  position: absolute; inset: 0;
-  border-radius: 50%;
-  overflow: hidden;
-  background: linear-gradient(160deg, #D4EBC4 0%, #A8D490 100%);
-  border: 2.5px solid rgba(201,152,10,.5);
-  box-shadow: 0 10px 40px rgba(44,24,8,.18);
+.h1-line2{
+  display:block;
+  font-family:var(--fh);font-size:1.8rem;font-weight:900;
+  background:linear-gradient(135deg,#F0C94D 0%,#D4A017 60%,#F0C94D 100%);
+  -webkit-background-clip:text;-webkit-text-fill-color:transparent;
+  background-clip:text;line-height:1.15;
+  background-size:200%;animation:shimmer 3s ease infinite;
 }
-.portrait-img img { width:100%; height:100%; object-fit:cover; object-position:top center }
-/* decorative leaf sprigs */
-.portrait-leaf {
-  position: absolute; bottom: 16%; z-index: 2; pointer-events: none;
-  font-size: 1.2rem; line-height: 1;
+@keyframes shimmer{0%{background-position:0%}100%{background-position:200%}}
+
+.hero-divider{
+  display:flex;align-items:center;gap:8px;margin:10px 0;
 }
-.portrait-leaf.l { left: -20px; transform: rotate(-30deg) }
-.portrait-leaf.r { right: -20px; transform: rotate(30deg) }
-.portrait-om {
-  position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%);
-  width: 38px; height: 38px; border-radius: 50%;
-  background: var(--w); border: 2px solid var(--g);
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--fh); font-size: 1.1rem; color: var(--g);
-  box-shadow: 0 4px 14px rgba(201,152,10,.25); z-index: 5;
+.hero-divider-line{height:1px;background:rgba(212,160,23,.3);flex:1}
+.hero-divider-sym{color:var(--gold);font-size:.85rem;opacity:.8}
+
+.hero-label{
+  font-family:var(--fc);font-size:.58rem;letter-spacing:4px;
+  color:rgba(240,201,77,.7);text-transform:uppercase;margin-bottom:8px;
 }
-.portrait-deco-diamond {
-  position: absolute; top: 4px; right: -8px;
-  width: 9px; height: 9px;
-  background: var(--gl); transform: rotate(45deg); opacity: .8;
+.hero-quote{
+  font-family:var(--fh);font-size:.9rem;font-weight:700;
+  color:rgba(255,255,255,.9);line-height:1.55;margin-bottom:8px;
+}
+.hero-tagline{
+  font-family:var(--fe);font-size:.7rem;font-style:italic;
+  color:rgba(255,255,255,.5);line-height:1.5;
 }
 
-/* ══════════════════════════════════════
-   STATS ROW
-══════════════════════════════════════ */
-.stats {
-  margin: 20px 16px 0;
-  background: var(--w);
-  border-radius: 20px;
-  border: 1px solid var(--br);
-  box-shadow: var(--sh);
-  display: grid; grid-template-columns: repeat(3,1fr);
-  overflow: hidden;
+/* portrait */
+.portrait-col{
+  display:flex;align-items:center;justify-content:center;
+  position:relative;padding-top:8px;
 }
-.stat {
-  padding: 14px 6px;
-  display: flex; flex-direction: column; align-items: center; gap: 5px;
-  border-right: 1px solid rgba(232,213,180,.5);
+.portrait-wrap{
+  position:relative;width:148px;height:185px;
 }
-.stat:last-child { border-right: none }
-.stat-ico {
-  width: 32px; height: 32px; border-radius: 50%;
-  background: var(--gb);
-  display: flex; align-items: center; justify-content: center;
-  color: var(--g); font-size: .95rem;
+/* glowing outer rings */
+.p-ring{
+  position:absolute;border-radius:50%;
+  border:1px solid rgba(212,160,23,.3);
+  animation:ring-pulse 3s ease infinite;
 }
-.stat-val {
-  font-family: var(--fh); font-size: 1.05rem; font-weight: 900; color: var(--t); line-height: 1;
+.p-ring-1{inset:-8px;animation-delay:0s}
+.p-ring-2{inset:-16px;border-color:rgba(212,160,23,.14);animation-delay:.5s}
+.p-ring-3{inset:-26px;border-color:rgba(212,160,23,.06);animation-delay:1s}
+@keyframes ring-pulse{
+  0%,100%{opacity:1}50%{opacity:.4}
 }
-.stat-lbl {
-  font-family: var(--fh); font-size: .58rem; font-weight: 600; color: var(--ts);
-  text-align: center; line-height: 1.25;
+.p-frame{
+  position:absolute;inset:0;border-radius:50%;overflow:hidden;
+  border:2.5px solid rgba(212,160,23,.6);
+  box-shadow:0 0 30px rgba(212,160,23,.25),0 16px 48px rgba(0,0,0,.5);
+  background:linear-gradient(160deg,#2A4A1A,#1A2A10);
+}
+.p-frame img{object-position:top center}
+/* leaf accents */
+.p-leaf{
+  position:absolute;bottom:18%;z-index:3;
+  font-size:1.4rem;filter:drop-shadow(0 2px 4px rgba(0,0,0,.4));
+  pointer-events:none;
+}
+.p-leaf.l{left:-22px;transform:rotate(-35deg)scaleX(-1)}
+.p-leaf.r{right:-22px;transform:rotate(35deg)}
+/* om badge */
+.p-om{
+  position:absolute;bottom:-16px;left:50%;transform:translateX(-50%);
+  width:42px;height:42px;border-radius:50%;
+  background:linear-gradient(135deg,#D4A017,#A87900);
+  border:2px solid rgba(255,255,255,.2);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--fh);font-size:1.2rem;color:#fff;
+  box-shadow:0 4px 20px rgba(212,160,23,.5);z-index:5;
+}
+/* corner diamond */
+.p-diamond{
+  position:absolute;top:2px;right:-10px;
+  width:10px;height:10px;
+  background:var(--gold-l);transform:rotate(45deg);
+  box-shadow:0 0 8px rgba(240,201,77,.8);
 }
 
-/* ══════════════════════════════════════
+/* ═══════════════════════════════════════════
+   STATS  (glass card over hero seam)
+═══════════════════════════════════════════ */
+.stats-wrap{padding:0 16px;margin-top:-1px;position:relative;z-index:10}
+.stats-glass{
+  background:rgba(255,255,255,.97);
+  border:1px solid rgba(228,207,160,.7);
+  border-radius:22px;
+  display:grid;grid-template-columns:repeat(3,1fr);
+  box-shadow:0 8px 40px rgba(0,0,0,.15),0 2px 0 rgba(212,160,23,.15) inset;
+  overflow:hidden;
+}
+.stat{
+  padding:16px 6px;
+  display:flex;flex-direction:column;align-items:center;gap:6px;
+  border-right:1px solid rgba(228,207,160,.5);
+  position:relative;transition:all .2s;
+}
+.stat:last-child{border-right:none}
+.stat:active{background:rgba(212,160,23,.04)}
+.stat-icon{
+  width:34px;height:34px;border-radius:50%;
+  background:linear-gradient(135deg,rgba(212,160,23,.15),rgba(212,160,23,.05));
+  display:flex;align-items:center;justify-content:center;font-size:1rem;
+}
+.stat-num{font-family:var(--fh);font-size:1.08rem;font-weight:900;color:var(--t1);line-height:1}
+.stat-lbl{font-family:var(--fh);font-size:.58rem;font-weight:600;color:var(--t3);text-align:center;line-height:1.3}
+
+/* ═══════════════════════════════════════════
    CTA BUTTONS
-══════════════════════════════════════ */
-.ctas { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 16px 0 }
-.cta-p, .cta-s {
-  border-radius: 14px; padding: 14px 10px;
-  font-family: var(--fh); font-size: .82rem; font-weight: 800;
-  display: flex; align-items: center; justify-content: center; gap: 7px;
-  border: none; cursor: pointer; transition: var(--tr);
+═══════════════════════════════════════════ */
+.ctas{display:grid;grid-template-columns:1fr 1fr;gap:11px;padding:16px 16px 0}
+.btn-book{
+  background:linear-gradient(135deg,var(--maroon),var(--maroon-d));
+  color:#fff;border:none;border-radius:16px;
+  padding:15px 10px;
+  font-family:var(--fh);font-size:.83rem;font-weight:800;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  cursor:pointer;
+  box-shadow:0 6px 24px rgba(122,16,16,.35),inset 0 1px 0 rgba(255,255,255,.1);
+  transition:all .22s;
+  position:relative;overflow:hidden;
 }
-.cta-p {
-  background: linear-gradient(135deg, var(--m) 0%, var(--md) 100%);
-  color: #fff;
-  box-shadow: 0 5px 20px rgba(139,26,26,.28);
+.btn-book::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.12),transparent);
+  border-radius:inherit;
 }
-.cta-p:active { transform: scale(.97) }
-.cta-s {
-  background: var(--w);
-  color: var(--tm);
-  border: 1.5px solid var(--br);
-  box-shadow: var(--sh);
+.btn-book:active{transform:scale(.97);box-shadow:0 3px 12px rgba(122,16,16,.3)}
+.btn-info{
+  background:var(--white);color:var(--t2);
+  border:1.5px solid var(--border);border-radius:16px;
+  padding:15px 10px;
+  font-family:var(--fh);font-size:.83rem;font-weight:800;
+  display:flex;align-items:center;justify-content:center;gap:8px;
+  cursor:pointer;
+  box-shadow:0 4px 16px rgba(0,0,0,.06);
+  transition:all .22s;
 }
-.cta-s:active { transform: scale(.97) }
-.cta-ico { font-size: .9rem; flex-shrink: 0 }
+.btn-info:active{transform:scale(.97)}
 
-/* ══════════════════════════════════════
-   SERVICES SECTION
-══════════════════════════════════════ */
-.srv-sec { padding: 28px 16px 22px; background: var(--c) }
-.sec-header { text-align: center; margin-bottom: 20px }
-.sec-ornament {
-  display: flex; align-items: center; gap: 10px; justify-content: center;
-  margin-bottom: 5px;
+/* ═══════════════════════════════════════════
+   SECTION HEADER (reusable)
+═══════════════════════════════════════════ */
+.sec-hdr{text-align:center;margin-bottom:22px}
+.sec-kicker{
+  display:inline-block;
+  font-family:var(--fc);font-size:.58rem;letter-spacing:3px;
+  color:var(--gold-d);text-transform:uppercase;font-weight:600;
+  margin-bottom:6px;
 }
-.sec-ornament-line { flex: 1; max-width: 50px; height: 1px; background: linear-gradient(90deg, transparent, var(--g)) }
-.sec-ornament-line.r { background: linear-gradient(270deg, transparent, var(--g)) }
-.sec-ornament-sym { color: var(--g); font-size: .75rem }
-.sec-title {
-  font-family: var(--fh); font-size: 1.2rem; font-weight: 900; color: var(--t);
-}
-.sec-sub { font-family: var(--fh); font-size: .72rem; color: var(--ts); margin-top: 3px }
+.sec-title-row{display:flex;align-items:center;gap:10px;justify-content:center;margin-bottom:5px}
+.sec-line{height:1px;width:36px;background:linear-gradient(90deg,transparent,var(--gold))}
+.sec-line.r{background:linear-gradient(270deg,transparent,var(--gold))}
+.sec-title{font-family:var(--fh);font-size:1.22rem;font-weight:900;color:var(--t1)}
+.sec-sub{font-family:var(--fh);font-size:.72rem;color:var(--t3);margin-top:2px}
 
-/* Service cards 3-col */
-.srv-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 9px }
-.srv-card {
-  background: var(--w); border: 1px solid var(--br);
-  border-radius: 18px; padding: 14px 10px 12px;
-  display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
-  box-shadow: var(--sh); transition: var(--tr); cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
+/* ═══════════════════════════════════════════
+   SERVICES
+═══════════════════════════════════════════ */
+.srv-sec{padding:30px 16px 24px;background:var(--cream)}
+.srv-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}
+.srv-card{
+  background:var(--white);border-radius:20px;
+  border:1px solid rgba(228,207,160,.6);
+  padding:16px 10px 14px;
+  display:flex;flex-direction:column;align-items:flex-start;gap:8px;
+  box-shadow:0 2px 12px rgba(0,0,0,.05);
+  transition:all .25s cubic-bezier(.4,0,.2,1);
+  cursor:pointer;position:relative;overflow:hidden;
 }
-.srv-card:active { transform: scale(.97); box-shadow: none }
-.srv-card-ico {
-  width: 40px; height: 40px; border-radius: 12px;
-  background: var(--gb); display: flex; align-items: center; justify-content: center;
-  font-size: 1.1rem;
+.srv-card::before{
+  content:'';position:absolute;
+  top:-20px;right:-20px;
+  width:60px;height:60px;border-radius:50%;
+  background:radial-gradient(circle,rgba(212,160,23,.08),transparent 70%);
+  transition:all .4s;
 }
-.srv-card-name {
-  font-family: var(--fh); font-size: .75rem; font-weight: 800; color: var(--t); line-height: 1.3;
+.srv-card:active{transform:scale(.96);box-shadow:0 1px 6px rgba(0,0,0,.06)}
+.srv-card:active::before{transform:scale(2)}
+.srv-icon{
+  width:42px;height:42px;border-radius:13px;
+  display:flex;align-items:center;justify-content:center;
+  font-size:1.2rem;flex-shrink:0;
 }
-.srv-card-desc {
-  font-family: var(--fh); font-size: .62rem; color: var(--ts); line-height: 1.35;
-  flex: 1;
+/* colored icon bg per card */
+.ic-red{background:linear-gradient(135deg,rgba(122,16,16,.12),rgba(122,16,16,.05))}
+.ic-gold{background:linear-gradient(135deg,rgba(212,160,23,.15),rgba(212,160,23,.05))}
+.ic-green{background:linear-gradient(135deg,rgba(30,100,60,.12),rgba(30,100,60,.04))}
+.ic-blue{background:linear-gradient(135deg,rgba(30,60,140,.1),rgba(30,60,140,.03))}
+.ic-purple{background:linear-gradient(135deg,rgba(80,20,120,.1),rgba(80,20,120,.03))}
+.ic-teal{background:linear-gradient(135deg,rgba(20,100,100,.1),rgba(20,100,100,.03))}
+.srv-name{font-family:var(--fh);font-size:.75rem;font-weight:800;color:var(--t1);line-height:1.3}
+.srv-desc{font-family:var(--fh);font-size:.62rem;color:var(--t3);line-height:1.4;flex:1}
+.srv-arrow{
+  width:26px;height:26px;border-radius:50%;
+  border:1.5px solid var(--border);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--maroon);font-size:.85rem;font-weight:700;
+  margin-top:2px;transition:all .2s;
 }
-.srv-card-arr {
-  width: 26px; height: 26px; border-radius: 50%;
-  border: 1.5px solid var(--br);
-  display: flex; align-items: center; justify-content: center;
-  color: var(--m); font-size: .85rem; font-weight: 700;
-  transition: var(--tr); margin-top: 2px;
-}
-.srv-card:active .srv-card-arr { background: var(--m); color: #fff; border-color: var(--m) }
+.srv-card:active .srv-arrow{background:var(--maroon);color:#fff;border-color:var(--maroon)}
 
-/* ══════════════════════════════════════
-   ABOUT SECTION
-══════════════════════════════════════ */
-.about-sec {
-  margin: 0 16px 24px;
-  background: var(--w); border: 1px solid var(--br);
-  border-radius: 24px; overflow: hidden;
-  box-shadow: var(--sh);
+/* ═══════════════════════════════════════════
+   ABOUT — Split card layout
+═══════════════════════════════════════════ */
+.about-sec{padding:28px 16px}
+.about-card{
+  background:var(--white);border-radius:26px;
+  border:1px solid rgba(228,207,160,.6);
+  overflow:hidden;box-shadow:0 4px 24px rgba(0,0,0,.07);
 }
-.about-img-wrap { height: 200px; overflow: hidden }
-.about-img-wrap img { width:100%; height:100%; object-fit:cover; object-position:center top }
-.about-body { padding: 18px 16px }
-.about-tag {
-  font-family: var(--fc); font-size: .58rem; letter-spacing: 2px;
-  color: var(--g); font-weight: 700; text-transform: uppercase; display: block;
-  margin-bottom: 5px;
+.about-img{height:210px;position:relative;overflow:hidden}
+.about-img img{object-position:center 10%}
+/* gradient overlay on image */
+.about-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,transparent 50%,rgba(0,0,0,.6) 100%);
 }
-.about-h2 {
-  font-family: var(--fh); font-size: 1rem; font-weight: 900; color: var(--t); margin-bottom: 10px;
+/* label over image */
+.about-img-label{
+  position:absolute;bottom:16px;left:16px;right:16px;z-index:2;
+  display:flex;align-items:flex-end;justify-content:space-between;
 }
-.about-h2 span { color: var(--m) }
-.about-p {
-  font-family: var(--fh); font-size: .75rem; color: var(--tm);
-  line-height: 1.6; margin-bottom: 8px;
+.about-name-over{
+  font-family:var(--fh);font-size:1.05rem;font-weight:900;color:#fff;
+  text-shadow:0 2px 10px rgba(0,0,0,.5);
 }
-/* Credentials pills */
-.cred-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px }
-.cred-pill {
-  background: var(--gb); border: 1px solid rgba(201,152,10,.2);
-  border-radius: 50px; padding: 4px 11px;
-  font-family: var(--fh); font-size: .65rem; font-weight: 700; color: var(--tm);
-  display: flex; align-items: center; gap: 5px;
+.about-role-over{font-family:var(--fc);font-size:.55rem;letter-spacing:2px;color:var(--gold-l);text-transform:uppercase}
+.about-exp-badge{
+  background:linear-gradient(135deg,var(--gold),var(--gold-d));
+  padding:7px 12px;border-radius:12px;
+  font-family:var(--fh);font-size:.72rem;font-weight:900;color:#fff;
+  box-shadow:0 4px 14px rgba(212,160,23,.4);text-align:center;
+}
+.about-exp-badge small{display:block;font-size:.55rem;font-weight:500;opacity:.85}
+.about-body{padding:18px 16px 20px}
+.about-p{font-family:var(--fh);font-size:.76rem;color:var(--t2);line-height:1.65;margin-bottom:10px}
+.creds{display:flex;flex-wrap:wrap;gap:7px;margin-top:14px}
+.cred{
+  background:linear-gradient(135deg,rgba(212,160,23,.1),rgba(212,160,23,.04));
+  border:1px solid rgba(212,160,23,.25);
+  border-radius:50px;padding:5px 12px;
+  font-family:var(--fh);font-size:.65rem;font-weight:700;color:var(--t2);
+  display:flex;align-items:center;gap:5px;
 }
 
-/* ══════════════════════════════════════
-   REVIEWS
-══════════════════════════════════════ */
-.reviews-sec { padding: 28px 16px; background: var(--w); border-top: 1px solid var(--br) }
-.rev-card {
-  background: var(--c); border: 1px solid var(--br);
-  border-radius: 18px; padding: 16px; margin-bottom: 12px;
-  position: relative; overflow: hidden;
+/* ═══════════════════════════════════════════
+   TESTIMONIALS
+═══════════════════════════════════════════ */
+.reviews-sec{
+  padding:28px 16px;
+  background:var(--maroon-d);
+  border-top:1px solid rgba(212,160,23,.15);
+  position:relative;overflow:hidden;
 }
-.rev-card::before {
-  content: '"'; position: absolute; top: -8px; left: 12px;
-  font-family: Georgia, serif; font-size: 4rem; color: rgba(201,152,10,.1);
-  line-height: 1;
+.reviews-sec::before{
+  content:'';position:absolute;top:-60px;right:-60px;
+  width:250px;height:250px;border-radius:50%;
+  background:radial-gradient(circle,rgba(212,160,23,.08),transparent 70%);
+  pointer-events:none;
 }
-.rev-badge {
-  display: inline-flex; align-items: center; gap: 4px;
-  background: rgba(139,26,26,.07); border-radius: 50px;
-  padding: 3px 9px;
-  font-family: var(--fh); font-size: .6rem; font-weight: 700; color: var(--m);
-  margin-bottom: 8px;
-}
-.rev-stars { color: var(--g); font-size: .78rem; letter-spacing: 1px; margin-bottom: 8px }
-.rev-q { font-family: var(--fh); font-size: .75rem; color: var(--t); line-height: 1.55; font-style: italic }
-.rev-name { font-family: var(--fh); font-size: .75rem; font-weight: 800; color: var(--m); margin-top: 10px }
-.rev-city { font-family: var(--fh); font-size: .62rem; color: var(--ts) }
+/* invert section header for dark bg */
+.reviews-sec .sec-kicker{color:var(--gold-l)}
+.reviews-sec .sec-title{color:#fff}
+.reviews-sec .sec-sub{color:rgba(255,255,255,.5)}
+.reviews-sec .sec-line{background:linear-gradient(90deg,transparent,rgba(212,160,23,.6))}
+.reviews-sec .sec-line.r{background:linear-gradient(270deg,transparent,rgba(212,160,23,.6))}
 
-/* ══════════════════════════════════════
+/* horizontal scroll */
+.rev-scroll{
+  display:flex;gap:12px;overflow-x:auto;padding-bottom:6px;
+  scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch;
+  scrollbar-width:none;
+}
+.rev-scroll::-webkit-scrollbar{display:none}
+.rev-card{
+  background:rgba(255,255,255,.06);
+  border:1px solid rgba(212,160,23,.2);
+  border-radius:20px;padding:18px 16px;
+  min-width:260px;max-width:260px;
+  flex-shrink:0;scroll-snap-align:start;
+  backdrop-filter:blur(8px);position:relative;overflow:hidden;
+  transition:all .2s;
+}
+.rev-card:active{transform:scale(.98)}
+.rev-card::before{
+  content:'"';
+  position:absolute;top:-5px;right:10px;
+  font-family:Georgia,serif;font-size:5rem;color:rgba(212,160,23,.12);line-height:1;
+  pointer-events:none;
+}
+.rev-tag{
+  display:inline-flex;align-items:center;gap:5px;
+  background:rgba(212,160,23,.15);border:1px solid rgba(212,160,23,.25);
+  border-radius:50px;padding:3px 10px;
+  font-family:var(--fh);font-size:.6rem;font-weight:700;color:var(--gold-l);
+  margin-bottom:9px;
+}
+.rev-stars{color:var(--gold-l);font-size:.78rem;letter-spacing:1px;margin-bottom:9px}
+.rev-q{font-family:var(--fh);font-size:.75rem;color:rgba(255,255,255,.85);line-height:1.6;font-style:italic}
+.rev-person{
+  display:flex;align-items:center;gap:9px;margin-top:14px;
+  padding-top:12px;border-top:1px solid rgba(255,255,255,.08);
+}
+.rev-avatar{
+  width:32px;height:32px;border-radius:50%;
+  background:linear-gradient(135deg,var(--maroon),var(--maroon-l));
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--fh);font-size:.8rem;font-weight:800;color:#fff;flex-shrink:0;
+}
+.rev-name{font-family:var(--fh);font-size:.75rem;font-weight:800;color:#fff}
+.rev-city{font-family:var(--fh);font-size:.6rem;color:rgba(255,255,255,.45)}
+
+/* scroll hint dots */
+.rev-dots{
+  display:flex;gap:5px;justify-content:center;margin-top:14px;
+}
+.rev-dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.2);cursor:pointer;transition:all .2s}
+.rev-dot.active{width:18px;border-radius:3px;background:var(--gold)}
+
+/* ═══════════════════════════════════════════
    FAQ
-══════════════════════════════════════ */
-.faq-sec { padding: 28px 16px; background: var(--c); border-top: 1px solid var(--br) }
-.faq-item { margin-bottom: 10px; border: 1px solid var(--br); border-radius: 14px; overflow: hidden; background: var(--w) }
-.faq-q {
-  padding: 14px 16px; cursor: pointer;
-  display: flex; align-items: center; justify-content: space-between; gap: 8px;
-  font-family: var(--fh); font-size: .78rem; font-weight: 800; color: var(--m);
-  user-select: none; -webkit-user-select: none;
-  transition: var(--tr);
+═══════════════════════════════════════════ */
+.faq-sec{padding:28px 16px;background:var(--sand);border-top:1px solid var(--border)}
+.faq-item{margin-bottom:10px;overflow:hidden;border-radius:16px;background:var(--white);border:1px solid rgba(228,207,160,.5);box-shadow:0 2px 10px rgba(0,0,0,.04)}
+.faq-q{
+  padding:15px 16px;cursor:pointer;
+  display:flex;align-items:center;justify-content:space-between;gap:10px;
+  font-family:var(--fh);font-size:.79rem;font-weight:800;color:var(--maroon);
+  user-select:none;-webkit-user-select:none;transition:background .2s;
 }
-.faq-q:active { background: var(--gb) }
-.faq-toggle {
-  width: 24px; height: 24px; border-radius: 50%;
-  background: var(--gb); border: 1px solid rgba(201,152,10,.25);
-  display: flex; align-items: center; justify-content: center;
-  color: var(--g); font-size: .85rem; font-weight: 700; flex-shrink: 0;
-  transition: var(--tr);
+.faq-q:active{background:rgba(212,160,23,.05)}
+.faq-tog{
+  width:26px;height:26px;border-radius:50%;flex-shrink:0;
+  background:linear-gradient(135deg,rgba(212,160,23,.15),rgba(212,160,23,.05));
+  border:1px solid rgba(212,160,23,.3);
+  display:flex;align-items:center;justify-content:center;
+  color:var(--gold-d);font-size:.9rem;font-weight:700;
+  transition:all .3s;
 }
-.faq-a {
-  font-family: var(--fh); font-size: .72rem; color: var(--tm);
-  padding: 0 16px; max-height: 0; overflow: hidden;
-  transition: max-height .35s ease, padding .2s ease;
-  line-height: 1.55;
+.faq-a{
+  font-family:var(--fh);font-size:.73rem;color:var(--t2);
+  line-height:1.6;max-height:0;overflow:hidden;
+  transition:max-height .38s ease,padding .2s;
+  padding:0 16px;
 }
-.faq-a.open { max-height: 200px; padding: 0 16px 14px }
+.faq-a.open{max-height:200px;padding:0 16px 14px}
 
-/* ══════════════════════════════════════
-   CONTACT FORM
-══════════════════════════════════════ */
-.contact-sec { padding: 28px 16px; background: var(--w); border-top: 1px solid var(--br) }
-.form-card {
-  background: var(--c); border: 1px solid var(--br);
-  border-radius: 24px; padding: 22px 18px;
-  box-shadow: var(--sh);
+/* ═══════════════════════════════════════════
+   CONTACT
+═══════════════════════════════════════════ */
+.contact-sec{padding:30px 16px;background:var(--cream);border-top:1px solid var(--border)}
+.form-card{
+  background:var(--white);border:1px solid rgba(228,207,160,.6);
+  border-radius:26px;overflow:hidden;
+  box-shadow:0 4px 24px rgba(0,0,0,.07);
 }
-.form-hd { font-family: var(--fh); font-size: .95rem; font-weight: 900; color: var(--m); text-align: center; margin-bottom: 4px }
-.form-sub { font-family: var(--fh); font-size: .68rem; color: var(--ts); text-align: center; display: block; margin-bottom: 18px }
-.fg { margin-bottom: 13px }
-.fg label { display: block; font-family: var(--fh); font-size: .7rem; font-weight: 700; color: var(--t); margin-bottom: 5px }
-.fg input, .fg select {
-  width: 100%; padding: 11px 13px;
-  font-family: var(--fh); font-size: .78rem; color: var(--t);
-  background: var(--w); border: 1.5px solid var(--br);
-  border-radius: 11px; outline: none; transition: var(--tr);
+.form-top{
+  background:var(--hero-bg);
+  padding:20px 18px 18px;
+  position:relative;overflow:hidden;
 }
-.fg input:focus, .fg select:focus { border-color: var(--g); box-shadow: 0 0 0 3px rgba(201,152,10,.1) }
-.fg input::placeholder { color: var(--ts) }
-.fg-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px }
-.btn-form {
-  width: 100%; padding: 14px;
-  background: linear-gradient(135deg, var(--m) 0%, var(--md) 100%);
-  color: #fff; border: none; border-radius: 14px;
-  font-family: var(--fh); font-size: .86rem; font-weight: 800;
-  cursor: pointer; box-shadow: var(--shm); transition: var(--tr);
-  margin-top: 4px;
+.form-top::before{
+  content:'';position:absolute;top:-30px;right:-30px;
+  width:150px;height:150px;border-radius:50%;
+  background:radial-gradient(circle,rgba(212,160,23,.1),transparent 70%);
 }
-.btn-form:active { transform: scale(.98) }
+.form-title{font-family:var(--fh);font-size:.98rem;font-weight:900;color:#fff;margin-bottom:3px}
+.form-sub{font-family:var(--fh);font-size:.68rem;color:rgba(255,255,255,.55)}
+.form-body{padding:20px 18px}
+.fg{margin-bottom:14px}
+.fg label{display:block;font-family:var(--fh);font-size:.7rem;font-weight:800;color:var(--t1);margin-bottom:6px}
+.fg input,.fg select{
+  width:100%;padding:12px 14px;
+  font-family:var(--fh);font-size:.78rem;color:var(--t1);
+  background:var(--cream);border:1.5px solid var(--border);border-radius:13px;
+  outline:none;transition:all .22s;
+  -webkit-appearance:none;
+}
+.fg input:focus,.fg select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(212,160,23,.12);background:#fff}
+.fg input::placeholder{color:var(--t3)}
+.fg-row{display:grid;grid-template-columns:1fr 1fr;gap:11px}
+.btn-submit{
+  width:100%;padding:15px;border:none;border-radius:16px;cursor:pointer;
+  background:linear-gradient(135deg,var(--maroon),var(--maroon-d));
+  color:#fff;font-family:var(--fh);font-size:.88rem;font-weight:900;
+  box-shadow:0 6px 24px rgba(122,16,16,.35),inset 0 1px 0 rgba(255,255,255,.08);
+  transition:all .22s;margin-top:4px;position:relative;overflow:hidden;
+  letter-spacing:.3px;
+}
+.btn-submit::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(135deg,rgba(255,255,255,.1),transparent);
+  border-radius:inherit;
+}
+.btn-submit:active{transform:scale(.98);box-shadow:0 3px 12px rgba(122,16,16,.3)}
 
-/* ══════════════════════════════════════
+/* ═══════════════════════════════════════════
    FOOTER
-══════════════════════════════════════ */
-footer {
-  background: var(--c); padding: 22px 18px 18px;
-  border-top: 1px solid var(--br); text-align: center;
+═══════════════════════════════════════════ */
+footer{
+  background:var(--dark);padding:24px 18px 20px;
+  border-top:2px solid rgba(212,160,23,.15);
+  text-align:center;
 }
-.f-om { font-family: var(--fh); font-size: 1.4rem; color: var(--g); margin-bottom: 4px }
-.f-name { font-family: var(--fh); font-size: .82rem; font-weight: 800; color: var(--m); margin-bottom: 6px }
-.f-links { display: flex; justify-content: center; gap: 16px; margin-bottom: 10px }
-.f-links a { font-family: var(--fh); font-size: .68rem; color: var(--ts); transition: var(--tr) }
-.f-links a:hover { color: var(--m) }
-.f-copy { font-family: var(--fe); font-size: .58rem; color: var(--ts) }
+.f-om{font-family:var(--fh);font-size:1.8rem;color:var(--gold);margin-bottom:6px;text-shadow:0 0 20px rgba(212,160,23,.4)}
+.f-name{font-family:var(--fh);font-size:.85rem;font-weight:800;color:#fff;margin-bottom:4px}
+.f-tagline{font-family:var(--fc);font-size:.52rem;letter-spacing:2px;color:rgba(212,160,23,.6);text-transform:uppercase;margin-bottom:14px}
+.f-links{display:flex;justify-content:center;gap:18px;margin-bottom:14px}
+.f-links a{font-family:var(--fh);font-size:.68rem;color:rgba(255,255,255,.45);transition:color .2s}
+.f-links a:hover{color:var(--gold-l)}
+.f-copy{font-family:var(--fe);font-size:.58rem;color:rgba(255,255,255,.25)}
 
-/* ══════════════════════════════════════
-   FIXED BOTTOM TRUST BAR
-══════════════════════════════════════ */
-.trust-bar {
-  position: fixed; bottom: 0; z-index: 300;
-  /* perfectly centered under .app */
-  left: 50%; transform: translateX(-50%);
-  width: min(100%, 430px);
-  background: linear-gradient(135deg, var(--m) 0%, var(--md) 100%);
-  padding: 11px 18px 11px 14px;
-  display: flex; align-items: center; gap: 12px;
-  box-shadow: 0 -4px 24px rgba(139,26,26,.28);
+/* ═══════════════════════════════════════════
+   TRUST BAR (fixed bottom)
+═══════════════════════════════════════════ */
+.trust-bar{
+  position:fixed;bottom:0;left:50%;transform:translateX(-50%);
+  width:min(100%,430px);z-index:400;
+  background:linear-gradient(135deg,var(--maroon-d) 0%,var(--maroon) 100%);
+  border-top:1px solid rgba(212,160,23,.25);
+  padding:10px 16px 10px 14px;
+  display:flex;align-items:center;gap:12px;
+  box-shadow:0 -6px 30px rgba(0,0,0,.4),0 -1px 0 rgba(212,160,23,.1);
 }
-.tb-om {
-  width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
-  background: rgba(255,255,255,.12); border: 1.5px solid rgba(228,184,77,.45);
-  display: flex; align-items: center; justify-content: center;
-  font-family: var(--fh); font-size: 1.15rem; color: var(--gl);
+.tb-om{
+  width:42px;height:42px;border-radius:50%;flex-shrink:0;
+  background:rgba(255,255,255,.08);
+  border:2px solid rgba(212,160,23,.35);
+  display:flex;align-items:center;justify-content:center;
+  font-family:var(--fh);font-size:1.2rem;color:var(--gold-l);
+  box-shadow:0 0 16px rgba(212,160,23,.2);
 }
-.tb-text { flex: 1; min-width: 0 }
-.tb-main { font-family: var(--fh); font-size: .82rem; font-weight: 800; color: #fff; display: block }
-.tb-sub  { font-family: var(--fh); font-size: .6rem; color: rgba(255,255,255,.65); display: block; margin-top: 1px }
-.tb-call {
-  background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3);
-  color: #fff; padding: 6px 12px; border-radius: 50px;
-  font-family: var(--fh); font-size: .68rem; font-weight: 700;
-  cursor: pointer; white-space: nowrap; flex-shrink: 0; transition: var(--tr);
+.tb-text{flex:1;min-width:0}
+.tb-main{font-family:var(--fh);font-size:.82rem;font-weight:800;color:#fff;display:block}
+.tb-sub{font-family:var(--fh);font-size:.6rem;color:rgba(255,255,255,.5);display:block;margin-top:1px}
+.tb-cta{
+  background:linear-gradient(135deg,var(--gold),var(--gold-d));
+  color:var(--maroon-d);border:none;border-radius:50px;
+  padding:8px 14px;
+  font-family:var(--fh);font-size:.7rem;font-weight:900;
+  cursor:pointer;white-space:nowrap;flex-shrink:0;
+  box-shadow:0 3px 12px rgba(212,160,23,.4);transition:all .22s;
 }
-.tb-call:active { background: rgba(255,255,255,.25) }
+.tb-cta:active{transform:scale(.96)}
 
-/* ══════════════════════════════════════
-   ANIMATIONS
-══════════════════════════════════════ */
-@keyframes fadeUp {
-  from { opacity:0; transform:translateY(18px) }
-  to   { opacity:1; transform:translateY(0) }
+/* ═══════════════════════════════════════════
+   SCROLL-REVEAL
+═══════════════════════════════════════════ */
+.reveal{
+  opacity:0;transform:translateY(28px);
+  transition:opacity .6s ease,transform .6s ease;
 }
-.hero, .stats, .ctas, .srv-sec, .about-sec { animation: fadeUp .55s ease both }
-.stats   { animation-delay: .08s }
-.ctas    { animation-delay: .15s }
-.srv-sec { animation-delay: .22s }
+.reveal.visible{opacity:1;transform:translateY(0)}
+
+/* ═══════════════════════════════════════════
+   FLOATING WHATSAPP FAB
+═══════════════════════════════════════════ */
+.fab{
+  position:fixed;bottom:86px;right:max(16px, calc(50% - 215px + 16px));
+  width:52px;height:52px;border-radius:50%;border:none;cursor:pointer;z-index:350;
+  background:linear-gradient(135deg,#25D366,#1DA851);
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 6px 24px rgba(37,211,102,.4);
+  transition:all .22s;
+  animation:fab-bounce 3s ease infinite;
+}
+.fab:active{transform:scale(.9)}
+.fab svg{width:26px;height:26px;fill:#fff}
+@keyframes fab-bounce{
+  0%,100%{transform:translateY(0)}
+  50%{transform:translateY(-4px)}
+}
+.fab-label{
+  position:absolute;right:58px;
+  background:#fff;color:var(--t1);
+  font-family:var(--fh);font-size:.65rem;font-weight:700;
+  padding:4px 10px;border-radius:20px;white-space:nowrap;
+  box-shadow:0 3px 12px rgba(0,0,0,.12);
+  animation:fade-label 4s ease infinite;
+}
+@keyframes fade-label{0%,20%,80%,100%{opacity:1}45%,65%{opacity:0}}
 </style>
 </head>
 <body>
 
 <div class="app">
 
-  <!-- ═══════ NAVBAR ═══════ -->
+  <!-- ████ NAV ████ -->
   <nav class="nav">
     <a class="logo" href="#home">
-      <div class="logo-om">ॐ</div>
-      <div class="logo-words">
+      <div class="logo-mark">ॐ</div>
+      <div class="logo-text">
         <span class="logo-hi">भारतीय वैदिक ज्योतिष केंद्र</span>
         <span class="logo-en">Bharatiya Vedic Jyotish Kendra</span>
       </div>
     </a>
     <div class="nav-r">
-      <a href="booking.html" class="nav-book">BOOK NOW <span>›</span></a>
-      <button class="hbg" id="hbgBtn" aria-label="Menu">
+      <a href="booking.html" class="nav-book">BOOK NOW ›</a>
+      <button class="hbg" id="hbgBtn" aria-label="Open menu">
         <b></b><b></b><b></b>
       </button>
     </div>
   </nav>
 
-  <!-- ═══════ DRAWER ═══════ -->
-  <div class="drawer-overlay" id="overlay" onclick="closeDrawer()"></div>
+  <!-- drawer overlay -->
+  <div class="overlay" id="overlayEl" onclick="closeDrawer()"></div>
+
+  <!-- ████ DRAWER ████ -->
   <div class="drawer" id="drawerEl">
-    <div class="drawer-head">
-      <span class="drawer-head-title">भारतीय वैदिक ज्योतिष</span>
-      <button class="drawer-close" onclick="closeDrawer()">✕</button>
+    <div class="dr-head">
+      <div class="dr-head-top">
+        <div>
+          <div class="dr-title">🙏 भारतीय वैदिक</div>
+          <div class="dr-subtitle">Vedic Jyotish Kendra</div>
+        </div>
+        <button class="dr-close" onclick="closeDrawer()">✕</button>
+      </div>
     </div>
-    <div class="drawer-links">
-      <a href="#home"        onclick="closeDrawer()"><span class="dl-icon">🏠</span> होम</a>
-      <a href="#services-sec" onclick="closeDrawer()"><span class="dl-icon">🔯</span> हमारी सेवाएँ</a>
-      <a href="#about"       onclick="closeDrawer()"><span class="dl-icon">🙏</span> हमारे बारे में</a>
-      <a href="#reviews"     onclick="closeDrawer()"><span class="dl-icon">⭐</span> समीक्षाएँ</a>
-      <a href="#faq"         onclick="closeDrawer()"><span class="dl-icon">❓</span> FAQ</a>
-      <a href="#contact"     onclick="closeDrawer()"><span class="dl-icon">📞</span> संपर्क</a>
-    </div>
-    <div class="drawer-foot">
-      <a href="booking.html">
-        <button class="drawer-cta">🔮 अभी बुकिंग करें</button>
-      </a>
+    <nav class="dr-links">
+      <a href="#home"        class="dr-link" onclick="closeDrawer()"><span class="dr-icon">🏠</span> होम</a>
+      <a href="#services"    class="dr-link" onclick="closeDrawer()"><span class="dr-icon">🔯</span> हमारी सेवाएँ</a>
+      <a href="#about"       class="dr-link" onclick="closeDrawer()"><span class="dr-icon">🙏</span> हमारे बारे में</a>
+      <a href="#reviews"     class="dr-link" onclick="closeDrawer()"><span class="dr-icon">⭐</span> ग्राहकों की राय</a>
+      <a href="#faq"         class="dr-link" onclick="closeDrawer()"><span class="dr-icon">❓</span> FAQ</a>
+      <a href="#contact"     class="dr-link" onclick="closeDrawer()"><span class="dr-icon">📞</span> संपर्क करें</a>
+      <a href="booking.html" class="dr-link" onclick="closeDrawer()"><span class="dr-icon">📅</span> बुकिंग करें</a>
+    </nav>
+    <div class="dr-foot">
+      <a href="booking.html"><button class="dr-cta">🔮 अभी निःशुल्क परामर्श लें</button></a>
     </div>
   </div>
 
-  <!-- ═══════ HERO ═══════ -->
+  <!-- ████ HERO ████ -->
   <section class="hero" id="home">
-    <!-- Badge -->
-    <div class="hero-badge">
-      <span class="hero-badge-dot"></span>
-      प्रामाणिक वैदिक ज्योतिष
-    </div>
+    <!-- bg decoration -->
+    <div class="hero-glow glow-1"></div>
+    <div class="hero-glow glow-2"></div>
+    <div class="hero-glow glow-3"></div>
+    <div class="mandala-ring"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
 
-    <div class="hero-cols">
-      <!-- LEFT TEXT -->
+    <div class="hero-grid">
+      <!-- LEFT -->
       <div class="hero-left">
-        <h1 class="hero-h1">
-          <span class="h1-a">भारतीय वैदिक</span>
-          <span class="h1-b">ज्योतिष केंद्र</span>
-        </h1>
-        <div class="hero-div">
-          <div class="hero-div-line"></div>
-          <span class="hero-div-sym">Ψ</span>
-          <div class="hero-div-line"></div>
+        <div class="hero-badge">
+          <span class="badge-pulse"></span>
+          प्रामाणिक वैदिक ज्योतिष
         </div>
-        <div class="hero-acharya">Acharya Arvind</div>
+        <h1 class="hero-h1">
+          <span class="h1-line1">भारतीय वैदिक</span>
+          <span class="h1-line2">ज्योतिष केंद्र</span>
+        </h1>
+        <div class="hero-divider">
+          <div class="hero-divider-line"></div>
+          <span class="hero-divider-sym">✦</span>
+          <div class="hero-divider-line"></div>
+        </div>
+        <div class="hero-label">Acharya Arvind</div>
         <div class="hero-quote">"सहीं की राह से जानें अपने जीवन का भविष्य !"</div>
-        <div class="hero-sub">Discover the divine secrets of your destiny through authentic Vedic wisdom.</div>
+        <div class="hero-tagline">Discover the divine secrets of your destiny through authentic Vedic wisdom.</div>
       </div>
 
-      <!-- RIGHT PORTRAIT -->
-      <div class="hero-right">
-        <div class="portrait">
-          <div class="portrait-ring2"></div>
-          <div class="portrait-ring"></div>
-          <div class="portrait-img">
+      <!-- RIGHT -->
+      <div class="portrait-col">
+        <div class="portrait-wrap">
+          <div class="p-ring p-ring-3"></div>
+          <div class="p-ring p-ring-2"></div>
+          <div class="p-ring p-ring-1"></div>
+          <div class="p-frame">
             <img src="acharya-arvind.png" alt="Acharya Arvind" loading="eager">
           </div>
-          <div class="portrait-leaf l">🌿</div>
-          <div class="portrait-leaf r">🌿</div>
-          <div class="portrait-om">ॐ</div>
-          <div class="portrait-deco-diamond"></div>
+          <div class="p-leaf l">🌿</div>
+          <div class="p-leaf r">🌿</div>
+          <div class="p-om">ॐ</div>
+          <div class="p-diamond"></div>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ═══════ STATS ═══════ -->
-  <div class="stats">
-    <div class="stat">
-      <div class="stat-ico">🪔</div>
-      <div class="stat-val">15+</div>
-      <div class="stat-lbl">वर्षों का अनुभव</div>
-    </div>
-    <div class="stat">
-      <div class="stat-ico">👥</div>
-      <div class="stat-val">5000+</div>
-      <div class="stat-lbl">संतुष्ट ग्राहक</div>
-    </div>
-    <div class="stat">
-      <div class="stat-ico">🛡️</div>
-      <div class="stat-val">98%</div>
-      <div class="stat-lbl">सटीकता दर</div>
+  <!-- ████ STATS ████ -->
+  <div class="stats-wrap reveal">
+    <div class="stats-glass">
+      <div class="stat">
+        <div class="stat-icon">🪔</div>
+        <div class="stat-num">15+</div>
+        <div class="stat-lbl">वर्षों का<br>अनुभव</div>
+      </div>
+      <div class="stat">
+        <div class="stat-icon">👥</div>
+        <div class="stat-num">5000+</div>
+        <div class="stat-lbl">संतुष्ट<br>ग्राहक</div>
+      </div>
+      <div class="stat">
+        <div class="stat-icon">🛡️</div>
+        <div class="stat-num">98%</div>
+        <div class="stat-lbl">सटीकता<br>दर</div>
+      </div>
     </div>
   </div>
 
-  <!-- ═══════ CTA BUTTONS ═══════ -->
-  <div class="ctas">
-    <a href="booking.html" class="cta-p">
-      <span class="cta-ico">🙏</span> परामर्श बुक करें <span>›</span>
+  <!-- ████ CTAs ████ -->
+  <div class="ctas reveal">
+    <a href="booking.html" class="btn-book">
+      🙏 परामर्श बुक करें <span>›</span>
     </a>
-    <a href="#about" class="cta-s">
-      <span class="cta-ico">✨</span> हमारे बारे में जानें <span>›</span>
+    <a href="#about" class="btn-info">
+      ✨ हमारे बारे में <span>›</span>
     </a>
   </div>
 
-  <!-- ═══════ SERVICES ═══════ -->
-  <section class="srv-sec" id="services-sec">
-    <div class="sec-header">
-      <div class="sec-ornament">
-        <div class="sec-ornament-line"></div>
-        <span class="sec-ornament-sym">✦</span>
+  <!-- ████ SERVICES ████ -->
+  <section class="srv-sec reveal" id="services">
+    <div class="sec-hdr">
+      <div class="sec-kicker">Our Services</div>
+      <div class="sec-title-row">
+        <div class="sec-line"></div>
         <span class="sec-title">हमारी सेवाएँ</span>
-        <span class="sec-ornament-sym">✦</span>
-        <div class="sec-ornament-line r"></div>
+        <div class="sec-line r"></div>
       </div>
       <div class="sec-sub">प्रामाणिक वैदिक ज्योतिष सेवाएँ</div>
     </div>
-
     <div class="srv-grid">
       <a href="booking.html" class="srv-card">
-        <div class="srv-card-ico">📅</div>
-        <div class="srv-card-name">जन्म कुंडली विश्लेषण</div>
-        <div class="srv-card-desc">अपने जीवन की विस्तृत जानकारी</div>
-        <div class="srv-card-arr">›</div>
+        <div class="srv-icon ic-red">📅</div>
+        <div class="srv-name">जन्म कुंडली विश्लेषण</div>
+        <div class="srv-desc">विस्तृत जीवन जानकारी</div>
+        <div class="srv-arrow">›</div>
       </a>
       <a href="booking.html" class="srv-card">
-        <div class="srv-card-ico">❤️</div>
-        <div class="srv-card-name">विवाह मिलान</div>
-        <div class="srv-card-desc">वैवाहिक जीवन की संपूर्ण जानकारी</div>
-        <div class="srv-card-arr">›</div>
+        <div class="srv-icon ic-gold">❤️</div>
+        <div class="srv-name">विवाह मिलान</div>
+        <div class="srv-desc">वैवाहिक जीवन जानकारी</div>
+        <div class="srv-arrow">›</div>
       </a>
       <a href="booking.html" class="srv-card">
-        <div class="srv-card-ico">💼</div>
-        <div class="srv-card-name">कैरियर मार्गदर्शन</div>
-        <div class="srv-card-desc">सही करियर चुनने में मदद</div>
-        <div class="srv-card-arr">›</div>
+        <div class="srv-icon ic-blue">💼</div>
+        <div class="srv-name">कैरियर मार्गदर्शन</div>
+        <div class="srv-desc">सही करियर की राह</div>
+        <div class="srv-arrow">›</div>
       </a>
       <a href="booking.html" class="srv-card">
-        <div class="srv-card-ico">🏠</div>
-        <div class="srv-card-name">वास्तु शास्त्र</div>
-        <div class="srv-card-desc">घर में सुख-समृद्धि लाएं</div>
-        <div class="srv-card-arr">›</div>
+        <div class="srv-icon ic-green">🏠</div>
+        <div class="srv-name">वास्तु शास्त्र</div>
+        <div class="srv-desc">घर में सुख-समृद्धि</div>
+        <div class="srv-arrow">›</div>
       </a>
       <a href="booking.html" class="srv-card">
-        <div class="srv-card-ico">💎</div>
-        <div class="srv-card-name">रत्न परामर्श</div>
-        <div class="srv-card-desc">सही रत्न से जीवन बदलें</div>
-        <div class="srv-card-arr">›</div>
+        <div class="srv-icon ic-purple">💎</div>
+        <div class="srv-name">रत्न परामर्श</div>
+        <div class="srv-desc">जीवन बदलने वाला रत्न</div>
+        <div class="srv-arrow">›</div>
       </a>
       <a href="booking.html" class="srv-card">
-        <div class="srv-card-ico">🔮</div>
-        <div class="srv-card-name">वार्षिक भविष्यवाणी</div>
-        <div class="srv-card-desc">पूरे साल की झलक</div>
-        <div class="srv-card-arr">›</div>
+        <div class="srv-icon ic-teal">🔮</div>
+        <div class="srv-name">वार्षिक भविष्य</div>
+        <div class="srv-desc">पूरे वर्ष की झलक</div>
+        <div class="srv-arrow">›</div>
       </a>
     </div>
   </section>
 
-  <!-- ═══════ ABOUT ═══════ -->
-  <div class="about-sec" id="about">
-    <div class="about-img-wrap">
-      <img src="acharya-arvind-pro.png" alt="Acharya Arvind">
-    </div>
-    <div class="about-body">
-      <span class="about-tag">✦ हमारे बारे में ✦</span>
-      <h2 class="about-h2">आचार्य अरविंद —<br><span>वैदिक ज्योतिष विशेषज्ञ</span></h2>
-      <p class="about-p">आचार्य अरविंद जी ने वैदिक ज्योतिष की शिक्षा अपने गुरुजनों से प्राप्त की और 15+ वर्षों में हजारों लोगों का जीवन बदला। उनका दृष्टिकोण शास्त्र-सम्मत और व्यावहारिक दोनों है।</p>
-      <p class="about-p">भारत के विभिन्न राज्यों के साथ-साथ विदेश में भी उनके हजारों संतुष्ट ग्राहक हैं।</p>
-      <div class="cred-grid">
-        <div class="cred-pill">🎓 M.A. ज्योतिष शास्त्र</div>
-        <div class="cred-pill">🏆 राष्ट्रीय पुरस्कार प्राप्त</div>
-        <div class="cred-pill">📺 TV पर आए</div>
-        <div class="cred-pill">🌍 अंतर्राष्ट्रीय अनुभव</div>
+  <!-- ████ ABOUT ████ -->
+  <section class="about-sec reveal" id="about">
+    <div class="about-card">
+      <div class="about-img">
+        <img src="acharya-arvind-pro.png" alt="Acharya Arvind">
+        <div class="about-img-label">
+          <div>
+            <div class="about-name-over">Acharya Arvind</div>
+            <div class="about-role-over">Vedic Jyotish Expert</div>
+          </div>
+          <div class="about-exp-badge">
+            15+<small>Years Exp.</small>
+          </div>
+        </div>
+      </div>
+      <div class="about-body">
+        <p class="about-p">आचार्य अरविंद जी ने वैदिक ज्योतिष की शिक्षा अपने गुरुजनों से प्राप्त की। 15+ वर्षों में उन्होंने हजारों लोगों का जीवन सकारात्मक दिशा में बदला है।</p>
+        <p class="about-p">उनकी विशेषता है — <strong>सटीकता, गोपनीयता और व्यक्तिगत दृष्टिकोण</strong>। भारत के साथ-साथ विदेश में भी उनके हजारों संतुष्ट ग्राहक हैं।</p>
+        <div class="creds">
+          <div class="cred">🎓 M.A. ज्योतिष</div>
+          <div class="cred">🏆 राष्ट्रीय पुरस्कार</div>
+          <div class="cred">📺 TV विशेषज्ञ</div>
+          <div class="cred">🌍 अंतर्राष्ट्रीय</div>
+        </div>
       </div>
     </div>
-  </div>
+  </section>
 
-  <!-- ═══════ REVIEWS ═══════ -->
-  <section class="reviews-sec" id="reviews">
-    <div class="sec-header">
-      <div class="sec-ornament">
-        <div class="sec-ornament-line"></div>
-        <span class="sec-ornament-sym">✦</span>
+  <!-- ████ REVIEWS ████ -->
+  <section class="reviews-sec reveal" id="reviews">
+    <div class="sec-hdr">
+      <div class="sec-kicker">Real Results</div>
+      <div class="sec-title-row">
+        <div class="sec-line"></div>
         <span class="sec-title">सफलता की कहानियाँ</span>
-        <span class="sec-ornament-sym">✦</span>
-        <div class="sec-ornament-line r"></div>
+        <div class="sec-line r"></div>
       </div>
       <div class="sec-sub">हमारे ग्राहकों के वास्तविक अनुभव</div>
     </div>
-
-    <div class="rev-card">
-      <div class="rev-badge">❤️ विवाह समस्या</div>
-      <div class="rev-stars">★★★★★</div>
-      <p class="rev-q">"32 साल तक विवाह में रुकावट आ रही थी। आचार्य जी ने मंगल दोष निवारण का सटीक उपाय बताया। 8 महीने में योग्य साथी मिला।"</p>
-      <div class="rev-name">प्रिया शर्मा</div>
-      <div class="rev-city">नई दिल्ली</div>
+    <div class="rev-scroll" id="revScroll">
+      <div class="rev-card">
+        <div class="rev-tag">❤️ विवाह समस्या</div>
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-q">"32 साल तक विवाह में रुकावट आ रही थी। आचार्य जी ने मंगल दोष का सटीक उपाय बताया। 8 महीने में योग्य साथी मिला।"</p>
+        <div class="rev-person">
+          <div class="rev-avatar">प्र</div>
+          <div>
+            <div class="rev-name">प्रिया शर्मा</div>
+            <div class="rev-city">नई दिल्ली</div>
+          </div>
+        </div>
+      </div>
+      <div class="rev-card">
+        <div class="rev-tag">💼 करियर</div>
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-q">"3 साल से पदोन्नति नहीं हो रही थी। आचार्य जी के बताए उपाय से सिर्फ 2 महीने में प्रमोशन हो गया।"</p>
+        <div class="rev-person">
+          <div class="rev-avatar">रा</div>
+          <div>
+            <div class="rev-name">राहुल गुप्ता</div>
+            <div class="rev-city">मुंबई</div>
+          </div>
+        </div>
+      </div>
+      <div class="rev-card">
+        <div class="rev-tag">🏠 वास्तु</div>
+        <div class="rev-stars">★★★★★</div>
+        <p class="rev-q">"घर में बरसों से कलह था। वास्तु सुधार के बाद सिर्फ 3 महीने में घर का माहौल पूरी तरह बदल गया।"</p>
+        <div class="rev-person">
+          <div class="rev-avatar">सु</div>
+          <div>
+            <div class="rev-name">सुनीता देवी</div>
+            <div class="rev-city">जयपुर</div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="rev-card">
-      <div class="rev-badge">💼 करियर</div>
-      <div class="rev-stars">★★★★★</div>
-      <p class="rev-q">"3 साल से नौकरी में पदोन्नति नहीं हो रही थी। आचार्य जी के बताए रत्न और मंत्र उपाय से 2 महीने में ही प्रमोशन हो गया।"</p>
-      <div class="rev-name">राहुल गुप्ता</div>
-      <div class="rev-city">मुंबई</div>
-    </div>
-    <div class="rev-card">
-      <div class="rev-badge">🏠 वास्तु</div>
-      <div class="rev-stars">★★★★★</div>
-      <p class="rev-q">"घर में बरसों से कलह थी। वास्तु सुधार के बाद सिर्फ 3 महीने में घर का माहौल बिल्कुल बदल गया।"</p>
-      <div class="rev-name">सुनीता देवी</div>
-      <div class="rev-city">जयपुर</div>
+    <div class="rev-dots" id="revDots">
+      <div class="rev-dot active"></div>
+      <div class="rev-dot"></div>
+      <div class="rev-dot"></div>
     </div>
   </section>
 
-  <!-- ═══════ FAQ ═══════ -->
-  <section class="faq-sec" id="faq">
-    <div class="sec-header">
-      <span class="sec-title">अक्सर पूछे जाने वाले सवाल</span>
+  <!-- ████ FAQ ████ -->
+  <section class="faq-sec reveal" id="faq">
+    <div class="sec-hdr" style="margin-bottom:18px">
+      <span class="sec-title" style="color:var(--t1)">अक्सर पूछे जाने वाले प्रश्न</span>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">
-        क्या ज्योतिष सच में काम करता है?
-        <span class="faq-toggle">+</span>
-      </div>
-      <div class="faq-a open">वैदिक ज्योतिष एक शास्त्र-सम्मत विद्या है। आपके ग्रहों की स्थिति के आधार पर सटीक मार्गदर्शन और उपाय दिए जाते हैं।</div>
+      <div class="faq-q" onclick="faq(this)">क्या ज्योतिष सच में काम करता है?<span class="faq-tog">+</span></div>
+      <div class="faq-a open">वैदिक ज्योतिष एक प्राचीन शास्त्र है। आपके ग्रहों की स्थिति के आधार पर सटीक मार्गदर्शन और उपाय बताए जाते हैं।</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">
-        क्या मेरी जानकारी गोपनीय रहेगी?
-        <span class="faq-toggle">+</span>
-      </div>
-      <div class="faq-a">हाँ, बिल्कुल। आपकी व्यक्तिगत जानकारी और परामर्श पूरी तरह गोपनीय रखे जाते हैं। यह हमारी नीति है।</div>
+      <div class="faq-q" onclick="faq(this)">क्या मेरी जानकारी गोपनीय रहेगी?<span class="faq-tog">+</span></div>
+      <div class="faq-a">बिल्कुल। आपकी व्यक्तिगत जानकारी और परामर्श पूरी तरह गोपनीय रखे जाते हैं। यह हमारी नीति है।</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">
-        परामर्श कैसे लें — फोन या मिलकर?
-        <span class="faq-toggle">+</span>
-      </div>
-      <div class="faq-a">दोनों तरह से परामर्श उपलब्ध है — फोन/वीडियो कॉल या व्यक्तिगत मुलाकात। बुकिंग फॉर्म भरें और हम आपसे संपर्क करेंगे।</div>
+      <div class="faq-q" onclick="faq(this)">परामर्श कैसे — फोन या मिलकर?<span class="faq-tog">+</span></div>
+      <div class="faq-a">दोनों उपलब्ध हैं — फोन/वीडियो या व्यक्तिगत मुलाकात। बुकिंग फॉर्म भरें, हम संपर्क करेंगे।</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">
-        पहला परामर्श मुफ्त है?
-        <span class="faq-toggle">+</span>
-      </div>
-      <div class="faq-a">हाँ! पहली बातचीत में आचार्य जी आपकी समस्या समझेंगे। कोई छिपा शुल्क नहीं — पूरी पारदर्शिता।</div>
+      <div class="faq-q" onclick="faq(this)">क्या पहला परामर्श मुफ्त है?<span class="faq-tog">+</span></div>
+      <div class="faq-a">हाँ! पहली बातचीत निःशुल्क है। आचार्य जी आपकी समस्या समझेंगे — कोई छिपा शुल्क नहीं।</div>
     </div>
   </section>
 
-  <!-- ═══════ CONTACT ═══════ -->
-  <section class="contact-sec" id="contact">
-    <div class="sec-header" style="margin-bottom:18px">
-      <div class="sec-ornament">
-        <div class="sec-ornament-line"></div>
-        <span class="sec-ornament-sym">✦</span>
-        <span class="sec-title">परामर्श पाएं</span>
-        <span class="sec-ornament-sym">✦</span>
-        <div class="sec-ornament-line r"></div>
-      </div>
-      <div class="sec-sub">निःशुल्क पहला परामर्श — अभी शुरू करें</div>
-    </div>
+  <!-- ████ CONTACT ████ -->
+  <section class="contact-sec reveal" id="contact">
     <div class="form-card">
-      <div class="form-hd">अपनी जानकारी भरें</div>
-      <span class="form-sub">100% गोपनीय एवं सुरक्षित</span>
-      <form id="cForm">
-        <div class="fg-row">
-          <div class="fg">
-            <label>पूरा नाम *</label>
-            <input type="text" id="fn" placeholder="आपका नाम" required>
+      <div class="form-top">
+        <div class="form-title">निःशुल्क परामर्श लें 🙏</div>
+        <div class="form-sub">आपकी जानकारी 100% गोपनीय • कोई छिपा शुल्क नहीं</div>
+      </div>
+      <div class="form-body">
+        <form id="cForm">
+          <div class="fg-row">
+            <div class="fg"><label>पूरा नाम *</label><input type="text" id="fn" placeholder="आपका नाम" required></div>
+            <div class="fg"><label>WhatsApp *</label><input type="tel" id="fp" placeholder="+91..." required></div>
+          </div>
+          <div class="fg-row">
+            <div class="fg"><label>जन्म तिथि *</label><input type="date" id="fd" required></div>
+            <div class="fg"><label>जन्म स्थान</label><input type="text" id="fpl" placeholder="शहर"></div>
           </div>
           <div class="fg">
-            <label>फोन / WhatsApp *</label>
-            <input type="tel" id="fp" placeholder="+91 XXXXXXXXXX" required>
+            <label>मुख्य समस्या *</label>
+            <select id="fprob" required>
+              <option value="">समस्या का चयन करें</option>
+              <option>विवाह एवं प्रेम संबंध</option>
+              <option>करियर, नौकरी एवं व्यापार</option>
+              <option>गृह, वास्तु एवं संपत्ति</option>
+              <option>जन्म कुंडली एवं भविष्य</option>
+              <option>रत्न एवं वैदिक उपाय</option>
+              <option>स्वास्थ्य समस्या</option>
+              <option>अन्य</option>
+            </select>
           </div>
-        </div>
-        <div class="fg-row">
-          <div class="fg">
-            <label>जन्म तिथि *</label>
-            <input type="date" id="fd" required>
-          </div>
-          <div class="fg">
-            <label>जन्म स्थान</label>
-            <input type="text" id="fpl" placeholder="शहर">
-          </div>
-        </div>
-        <div class="fg">
-          <label>मुख्य समस्या *</label>
-          <select id="fprob" required>
-            <option value="">समस्या का चयन करें</option>
-            <option>विवाह एवं प्रेम संबंध</option>
-            <option>करियर, नौकरी एवं व्यापार</option>
-            <option>गृह, वास्तु एवं संपत्ति</option>
-            <option>जन्म कुंडली एवं भविष्य</option>
-            <option>रत्न एवं वैदिक उपाय</option>
-            <option>स्वास्थ्य समस्या</option>
-            <option>अन्य समस्या</option>
-          </select>
-        </div>
-        <button type="submit" class="btn-form">🔮 निःशुल्क परामर्श हेतु आगे बढ़ें</button>
-      </form>
+          <button type="submit" class="btn-submit">🔮 निःशुल्क परामर्श के लिए आगे बढ़ें</button>
+        </form>
+      </div>
     </div>
   </section>
 
-  <!-- ═══════ FOOTER ═══════ -->
+  <!-- ████ FOOTER ████ -->
   <footer>
     <div class="f-om">ॐ</div>
     <div class="f-name">भारतीय वैदिक ज्योतिष केंद्र</div>
+    <div class="f-tagline">Bharatiya Vedic Jyotish Kendra</div>
     <div class="f-links">
       <a href="#home">होम</a>
-      <a href="#services-sec">सेवाएँ</a>
+      <a href="#services">सेवाएँ</a>
       <a href="#about">बारे में</a>
       <a href="#contact">संपर्क</a>
+      <a href="booking.html">बुकिंग</a>
     </div>
-    <div class="f-copy">© 2024 Acharya Arvind | Bharatiya Vedic Jyotish Kendra</div>
+    <div class="f-copy">© 2024 Acharya Arvind | All Rights Reserved</div>
   </footer>
 
 </div><!-- /.app -->
 
-<!-- ═══════ FIXED TRUST BAR ═══════ -->
+<!-- ████ FIXED TRUST BAR ████ -->
 <div class="trust-bar">
   <div class="tb-om">ॐ</div>
   <div class="tb-text">
     <span class="tb-main">जीवन के हर प्रश्न का सही समाधान</span>
-    <span class="tb-sub">विश्वसनीय मार्गदर्शन • गोपनीयता की गारंटी • वैदिक विधि</span>
+    <span class="tb-sub">विश्वसनीय मार्गदर्शन • गोपनीयता • वैदिक विधि</span>
   </div>
-  <a href="tel:+919999999999" class="tb-call">📞 Call</a>
+  <a href="tel:+919999999999"><button class="tb-cta">📞 Call</button></a>
 </div>
 
+<!-- ████ WHATSAPP FAB ████ -->
+<button class="fab" onclick="window.open('https://wa.me/919999999999?text=नमस्ते%20आचार्य%20जी%2C%20मुझे%20परामर्श%20चाहिए।','_blank')" aria-label="WhatsApp">
+  <div class="fab-label">WhatsApp करें</div>
+  <svg viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+</button>
+
 <script>
-/* ── Hamburger Drawer ── */
-var drawer  = document.getElementById('drawerEl');
-var overlay = document.getElementById('overlay');
+/* ── Drawer ── */
+var drawerEl  = document.getElementById('drawerEl');
+var overlayEl = document.getElementById('overlayEl');
 
 document.getElementById('hbgBtn').addEventListener('click', function(){
-  drawer.classList.add('on');
-  overlay.classList.add('on');
+  drawerEl.classList.add('on');
+  overlayEl.classList.add('on');
   document.body.style.overflow = 'hidden';
 });
 function closeDrawer(){
-  drawer.classList.remove('on');
-  overlay.classList.remove('on');
+  drawerEl.classList.remove('on');
+  overlayEl.classList.remove('on');
   document.body.style.overflow = '';
 }
 
-/* ── FAQ toggle ── */
-function toggleFaq(el){
-  var ans = el.nextElementSibling;
-  var tog = el.querySelector('.faq-toggle');
-  var open = ans.classList.contains('open');
-  /* close all */
+/* ── FAQ accordion ── */
+function faq(qEl){
+  var aEl = qEl.nextElementSibling;
+  var tog = qEl.querySelector('.faq-tog');
+  var isOpen = aEl.classList.contains('open');
   document.querySelectorAll('.faq-a').forEach(function(a){ a.classList.remove('open') });
-  document.querySelectorAll('.faq-toggle').forEach(function(t){ t.textContent='+'; t.style.transform='' });
-  if(!open){
-    ans.classList.add('open');
-    tog.textContent = '−';
-    tog.style.transform = 'rotate(180deg)';
+  document.querySelectorAll('.faq-tog').forEach(function(t){ t.textContent='+'; t.style.transform='' });
+  if(!isOpen){
+    aEl.classList.add('open');
+    tog.textContent='−';
+    tog.style.transform='rotate(180deg)';
   }
 }
 
-/* ── Form Submit ── */
+/* ── Scroll-reveal ── */
+(function(){
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){ e.target.classList.add('visible'); io.unobserve(e.target) }
+    });
+  },{threshold:0.08});
+  document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el) });
+})();
+
+/* ── Review carousel dots ── */
+var revScroll = document.getElementById('revScroll');
+var dots = document.querySelectorAll('.rev-dot');
+revScroll.addEventListener('scroll', function(){
+  var idx = Math.round(revScroll.scrollLeft / 272);
+  dots.forEach(function(d,i){ d.classList.toggle('active', i===idx) });
+});
+dots.forEach(function(d,i){
+  d.addEventListener('click', function(){
+    revScroll.scrollTo({left: i * 272, behavior:'smooth'});
+  });
+});
+
+/* ── Form submit ── */
 document.getElementById('cForm').addEventListener('submit', function(e){
   e.preventDefault();
   var leads = JSON.parse(localStorage.getItem('vedic_leads')||'[]');
@@ -986,25 +1170,6 @@ document.getElementById('cForm').addEventListener('submit', function(e){
   localStorage.setItem('vedic_leads', JSON.stringify(leads));
   window.location.href = 'booking.html';
 });
-
-/* ── Simple scroll-reveal for sections ── */
-if('IntersectionObserver' in window){
-  var io = new IntersectionObserver(function(entries){
-    entries.forEach(function(e){
-      if(e.isIntersecting){
-        e.target.style.opacity = '1';
-        e.target.style.transform = 'translateY(0)';
-        io.unobserve(e.target);
-      }
-    });
-  },{threshold:0.1});
-  document.querySelectorAll('.about-sec,.reviews-sec,.faq-sec,.contact-sec').forEach(function(el){
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(20px)';
-    el.style.transition = 'opacity .55s ease, transform .55s ease';
-    io.observe(el);
-  });
-}
 </script>
 </body>
 </html>
