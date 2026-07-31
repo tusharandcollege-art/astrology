@@ -27,20 +27,42 @@
   --fh: 'Noto Sans Devanagari', sans-serif;
   --fe: 'Inter', sans-serif;
   --fs: 'Cinzel', serif;
-  --shadow-md: 0 10px 30px rgba(0,0,0,0.06);
+  --shadow-md: 0 10px 30px rgba(44, 24, 8, 0.06);
   --tr: all .25s ease;
 }
 
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box }
-html, body { height:100%; overflow:hidden }
-body { font-family:var(--fe); background:var(--bg-cream); color:var(--text-dark); display:flex; flex-direction:column }
+
+/* ── PREVENT DEKTOP SKEW (CENTERS MOBILE APP MODE ON DESKTOP) ── */
+body {
+  font-family:var(--fe);
+  background:radial-gradient(circle at center, #F4EFE7 0%, #E8DFD0 100%);
+  color:var(--text-dark);
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  min-height:100vh;
+  margin:0;
+}
+
+.app-frame {
+  width: 100%;
+  max-width: 480px; /* Matching index.html mobile frame */
+  background: var(--bg-cream);
+  min-height: 100vh;
+  box-shadow: 0 0 60px rgba(44, 24, 8, 0.18);
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
 a { text-decoration:none; color:inherit }
 
-/* Compact Single-Screen Navbar */
+/* Compact Navbar */
 .navbar {
   height:54px; background:rgba(250, 247, 242, 0.98);
   border-bottom:1px solid var(--border-light);
-  padding:0 36px; display:flex; align-items:center; justify-content:space-between;
+  padding:0 20px; display:flex; align-items:center; justify-content:space-between;
   flex-shrink:0;
 }
 .logo { display:flex; align-items:center; gap:10px }
@@ -54,92 +76,82 @@ a { text-decoration:none; color:inherit }
 }
 .btn-back-home:hover { background:var(--maroon); color:#FFF }
 
-/* NO-SCROLL VIEWPORT WRAPPER */
+/* scrollable wrapper for booking cards */
 .viewport-body {
-  flex:1; display:flex; align-items:center; justify-content:center;
-  padding:14px 20px; height:calc(100vh - 54px); box-sizing:border-box;
+  flex:1; display:flex; flex-direction:column;
+  padding:20px 16px; gap:16px;
 }
 
-.booking-grid {
-  display:grid; grid-template-columns:36% 61%; gap:3%;
-  width:100%; max-width:1100px; height:100%; max-height:540px;
-  align-items:stretch;
-}
-
-/* Left Column: Instant Connect Options */
 .left-card {
   background:#FFFFFF; border:1px solid var(--border-gold);
-  border-radius:20px; padding:22px; box-shadow:var(--shadow-md);
-  display:flex; flex-direction:column; justify-content:space-between;
+  border-radius:20px; padding:20px; box-shadow:var(--shadow-md);
+  display:flex; flex-direction:column; gap:14px;
 }
 .hdr-group .tag { font-family:var(--fs); font-size:.65rem; letter-spacing:2px; color:var(--gold); font-weight:700; text-transform:uppercase; margin-bottom:4px }
-.hdr-group h1 { font-family:var(--fh); font-size:1.45rem; font-weight:900; color:var(--maroon); line-height:1.2; margin-bottom:6px }
-.hdr-group p { font-family:var(--fh); font-size:.8rem; color:var(--text-muted); line-height:1.4 }
+.hdr-group h1 { font-family:var(--fh); font-size:1.35rem; font-weight:900; color:var(--maroon); line-height:1.2; margin-bottom:6px }
+.hdr-group p { font-family:var(--fh); font-size:.78rem; color:var(--text-muted); line-height:1.4 }
 
-.direct-btns { display:flex; flex-direction:column; gap:10px; margin:14px 0 }
+.direct-btns { display:flex; flex-direction:column; gap:10px }
 .btn-direct-phone {
   background:var(--maroon); color:#FFF; padding:12px 16px; border-radius:12px;
-  display:flex; align-items:center; gap:12px; font-family:var(--fh); font-size:.85rem; font-weight:700;
-  box-shadow:0 4px 14px rgba(122, 21, 21, 0.2); transition:var(--tr);
+  display:flex; align-items:center; justify-content:center; gap:10px; font-family:var(--fh); font-size:.82rem; font-weight:700;
+  box-shadow:0 4px 14px rgba(122, 21, 21, 0.15); transition:var(--tr);
 }
-.btn-direct-phone:hover { background:var(--maroon-dark); transform:translateY(-1px) }
+.btn-direct-phone:hover { background:var(--maroon-dark) }
 
 .btn-direct-wa {
   background:#25D366; color:#FFF; padding:12px 16px; border-radius:12px;
-  display:flex; align-items:center; gap:12px; font-family:var(--fh); font-size:.85rem; font-weight:700;
-  box-shadow:0 4px 14px rgba(37, 211, 102, 0.25); transition:var(--tr);
+  display:flex; align-items:center; justify-content:center; gap:10px; font-family:var(--fh); font-size:.82rem; font-weight:700;
+  box-shadow:0 4px 14px rgba(37, 211, 102, 0.15); transition:var(--tr);
 }
-.btn-direct-wa:hover { background:#1EBE5D; transform:translateY(-1px) }
+.btn-direct-wa:hover { background:#1EBE5D; }
 
 .trust-pills { display:grid; grid-template-columns:1fr 1fr; gap:6px; background:var(--bg-cream); padding:8px 12px; border-radius:12px; border:1px solid var(--border-light) }
-.trust-item { display:flex; align-items:center; gap:6px; font-family:var(--fh); font-size:.72rem; font-weight:700; color:var(--text-dark) }
+.trust-item { display:flex; align-items:center; gap:6px; font-family:var(--fh); font-size:.68rem; font-weight:700; color:var(--text-dark) }
 .trust-item span { color:var(--gold) }
 
-/* Right Column: Fast Easy Scheduler Form */
+/* Form Card */
 .form-card {
   background:#FFFFFF; border:1px solid var(--border-gold);
-  border-radius:20px; padding:22px 26px; box-shadow:var(--shadow-md);
-  display:flex; flex-direction:column; justify-content:space-between;
+  border-radius:20px; padding:20px; box-shadow:var(--shadow-md);
+  display:flex; flex-direction:column; gap:14px;
 }
-.form-title { font-family:var(--fh); font-size:1.05rem; font-weight:800; color:var(--maroon); margin-bottom:12px; display:flex; align-items:center; gap:8px }
+.form-title { font-family:var(--fh); font-size:1rem; font-weight:800; color:var(--maroon); margin-bottom:4px }
 
-.f-row { display:grid; grid-template-columns:1fr 1fr; gap:12px; margin-bottom:10px }
-.f-grp { display:flex; flex-direction:column; gap:4px }
-.f-grp label { font-family:var(--fh); font-size:.75rem; font-weight:700; color:var(--text-dark) }
+.f-grp { display:flex; flex-direction:column; gap:4px; margin-bottom:12px }
+.f-grp label { font-family:var(--fh); font-size:.74rem; font-weight:700; color:var(--text-dark) }
 .f-grp input, .f-grp select {
-  font-family:var(--fh); font-size:.82rem; padding:9px 12px;
+  font-family:var(--fh); font-size:.8rem; padding:10px 12px;
   border:1px solid var(--border-gold); border-radius:8px;
   background:var(--bg-cream); outline:none; transition:var(--tr);
 }
 .f-grp input:focus, .f-grp select:focus { border-color:var(--gold); background:#FFF }
 
-/* Easy Time Slot Selection Chips */
-.slots-lbl { font-family:var(--fh); font-size:.75rem; font-weight:700; color:var(--text-dark); margin:4px 0; display:block }
+/* Slots selector */
+.slots-lbl { font-family:var(--fh); font-size:.74rem; font-weight:700; color:var(--text-dark); margin-bottom:6px; display:block }
 .mini-slots { display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; margin-bottom:12px }
 .slot-chip {
   background:var(--bg-cream); border:1px solid var(--border-gold);
-  border-radius:8px; padding:7px 8px; text-align:center; cursor:pointer;
-  font-family:var(--fe); font-size:.78rem; font-weight:700; color:var(--text-dark); transition:var(--tr);
+  border-radius:8px; padding:8px 6px; text-align:center; cursor:pointer;
+  font-family:var(--fe); font-size:.74rem; font-weight:700; color:var(--text-dark); transition:var(--tr);
 }
 .slot-chip.selected, .slot-chip:hover { background:var(--maroon); border-color:var(--maroon); color:#FFF }
 
-/* Submit Button */
 .btn-submit-sch {
-  font-family:var(--fh); font-size:.95rem; font-weight:800;
+  font-family:var(--fh); font-size:.9rem; font-weight:800;
   background:var(--maroon); color:#FFF; border:none; padding:13px;
   border-radius:10px; cursor:pointer; transition:var(--tr); width:100%;
   box-shadow:0 4px 14px rgba(122, 21, 21, 0.2);
 }
 .btn-submit-sch:hover { background:var(--maroon-dark) }
 
-/* Confirmation Banner Box */
 .confirm-box {
   display:none; background:#F0FDF4; border:1.5px solid #22C55E;
-  border-radius:12px; padding:16px; text-align:center; margin-top:10px;
+  border-radius:12px; padding:16px; text-align:center; margin-top:8px;
 }
 .confirm-box.active { display:block }
-.confirm-title { font-family:var(--fh); font-size:1.05rem; font-weight:800; color:#15803D; margin-bottom:4px }
-.confirm-desc { font-family:var(--fh); font-size:.78rem; color:#166534; line-height:1.4 }
+.confirm-title { font-family:var(--fh); font-size:.95rem; font-weight:800; color:#15803D; margin-bottom:4px }
+.confirm-desc { font-family:var(--fh); font-size:.74rem; color:#166534; line-height:1.4 }
 
 /* Floating WhatsApp FAB */
 .chat-fab {
@@ -147,34 +159,27 @@ a { text-decoration:none; color:inherit }
   width:48px; height:48px; background:#25D366; border-radius:50%;
   display:flex; align-items:center; justify-content:center;
   color:#FFF; box-shadow:0 4px 20px rgba(37, 211, 102, 0.4);
-  z-index:999; text-decoration:none; transition:var(--tr);
+  z-index:999; transition:var(--tr);
 }
 .chat-fab:hover { transform:scale(1.08) }
-
-/* Responsive */
-@media(max-width:850px) {
-  html, body { height:auto; overflow:auto }
-  .viewport-body { height:auto; padding:16px }
-  .booking-grid { grid-template-columns:1fr; height:auto; max-height:none }
-}
 </style>
 </head>
 <body>
 
-<!-- Navbar -->
-<nav class="navbar">
-  <a class="logo" href="index.html">
-    <div class="logo-om">ॐ</div>
-    <span class="logo-title">भारतीय वैदिक ज्योतिष केंद्र</span>
-  </a>
-  <a href="index.html" class="btn-back-home">← मुख्य पृष्ठ (Home)</a>
-</nav>
+<div class="app-frame">
+  <!-- Navbar -->
+  <nav class="navbar">
+    <a class="logo" href="index.html">
+      <div class="logo-om">ॐ</div>
+      <span class="logo-title">भारतीय वैदिक ज्योतिष केंद्र</span>
+    </a>
+    <a href="index.html" class="btn-back-home">← Home</a>
+  </nav>
 
-<!-- Viewport No-Scroll Container -->
-<div class="viewport-body">
-  <div class="booking-grid">
+  <!-- Scrollable App Body Container -->
+  <div class="viewport-body">
 
-    <!-- LEFT COLUMN: Instant Connect -->
+    <!-- LEFT CARD: Instant Connect -->
     <div class="left-card">
       <div class="hdr-group">
         <div class="tag">✦ INSTANT CONNECT ✦</div>
@@ -184,11 +189,9 @@ a { text-decoration:none; color:inherit }
 
       <div class="direct-btns">
         <a href="tel:+919876543210" class="btn-direct-phone">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-          📞 अभी सीधी कॉल करें (+91 98765 43210)
+          📞 अभी सीधी कॉल करें
         </a>
         <a href="https://wa.me/919876543210" target="_blank" rel="noopener" class="btn-direct-wa">
-          <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.461c-1.78 0-3.525-.479-5.057-1.386l-.363-.215-3.76.986.998-3.666-.236-.375c-.996-1.584-1.524-3.419-1.524-5.304 0-5.423 4.412-9.835 9.837-9.835 2.628 0 5.097 1.023 6.953 2.88 1.857 1.856 2.88 4.326 2.879 6.954-.001 5.424-4.413 9.837-9.837 9.837m0-18.421c-4.73 0-8.577 3.846-8.577 8.584 0 1.688.49 3.328 1.418 4.743l.217.334-.932 3.421 3.501-.918.327.194c1.373.815 2.946 1.246 4.545 1.246 4.732 0 8.578-3.846 8.578-8.584 0-2.292-.893-4.447-2.518-6.071-1.625-1.624-3.78-2.517-6.069-2.517z"/></svg>
           💬 व्हाट्सएप पर अभी बात करें
         </a>
       </div>
@@ -201,45 +204,43 @@ a { text-decoration:none; color:inherit }
       </div>
     </div>
 
-    <!-- RIGHT COLUMN: Fast Easy Scheduler Form -->
+    <!-- RIGHT CARD: Scheduler Form -->
     <div class="form-card">
       <div class="form-title">
         <span>🗓️ कॉल शेड्यूल करें (Schedule Call)</span>
       </div>
 
       <form id="schForm">
-        <div class="f-row">
-          <div class="f-grp">
-            <label for="sName">पूरा नाम (Full Name) *</label>
-            <input type="text" id="sName" placeholder="आपका नाम (Your Name)" required>
-          </div>
-          <div class="f-grp">
-            <label for="sPhone">मोबाइल / WhatsApp (Phone Number) *</label>
-            <input type="tel" id="sPhone" placeholder="+91 XXXXXXXXXX" required>
-          </div>
+        <div class="f-grp">
+          <label for="sName">पूरा नाम (Full Name) *</label>
+          <input type="text" id="sName" placeholder="आपका नाम (Your Name)" required>
+        </div>
+        
+        <div class="f-grp">
+          <label for="sPhone">मोबाइल / WhatsApp (Phone Number) *</label>
+          <input type="tel" id="sPhone" placeholder="+91 XXXXXXXXXX" required>
         </div>
 
-        <div class="f-row">
-          <div class="f-grp">
-            <label for="sDate">तिथि (Select Date) *</label>
-            <input type="date" id="sDate" required>
-          </div>
-          <div class="f-grp">
-            <label for="sTopic">मुख्य समस्या (Main Problem) *</label>
-            <select id="sTopic" onchange="toggleOtherProblem(this)" required>
-              <option value="">समस्या चुनें (Select Problem)</option>
-              <option value="Marriage &amp; Relationship">विवाह एवं प्रेम संबंध (Marriage &amp; Relationship)</option>
-              <option value="Career, Job &amp; Business">करियर, नौकरी एवं व्यापार (Career &amp; Business)</option>
-              <option value="Vastu &amp; Property">गृह, वास्तु एवं संपत्ति (Vastu &amp; Property)</option>
-              <option value="Janam Kundli &amp; Horoscope">जन्म कुंडली एवं भविष्य (Janam Kundli)</option>
-              <option value="Remedies &amp; Gemstones">रत्न एवं वैदिक उपाय (Remedies &amp; Gemstones)</option>
-              <option value="Other">अन्य समस्या - स्वयं लिखें (Other / Type Manually)</option>
-            </select>
-          </div>
+        <div class="f-grp">
+          <label for="sDate">तिथि (Select Date) *</label>
+          <input type="date" id="sDate" required>
+        </div>
+        
+        <div class="f-grp">
+          <label for="sTopic">मुख्य समस्या (Main Problem) *</label>
+          <select id="sTopic" onchange="toggleOtherProblem(this)" required>
+            <option value="">समस्या चुनें (Select Problem)</option>
+            <option value="Marriage &amp; Relationship">विवाह एवं प्रेम संबंध (Marriage &amp; Relationship)</option>
+            <option value="Career, Job &amp; Business">करियर, नौकरी एवं व्यापार (Career &amp; Business)</option>
+            <option value="Vastu &amp; Property">गृह, वास्तु एवं संपत्ति (Vastu &amp; Property)</option>
+            <option value="Janam Kundli &amp; Horoscope">जन्म कुंडली एवं भविष्य (Janam Kundli)</option>
+            <option value="Remedies &amp; Gemstones">रत्न एवं वैदिक उपाय (Remedies &amp; Gemstones)</option>
+            <option value="Other">अन्य समस्या - स्वयं लिखें (Other / Type Manually)</option>
+          </select>
         </div>
 
         <!-- Manual Problem Input -->
-        <div class="f-grp" id="manualProbGrp" style="display:none; margin-bottom:10px">
+        <div class="f-grp" id="manualProbGrp" style="display:none">
           <label for="sManualTopic">अपनी समस्या लिखें (Write Your Problem)</label>
           <input type="text" id="sManualTopic" placeholder="अपनी समस्या यहाँ लिखें...">
         </div>
@@ -270,7 +271,7 @@ a { text-decoration:none; color:inherit }
 
 <!-- Floating WhatsApp FAB -->
 <a href="https://wa.me/919876543210" class="chat-fab" target="_blank" rel="noopener" title="WhatsApp Chat">
-  <svg width="26" height="26" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.461c-1.78 0-3.525-.479-5.057-1.386l-.363-.215-3.76.986.998-3.666-.236-.375c-.996-1.584-1.524-3.419-1.524-5.304 0-5.423 4.412-9.835 9.837-9.835 2.628 0 5.097 1.023 6.953 2.88 1.857 1.856 2.88 4.326 2.879 6.954-.001 5.424-4.413 9.837-9.837 9.837m0-18.421c-4.73 0-8.577 3.846-8.577 8.584 0 1.688.49 3.328 1.418 4.743l.217.334-.932 3.421 3.501-.918.327.194c1.373.815 2.946 1.246 4.545 1.246 4.732 0 8.578-3.846 8.578-8.584 0-2.292-.893-4.447-2.518-6.071-1.625-1.624-3.78-2.517-6.069-2.517z"/></svg>
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.461c-1.78 0-3.525-.479-5.057-1.386l-.363-.215-3.76.986.998-3.666-.236-.375c-.996-1.584-1.524-3.419-1.524-5.304 0-5.423 4.412-9.835 9.837-9.835 2.628 0 5.097 1.023 6.953 2.88 1.857 1.856 2.88 4.326 2.879 6.954-.001 5.424-4.413 9.837-9.837 9.837m0-18.421c-4.73 0-8.577 3.846-8.577 8.584 0 1.688.49 3.328 1.418 4.743l.217.334-.932 3.421 3.501-.918.327.194c1.373.815 2.946 1.246 4.545 1.246 4.732 0 8.578-3.846 8.578-8.584 0-2.292-.893-4.447-2.518-6.071-1.625-1.624-3.78-2.517-6.069-2.517z"/></svg>
 </a>
 
 <script>
@@ -279,7 +280,7 @@ document.getElementById('sDate').valueAsDate = new Date();
 function toggleOtherProblem(sel) {
   var mGrp = document.getElementById('manualProbGrp');
   if(sel.value === 'Other') {
-    mGrp.style.display = 'flex';
+    mGrp.style.display = 'block';
   } else {
     mGrp.style.display = 'none';
   }

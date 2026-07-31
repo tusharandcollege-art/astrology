@@ -4,1324 +4,1007 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>भारतीय वैदिक ज्योतिष केंद्र | Acharya Arvind</title>
-<meta name="description" content="भारत के सबसे विश्वसनीय वैदिक ज्योतिष आचार्य अरविंद जी से परामर्श लें।">
+<meta name="description" content="भारत के सबसे विश्वसनीय वैदिक ज्योतिष — आचार्य अरविंद जी से परामर्श लें।">
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;1,500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Noto+Sans+Devanagari:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
 <style>
-/* ── BRAND DESIGN SYSTEM ── */
+/* ══════════════════════════════════════
+   DESIGN TOKENS
+══════════════════════════════════════ */
 :root {
-  --bg-cream:    #FAF7F2;
-  --bg-white:    #FFFFFF;
-  --bg-card:     #FFFFFF;
-  --maroon:      #7A1515;
-  --maroon-dark: #5C0E0E;
-  --maroon-light:rgba(122, 21, 21, 0.06);
-  --gold:        #C59B27;
-  --gold-dark:   #9E7B1A;
-  --gold-light:  #DFBE6B;
-  --gold-bg:     rgba(197, 155, 39, 0.08);
-  --text-dark:   #2C1808;
-  --text-mid:    #5E4329;
-  --text-muted:  #8E7356;
-  --border-gold: #E6D5B8;
-  --border-light:rgba(230, 213, 184, 0.6);
-  --fh: 'Noto Sans Devanagari', sans-serif;
-  --fe: 'Inter', sans-serif;
-  --fs: 'Cinzel', serif;
-  --fi: 'EB Garamond', serif;
-  --shadow-sm: 0 2px 10px rgba(0,0,0,0.03);
-  --shadow-md: 0 8px 30px rgba(0,0,0,0.05);
-  --shadow-hover: 0 12px 36px rgba(197, 155, 39, 0.14);
-  --tr: all .28s cubic-bezier(0.4, 0, 0.2, 1);
+  --c:           #FAF7F0;       /* cream page bg */
+  --w:           #FFFFFF;
+  --m:           #8B1A1A;       /* deep maroon */
+  --md:          #6B1010;       /* darker maroon */
+  --ml:          #A82020;       /* lighter maroon */
+  --g:           #C9980A;       /* gold */
+  --gl:          #E4B84D;       /* gold light */
+  --gb:          rgba(201,152,10,.09); /* gold bg tint */
+  --t:           #1E0E04;       /* text dark */
+  --tm:          #5B3A20;       /* text mid */
+  --ts:          #9A7B5E;       /* text soft */
+  --br:          #E8D5B4;       /* border */
+  --fh:          'Noto Sans Devanagari', sans-serif;
+  --fe:          'Inter', sans-serif;
+  --fc:          'Cinzel', serif;
+  --sh:          0 2px 16px rgba(30,14,4,.07);
+  --shm:         0 6px 30px rgba(139,26,26,.18);
+  --tr:          all .25s cubic-bezier(.4,0,.2,1);
 }
 
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box }
-html { scroll-behavior:smooth }
-body { font-family:var(--fe); background:var(--bg-cream); color:var(--text-dark); overflow-x:hidden; line-height:1.6 }
-a { text-decoration:none; color:inherit }
-img { display:block; max-width:100% }
+html { scroll-behavior: smooth; -webkit-tap-highlight-color: transparent }
+body {
+  background: #E8DDD0;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  font-family: var(--fe);
+}
+a { text-decoration: none; color: inherit }
 
-/* ════════════════════════════
-   NAVBAR (DESKTOP)
-════════════════════════════ */
-.navbar {
-  position:sticky; top:0; z-index:1000;
-  background:rgba(250, 247, 242, 0.96);
-  backdrop-filter:blur(12px);
-  border-bottom:1px solid var(--border-light);
-  padding:0 60px; height:76px;
-  display:flex; align-items:center; justify-content:space-between;
-}
-.logo { display:flex; align-items:center; gap:14px }
-.logo-om { font-family:var(--fh); font-size:2.6rem; color:var(--gold); line-height:1 }
-.logo-text { display:flex; flex-direction:column }
-.logo-title { font-family:var(--fh); font-size:1.15rem; font-weight:800; color:var(--maroon); line-height:1.2 }
-.logo-sub { font-family:var(--fs); font-size:.56rem; letter-spacing:2.5px; color:var(--text-mid); font-weight:600; text-transform:uppercase; margin-top:2px }
-
-.nav-right { display:flex; align-items:center; gap:40px }
-.nav-links { list-style:none; display:flex; gap:32px }
-.nav-links a {
-  font-family:var(--fs); font-size:.76rem; font-weight:600;
-  letter-spacing:2px; color:var(--text-mid); text-transform:uppercase;
-  transition:var(--tr); position:relative; padding-bottom:4px;
-}
-.nav-links a.active, .nav-links a:hover { color:var(--gold) }
-.nav-links a.active::after {
-  content:''; position:absolute; bottom:-2px; left:0; right:0;
-  height:2px; background:var(--gold); border-radius:1px;
-}
-.btn-book-nav {
-  font-family:var(--fs); font-size:.75rem; font-weight:700;
-  letter-spacing:1.5px; text-transform:uppercase;
-  background:var(--maroon); color:#FFF; border:none;
-  padding:12px 24px; border-radius:30px; cursor:pointer;
-  display:flex; align-items:center; gap:10px; transition:var(--tr);
-  box-shadow:0 4px 14px rgba(122, 21, 21, 0.2);
-}
-.btn-book-nav:hover { background:var(--maroon-dark); transform:translateY(-1px) }
-.btn-book-nav .arrow {
-  width:20px; height:20px; background:rgba(255,255,255,0.2);
-  border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:.75rem;
+/* ══════════════════════════════════════
+   PHONE FRAME / APP WRAPPER
+══════════════════════════════════════ */
+.app {
+  width: 100%;
+  max-width: 430px;
+  background: var(--c);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: relative;
+  overflow-x: hidden;
+  box-shadow: 0 0 60px rgba(0,0,0,.25), 0 0 0 1px rgba(255,255,255,.12);
+  padding-bottom: 72px;      /* space for trust bar */
 }
 
-/* Mobile Toggle */
-.hbg { display:none; flex-direction:column; gap:5px; cursor:pointer; background:none; border:none; padding:6px }
-.hbg span { display:block; width:24px; height:2px; background:var(--maroon); border-radius:2px }
-.mob-nav { display:none; flex-direction:column; position:fixed; top:76px; left:0; right:0; background:var(--bg-cream); border-bottom:1px solid var(--border-gold); z-index:999; padding:20px 30px }
-.mob-nav.open { display:flex }
-.mob-nav a { font-family:var(--fs); font-size:.85rem; letter-spacing:2px; color:var(--text-mid); text-transform:uppercase; padding:12px 0; border-bottom:1px solid rgba(230, 213, 184, 0.4) }
-
-/* ════════════════════════════
-   HERO SECTION (DESKTOP)
-════════════════════════════ */
-#home {
-  background:var(--bg-cream);
-  position:relative; overflow:hidden;
-  padding-bottom:30px;
+/* ══════════════════════════════════════
+   TOPBAR / NAV
+══════════════════════════════════════ */
+.nav {
+  position: sticky; top: 0; z-index: 200;
+  height: 64px;
+  padding: 0 16px;
+  display: flex; align-items: center; justify-content: space-between;
+  background: rgba(250,247,240,.96);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid rgba(232,213,180,.6);
 }
 
-/* Background Mandala Ornaments */
-.bg-mandala-left {
-  position:absolute; top:-100px; left:-100px; width:450px; height:450px;
-  opacity:0.06; pointer-events:none; z-index:0;
+.logo { display: flex; align-items: center; gap: 9px }
+.logo-om {
+  width: 40px; height: 40px;
+  background: linear-gradient(135deg, #8B1A1A 0%, #6B1010 100%);
+  border-radius: 12px;
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--fh);
+  font-size: 1.4rem;
+  color: var(--gl);
+  flex-shrink: 0;
+  box-shadow: 0 3px 10px rgba(139,26,26,.3);
 }
-.bg-mandala-right {
-  position:absolute; top:-100px; right:-100px; width:500px; height:500px;
-  opacity:0.06; pointer-events:none; z-index:0;
+.logo-words {}
+.logo-hi {
+  font-family: var(--fh);
+  font-size: .95rem;
+  font-weight: 800;
+  color: var(--m);
+  line-height: 1.2;
+  display: block;
+}
+.logo-en {
+  font-family: var(--fc);
+  font-size: .44rem;
+  letter-spacing: 1.5px;
+  color: var(--ts);
+  text-transform: uppercase;
+  display: block;
+  margin-top: 1px;
 }
 
-.hero-inner {
-  position:relative; z-index:1;
-  max-width:1300px; margin:0 auto;
-  display:grid; grid-template-columns:52% 48%;
-  align-items:center;
-  padding:40px 60px 40px;
-  min-height:calc(100vh - 180px);
+.nav-r { display: flex; align-items: center; gap: 10px }
+.nav-book {
+  background: linear-gradient(135deg, var(--m) 0%, var(--md) 100%);
+  color: #fff;
+  font-family: var(--fc);
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .8px;
+  text-transform: uppercase;
+  padding: 8px 15px;
+  border-radius: 50px;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  box-shadow: var(--shm);
+  transition: var(--tr);
+  display: flex; align-items: center; gap: 5px;
 }
-.hero-left { padding-right:40px }
+.nav-book:active { transform: scale(.97) }
+.hbg {
+  background: none; border: none; cursor: pointer;
+  width: 36px; height: 36px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 5px;
+  border-radius: 10px;
+  transition: var(--tr);
+}
+.hbg:active { background: var(--gb) }
+.hbg b { display: block; width: 22px; height: 2px; background: var(--m); border-radius: 2px; transition: var(--tr) }
 
-/* Badge Pill */
+/* ── DRAWER ── */
+.drawer-overlay {
+  position: fixed; inset: 0; background: rgba(0,0,0,.55);
+  z-index: 900; display: none; opacity: 0;
+  transition: opacity .3s ease;
+}
+.drawer-overlay.on { display: block; opacity: 1 }
+.drawer {
+  position: fixed; top: 0; right: -100%; bottom: 0;
+  width: 78%; max-width: 300px;
+  background: var(--w);
+  z-index: 901;
+  display: flex; flex-direction: column;
+  box-shadow: -8px 0 40px rgba(0,0,0,.2);
+  transition: right .32s cubic-bezier(.4,0,.2,1);
+  padding: 0;
+}
+.drawer.on { right: 0 }
+.drawer-head {
+  height: 64px; padding: 0 20px;
+  display: flex; align-items: center; justify-content: space-between;
+  border-bottom: 1px solid var(--br);
+  background: linear-gradient(135deg, var(--m) 0%, var(--md) 100%);
+}
+.drawer-head-title { font-family: var(--fh); font-size: .8rem; font-weight: 800; color: #fff }
+.drawer-close {
+  background: rgba(255,255,255,.15); border: none; cursor: pointer;
+  width: 32px; height: 32px; border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  color: #fff; font-size: 1rem; transition: var(--tr);
+}
+.drawer-close:hover { background: rgba(255,255,255,.3) }
+.drawer-links { flex: 1; padding: 12px 0; overflow-y: auto }
+.drawer-links a {
+  display: flex; align-items: center; gap: 12px;
+  padding: 14px 20px;
+  font-family: var(--fh); font-size: .82rem; font-weight: 700; color: var(--tm);
+  border-bottom: 1px solid rgba(232,213,180,.4);
+  transition: var(--tr);
+}
+.drawer-links a .dl-icon { color: var(--g); font-size: 1.05rem; width: 20px; text-align: center; flex-shrink: 0 }
+.drawer-links a:hover, .drawer-links a:active { background: var(--gb); color: var(--m) }
+.drawer-foot { padding: 16px 20px; border-top: 1px solid var(--br) }
+.drawer-cta {
+  width: 100%; padding: 13px;
+  background: linear-gradient(135deg, var(--m) 0%, var(--md) 100%);
+  color: #fff; border: none; border-radius: 12px;
+  font-family: var(--fh); font-size: .85rem; font-weight: 800;
+  cursor: pointer; box-shadow: var(--shm); transition: var(--tr);
+}
+.drawer-cta:active { transform: scale(.98) }
+
+/* ══════════════════════════════════════
+   HERO
+══════════════════════════════════════ */
+.hero {
+  position: relative; overflow: hidden;
+  padding: 24px 18px 20px;
+  background: var(--c);
+}
+/* Decorative background gradient blobs */
+.hero::before {
+  content: '';
+  position: absolute; top: -80px; right: -60px;
+  width: 240px; height: 240px;
+  background: radial-gradient(circle, rgba(201,152,10,.12) 0%, transparent 70%);
+  border-radius: 50%; pointer-events: none;
+}
+.hero::after {
+  content: '';
+  position: absolute; bottom: -50px; left: -40px;
+  width: 200px; height: 200px;
+  background: radial-gradient(circle, rgba(139,26,26,.07) 0%, transparent 70%);
+  border-radius: 50%; pointer-events: none;
+}
+
+/* Badge */
 .hero-badge {
-  display:inline-flex; align-items:center; gap:8px;
-  background:rgba(255,255,255,0.92);
-  border:1px solid rgba(197, 155, 39, 0.35); border-radius:50px;
-  padding:6px 18px 6px 14px;
-  font-family:var(--fh); font-size:.82rem; font-weight:600; color:var(--maroon);
-  margin-bottom:24px;
-  box-shadow:var(--shadow-sm);
+  display: inline-flex; align-items: center; gap: 7px;
+  background: var(--w);
+  border: 1px solid var(--br);
+  border-radius: 50px;
+  padding: 6px 14px;
+  font-family: var(--fh);
+  font-size: .72rem; font-weight: 700;
+  color: var(--m);
+  margin-bottom: 16px;
+  box-shadow: var(--sh);
 }
-.badge-icon-svg { color:var(--gold); display:flex; align-items:center }
+.hero-badge-dot {
+  width: 7px; height: 7px; border-radius: 50%;
+  background: var(--g); flex-shrink: 0;
+  animation: pulse-dot 2s ease infinite;
+}
+@keyframes pulse-dot {
+  0%,100% { opacity:1; transform: scale(1) }
+  50%      { opacity:.6; transform: scale(1.3) }
+}
 
-/* Main Title H1 */
-.hero-h1 { font-family:var(--fh); font-weight:900; line-height:1.1; margin-bottom:18px }
-.h1m { display:block; font-size:clamp(2.5rem, 3.8vw, 3.5rem); color:var(--maroon); letter-spacing:-0.5px }
-.h1g { display:block; font-size:clamp(2.5rem, 3.8vw, 3.5rem); color:var(--gold); letter-spacing:-0.5px }
+/* Two-col hero layout */
+.hero-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; align-items: center; position: relative; z-index: 1 }
 
-/* Divider with Trident Ψ Symbol */
-.hdiv { display:flex; align-items:center; gap:16px; margin:16px 0 20px }
-.hdiv-line { flex:1; height:1px; background:var(--border-gold); max-width:120px }
-.hdiv-sym { color:var(--gold); font-size:1.3rem; line-height:1 }
-
-/* Acharya Arvind & Quotes */
-.hero-name {
-  font-family:var(--fs); font-size:.92rem; font-weight:600;
-  letter-spacing:6px; color:var(--text-mid); text-transform:uppercase; margin-bottom:12px;
+/* LEFT */
+.hero-left {}
+.hero-h1 { margin-bottom: 10px }
+.h1-a {
+  display: block;
+  font-family: var(--fh);
+  font-size: 1.75rem; font-weight: 900;
+  color: var(--m); line-height: 1.15;
+}
+.h1-b {
+  display: block;
+  font-family: var(--fh);
+  font-size: 1.75rem; font-weight: 900;
+  background: linear-gradient(135deg, #C9980A 0%, #E4B84D 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+  line-height: 1.15;
+}
+.hero-div {
+  display: flex; align-items: center; gap: 8px;
+  margin: 10px 0 10px;
+}
+.hero-div-line { flex: 1; height: 1px; background: var(--br) }
+.hero-div-sym { color: var(--g); font-size: .85rem }
+.hero-acharya {
+  font-family: var(--fc); font-size: .58rem;
+  letter-spacing: 3.5px; color: var(--ts);
+  text-transform: uppercase; margin-bottom: 8px;
 }
 .hero-quote {
-  font-family:var(--fh); font-size:1.15rem; font-weight:700; color:var(--text-dark);
-  margin-bottom:10px; line-height:1.4;
+  font-family: var(--fh); font-size: .88rem; font-weight: 700;
+  color: var(--t); line-height: 1.5; margin-bottom: 8px;
 }
 .hero-sub {
-  font-family:var(--fi); font-size:1.02rem; font-style:italic; color:var(--text-muted);
-  margin-bottom:28px; line-height:1.5;
+  font-family: var(--fe); font-size: .7rem; font-style: italic;
+  color: var(--ts); line-height: 1.5;
 }
 
-/* Stats Pill Container */
-.hero-stats-card {
-  background:#FFFFFF;
-  border:1px solid rgba(230, 213, 184, 0.8);
-  border-radius:20px;
-  padding:14px 24px;
-  display:grid; grid-template-columns:repeat(3, 1fr);
-  gap:16px; margin-bottom:32px;
-  box-shadow:var(--shadow-sm);
+/* RIGHT — portrait */
+.hero-right { position: relative; display: flex; justify-content: center }
+.portrait {
+  position: relative;
+  width: 148px; height: 178px;
 }
-.stat-item {
-  display:flex; align-items:center; gap:12px;
-  border-right:1px solid rgba(230, 213, 184, 0.5);
-  padding-right:12px;
+.portrait-ring {
+  position: absolute; inset: -7px;
+  border-radius: 50%;
+  border: 1.5px dashed rgba(201,152,10,.45);
 }
-.stat-item:last-child { border-right:none; padding-right:0 }
-.stat-icon {
-  width:42px; height:42px; border-radius:50%;
-  background:var(--gold-bg);
-  display:flex; align-items:center; justify-content:center;
-  color:var(--gold); flex-shrink:0;
+.portrait-ring2 {
+  position: absolute; inset: -14px;
+  border-radius: 50%;
+  border: 1px solid rgba(201,152,10,.18);
 }
-.stat-num { display:block; font-family:var(--fh); font-size:1.25rem; font-weight:900; color:var(--text-dark); line-height:1 }
-.stat-lbl { display:block; font-family:var(--fh); font-size:.7rem; color:var(--text-muted); font-weight:600; margin-top:3px }
-
-/* Hero Buttons */
-.hero-btns { display:flex; gap:16px; align-items:center }
-.btn-main-maroon {
-  font-family:var(--fh); font-size:.95rem; font-weight:700;
-  background:var(--maroon); color:#FFFFFF; border:none;
-  padding:14px 28px; border-radius:10px; cursor:pointer;
-  display:inline-flex; align-items:center; gap:10px; transition:var(--tr);
-  box-shadow:0 4px 16px rgba(122, 21, 21, 0.25);
+.portrait-img {
+  position: absolute; inset: 0;
+  border-radius: 50%;
+  overflow: hidden;
+  background: linear-gradient(160deg, #D4EBC4 0%, #A8D490 100%);
+  border: 2.5px solid rgba(201,152,10,.5);
+  box-shadow: 0 10px 40px rgba(44,24,8,.18);
 }
-.btn-main-maroon:hover { background:var(--maroon-dark); transform:translateY(-2px) }
-.btn-main-maroon svg { color:var(--gold-light) }
-
-.btn-main-outline {
-  font-family:var(--fh); font-size:.95rem; font-weight:700;
-  background:#FFFFFF; color:var(--text-mid);
-  border:1.5px solid var(--border-gold); padding:14px 28px; border-radius:10px;
-  cursor:pointer; display:inline-flex; align-items:center; gap:10px; transition:var(--tr);
-  box-shadow:var(--shadow-sm);
+.portrait-img img { width:100%; height:100%; object-fit:cover; object-position:top center }
+/* decorative leaf sprigs */
+.portrait-leaf {
+  position: absolute; bottom: 16%; z-index: 2; pointer-events: none;
+  font-size: 1.2rem; line-height: 1;
 }
-.btn-main-outline:hover { border-color:var(--gold); color:var(--gold); transform:translateY(-2px) }
-.btn-main-outline svg { color:var(--gold) }
-
-/* ════════════════════════════
-   PORTRAIT (HERO RIGHT)
-════════════════════════════ */
-.hero-right {
-  display:flex; align-items:center; justify-content:center;
-  position:relative; padding:20px 0;
+.portrait-leaf.l { left: -20px; transform: rotate(-30deg) }
+.portrait-leaf.r { right: -20px; transform: rotate(30deg) }
+.portrait-om {
+  position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%);
+  width: 38px; height: 38px; border-radius: 50%;
+  background: var(--w); border: 2px solid var(--g);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--fh); font-size: 1.1rem; color: var(--g);
+  box-shadow: 0 4px 14px rgba(201,152,10,.25); z-index: 5;
 }
-.deco-diamond {
-  position:absolute; top:0; right:60px;
-  width:12px; height:12px;
-  background:var(--gold); transform:rotate(45deg); opacity:.8;
-}
-.leaf-deco { position:absolute; pointer-events:none; opacity:.85; z-index:2 }
-.leaf-deco.left { left:-10px; bottom:15%; width:110px }
-.leaf-deco.right { right:0px; bottom:12%; width:120px; transform:scaleX(-1) }
-
-.portrait-container {
-  position:relative; width:390px; height:480px; z-index:1;
-}
-.oval-outer-line {
-  position:absolute; inset:-8px;
-  border:1.5px solid rgba(197, 155, 39, 0.4);
-  border-radius:50%;
-}
-.oval-inner-frame {
-  position:absolute; inset:0;
-  border-radius:50%;
-  background:linear-gradient(180deg, #E2F0D9 0%, #D5E8C8 100%);
-  border:2px solid #E2D1B0;
-  overflow:hidden;
-  box-shadow:var(--shadow-md);
-}
-.oval-inner-frame img {
-  width:100%; height:100%; object-fit:cover; object-position:top center;
-}
-.om-badge-circle {
-  position:absolute; bottom:-12px; left:50%; transform:translateX(-50%);
-  width:64px; height:64px;
-  background:linear-gradient(135deg, #FAF7F2 0%, #F5EAD4 100%);
-  border:2px solid var(--gold); border-radius:50%;
-  display:flex; align-items:center; justify-content:center;
-  font-family:var(--fh); font-size:1.8rem; color:var(--gold);
-  box-shadow:0 6px 20px rgba(197, 155, 39, 0.25); z-index:10;
+.portrait-deco-diamond {
+  position: absolute; top: 4px; right: -8px;
+  width: 9px; height: 9px;
+  background: var(--gl); transform: rotate(45deg); opacity: .8;
 }
 
-/* ════════════════════════════
-   FEATURE STRIP (BELOW HERO)
-════════════════════════════ */
-.feat-strip-container {
-  max-width:1240px; margin:-20px auto 40px;
-  position:relative; z-index:10; padding:0 30px;
+/* ══════════════════════════════════════
+   STATS ROW
+══════════════════════════════════════ */
+.stats {
+  margin: 20px 16px 0;
+  background: var(--w);
+  border-radius: 20px;
+  border: 1px solid var(--br);
+  box-shadow: var(--sh);
+  display: grid; grid-template-columns: repeat(3,1fr);
+  overflow: hidden;
 }
-.feat-strip-card {
-  background:#FFFFFF;
-  border:1px solid rgba(230, 213, 184, 0.8);
-  border-radius:24px;
-  padding:24px 32px;
-  display:grid; grid-template-columns:repeat(4, 1fr);
-  gap:20px;
-  box-shadow:var(--shadow-md);
+.stat {
+  padding: 14px 6px;
+  display: flex; flex-direction: column; align-items: center; gap: 5px;
+  border-right: 1px solid rgba(232,213,180,.5);
 }
-.feat-col {
-  display:flex; align-items:center; gap:16px;
-  border-right:1px solid rgba(230, 213, 184, 0.6);
-  padding-right:16px;
+.stat:last-child { border-right: none }
+.stat-ico {
+  width: 32px; height: 32px; border-radius: 50%;
+  background: var(--gb);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--g); font-size: .95rem;
 }
-.feat-col:last-child { border-right:none; padding-right:0 }
-.feat-icon-bg {
-  width:48px; height:48px; border-radius:50%;
-  background:var(--gold-bg);
-  display:flex; align-items:center; justify-content:center;
-  color:var(--gold); flex-shrink:0;
+.stat-val {
+  font-family: var(--fh); font-size: 1.05rem; font-weight: 900; color: var(--t); line-height: 1;
 }
-.feat-heading { font-family:var(--fh); font-size:.9rem; font-weight:800; color:var(--text-dark); display:block; margin-bottom:2px }
-.feat-sub { font-family:var(--fh); font-size:.72rem; color:var(--text-muted); display:block; line-height:1.3 }
-
-/* ════════════════════════════
-   SERVICES / SOLUTIONS SECTION
-════════════════════════════ */
-.sec-pad { padding:80px 48px }
-.sec-hdr { text-align:center; margin-bottom:36px }
-.sec-tag { font-family:var(--fs); font-size:.78rem; letter-spacing:3px; text-transform:uppercase; color:var(--gold); font-weight:700; margin-bottom:10px }
-.sec-h2 { font-family:var(--fh); font-size:2.2rem; font-weight:800; color:var(--maroon); margin-bottom:12px }
-.sec-h2 span { color:var(--gold) }
-.sec-p { font-family:var(--fh); font-size:.95rem; color:var(--text-mid); max-width:680px; margin:0 auto; line-height:1.7 }
-
-/* Interactive Filter Pills */
-.filter-pills-row {
-  display:flex; align-items:center; justify-content:center;
-  gap:12px; flex-wrap:wrap; max-width:1100px; margin:0 auto 40px;
-}
-.filter-pill {
-  font-family:var(--fh); font-size:.82rem; font-weight:600;
-  padding:8px 20px; border-radius:30px;
-  background:#FFFFFF; border:1px solid var(--border-gold);
-  color:var(--text-mid); cursor:pointer; transition:var(--tr);
-  display:inline-flex; align-items:center; gap:8px;
-}
-.filter-pill:hover, .filter-pill.active {
-  background:var(--maroon); color:#FFFFFF; border-color:var(--maroon);
-}
-.filter-pill.active svg { color:var(--gold-light) }
-
-/* Solutions Grid */
-.solutions-grid {
-  max-width:1240px; margin:0 auto;
-  display:grid; grid-template-columns:repeat(3, 1fr);
-  gap:28px;
+.stat-lbl {
+  font-family: var(--fh); font-size: .58rem; font-weight: 600; color: var(--ts);
+  text-align: center; line-height: 1.25;
 }
 
-.solution-card {
-  background:#FFFFFF;
-  border:1px solid var(--border-gold);
-  border-radius:20px;
-  overflow:hidden;
-  transition:var(--tr);
-  box-shadow:var(--shadow-sm);
-  display:flex; flex-direction:column;
-  position:relative;
+/* ══════════════════════════════════════
+   CTA BUTTONS
+══════════════════════════════════════ */
+.ctas { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 14px 16px 0 }
+.cta-p, .cta-s {
+  border-radius: 14px; padding: 14px 10px;
+  font-family: var(--fh); font-size: .82rem; font-weight: 800;
+  display: flex; align-items: center; justify-content: center; gap: 7px;
+  border: none; cursor: pointer; transition: var(--tr);
 }
-.solution-card:hover {
-  transform:translateY(-4px);
-  border-color:var(--gold);
-  box-shadow:var(--shadow-hover);
+.cta-p {
+  background: linear-gradient(135deg, var(--m) 0%, var(--md) 100%);
+  color: #fff;
+  box-shadow: 0 5px 20px rgba(139,26,26,.28);
 }
+.cta-p:active { transform: scale(.97) }
+.cta-s {
+  background: var(--w);
+  color: var(--tm);
+  border: 1.5px solid var(--br);
+  box-shadow: var(--sh);
+}
+.cta-s:active { transform: scale(.97) }
+.cta-ico { font-size: .9rem; flex-shrink: 0 }
 
-.sol-card-img {
-  width:100%; height:180px; overflow:hidden; position:relative;
+/* ══════════════════════════════════════
+   SERVICES SECTION
+══════════════════════════════════════ */
+.srv-sec { padding: 28px 16px 22px; background: var(--c) }
+.sec-header { text-align: center; margin-bottom: 20px }
+.sec-ornament {
+  display: flex; align-items: center; gap: 10px; justify-content: center;
+  margin-bottom: 5px;
 }
-.sol-card-img img {
-  width:100%; height:100%; object-fit:cover; transition:var(--tr);
+.sec-ornament-line { flex: 1; max-width: 50px; height: 1px; background: linear-gradient(90deg, transparent, var(--g)) }
+.sec-ornament-line.r { background: linear-gradient(270deg, transparent, var(--g)) }
+.sec-ornament-sym { color: var(--g); font-size: .75rem }
+.sec-title {
+  font-family: var(--fh); font-size: 1.2rem; font-weight: 900; color: var(--t);
 }
-.solution-card:hover .sol-card-img img {
-  transform:scale(1.05);
-}
-.sol-card-body {
-  padding:26px 24px; display:flex; flex-direction:column; flex:1;
-}
+.sec-sub { font-family: var(--fh); font-size: .72rem; color: var(--ts); margin-top: 3px }
 
-.sol-card-header {
-  display:flex; align-items:center; gap:14px; margin-bottom:14px;
+/* Service cards 3-col */
+.srv-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 9px }
+.srv-card {
+  background: var(--w); border: 1px solid var(--br);
+  border-radius: 18px; padding: 14px 10px 12px;
+  display: flex; flex-direction: column; align-items: flex-start; gap: 8px;
+  box-shadow: var(--sh); transition: var(--tr); cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
-.sol-icon-box {
-  width:44px; height:44px; border-radius:12px;
-  background:var(--gold-bg); border:1px solid rgba(197, 155, 39, 0.25);
-  display:flex; align-items:center; justify-content:center;
-  color:var(--gold-dark); flex-shrink:0;
+.srv-card:active { transform: scale(.97); box-shadow: none }
+.srv-card-ico {
+  width: 40px; height: 40px; border-radius: 12px;
+  background: var(--gb); display: flex; align-items: center; justify-content: center;
+  font-size: 1.1rem;
 }
-.sol-category-badge {
-  font-family:var(--fs); font-size:.68rem; font-weight:700;
-  letter-spacing:1.5px; text-transform:uppercase; color:var(--maroon);
-  background:var(--maroon-light); padding:4px 10px; border-radius:6px;
-  display:inline-block;
+.srv-card-name {
+  font-family: var(--fh); font-size: .75rem; font-weight: 800; color: var(--t); line-height: 1.3;
 }
+.srv-card-desc {
+  font-family: var(--fh); font-size: .62rem; color: var(--ts); line-height: 1.35;
+  flex: 1;
+}
+.srv-card-arr {
+  width: 26px; height: 26px; border-radius: 50%;
+  border: 1.5px solid var(--br);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--m); font-size: .85rem; font-weight: 700;
+  transition: var(--tr); margin-top: 2px;
+}
+.srv-card:active .srv-card-arr { background: var(--m); color: #fff; border-color: var(--m) }
 
-.sol-h3 { font-family:var(--fh); font-size:1.15rem; font-weight:800; color:var(--maroon); margin-bottom:8px }
-.sol-desc { font-family:var(--fh); font-size:.85rem; color:var(--text-muted); line-height:1.6; margin-bottom:18px }
-
-.sol-items-list {
-  list-style:none; padding:0; margin:0 0 22px; flex:1;
-  display:flex; flex-direction:column; gap:10px;
+/* ══════════════════════════════════════
+   ABOUT SECTION
+══════════════════════════════════════ */
+.about-sec {
+  margin: 0 16px 24px;
+  background: var(--w); border: 1px solid var(--br);
+  border-radius: 24px; overflow: hidden;
+  box-shadow: var(--sh);
 }
-.sol-items-list li {
-  font-family:var(--fh); font-size:.85rem; color:var(--text-dark);
-  display:flex; align-items:center; gap:10px; font-weight:600;
+.about-img-wrap { height: 200px; overflow: hidden }
+.about-img-wrap img { width:100%; height:100%; object-fit:cover; object-position:center top }
+.about-body { padding: 18px 16px }
+.about-tag {
+  font-family: var(--fc); font-size: .58rem; letter-spacing: 2px;
+  color: var(--g); font-weight: 700; text-transform: uppercase; display: block;
+  margin-bottom: 5px;
 }
-.sol-items-list li svg {
-  color:var(--gold); flex-shrink:0;
+.about-h2 {
+  font-family: var(--fh); font-size: 1rem; font-weight: 900; color: var(--t); margin-bottom: 10px;
 }
-
-.btn-card-consult {
-  font-family:var(--fh); font-size:.88rem; font-weight:700;
-  color:var(--maroon); background:var(--bg-cream);
-  border:1px solid var(--border-gold); border-radius:10px;
-  padding:12px; text-align:center; transition:var(--tr);
-  display:flex; align-items:center; justify-content:center; gap:8px; margin-top:auto;
+.about-h2 span { color: var(--m) }
+.about-p {
+  font-family: var(--fh); font-size: .75rem; color: var(--tm);
+  line-height: 1.6; margin-bottom: 8px;
 }
-.solution-card:hover .btn-card-consult {
-  background:var(--maroon); color:#FFFFFF; border-color:var(--maroon);
-}
-
-/* ════════════════════════════
-   CONSULTATION CHANNELS
-════════════════════════════ */
-.consult-options-sec {
-  background:linear-gradient(180deg, #F5EAD4 0%, var(--bg-cream) 100%);
-  padding:70px 48px; border-top:1px solid var(--border-gold);
-}
-.consult-grid {
-  max-width:1200px; margin:0 auto;
-  display:grid; grid-template-columns:repeat(4, 1fr); gap:20px;
-}
-.consult-card {
-  background:#FFFFFF; border-radius:18px; padding:28px 20px; text-align:center;
-  border:1px solid var(--border-gold); transition:var(--tr);
-  box-shadow:var(--shadow-sm);
-}
-.consult-card:hover { transform:translateY(-3px); border-color:var(--gold) }
-.consult-card-icon {
-  width:54px; height:54px; border-radius:50%; background:var(--maroon-light);
-  color:var(--maroon); display:flex; align-items:center; justify-content:center;
-  margin:0 auto 16px;
-}
-.consult-card-h { font-family:var(--fh); font-size:1.05rem; font-weight:800; color:var(--maroon); margin-bottom:6px }
-.consult-card-p { font-family:var(--fh); font-size:.78rem; color:var(--text-muted); line-height:1.5 }
-
-/* ════════════════════════════
-   PROCESS SECTION (3 SIMPLE STEPS)
-════════════════════════════ */
-.process-sec { background:#FFFFFF; padding:80px 48px; border-top:1px solid var(--border-gold) }
-.steps-wrapper {
-  max-width:1100px; margin:0 auto;
-  display:grid; grid-template-columns:repeat(3, 1fr); gap:30px; position:relative;
-}
-.step-box { text-align:center; padding:30px 20px; position:relative }
-.step-number {
-  width:60px; height:60px; border-radius:50%; background:var(--maroon); color:#FFF;
-  font-family:var(--fs); font-size:1.4rem; font-weight:700;
-  display:flex; align-items:center; justify-content:center;
-  margin:0 auto 20px; box-shadow:0 6px 18px rgba(122, 21, 21, 0.25);
-}
-.step-title { font-family:var(--fh); font-size:1.1rem; font-weight:800; color:var(--maroon); margin-bottom:10px }
-.step-desc { font-family:var(--fh); font-size:.85rem; color:var(--text-mid); line-height:1.6 }
-
-/* ════════════════════════════
-   ABOUT ACHARYA ARVIND
-════════════════════════════ */
-#about { background:var(--bg-cream); border-top:1px solid var(--border-gold) }
-.about-grid { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center }
-.about-img { height:440px; background:#EAE3D2; border-radius:20px; overflow:hidden; border:2px solid var(--border-gold); box-shadow:var(--shadow-md) }
-.about-img img { width:100%; height:100%; object-fit:cover }
-.about-content h3 { font-family:var(--fh); font-size:1.7rem; font-weight:800; color:var(--maroon); margin-bottom:8px }
-.about-role { font-family:var(--fs); font-size:.8rem; letter-spacing:2px; color:var(--gold); text-transform:uppercase; margin-bottom:18px; display:block }
-.about-content p { font-family:var(--fh); font-size:.92rem; color:var(--text-mid); line-height:1.8; margin-bottom:14px }
-
-/* ════════════════════════════
-   TESTIMONIALS SECTION
-════════════════════════════ */
-#testimonials { background:#FFFFFF; padding:80px 48px; border-top:1px solid var(--border-gold) }
-.testi-grid { max-width:1200px; margin:0 auto; display:grid; grid-template-columns:repeat(3,1fr); gap:24px }
-.testi-card { background:var(--bg-cream); border-radius:18px; padding:32px 28px; border:1px solid var(--border-gold); box-shadow:var(--shadow-sm) }
-.testi-tag { display:inline-block; background:rgba(197, 155, 39, 0.15); color:var(--maroon); font-family:var(--fh); font-size:.72rem; font-weight:700; padding:4px 12px; border-radius:20px; margin-bottom:12px }
-.testi-stars { color:var(--gold); font-size:1rem; margin-bottom:12px }
-.testi-q { font-family:var(--fh); font-size:.88rem; color:var(--text-mid); line-height:1.75; margin-bottom:18px; font-style:italic }
-.testi-name { font-family:var(--fh); font-size:.92rem; font-weight:800; color:var(--text-dark) }
-.testi-city { font-family:var(--fh); font-size:.74rem; color:var(--text-muted) }
-
-/* ════════════════════════════
-   FAQ SECTION
-════════════════════════════ */
-.faq-sec { background:var(--bg-cream); padding:80px 48px; border-top:1px solid var(--border-gold) }
-.faq-wrap { max-width:820px; margin:0 auto }
-.faq-item { border:1px solid var(--border-gold); margin-bottom:14px; background:#FFF; border-radius:14px; padding:6px 20px; transition:var(--tr) }
-.faq-q { font-family:var(--fh); font-size:.96rem; font-weight:700; color:var(--text-dark); padding:16px 30px 16px 0; cursor:pointer; position:relative }
-.faq-q::after { content:'+'; position:absolute; right:0; top:50%; transform:translateY(-50%); font-size:1.4rem; color:var(--gold) }
-.faq-a { font-family:var(--fh); font-size:.88rem; color:var(--text-muted); line-height:1.7; padding-bottom:16px; display:none }
-
-/* ════════════════════════════
-   CONVERSION LEAD FORM SECTION
-════════════════════════════ */
-#contact { background:linear-gradient(180deg, var(--bg-cream) 0%, #F5EAD4 100%); padding:80px 48px; border-top:1px solid var(--border-gold) }
-.contact-wrap { max-width:1100px; margin:0 auto }
-.form-box { background:#FFF; border-radius:24px; padding:42px; border:1px solid var(--border-gold); box-shadow:var(--shadow-md); max-width:700px; margin:0 auto }
-.form-box-h { font-family:var(--fh); font-size:1.4rem; font-weight:900; color:var(--maroon); margin-bottom:6px; text-align:center }
-.form-box-sub { font-family:var(--fh); font-size:.84rem; color:var(--text-muted); margin-bottom:28px; text-align:center; display:block }
-
-.form-row { display:grid; grid-template-columns:1fr 1fr; gap:16px }
-.fg { margin-bottom:16px; display:flex; flex-direction:column; gap:6px }
-.fg label { font-family:var(--fh); font-size:.78rem; font-weight:600; color:var(--text-mid) }
-.fg input, .fg select, .fg textarea { font-family:var(--fh); font-size:.88rem; padding:12px; border:1px solid var(--border-gold); border-radius:10px; background:var(--bg-cream) }
-.btn-submit { width:100%; font-family:var(--fh); font-size:1.05rem; font-weight:800; background:var(--maroon); color:#FFF; border:none; padding:16px; border-radius:12px; cursor:pointer; box-shadow:0 6px 20px rgba(122, 21, 21, 0.25); transition:var(--tr) }
-.btn-submit:hover { background:var(--maroon-dark); transform:translateY(-2px) }
-
-/* Footer */
-footer { background:var(--maroon); color:rgba(255,255,255,0.85); padding:36px; text-align:center }
-footer .f-logo { font-family:var(--fh); font-size:1.15rem; font-weight:800; color:#FFF; margin-bottom:8px }
-
-/* Official WhatsApp Floating FAB Button */
-.chat-fab {
-  position:fixed; bottom:28px; right:28px;
-  width:60px; height:60px; background:#25D366; border-radius:50%;
-  display:flex; align-items:center; justify-content:center;
-  color:#FFF; box-shadow:0 4px 24px rgba(37, 211, 102, 0.45);
-  z-index:999; text-decoration:none; transition:var(--tr);
-}
-.chat-fab:hover { transform:scale(1.1) }
-
-/* ════════════════════════════
-   RESPONSIVE MEDIA QUERIES
-════════════════════════════ */
-@media(max-width:1024px) {
-  .hero-inner { grid-template-columns:1fr; padding:40px 30px; gap:40px }
-  .feat-strip-card { grid-template-columns:repeat(2,1fr) }
-  .solutions-grid { grid-template-columns:repeat(2,1fr) }
-  .consult-grid { grid-template-columns:repeat(2,1fr) }
-  .about-grid { grid-template-columns:1fr }
-  .portrait-container { width:320px; height:400px }
+/* Credentials pills */
+.cred-grid { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 12px }
+.cred-pill {
+  background: var(--gb); border: 1px solid rgba(201,152,10,.2);
+  border-radius: 50px; padding: 4px 11px;
+  font-family: var(--fh); font-size: .65rem; font-weight: 700; color: var(--tm);
+  display: flex; align-items: center; gap: 5px;
 }
 
-/* ════════════════════════════════════════════════════
-   MOBILE RESPONSIVE — PREMIUM COMPOSITION (≤768px)
-   Desktop layout (>768px) is completely untouched.
-════════════════════════════════════════════════════ */
-@media(max-width:768px) {
-
-  /* ── NAVBAR ── */
-  .navbar { padding:0 16px; height:64px }
-  .nav-links { display:none }
-  .nav-right { display:flex; align-items:center; gap:10px }
-  .btn-book-nav {
-    padding:9px 16px; font-size:.68rem; letter-spacing:.8px;
-    border-radius:22px;
-  }
-  .hbg { display:flex }
-
-  /* ── HERO: 2-COLUMN SPLIT (text left, portrait right) ── */
-  .hero-inner {
-    display:grid;
-    grid-template-columns:55% 45%;
-    grid-template-rows:auto;
-    align-items:start;
-    padding:20px 16px 28px;
-    gap:0;
-    min-height:auto;
-  }
-
-  /* Left column: all text content */
-  .hero-left {
-    padding-right:10px;
-    display:flex; flex-direction:column; align-items:flex-start;
-    text-align:left; width:100%; order:0;
-    grid-column:1; grid-row:1;
-  }
-
-  /* Right column: portrait floated */
-  .hero-right {
-    grid-column:2; grid-row:1;
-    order:1; width:100%; padding:0; margin:0;
-    display:flex; align-items:flex-start; justify-content:center;
-    padding-top:8px;
-  }
-
-  .portrait-container { width:100%; max-width:180px; height:220px; margin:0 auto }
-  .leaf-deco { display:none }
-  .deco-diamond { display:none }
-  .om-badge-circle { width:44px; height:44px; font-size:1.2rem; bottom:-8px }
-
-  /* Hero text sizing for mobile */
-  .hero-badge {
-    margin:0 0 10px 0;
-    font-size:.7rem; padding:5px 12px 5px 10px;
-  }
-  .hero-h1 { margin-bottom:8px }
-  .h1m, .h1g { font-size:1.6rem; letter-spacing:-0.3px }
-  .hdiv { margin:8px 0 10px; justify-content:flex-start }
-  .hdiv-line { max-width:40px }
-  .hero-name { font-size:.65rem; letter-spacing:3px; margin-bottom:6px }
-  .hero-quote { font-size:.88rem; margin-bottom:6px; text-align:left; line-height:1.35 }
-  .hero-sub { font-size:.78rem; margin-bottom:0; text-align:left; line-height:1.4 }
-
-  /* Stats card: BELOW the 2-column hero, full width */
-  .hero-stats-card {
-    grid-column:1 / -1;
-    grid-row:2;
-    order:2; width:100%;
-    grid-column:1 / -1; grid-row:2;
-    width:100%; margin-top:16px; margin-bottom:14px;
-    grid-template-columns:repeat(3, 1fr);
-    padding:10px 6px; gap:0; border-radius:12px;
-  }
-  .stat-item {
-    flex-direction:column; align-items:center; text-align:center; gap:3px;
-    padding:5px 4px; border-right:1px solid rgba(230, 213, 184, 0.55);
-  }
-  .stat-item:last-child { border-right:none }
-  .stat-icon { width:28px; height:28px; flex-shrink:0; margin-bottom:2px }
-  .stat-icon svg { width:16px; height:16px }
-  .stat-num { font-size:.9rem; line-height:1 }
-  .stat-lbl { font-size:.52rem; line-height:1.2; margin-top:1px }
-
-  /* CTA BUTTONS */
-  .hero-btns {
-    grid-column:1 / -1; grid-row:3;
-    width:100%; flex-direction:row; gap:8px; margin-top:0;
-  }
-  .btn-main-maroon {
-    flex:1; justify-content:center;
-    padding:11px 8px; border-radius:9px; font-size:.78rem; gap:5px;
-  }
-  .btn-main-outline {
-    flex:1; justify-content:center;
-    padding:11px 8px; border-radius:9px; font-size:.78rem; gap:5px;
-  }
-  .btn-main-maroon svg,
-  .btn-main-outline svg { width:14px; height:14px }
-
-  /* FEATURE STRIP: hidden */
-  .feat-strip-container { display:none }
-
-  /* SECTION PADDING */
-  .sec-pad { padding:32px 14px }
-  .sec-hdr { margin-bottom:18px }
-  .sec-h2 { font-size:1.25rem; margin-bottom:8px }
-  .sec-p { font-size:.78rem }
-
-  /* Services: decorated heading */
-  #solutions .sec-hdr { margin-bottom:16px }
-  #solutions .sec-tag { display:none }
-  #solutions .sec-h2 {
-    font-size:1.15rem;
-    display:flex; align-items:center; justify-content:center; gap:10px;
-    flex-wrap:nowrap; white-space:nowrap;
-  }
-  #solutions .sec-h2::before,
-  #solutions .sec-h2::after {
-    content:''; flex:1; height:1px;
-    background:linear-gradient(90deg, transparent, var(--border-gold));
-  }
-  #solutions .sec-h2::after {
-    background:linear-gradient(270deg, transparent, var(--border-gold));
-  }
-  #solutions .sec-h2 span { color:var(--maroon) }
-  #solutions .sec-p { font-size:.74rem }
-
-  /* FILTER PILLS: hidden */
-  .filter-pills-row { display:none }
-
-  /* SERVICE CARDS: compact 3-col */
-  .solutions-grid { grid-template-columns:repeat(3, 1fr); gap:9px; max-width:100% }
-  .solution-card { border-radius:12px; box-shadow:0 2px 10px rgba(0,0,0,0.04) }
-  .sol-card-img { display:none }
-  .sol-card-body { padding:13px 9px 11px }
-  .sol-card-header { flex-direction:column; align-items:flex-start; gap:7px; margin-bottom:7px }
-  .sol-icon-box { width:36px; height:36px; border-radius:9px }
-  .sol-icon-box svg { width:17px; height:17px }
-  .sol-category-badge { display:none }
-  .sol-h3 { font-size:.74rem; font-weight:800; margin-bottom:3px; line-height:1.25; color:var(--maroon) }
-  .sol-desc { font-size:.65rem; line-height:1.35; margin-bottom:9px; color:var(--text-muted) }
-  .sol-items-list { display:none }
-
-  /* ── CONSULT / CHANNELS ── */
-  .consult-options-sec { padding:40px 16px }
-  .consult-grid { grid-template-columns:repeat(2, 1fr); gap:12px }
-  .consult-card { padding:20px 14px }
-  .consult-card-icon { width:42px; height:42px; margin-bottom:10px }
-  .consult-card-h { font-size:.88rem }
-  .consult-card-p { font-size:.7rem }
-
-  /* ── PROCESS STEPS ── */
-  .process-sec { padding:40px 16px }
-  .steps-wrapper { grid-template-columns:1fr; gap:16px }
-  .step-number { width:48px; height:48px; font-size:1.2rem; margin-bottom:14px }
-  .step-title { font-size:.95rem }
-  .step-desc { font-size:.78rem }
-
-  /* ── ABOUT ── */
-  .about-grid { grid-template-columns:1fr; gap:20px }
-  .about-img { height:260px }
-  .about-content h3 { font-size:1.3rem }
-
-  /* ── TESTIMONIALS ── */
-  #testimonials { padding:40px 16px }
-  .testi-grid { grid-template-columns:1fr; gap:14px }
-  .testi-card { padding:22px 18px }
-
-  /* ── FAQ ── */
-  .faq-sec { padding:40px 16px }
-  .faq-q { font-size:.88rem }
-
-  /* ── FORM / CONTACT ── */
-  #contact { padding:40px 16px }
-  .form-box { padding:24px 18px; border-radius:18px }
-  .form-box-h { font-size:1.1rem }
-  .form-row { grid-template-columns:1fr }
-  .fg input, .fg select, .fg textarea { font-size:.84rem; padding:10px }
-  .btn-submit { padding:13px; font-size:.9rem }
-
-  /* ── FOOTER ── */
-  footer { padding:24px 16px }
-  footer .f-logo { font-size:.95rem }
-  footer p { font-size:.72rem }
-
-  /* ── FAB ── */
-  .chat-fab { width:52px; height:52px; bottom:20px; right:16px }
+/* ══════════════════════════════════════
+   REVIEWS
+══════════════════════════════════════ */
+.reviews-sec { padding: 28px 16px; background: var(--w); border-top: 1px solid var(--br) }
+.rev-card {
+  background: var(--c); border: 1px solid var(--br);
+  border-radius: 18px; padding: 16px; margin-bottom: 12px;
+  position: relative; overflow: hidden;
 }
+.rev-card::before {
+  content: '"'; position: absolute; top: -8px; left: 12px;
+  font-family: Georgia, serif; font-size: 4rem; color: rgba(201,152,10,.1);
+  line-height: 1;
+}
+.rev-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  background: rgba(139,26,26,.07); border-radius: 50px;
+  padding: 3px 9px;
+  font-family: var(--fh); font-size: .6rem; font-weight: 700; color: var(--m);
+  margin-bottom: 8px;
+}
+.rev-stars { color: var(--g); font-size: .78rem; letter-spacing: 1px; margin-bottom: 8px }
+.rev-q { font-family: var(--fh); font-size: .75rem; color: var(--t); line-height: 1.55; font-style: italic }
+.rev-name { font-family: var(--fh); font-size: .75rem; font-weight: 800; color: var(--m); margin-top: 10px }
+.rev-city { font-family: var(--fh); font-size: .62rem; color: var(--ts) }
+
+/* ══════════════════════════════════════
+   FAQ
+══════════════════════════════════════ */
+.faq-sec { padding: 28px 16px; background: var(--c); border-top: 1px solid var(--br) }
+.faq-item { margin-bottom: 10px; border: 1px solid var(--br); border-radius: 14px; overflow: hidden; background: var(--w) }
+.faq-q {
+  padding: 14px 16px; cursor: pointer;
+  display: flex; align-items: center; justify-content: space-between; gap: 8px;
+  font-family: var(--fh); font-size: .78rem; font-weight: 800; color: var(--m);
+  user-select: none; -webkit-user-select: none;
+  transition: var(--tr);
+}
+.faq-q:active { background: var(--gb) }
+.faq-toggle {
+  width: 24px; height: 24px; border-radius: 50%;
+  background: var(--gb); border: 1px solid rgba(201,152,10,.25);
+  display: flex; align-items: center; justify-content: center;
+  color: var(--g); font-size: .85rem; font-weight: 700; flex-shrink: 0;
+  transition: var(--tr);
+}
+.faq-a {
+  font-family: var(--fh); font-size: .72rem; color: var(--tm);
+  padding: 0 16px; max-height: 0; overflow: hidden;
+  transition: max-height .35s ease, padding .2s ease;
+  line-height: 1.55;
+}
+.faq-a.open { max-height: 200px; padding: 0 16px 14px }
+
+/* ══════════════════════════════════════
+   CONTACT FORM
+══════════════════════════════════════ */
+.contact-sec { padding: 28px 16px; background: var(--w); border-top: 1px solid var(--br) }
+.form-card {
+  background: var(--c); border: 1px solid var(--br);
+  border-radius: 24px; padding: 22px 18px;
+  box-shadow: var(--sh);
+}
+.form-hd { font-family: var(--fh); font-size: .95rem; font-weight: 900; color: var(--m); text-align: center; margin-bottom: 4px }
+.form-sub { font-family: var(--fh); font-size: .68rem; color: var(--ts); text-align: center; display: block; margin-bottom: 18px }
+.fg { margin-bottom: 13px }
+.fg label { display: block; font-family: var(--fh); font-size: .7rem; font-weight: 700; color: var(--t); margin-bottom: 5px }
+.fg input, .fg select {
+  width: 100%; padding: 11px 13px;
+  font-family: var(--fh); font-size: .78rem; color: var(--t);
+  background: var(--w); border: 1.5px solid var(--br);
+  border-radius: 11px; outline: none; transition: var(--tr);
+}
+.fg input:focus, .fg select:focus { border-color: var(--g); box-shadow: 0 0 0 3px rgba(201,152,10,.1) }
+.fg input::placeholder { color: var(--ts) }
+.fg-row { display: grid; grid-template-columns: 1fr 1fr; gap: 10px }
+.btn-form {
+  width: 100%; padding: 14px;
+  background: linear-gradient(135deg, var(--m) 0%, var(--md) 100%);
+  color: #fff; border: none; border-radius: 14px;
+  font-family: var(--fh); font-size: .86rem; font-weight: 800;
+  cursor: pointer; box-shadow: var(--shm); transition: var(--tr);
+  margin-top: 4px;
+}
+.btn-form:active { transform: scale(.98) }
+
+/* ══════════════════════════════════════
+   FOOTER
+══════════════════════════════════════ */
+footer {
+  background: var(--c); padding: 22px 18px 18px;
+  border-top: 1px solid var(--br); text-align: center;
+}
+.f-om { font-family: var(--fh); font-size: 1.4rem; color: var(--g); margin-bottom: 4px }
+.f-name { font-family: var(--fh); font-size: .82rem; font-weight: 800; color: var(--m); margin-bottom: 6px }
+.f-links { display: flex; justify-content: center; gap: 16px; margin-bottom: 10px }
+.f-links a { font-family: var(--fh); font-size: .68rem; color: var(--ts); transition: var(--tr) }
+.f-links a:hover { color: var(--m) }
+.f-copy { font-family: var(--fe); font-size: .58rem; color: var(--ts) }
+
+/* ══════════════════════════════════════
+   FIXED BOTTOM TRUST BAR
+══════════════════════════════════════ */
+.trust-bar {
+  position: fixed; bottom: 0; z-index: 300;
+  /* perfectly centered under .app */
+  left: 50%; transform: translateX(-50%);
+  width: min(100%, 430px);
+  background: linear-gradient(135deg, var(--m) 0%, var(--md) 100%);
+  padding: 11px 18px 11px 14px;
+  display: flex; align-items: center; gap: 12px;
+  box-shadow: 0 -4px 24px rgba(139,26,26,.28);
+}
+.tb-om {
+  width: 40px; height: 40px; border-radius: 50%; flex-shrink: 0;
+  background: rgba(255,255,255,.12); border: 1.5px solid rgba(228,184,77,.45);
+  display: flex; align-items: center; justify-content: center;
+  font-family: var(--fh); font-size: 1.15rem; color: var(--gl);
+}
+.tb-text { flex: 1; min-width: 0 }
+.tb-main { font-family: var(--fh); font-size: .82rem; font-weight: 800; color: #fff; display: block }
+.tb-sub  { font-family: var(--fh); font-size: .6rem; color: rgba(255,255,255,.65); display: block; margin-top: 1px }
+.tb-call {
+  background: rgba(255,255,255,.15); border: 1px solid rgba(255,255,255,.3);
+  color: #fff; padding: 6px 12px; border-radius: 50px;
+  font-family: var(--fh); font-size: .68rem; font-weight: 700;
+  cursor: pointer; white-space: nowrap; flex-shrink: 0; transition: var(--tr);
+}
+.tb-call:active { background: rgba(255,255,255,.25) }
+
+/* ══════════════════════════════════════
+   ANIMATIONS
+══════════════════════════════════════ */
+@keyframes fadeUp {
+  from { opacity:0; transform:translateY(18px) }
+  to   { opacity:1; transform:translateY(0) }
+}
+.hero, .stats, .ctas, .srv-sec, .about-sec { animation: fadeUp .55s ease both }
+.stats   { animation-delay: .08s }
+.ctas    { animation-delay: .15s }
+.srv-sec { animation-delay: .22s }
 </style>
 </head>
 <body>
 
-<!-- ══ NAVBAR ══ -->
-<nav class="navbar">
-  <a class="logo" href="#home">
-    <div class="logo-om">ॐ</div>
-    <div class="logo-text">
-      <span class="logo-title">भारतीय वैदिक ज्योतिष केंद्र</span>
-      <span class="logo-sub">Bharatiya Vedic Jyotish Kendra</span>
-    </div>
-  </a>
-  <div class="nav-right">
-    <ul class="nav-links">
-      <li><a href="#home" class="active">HOME</a></li>
-      <li><a href="#solutions">SERVICES</a></li>
-      <li><a href="#about">ABOUT</a></li>
-      <li><a href="#testimonials">REVIEWS</a></li>
-      <li><a href="#contact">CONTACT</a></li>
-    </ul>
-    <a href="booking.html" class="btn-book-nav">
-      BOOK NOW
-      <span class="arrow">›</span>
+<div class="app">
+
+  <!-- ═══════ NAVBAR ═══════ -->
+  <nav class="nav">
+    <a class="logo" href="#home">
+      <div class="logo-om">ॐ</div>
+      <div class="logo-words">
+        <span class="logo-hi">भारतीय वैदिक ज्योतिष केंद्र</span>
+        <span class="logo-en">Bharatiya Vedic Jyotish Kendra</span>
+      </div>
     </a>
-    <button class="hbg" id="hbg"><span></span><span></span><span></span></button>
+    <div class="nav-r">
+      <a href="booking.html" class="nav-book">BOOK NOW <span>›</span></a>
+      <button class="hbg" id="hbgBtn" aria-label="Menu">
+        <b></b><b></b><b></b>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ═══════ DRAWER ═══════ -->
+  <div class="drawer-overlay" id="overlay" onclick="closeDrawer()"></div>
+  <div class="drawer" id="drawerEl">
+    <div class="drawer-head">
+      <span class="drawer-head-title">भारतीय वैदिक ज्योतिष</span>
+      <button class="drawer-close" onclick="closeDrawer()">✕</button>
+    </div>
+    <div class="drawer-links">
+      <a href="#home"        onclick="closeDrawer()"><span class="dl-icon">🏠</span> होम</a>
+      <a href="#services-sec" onclick="closeDrawer()"><span class="dl-icon">🔯</span> हमारी सेवाएँ</a>
+      <a href="#about"       onclick="closeDrawer()"><span class="dl-icon">🙏</span> हमारे बारे में</a>
+      <a href="#reviews"     onclick="closeDrawer()"><span class="dl-icon">⭐</span> समीक्षाएँ</a>
+      <a href="#faq"         onclick="closeDrawer()"><span class="dl-icon">❓</span> FAQ</a>
+      <a href="#contact"     onclick="closeDrawer()"><span class="dl-icon">📞</span> संपर्क</a>
+    </div>
+    <div class="drawer-foot">
+      <a href="booking.html">
+        <button class="drawer-cta">🔮 अभी बुकिंग करें</button>
+      </a>
+    </div>
   </div>
-</nav>
 
-<!-- ══ HERO SECTION ══ -->
-<section id="home">
-  <!-- Top Background Mandalas -->
-  <svg class="bg-mandala-left" viewBox="0 0 500 500" fill="none">
-    <circle cx="100" cy="100" r="300" stroke="#C59B27" stroke-width="1.5" stroke-dasharray="4 4"/>
-    <circle cx="100" cy="100" r="240" stroke="#C59B27" stroke-width="1"/>
-    <circle cx="100" cy="100" r="180" stroke="#C59B27" stroke-width="1"/>
-  </svg>
-  <svg class="bg-mandala-right" viewBox="0 0 500 500" fill="none">
-    <circle cx="400" cy="100" r="320" stroke="#C59B27" stroke-width="1.5" stroke-dasharray="4 4"/>
-    <circle cx="400" cy="100" r="250" stroke="#C59B27" stroke-width="1"/>
-    <circle cx="400" cy="100" r="180" stroke="#C59B27" stroke-width="1"/>
-  </svg>
+  <!-- ═══════ HERO ═══════ -->
+  <section class="hero" id="home">
+    <!-- Badge -->
+    <div class="hero-badge">
+      <span class="hero-badge-dot"></span>
+      प्रामाणिक वैदिक ज्योतिष
+    </div>
 
-  <div class="hero-inner">
-    <!-- LEFT COLUMN -->
-    <div class="hero-left">
-      <!-- Badge Pill -->
-      <div class="hero-badge">
-        <span class="badge-icon-svg">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-2.5 3.5-3 6.5-3 9 0 3 1.5 5 3 7 1.5-2 3-4 3-7 0-2.5-.5-5.5-3-9z"/><path d="M12 19c-3.5 0-6.5-1.5-9-4 2.5-1.5 5.5-2 8-1"/><path d="M12 19c3.5 0 6.5-1.5 9-4-2.5-1.5-5.5-2-8-1"/></svg>
-        </span>
-        प्रामाणिक वैदिक ज्योतिष
+    <div class="hero-cols">
+      <!-- LEFT TEXT -->
+      <div class="hero-left">
+        <h1 class="hero-h1">
+          <span class="h1-a">भारतीय वैदिक</span>
+          <span class="h1-b">ज्योतिष केंद्र</span>
+        </h1>
+        <div class="hero-div">
+          <div class="hero-div-line"></div>
+          <span class="hero-div-sym">Ψ</span>
+          <div class="hero-div-line"></div>
+        </div>
+        <div class="hero-acharya">Acharya Arvind</div>
+        <div class="hero-quote">"सहीं की राह से जानें अपने जीवन का भविष्य !"</div>
+        <div class="hero-sub">Discover the divine secrets of your destiny through authentic Vedic wisdom.</div>
       </div>
 
-      <!-- H1 Headline -->
-      <h1 class="hero-h1">
-        <span class="h1m">भारतीय वैदिक</span>
-        <span class="h1g">ज्योतिष केंद्र</span>
-      </h1>
-
-      <!-- Trident Ψ Divider -->
-      <div class="hdiv">
-        <div class="hdiv-line"></div>
-        <span class="hdiv-sym">Ψ</span>
-        <div class="hdiv-line"></div>
-      </div>
-
-      <!-- Acharya Arvind & Quotes -->
-      <div class="hero-name">ACHARYA ARVIND</div>
-      <div class="hero-quote">“सही की राह से जानें अपने जीवन का भविष्य !”</div>
-      <div class="hero-sub">Discover the divine secrets of your destiny<br>through authentic Vedic wisdom.</div>
-
-      <!-- Stats Pill Row Card -->
-      <div class="hero-stats-card">
-        <div class="stat-item">
-          <div class="stat-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-2.5 3.5-3 6.5-3 9 0 3 1.5 5 3 7 1.5-2 3-4 3-7 0-2.5-.5-5.5-3-9z"/><path d="M12 19c-3.5 0-6.5-1.5-9-4 2.5-1.5 5.5-2 8-1"/><path d="M12 19c3.5 0 6.5-1.5 9-4-2.5-1.5-5.5-2-8-1"/></svg>
+      <!-- RIGHT PORTRAIT -->
+      <div class="hero-right">
+        <div class="portrait">
+          <div class="portrait-ring2"></div>
+          <div class="portrait-ring"></div>
+          <div class="portrait-img">
+            <img src="acharya-arvind.png" alt="Acharya Arvind" loading="eager">
           </div>
-          <div>
-            <span class="stat-num">15+</span>
-            <span class="stat-lbl">वर्षों का अनुभव</span>
-          </div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          </div>
-          <div>
-            <span class="stat-num">5000+</span>
-            <span class="stat-lbl">संतुष्ट ग्राहक</span>
-          </div>
-        </div>
-        <div class="stat-item">
-          <div class="stat-icon">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-          </div>
-          <div>
-            <span class="stat-num">98%</span>
-            <span class="stat-lbl">सटीकता दर</span>
-          </div>
+          <div class="portrait-leaf l">🌿</div>
+          <div class="portrait-leaf r">🌿</div>
+          <div class="portrait-om">ॐ</div>
+          <div class="portrait-deco-diamond"></div>
         </div>
       </div>
-
-      <!-- Hero Buttons -->
-      <div class="hero-btns">
-        <a href="booking.html" class="btn-main-maroon">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-2.5 3.5-3 6.5-3 9 0 3 1.5 5 3 7 1.5-2 3-4 3-7 0-2.5-.5-5.5-3-9z"/><path d="M12 19c-3.5 0-6.5-1.5-9-4 2.5-1.5 5.5-2 8-1"/><path d="M12 19c3.5 0 6.5-1.5 9-4-2.5-1.5-5.5-2-8-1"/></svg>
-          परामर्श बुक करें <span>›</span>
-        </a>
-        <a href="#solutions" class="btn-main-outline">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-2.5 3.5-3 6.5-3 9 0 3 1.5 5 3 7 1.5-2 3-4 3-7 0-2.5-.5-5.5-3-9z"/><path d="M12 19c-3.5 0-6.5-1.5-9-4 2.5-1.5 5.5-2 8-1"/><path d="M12 19c3.5 0 6.5-1.5 9-4-2.5-1.5-5.5-2-8-1"/></svg>
-          हमारे बारे में जानें <span>›</span>
-        </a>
-      </div>
     </div>
+  </section>
 
-    <!-- RIGHT COLUMN - PORTRAIT -->
-    <div class="hero-right">
-      <div class="deco-diamond"></div>
-
-      <!-- Leaf Deco Left -->
-      <svg class="leaf-deco left" viewBox="0 0 120 220" fill="none">
-        <path d="M60 210C60 210 22 155 32 95C42 42 72 18 72 18" stroke="#5A8A3C" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <path d="M58 160C40 148 28 120 30 100" stroke="#5A8A3C" stroke-width="1.5" fill="none"/>
-        <ellipse cx="24" cy="115" rx="18" ry="8" fill="#7AB558" opacity=".6" transform="rotate(-28 24 115)"/>
-        <ellipse cx="89" cy="98"  rx="17" ry="8" fill="#7AB558" opacity=".5"  transform="rotate(22 89 98)"/>
-      </svg>
-
-      <!-- Leaf Deco Right -->
-      <svg class="leaf-deco right" viewBox="0 0 120 220" fill="none">
-        <path d="M60 210C60 210 22 155 32 95C42 42 72 18 72 18" stroke="#5A8A3C" stroke-width="2" fill="none" stroke-linecap="round"/>
-        <path d="M58 160C40 148 28 120 30 100" stroke="#5A8A3C" stroke-width="1.5" fill="none"/>
-        <ellipse cx="24" cy="115" rx="18" ry="8" fill="#7AB558" opacity=".6" transform="rotate(-28 24 115)"/>
-        <ellipse cx="89" cy="98"  rx="17" ry="8" fill="#7AB558" opacity=".5"  transform="rotate(22 89 98)"/>
-      </svg>
-
-      <!-- Portrait Oval Frame Container -->
-      <div class="portrait-container">
-        <div class="oval-outer-line"></div>
-        <div class="oval-inner-frame">
-          <img src="acharya-arvind.png" alt="Acharya Arvind">
-        </div>
-        <div class="om-badge-circle">ॐ</div>
-      </div>
+  <!-- ═══════ STATS ═══════ -->
+  <div class="stats">
+    <div class="stat">
+      <div class="stat-ico">🪔</div>
+      <div class="stat-val">15+</div>
+      <div class="stat-lbl">वर्षों का अनुभव</div>
+    </div>
+    <div class="stat">
+      <div class="stat-ico">👥</div>
+      <div class="stat-val">5000+</div>
+      <div class="stat-lbl">संतुष्ट ग्राहक</div>
+    </div>
+    <div class="stat">
+      <div class="stat-ico">🛡️</div>
+      <div class="stat-val">98%</div>
+      <div class="stat-lbl">सटीकता दर</div>
     </div>
   </div>
-</section>
 
-<!-- ══ FEATURE STRIP CARD (BELOW HERO) ══ -->
-<div class="feat-strip-container">
-  <div class="feat-strip-card">
-    <div class="feat-col">
-      <div class="feat-icon-bg">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-      </div>
-      <div>
-        <span class="feat-heading">शास्त्र सम्मत ज्ञान</span>
-        <span class="feat-sub">प्रामाणिक वैदिक ग्रंथों पर आधारित</span>
-      </div>
-    </div>
-    <div class="feat-col">
-      <div class="feat-icon-bg">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3c-2.5 3.5-3 6.5-3 9 0 3 1.5 5 3 7 1.5-2 3-4 3-7 0-2.5-.5-5.5-3-9z"/><path d="M12 19c-3.5 0-6.5-1.5-9-4 2.5-1.5 5.5-2 8-1"/><path d="M12 19c3.5 0 6.5-1.5 9-4-2.5-1.5-5.5-2-8-1"/></svg>
-      </div>
-      <div>
-        <span class="feat-heading">व्यक्तिगत समाधान</span>
-        <span class="feat-sub">आपकी समस्याओं का समाधान</span>
-      </div>
-    </div>
-    <div class="feat-col">
-      <div class="feat-icon-bg">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
-      </div>
-      <div>
-        <span class="feat-heading">24/7 उपलब्धता</span>
-        <span class="feat-sub">हमेशा आपके मार्गदर्शन के लिए</span>
-      </div>
-    </div>
-    <div class="feat-col">
-      <div class="feat-icon-bg">
-        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-      </div>
-      <div>
-        <span class="feat-heading">गोपनीयता की गारंटी</span>
-        <span class="feat-sub">आपकी जानकारी पूरी तरह सुरक्षित</span>
-      </div>
-    </div>
-  </div>
-</div>
-
-<!-- ══ SERVICES / SOLUTIONS SECTION ══ -->
-<section id="solutions" class="sec-pad">
-  <div class="sec-hdr">
-    <div class="sec-tag">✦ OUR SERVICES ✦</div>
-    <h2 class="sec-h2">आपकी मुख्य समस्या का <span>सटीक वैदिक समाधान</span></h2>
-    <p class="sec-p">शास्त्र-सम्मत वैदिक विद्या, प्रामाणिक अनुष्ठानों एवं ज्योतिष परामर्श द्वारा जीवन की हर समस्या का समाधान पाएँ।</p>
+  <!-- ═══════ CTA BUTTONS ═══════ -->
+  <div class="ctas">
+    <a href="booking.html" class="cta-p">
+      <span class="cta-ico">🙏</span> परामर्श बुक करें <span>›</span>
+    </a>
+    <a href="#about" class="cta-s">
+      <span class="cta-ico">✨</span> हमारे बारे में जानें <span>›</span>
+    </a>
   </div>
 
-  <!-- Interactive Filter Pills -->
-  <div class="filter-pills-row">
-    <button class="filter-pill active" onclick="filterCategory('all', this)">
-      <span>✦</span> सभी सेवाएँ (All)
-    </button>
-    <button class="filter-pill" onclick="filterCategory('marriage', this)">
-      <span>❤️</span> विवाह व प्रेम
-    </button>
-    <button class="filter-pill" onclick="filterCategory('career', this)">
-      <span>💼</span> करियर व नौकरी
-    </button>
-    <button class="filter-pill" onclick="filterCategory('vastu', this)">
-      <span>🏡</span> वास्तु व मकान
-    </button>
-    <button class="filter-pill" onclick="filterCategory('kundli', this)">
-      <span>🔮</span> जन्म कुंडली
-    </button>
-    <button class="filter-pill" onclick="filterCategory('remedies', this)">
-      <span>💎</span> रत्न व उपाय
-    </button>
-  </div>
-
-  <div class="solutions-grid" id="solutionsGrid">
-
-    <!-- Card 1: Marriage & Relationships (With Flower Rangoli Stock Image) -->
-    <div class="solution-card" data-cat="marriage">
-      <div class="sol-card-img">
-        <img src="flower_rangoli_mandala.jpg" alt="Marriage &amp; Relationship Remedies">
+  <!-- ═══════ SERVICES ═══════ -->
+  <section class="srv-sec" id="services-sec">
+    <div class="sec-header">
+      <div class="sec-ornament">
+        <div class="sec-ornament-line"></div>
+        <span class="sec-ornament-sym">✦</span>
+        <span class="sec-title">हमारी सेवाएँ</span>
+        <span class="sec-ornament-sym">✦</span>
+        <div class="sec-ornament-line r"></div>
       </div>
-      <div class="sol-card-body">
-        <div class="sol-card-header">
-          <div class="sol-icon-box">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
-          </div>
-          <span class="sol-category-badge">Marriage &amp; Love</span>
-        </div>
-        <h3 class="sol-h3">विवाह एवं प्रेम संबंध समाधान</h3>
-        <p class="sol-desc">विवाह में देरी, सही जीवनसाथी का चुनाव, मंगली दोष या दांपत्य जीवन के तनाव का प्रामाणिक समाधान।</p>
-        <ul class="sol-items-list">
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Kundli Matching (सटीक गुण मिलान)</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Marriage Delay Remedies (विवाह बाधा निवारण)</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Mangal Dosha Analysis &amp; Shanti</li>
-        </ul>
-        <a href="booking.html" class="btn-card-consult">परामर्श लें <span>›</span></a>
-      </div>
+      <div class="sec-sub">प्रामाणिक वैदिक ज्योतिष सेवाएँ</div>
     </div>
 
-    <!-- Card 2: Horoscope & Birth Chart (With Sanskrit Scripture Stock Image) -->
-    <div class="solution-card" data-cat="kundli">
-      <div class="sol-card-img">
-        <img src="sanskrit_manuscript.jpg" alt="Janam Kundli &amp; Vedic Scripture Reading">
-      </div>
-      <div class="sol-card-body">
-        <div class="sol-card-header">
-          <div class="sol-icon-box">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
-          </div>
-          <span class="sol-category-badge">Kundli &amp; Reading</span>
-        </div>
-        <h3 class="sol-h3">जन्म कुंडली एवं भविष्य विश्लेषण</h3>
-        <p class="sol-desc">आपकी जन्मपत्री का गहन अध्ययन कर महादशा व भावी जीवन की संपूर्ण शास्त्र-सम्मत जानकारी।</p>
-        <ul class="sol-items-list">
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Janam Kundli Creation &amp; Reading</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Annual Horoscope (वर्षफल विश्लेषण)</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Mahadasha &amp; Planetary Transit Reading</li>
-        </ul>
-        <a href="booking.html" class="btn-card-consult">परामर्श लें <span>›</span></a>
-      </div>
+    <div class="srv-grid">
+      <a href="booking.html" class="srv-card">
+        <div class="srv-card-ico">📅</div>
+        <div class="srv-card-name">जन्म कुंडली विश्लेषण</div>
+        <div class="srv-card-desc">अपने जीवन की विस्तृत जानकारी</div>
+        <div class="srv-card-arr">›</div>
+      </a>
+      <a href="booking.html" class="srv-card">
+        <div class="srv-card-ico">❤️</div>
+        <div class="srv-card-name">विवाह मिलान</div>
+        <div class="srv-card-desc">वैवाहिक जीवन की संपूर्ण जानकारी</div>
+        <div class="srv-card-arr">›</div>
+      </a>
+      <a href="booking.html" class="srv-card">
+        <div class="srv-card-ico">💼</div>
+        <div class="srv-card-name">कैरियर मार्गदर्शन</div>
+        <div class="srv-card-desc">सही करियर चुनने में मदद</div>
+        <div class="srv-card-arr">›</div>
+      </a>
+      <a href="booking.html" class="srv-card">
+        <div class="srv-card-ico">🏠</div>
+        <div class="srv-card-name">वास्तु शास्त्र</div>
+        <div class="srv-card-desc">घर में सुख-समृद्धि लाएं</div>
+        <div class="srv-card-arr">›</div>
+      </a>
+      <a href="booking.html" class="srv-card">
+        <div class="srv-card-ico">💎</div>
+        <div class="srv-card-name">रत्न परामर्श</div>
+        <div class="srv-card-desc">सही रत्न से जीवन बदलें</div>
+        <div class="srv-card-arr">›</div>
+      </a>
+      <a href="booking.html" class="srv-card">
+        <div class="srv-card-ico">🔮</div>
+        <div class="srv-card-name">वार्षिक भविष्यवाणी</div>
+        <div class="srv-card-desc">पूरे साल की झलक</div>
+        <div class="srv-card-arr">›</div>
+      </a>
     </div>
+  </section>
 
-    <!-- Card 3: Vedic Pujas & Rituals (With Trishul Temple Stock Image) -->
-    <div class="solution-card" data-cat="remedies">
-      <div class="sol-card-img">
-        <img src="vedic_trishul_temple.jpg" alt="Vedic Pujas &amp; Temple Rituals">
-      </div>
-      <div class="sol-card-body">
-        <div class="sol-card-header">
-          <div class="sol-icon-box">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
-          </div>
-          <span class="sol-category-badge">Pujas &amp; Rituals</span>
-        </div>
-        <h3 class="sol-h3">वैदिक पूजा, अनुष्ठान व यज्ञ</h3>
-        <p class="sol-desc">योग्य विद्वानों द्वारा वैदिक रीति से महामृत्युंजय जाप, रुद्राभिषेक एवं नवग्रह पूजा अनुष्ठान।</p>
-        <ul class="sol-items-list">
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Rudrabhishek &amp; Mahamrityunjaya Jaap</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Graha Shanti &amp; Navgraha Havan</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Mangal &amp; Kaal Sarp Dosh Shanti</li>
-        </ul>
-        <a href="booking.html" class="btn-card-consult">परामर्श लें <span>›</span></a>
-      </div>
-    </div>
-
-    <!-- Card 4: Vastu & Property (With Pooja Kalash Stock Image) -->
-    <div class="solution-card" data-cat="vastu">
-      <div class="sol-card-img">
-        <img src="vedic_pooja_kalash.jpg" alt="Home Vastu &amp; Property Guidance">
-      </div>
-      <div class="sol-card-body">
-        <div class="sol-card-header">
-          <div class="sol-icon-box">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
-          </div>
-          <span class="sol-category-badge">Vastu &amp; Property</span>
-        </div>
-        <h3 class="sol-h3">गृह, वास्तु एवं संपत्ति समाधान</h3>
-        <p class="sol-desc">घर और ऑफिस में सुख-समृद्धि हेतु बिना तोड़-फोड़ वास्तु उपाय एवं संपत्ति विवाद मार्गदर्शन।</p>
-        <ul class="sol-items-list">
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Home &amp; Office Vastu Remedies</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Plot &amp; Property Purchase Guidance</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Negative Energy Cleansing</li>
-        </ul>
-        <a href="booking.html" class="btn-card-consult">परामर्श लें <span>›</span></a>
-      </div>
-    </div>
-
-    <!-- Card 5: Career, Job & Business -->
-    <div class="solution-card" data-cat="career">
-      <div class="sol-card-body">
-        <div class="sol-card-header">
-          <div class="sol-icon-box">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
-          </div>
-          <span class="sol-category-badge">Career &amp; Business</span>
-        </div>
-        <h3 class="sol-h3">करियर, नौकरी एवं व्यापार</h3>
-        <p class="sol-desc">नौकरी में प्रमोशन, व्यापार में वृद्धि, नए करियर का चयन एवं आर्थिक संकट से मुक्ति।</p>
-        <ul class="sol-items-list">
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Job &amp; Promotion Opportunity Analysis</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Business Profit &amp; Expansion Guidance</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Foreign Job &amp; Visa Opportunity</li>
-        </ul>
-        <a href="booking.html" class="btn-card-consult">परामर्श लें <span>›</span></a>
-      </div>
-    </div>
-
-    <!-- Card 6: Authentic Remedies & Gemstones -->
-    <div class="solution-card" data-cat="remedies">
-      <div class="sol-card-body">
-        <div class="sol-card-header">
-          <div class="sol-icon-box">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 3h12l4 6-10 12L2 9z"/></svg>
-          </div>
-          <span class="sol-category-badge">Remedies &amp; Gemstones</span>
-        </div>
-        <h3 class="sol-h3">प्रामाणिक रत्न एवं वैदिक उपाय</h3>
-        <p class="sol-desc">आपकी कुंडली के सबसे अनुकूल रत्न, सिद्ध यंत्र एवं दोष निवारण की शास्त्रोक्त सलाह।</p>
-        <ul class="sol-items-list">
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Certified Gemstone Recommendation</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Kaal Sarp &amp; Pitru Dosha Remedies</li>
-          <li><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg> Customized Mantra &amp; Stotra Path</li>
-        </ul>
-        <a href="booking.html" class="btn-card-consult">परामर्श लें <span>›</span></a>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<!-- ══ CONSULTATION CHANNELS ══ -->
-<section class="consult-options-sec">
-  <div class="sec-hdr">
-    <div class="sec-tag">✦ CONVENIENT CONSULTATION ✦</div>
-    <h2 class="sec-h2">अपनी सुविधा अनुसार <span>परामर्श माध्यम चुनें</span></h2>
-    <p class="sec-p">आप भारत में हों या विदेश में — आचार्य जी से जुड़ना अत्यंत सरल एवं सुविधाजनक है।</p>
-  </div>
-
-  <div class="consult-grid">
-    <div class="consult-card">
-      <div class="consult-card-icon">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
-      </div>
-      <h4 class="consult-card-h">Phone Consultation</h4>
-      <p class="consult-card-p">सीधी फ़ोन कॉल पर आचार्य जी से अपनी कुंडली व समाधान चर्चा करें।</p>
-    </div>
-    <div class="consult-card">
-      <div class="consult-card-icon">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg>
-      </div>
-      <h4 class="consult-card-h">WhatsApp Guidance</h4>
-      <p class="consult-card-p">WhatsApp ऑडियो एवं चैट के माध्यम से त्वरित गोपनीय समाधान।</p>
-    </div>
-    <div class="consult-card">
-      <div class="consult-card-icon">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="23 7 16 12 23 17 23 7"/><rect x="1" y="5" width="15" height="14" rx="2" ry="2"/></svg>
-      </div>
-      <h4 class="consult-card-h">Video Session</h4>
-      <p class="consult-card-p">वीडियो कॉल पर आमने-सामने विस्तृत विश्लेषण एवं कुंडली दर्शन।</p>
-    </div>
-    <div class="consult-card">
-      <div class="consult-card-icon">
-        <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-      </div>
-      <h4 class="consult-card-h">Personal Meeting</h4>
-      <p class="consult-card-p">वैदिक ज्योतिष केंद्र पर उपस्थित होकर आचार्य जी से व्यक्तिगत भेंट।</p>
-    </div>
-  </div>
-</section>
-
-<!-- ══ PROCESS SECTION (3 SIMPLE STEPS) ══ -->
-<section class="process-sec">
-  <div class="sec-hdr">
-    <div class="sec-tag">✦ EASY PROCESS ✦</div>
-    <h2 class="sec-h2">केवल <span>3 आसान चरणों</span> में मार्गदर्शन पाएं</h2>
-  </div>
-
-  <div class="steps-wrapper">
-    <div class="step-box">
-      <div class="step-number">1</div>
-      <h4 class="step-title">विवरण साझा करें</h4>
-      <p class="step-desc">अपना नाम, जन्म तिथि, जन्म समय, जन्म स्थान एवं अपनी मुख्य समस्या दर्ज करें।</p>
-    </div>
-    <div class="step-box">
-      <div class="step-number">2</div>
-      <h4 class="step-title">गहन कुंडली विश्लेषण</h4>
-      <p class="step-desc">आचार्य अरविंद जी आपकी ग्रहों की स्थिति व दशाओं का व्यक्तिगत अध्ययन करते हैं।</p>
-    </div>
-    <div class="step-box">
-      <div class="step-number">3</div>
-      <h4 class="step-title">सटीक समाधान व मार्गदर्शन</h4>
-      <p class="step-desc">पसंद अनुसार फ़ोन, वीडियो या WhatsApp द्वारा 100% गोपनीय समाधान प्राप्त करें।</p>
-    </div>
-  </div>
-</section>
-
-<!-- ══ ABOUT ACHARYA ARVIND ══ -->
-<section id="about" class="sec-pad">
-  <div class="sec-hdr">
-    <div class="sec-tag">✦ हमारे बारे में ✦</div>
-    <h2 class="sec-h2">आचार्य अरविंद — <span>वैदिक ज्योतिष विशेषज्ञ</span></h2>
-    <p class="sec-p">15 से अधिक वर्षों की तपस्या और अध्ययन से प्राप्त ज्ञान से हजारों जीवन बदले हैं।</p>
-  </div>
-  <div class="about-grid">
-    <div class="about-img">
+  <!-- ═══════ ABOUT ═══════ -->
+  <div class="about-sec" id="about">
+    <div class="about-img-wrap">
       <img src="acharya-arvind-pro.png" alt="Acharya Arvind">
     </div>
-    <div class="about-content">
-      <span class="about-role">✦ Jyotish Acharya &amp; Vedic Scholar</span>
-      <h3>आचार्य अरविंद जी</h3>
-      <p>आचार्य अरविंद जी ने वैदिक ज्योतिष की शिक्षा अपने गुरुजनों से प्राप्त की और 15+ वर्षों में हजारों लोगों का मार्गदर्शन किया। उनका दृष्टिकोण शास्त्र-सम्मत और व्यावहारिक है।</p>
-      <p>भारत के विभिन्न राज्यों के साथ-साथ विदेश में भी उनके हजारों संतुष्ट ग्राहक हैं। उनकी विशेषता है — सटीकता, गोपनीयता और व्यक्तिगत दृष्टिकोण।</p>
+    <div class="about-body">
+      <span class="about-tag">✦ हमारे बारे में ✦</span>
+      <h2 class="about-h2">आचार्य अरविंद —<br><span>वैदिक ज्योतिष विशेषज्ञ</span></h2>
+      <p class="about-p">आचार्य अरविंद जी ने वैदिक ज्योतिष की शिक्षा अपने गुरुजनों से प्राप्त की और 15+ वर्षों में हजारों लोगों का जीवन बदला। उनका दृष्टिकोण शास्त्र-सम्मत और व्यावहारिक दोनों है।</p>
+      <p class="about-p">भारत के विभिन्न राज्यों के साथ-साथ विदेश में भी उनके हजारों संतुष्ट ग्राहक हैं।</p>
+      <div class="cred-grid">
+        <div class="cred-pill">🎓 M.A. ज्योतिष शास्त्र</div>
+        <div class="cred-pill">🏆 राष्ट्रीय पुरस्कार प्राप्त</div>
+        <div class="cred-pill">📺 TV पर आए</div>
+        <div class="cred-pill">🌍 अंतर्राष्ट्रीय अनुभव</div>
+      </div>
     </div>
   </div>
-</section>
 
-<!-- ══ REAL STORIES / TESTIMONIALS ══ -->
-<section id="testimonials">
-  <div class="sec-hdr">
-    <div class="sec-tag">✦ REAL REVIEWS ✦</div>
-    <h2 class="sec-h2">जिनकी जिंदगी में <span>परिवर्तन आया</span></h2>
-    <p class="sec-p">ये वही लोग हैं जो अपनी समस्याओं से परेशान थे — आज अपने जीवन में खुश और सफल हैं।</p>
-  </div>
+  <!-- ═══════ REVIEWS ═══════ -->
+  <section class="reviews-sec" id="reviews">
+    <div class="sec-header">
+      <div class="sec-ornament">
+        <div class="sec-ornament-line"></div>
+        <span class="sec-ornament-sym">✦</span>
+        <span class="sec-title">सफलता की कहानियाँ</span>
+        <span class="sec-ornament-sym">✦</span>
+        <div class="sec-ornament-line r"></div>
+      </div>
+      <div class="sec-sub">हमारे ग्राहकों के वास्तविक अनुभव</div>
+    </div>
 
-  <div class="testi-grid">
-    <div class="testi-card">
-      <span class="testi-tag">❤️ विवाह समस्या</span>
-      <div class="testi-stars">★★★★★</div>
-      <p class="testi-q">"32 साल तक विवाह में रुकावट आ रही थी। आचार्य जी ने कुंडली में मंगल और राहु दोष का सटीक उपाय बताया। 8 महीने के भीतर योग्य जीवनसाथी मिला।"</p>
-      <div class="testi-name">प्रिया शर्मा</div>
-      <div class="testi-city">नई दिल्ली</div>
+    <div class="rev-card">
+      <div class="rev-badge">❤️ विवाह समस्या</div>
+      <div class="rev-stars">★★★★★</div>
+      <p class="rev-q">"32 साल तक विवाह में रुकावट आ रही थी। आचार्य जी ने मंगल दोष निवारण का सटीक उपाय बताया। 8 महीने में योग्य साथी मिला।"</p>
+      <div class="rev-name">प्रिया शर्मा</div>
+      <div class="rev-city">नई दिल्ली</div>
     </div>
-    <div class="testi-card">
-      <span class="testi-tag">💼 करियर व नौकरी</span>
-      <div class="testi-stars">★★★★★</div>
-      <p class="testi-q">"3 साल से नौकरी में कोई पदोन्नति नहीं हो रही थी। आचार्य जी के मार्गदर्शन और बताए गए रत्न एवं मंत्र उपाय के 2 महीने बाद ही मुझे बड़ी कंपनी में अवसर मिला।"</p>
-      <div class="testi-name">राहुल गुप्ता</div>
-      <div class="testi-city">मुंबई</div>
+    <div class="rev-card">
+      <div class="rev-badge">💼 करियर</div>
+      <div class="rev-stars">★★★★★</div>
+      <p class="rev-q">"3 साल से नौकरी में पदोन्नति नहीं हो रही थी। आचार्य जी के बताए रत्न और मंत्र उपाय से 2 महीने में ही प्रमोशन हो गया।"</p>
+      <div class="rev-name">राहुल गुप्ता</div>
+      <div class="rev-city">मुंबई</div>
     </div>
-    <div class="testi-card">
-      <span class="testi-tag">🏡 व्यापार व वास्तु</span>
-      <div class="testi-stars">★★★★★</div>
-      <p class="testi-q">"दुकान में लगातार घाटा हो रहा था। आचार्य जी ने वास्तु दोष और ग्रह दशा का कारण बताकर बिना किसी तोड़ा-फोड़ी के वास्तु उपाय कराए। 4 महीने में व्यापार पटरी पर आ गया।"</p>
-      <div class="testi-name">सुरेश वर्मा</div>
-      <div class="testi-city">जयपुर</div>
+    <div class="rev-card">
+      <div class="rev-badge">🏠 वास्तु</div>
+      <div class="rev-stars">★★★★★</div>
+      <p class="rev-q">"घर में बरसों से कलह थी। वास्तु सुधार के बाद सिर्फ 3 महीने में घर का माहौल बिल्कुल बदल गया।"</p>
+      <div class="rev-name">सुनीता देवी</div>
+      <div class="rev-city">जयपुर</div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ══ FAQ SECTION ══ -->
-<section class="faq-sec">
-  <div class="sec-hdr">
-    <div class="sec-tag">✦ FREQUENTLY ASKED QUESTIONS ✦</div>
-    <h2 class="sec-h2">आपके मन में उठने वाले <span>सामान्य सवाल</span></h2>
-  </div>
-
-  <div class="faq-wrap">
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">क्या ज्योतिष सच में काम करता है?</div>
-      <div class="faq-a" style="display:block">वैदिक ज्योतिष हजारों साल पुरानी शास्त्र-सम्मत विद्या है। यह आपके ग्रहों की स्थिति के आधार पर आपके जीवन के पैटर्न और संभावनाओं को समझने में मदद करती है। 5000+ संतुष्ट ग्राहक इसका प्रमाण हैं।</div>
-    </div>
-    <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">पहला परामर्श वाकई में मुफ्त है?</div>
-      <div class="faq-a">हाँ, बिल्कुल। पहली बातचीत में आचार्य जी आपकी समस्या समझेंगे और कुंडली की प्रारंभिक जानकारी देंगे। कोई छिपा शुल्क नहीं, कोई दबाव नहीं।</div>
+  <!-- ═══════ FAQ ═══════ -->
+  <section class="faq-sec" id="faq">
+    <div class="sec-header">
+      <span class="sec-title">अक्सर पूछे जाने वाले सवाल</span>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">क्या मेरी जानकारी गोपनीय रहेगी?</div>
-      <div class="faq-a">बिल्कुल। आपकी हर बात पूरी तरह गोपनीय है। हम कभी भी आपकी व्यक्तिगत जानकारी किसी तीसरे व्यक्ति से साझा नहीं करते।</div>
+      <div class="faq-q" onclick="toggleFaq(this)">
+        क्या ज्योतिष सच में काम करता है?
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a open">वैदिक ज्योतिष एक शास्त्र-सम्मत विद्या है। आपके ग्रहों की स्थिति के आधार पर सटीक मार्गदर्शन और उपाय दिए जाते हैं।</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">परामर्श के लिए क्या जानकारी चाहिए?</div>
-      <div class="faq-a">बस तीन चीजें चाहिए — जन्म तिथि, जन्म का सही समय (यदि पता हो), और जन्म स्थान।</div>
+      <div class="faq-q" onclick="toggleFaq(this)">
+        क्या मेरी जानकारी गोपनीय रहेगी?
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">हाँ, बिल्कुल। आपकी व्यक्तिगत जानकारी और परामर्श पूरी तरह गोपनीय रखे जाते हैं। यह हमारी नीति है।</div>
     </div>
     <div class="faq-item">
-      <div class="faq-q" onclick="toggleFaq(this)">क्या ऑनलाइन परामर्श उतना ही असरदार है?</div>
-      <div class="faq-a">हाँ, बिल्कुल। ज्योतिष विद्या कुंडली पर आधारित है, न कि भौतिक उपस्थिति पर। फोन या वीडियो कॉल पर दिया गया परामर्श उतना ही सटीक और प्रभावी होता है।</div>
+      <div class="faq-q" onclick="toggleFaq(this)">
+        परामर्श कैसे लें — फोन या मिलकर?
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">दोनों तरह से परामर्श उपलब्ध है — फोन/वीडियो कॉल या व्यक्तिगत मुलाकात। बुकिंग फॉर्म भरें और हम आपसे संपर्क करेंगे।</div>
     </div>
-  </div>
-</section>
+    <div class="faq-item">
+      <div class="faq-q" onclick="toggleFaq(this)">
+        पहला परामर्श मुफ्त है?
+        <span class="faq-toggle">+</span>
+      </div>
+      <div class="faq-a">हाँ! पहली बातचीत में आचार्य जी आपकी समस्या समझेंगे। कोई छिपा शुल्क नहीं — पूरी पारदर्शिता।</div>
+    </div>
+  </section>
 
-<!-- ══ CONVERSION FORM ══ -->
-<section id="contact">
-  <div class="sec-hdr">
-    <div class="sec-tag">✦ GET STARTED ✦</div>
-    <h2 class="sec-h2">अपनी समस्या दर्ज करें — <span>निःशुल्क परामर्श पाएं</span></h2>
-    <p class="sec-p">फॉर्म भरें, आपको स्वतः कॉल शेड्यूल पेज पर रीडायरेक्ट कर दिया जाएगा।</p>
-  </div>
-
-  <div class="contact-wrap">
-    <div class="form-box">
-      <div class="form-box-h">निःशुल्क परामर्श हेतु विवरण भरें</div>
-      <span class="form-box-sub">आपकी जानकारी 100% सुरक्षित एवं गोपनीय रहेगी</span>
+  <!-- ═══════ CONTACT ═══════ -->
+  <section class="contact-sec" id="contact">
+    <div class="sec-header" style="margin-bottom:18px">
+      <div class="sec-ornament">
+        <div class="sec-ornament-line"></div>
+        <span class="sec-ornament-sym">✦</span>
+        <span class="sec-title">परामर्श पाएं</span>
+        <span class="sec-ornament-sym">✦</span>
+        <div class="sec-ornament-line r"></div>
+      </div>
+      <div class="sec-sub">निःशुल्क पहला परामर्श — अभी शुरू करें</div>
+    </div>
+    <div class="form-card">
+      <div class="form-hd">अपनी जानकारी भरें</div>
+      <span class="form-sub">100% गोपनीय एवं सुरक्षित</span>
       <form id="cForm">
-        <div class="form-row">
+        <div class="fg-row">
           <div class="fg">
-            <label for="fn">पूरा नाम (Full Name) *</label>
+            <label>पूरा नाम *</label>
             <input type="text" id="fn" placeholder="आपका नाम" required>
           </div>
           <div class="fg">
-            <label for="fp">WhatsApp / फोन नंबर *</label>
+            <label>फोन / WhatsApp *</label>
             <input type="tel" id="fp" placeholder="+91 XXXXXXXXXX" required>
           </div>
         </div>
-        <div class="form-row">
+        <div class="fg-row">
           <div class="fg">
-            <label for="fd">जन्म तिथि *</label>
+            <label>जन्म तिथि *</label>
             <input type="date" id="fd" required>
           </div>
           <div class="fg">
-            <label for="fpl">जन्म स्थान</label>
-            <input type="text" id="fpl" placeholder="जैसे: दिल्ली, मुंबई...">
+            <label>जन्म स्थान</label>
+            <input type="text" id="fpl" placeholder="शहर">
           </div>
         </div>
         <div class="fg">
-          <label for="fprob">मुख्य समस्या का क्षेत्र चुनें *</label>
+          <label>मुख्य समस्या *</label>
           <select id="fprob" required>
-            <option value="">अपनी समस्या का चयन करें</option>
-            <option>विवाह एवं प्रेम संबंध (Marriage &amp; Relationships)</option>
-            <option>करियर, नौकरी एवं व्यापार (Career &amp; Business)</option>
-            <option>गृह, वास्तु एवं संपत्ति (Vastu &amp; Property)</option>
-            <option>परिवार, संतान एवं स्वास्थ्य (Family &amp; Health)</option>
-            <option>जन्म कुंडली एवं भविष्य विश्लेषण (Horoscope)</option>
-            <option>हस्तरेखा एवं अंकशास्त्र (Palmistry &amp; Numerology)</option>
-            <option>रत्न एवं वैदिक उपाय (Remedies &amp; Gemstones)</option>
-            <option>वैदिक पूजा एवं अनुष्ठान (Pujas &amp; Rituals)</option>
+            <option value="">समस्या का चयन करें</option>
+            <option>विवाह एवं प्रेम संबंध</option>
+            <option>करियर, नौकरी एवं व्यापार</option>
+            <option>गृह, वास्तु एवं संपत्ति</option>
+            <option>जन्म कुंडली एवं भविष्य</option>
+            <option>रत्न एवं वैदिक उपाय</option>
+            <option>स्वास्थ्य समस्या</option>
             <option>अन्य समस्या</option>
           </select>
         </div>
-        <div class="fg">
-          <label for="fm">अपनी समस्या संक्षेप में बताएं (वैकल्पिक)</label>
-          <textarea id="fm" rows="3" placeholder="आप क्या जानना चाहते हैं..."></textarea>
-        </div>
-        <button type="submit" class="btn-submit" id="submitBtn">🔮 निःशुल्क परामर्श हेतु आगे बढ़ें &amp; कॉल शेड्यूल करें</button>
+        <button type="submit" class="btn-form">🔮 निःशुल्क परामर्श हेतु आगे बढ़ें</button>
       </form>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ══ MOBILE TRUST BANNER (fixed bottom bar — visible only on mobile) ══ -->
-<div class="mob-trust-bar" style="display:none" id="mobTrustBar">
-  <div class="mob-trust-om">ॐ</div>
-  <div class="mob-trust-text">
-    <span class="mob-trust-title">जीवन के हर प्रश्न का सही समाधान</span>
-    <span class="mob-trust-pills">विश्वसनीय मार्गदर्शन • गोपनीयता की गारंटी • वैदिक विधि</span>
+  <!-- ═══════ FOOTER ═══════ -->
+  <footer>
+    <div class="f-om">ॐ</div>
+    <div class="f-name">भारतीय वैदिक ज्योतिष केंद्र</div>
+    <div class="f-links">
+      <a href="#home">होम</a>
+      <a href="#services-sec">सेवाएँ</a>
+      <a href="#about">बारे में</a>
+      <a href="#contact">संपर्क</a>
+    </div>
+    <div class="f-copy">© 2024 Acharya Arvind | Bharatiya Vedic Jyotish Kendra</div>
+  </footer>
+
+</div><!-- /.app -->
+
+<!-- ═══════ FIXED TRUST BAR ═══════ -->
+<div class="trust-bar">
+  <div class="tb-om">ॐ</div>
+  <div class="tb-text">
+    <span class="tb-main">जीवन के हर प्रश्न का सही समाधान</span>
+    <span class="tb-sub">विश्वसनीय मार्गदर्शन • गोपनीयता की गारंटी • वैदिक विधि</span>
   </div>
+  <a href="tel:+919999999999" class="tb-call">📞 Call</a>
 </div>
 
-<!-- ══ FOOTER ══ -->
-<footer>
-  <div class="f-logo">ॐ भारतीय वैदिक ज्योतिष केंद्र</div>
-  <p>© 2024 Acharya Arvind | Bharatiya Vedic Jyotish Kendra | All Rights Reserved</p>
-</footer>
-
-<!-- Official WhatsApp Floating FAB Button -->
-<a href="https://wa.me/919876543210" class="chat-fab" target="_blank" rel="noopener" title="WhatsApp Chat">
-  <svg width="34" height="34" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.461c-1.78 0-3.525-.479-5.057-1.386l-.363-.215-3.76.986.998-3.666-.236-.375c-.996-1.584-1.524-3.419-1.524-5.304 0-5.423 4.412-9.835 9.837-9.835 2.628 0 5.097 1.023 6.953 2.88 1.857 1.856 2.88 4.326 2.879 6.954-.001 5.424-4.413 9.837-9.837 9.837m0-18.421c-4.73 0-8.577 3.846-8.577 8.584 0 1.688.49 3.328 1.418 4.743l.217.334-.932 3.421 3.501-.918.327.194c1.373.815 2.946 1.246 4.545 1.246 4.732 0 8.578-3.846 8.578-8.584 0-2.292-.893-4.447-2.518-6.071-1.625-1.624-3.78-2.517-6.069-2.517z"/></svg>
-</a>
-
 <script>
-var hbg = document.getElementById('hbg'), mob = document.getElementById('mobNav');
-if(hbg){ hbg.addEventListener('click', function(){ mob.classList.toggle('open'); }); }
+/* ── Hamburger Drawer ── */
+var drawer  = document.getElementById('drawerEl');
+var overlay = document.getElementById('overlay');
 
-function toggleFaq(el) {
+document.getElementById('hbgBtn').addEventListener('click', function(){
+  drawer.classList.add('on');
+  overlay.classList.add('on');
+  document.body.style.overflow = 'hidden';
+});
+function closeDrawer(){
+  drawer.classList.remove('on');
+  overlay.classList.remove('on');
+  document.body.style.overflow = '';
+}
+
+/* ── FAQ toggle ── */
+function toggleFaq(el){
   var ans = el.nextElementSibling;
-  if(ans.style.display === 'block') {
-    ans.style.display = 'none';
-  } else {
-    ans.style.display = 'block';
+  var tog = el.querySelector('.faq-toggle');
+  var open = ans.classList.contains('open');
+  /* close all */
+  document.querySelectorAll('.faq-a').forEach(function(a){ a.classList.remove('open') });
+  document.querySelectorAll('.faq-toggle').forEach(function(t){ t.textContent='+'; t.style.transform='' });
+  if(!open){
+    ans.classList.add('open');
+    tog.textContent = '−';
+    tog.style.transform = 'rotate(180deg)';
   }
 }
 
-function filterCategory(cat, btn) {
-  document.querySelectorAll('.filter-pill').forEach(function(p){ p.classList.remove('active'); });
-  btn.classList.add('active');
-  var cards = document.querySelectorAll('.solution-card');
-  cards.forEach(function(card){
-    if(cat === 'all' || card.getAttribute('data-cat') === cat) {
-      card.style.display = 'flex';
-    } else {
-      card.style.display = 'none';
-    }
-  });
-}
-
+/* ── Form Submit ── */
 document.getElementById('cForm').addEventListener('submit', function(e){
   e.preventDefault();
-  var s = JSON.parse(localStorage.getItem('vedic_leads') || '[]');
-  s.push({ date: new Date().toLocaleString(), name: document.getElementById('fn').value, phone: document.getElementById('fp').value, dob: document.getElementById('fd').value, place: document.getElementById('fpl').value, problem: document.getElementById('fprob').value, message: document.getElementById('fm').value });
-  localStorage.setItem('vedic_leads', JSON.stringify(s));
+  var leads = JSON.parse(localStorage.getItem('vedic_leads')||'[]');
+  leads.push({
+    date:    new Date().toLocaleString(),
+    name:    document.getElementById('fn').value,
+    phone:   document.getElementById('fp').value,
+    dob:     document.getElementById('fd').value,
+    place:   document.getElementById('fpl').value,
+    problem: document.getElementById('fprob').value
+  });
+  localStorage.setItem('vedic_leads', JSON.stringify(leads));
   window.location.href = 'booking.html';
 });
 
-// Show mobile trust banner only on mobile
-function handleMobTrust() {
-  var bar = document.getElementById('mobTrustBar');
-  if (!bar) return;
-  if (window.innerWidth <= 768) {
-    bar.style.display = 'flex';
-    document.body.style.paddingBottom = '58px';
-  } else {
-    bar.style.display = 'none';
-    document.body.style.paddingBottom = '';
-  }
+/* ── Simple scroll-reveal for sections ── */
+if('IntersectionObserver' in window){
+  var io = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        e.target.style.opacity = '1';
+        e.target.style.transform = 'translateY(0)';
+        io.unobserve(e.target);
+      }
+    });
+  },{threshold:0.1});
+  document.querySelectorAll('.about-sec,.reviews-sec,.faq-sec,.contact-sec').forEach(function(el){
+    el.style.opacity = '0';
+    el.style.transform = 'translateY(20px)';
+    el.style.transition = 'opacity .55s ease, transform .55s ease';
+    io.observe(el);
+  });
 }
-handleMobTrust();
-window.addEventListener('resize', handleMobTrust);
 </script>
 </body>
 </html>
