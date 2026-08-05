@@ -100,11 +100,14 @@ a { text-decoration:none; color:inherit }
 .btn-direct-phone:hover { background:var(--maroon-dark) }
 
 .btn-direct-wa {
-  background:#25D366; color:#FFF; padding:12px 16px; border-radius:12px;
-  display:flex; align-items:center; justify-content:center; gap:10px; font-family:var(--fh); font-size:.82rem; font-weight:700;
-  box-shadow:0 4px 14px rgba(37, 211, 102, 0.15); transition:var(--tr);
+  background:#25D366; color:#FFF; padding:13px 16px; border-radius:12px;
+  display:flex; align-items:center; justify-content:center; gap:10px;
+  font-family:var(--fe); font-size:.88rem; font-weight:700; letter-spacing:.2px;
+  box-shadow:0 4px 18px rgba(37, 211, 102, 0.3); transition:var(--tr);
 }
-.btn-direct-wa:hover { background:#1EBE5D; }
+.btn-direct-wa:hover { background:#1EBE5D; transform:translateY(-1px); }
+.btn-direct-wa:active { transform:scale(.98); }
+.btn-direct-wa .wa-icon { width:22px; height:22px; fill:#fff; flex-shrink:0; }
 
 .trust-pills { display:grid; grid-template-columns:1fr 1fr; gap:6px; background:var(--bg-cream); padding:8px 12px; border-radius:12px; border:1px solid var(--border-light) }
 .trust-item { display:flex; align-items:center; gap:6px; font-family:var(--fh); font-size:.68rem; font-weight:700; color:var(--text-dark) }
@@ -156,12 +159,17 @@ a { text-decoration:none; color:inherit }
 /* Floating WhatsApp FAB */
 .chat-fab {
   position:fixed; bottom:20px; right:20px;
-  width:48px; height:48px; background:#25D366; border-radius:50%;
-  display:flex; align-items:center; justify-content:center;
-  color:#FFF; box-shadow:0 4px 20px rgba(37, 211, 102, 0.4);
+  background:#25D366; border-radius:50px;
+  display:flex; align-items:center; justify-content:center; gap:8px;
+  color:#FFF; box-shadow:0 4px 24px rgba(37, 211, 102, 0.45);
   z-index:999; transition:var(--tr);
+  padding:11px 16px 11px 13px;
+  font-family:var(--fe); font-size:.78rem; font-weight:700;
+  white-space:nowrap; text-decoration:none;
 }
-.chat-fab:hover { transform:scale(1.08) }
+.chat-fab:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(37, 211, 102, 0.5); }
+.chat-fab:active { transform:scale(.97); }
+.chat-fab .wa-icon { width:20px; height:20px; fill:#fff; flex-shrink:0; }
 </style>
 </head>
 <body>
@@ -192,7 +200,8 @@ a { text-decoration:none; color:inherit }
           📞 अभी सीधी कॉल करें
         </a>
         <a href="https://wa.me/919876543210" target="_blank" rel="noopener" class="btn-direct-wa">
-          💬 व्हाट्सएप पर अभी बात करें
+          <svg class="wa-icon" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.461c-1.78 0-3.525-.479-5.057-1.386l-.363-.215-3.76.986.998-3.666-.236-.375c-.996-1.584-1.524-3.419-1.524-5.304 0-5.423 4.412-9.835 9.837-9.835 2.628 0 5.097 1.023 6.953 2.88 1.857 1.856 2.88 4.326 2.879 6.954-.001 5.424-4.413 9.837-9.837 9.837m0-18.421c-4.73 0-8.577 3.846-8.577 8.584 0 1.688.49 3.328 1.418 4.743l.217.334-.932 3.421 3.501-.918.327.194c1.373.815 2.946 1.246 4.545 1.246 4.732 0 8.578-3.846 8.578-8.584 0-2.292-.893-4.447-2.518-6.071-1.625-1.624-3.78-2.517-6.069-2.517z"/></svg>
+          Chat on WhatsApp
         </a>
       </div>
 
@@ -270,8 +279,9 @@ a { text-decoration:none; color:inherit }
 </div>
 
 <!-- Floating WhatsApp FAB -->
-<a href="https://wa.me/919876543210" class="chat-fab" target="_blank" rel="noopener" title="WhatsApp Chat">
-  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.461c-1.78 0-3.525-.479-5.057-1.386l-.363-.215-3.76.986.998-3.666-.236-.375c-.996-1.584-1.524-3.419-1.524-5.304 0-5.423 4.412-9.835 9.837-9.835 2.628 0 5.097 1.023 6.953 2.88 1.857 1.856 2.88 4.326 2.879 6.954-.001 5.424-4.413 9.837-9.837 9.837m0-18.421c-4.73 0-8.577 3.846-8.577 8.584 0 1.688.49 3.328 1.418 4.743l.217.334-.932 3.421 3.501-.918.327.194c1.373.815 2.946 1.246 4.545 1.246 4.732 0 8.578-3.846 8.578-8.584 0-2.292-.893-4.447-2.518-6.071-1.625-1.624-3.78-2.517-6.069-2.517z"/></svg>
+<a href="https://wa.me/919876543210" class="chat-fab" target="_blank" rel="noopener" title="Chat on WhatsApp">
+  <svg class="wa-icon" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.461c-1.78 0-3.525-.479-5.057-1.386l-.363-.215-3.76.986.998-3.666-.236-.375c-.996-1.584-1.524-3.419-1.524-5.304 0-5.423 4.412-9.835 9.837-9.835 2.628 0 5.097 1.023 6.953 2.88 1.857 1.856 2.88 4.326 2.879 6.954-.001 5.424-4.413 9.837-9.837 9.837m0-18.421c-4.73 0-8.577 3.846-8.577 8.584 0 1.688.49 3.328 1.418 4.743l.217.334-.932 3.421 3.501-.918.327.194c1.373.815 2.946 1.246 4.545 1.246 4.732 0 8.578-3.846 8.578-8.584 0-2.292-.893-4.447-2.518-6.071-1.625-1.624-3.78-2.517-6.069-2.517z"/></svg>
+  WhatsApp
 </a>
 
 <script>
