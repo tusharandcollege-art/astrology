@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<!-- admin.html - Admin Panel with link to visual editor -->
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -361,6 +362,12 @@ input,textarea,select{font-family:'Inter',sans-serif}
       <button class="sb-link" onclick="showPanel('bookings',this)" id="bookingsNavBtn">
         <span class="sb-ico">📅</span> Bookings
         <span class="sb-badge" id="bookingsCount">0</span>
+      </button>
+
+      <div class="sb-section">Visual Editing</div>
+      <button class="sb-link" style="background:linear-gradient(135deg,rgba(139,26,26,.25),transparent);border:1px solid rgba(139,26,26,.3);color:#E4B84D" onclick="window.open('editor.html','_blank')">
+        <span class="sb-ico">🎨</span> Visual Editor
+        <span style="margin-left:auto;font-size:.58rem;background:var(--maroon);color:#fff;padding:2px 7px;border-radius:4px">NEW</span>
       </button>
 
       <div class="sb-section">Settings</div>

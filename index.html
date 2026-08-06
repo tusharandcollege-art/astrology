@@ -984,6 +984,26 @@ document.getElementById('cForm').addEventListener('submit',function(e){
     });
   }
 })();
+
+/* ── VISUAL EDITOR CHANGES LOADER ── */
+(function(){
+  var stored = JSON.parse(localStorage.getItem('vedic_visual_edits') || '{}');
+  var pageChanges = stored['index.html'] || {};
+  Object.keys(pageChanges).forEach(function(eid){
+    try {
+      var el = document.querySelector('[data-eid="'+eid+'"]');
+      if(!el) return;
+      var ch = pageChanges[eid];
+      if(ch.text !== undefined && ch.text !== '') el.innerText = ch.text;
+      if(ch.style){
+        Object.keys(ch.style).forEach(function(prop){
+          if(ch.style[prop] !== undefined) el.style[prop] = ch.style[prop];
+        });
+      }
+    } catch(e){}
+  });
+})();
 </script>
 </body>
 </html>
+
