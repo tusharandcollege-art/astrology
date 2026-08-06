@@ -60,6 +60,113 @@ body{
 }
 
 /* ══════════════════════
+   DESKTOP OVERRIDES  (≥769px)
+══════════════════════ */
+@media(min-width:769px){
+  body{background:var(--cream);display:block}
+
+  .app{
+    max-width:100%;width:100%;
+    box-shadow:none;
+    padding-bottom:0;
+  }
+
+  /* Nav — full width desktop */
+  .nav{
+    height:72px;padding:0 48px;
+  }
+  .logo-hi{font-size:1rem}
+  .logo-en{font-size:.5rem}
+  .nav-book{font-size:.7rem;padding:10px 22px}
+  /* hide hamburger on desktop */
+  .hbg{display:none}
+
+  /* Hero — 2 column, full width */
+  .hero{
+    padding:60px 80px 50px;
+    display:grid;
+    grid-template-columns:1fr 420px;
+    align-items:center;
+    gap:40px;
+    min-height:88vh;
+  }
+  .hero-row{
+    grid-template-columns:1fr;
+    display:block;
+  }
+  .h1-a,.h1-b{font-size:3.2rem}
+  .hero-quote{font-size:1.15rem}
+  .hero-sub{font-size:.88rem}
+  .hero-label{font-size:.7rem}
+  .badge{font-size:.82rem;padding:8px 18px}
+  .portrait-col{justify-content:flex-end}
+  .portrait{width:340px;height:420px}
+  .p-om{width:58px;height:58px;font-size:1.6rem;bottom:-20px}
+
+  /* Stats — wider */
+  .stats{
+    margin:28px 80px 0;
+    border-radius:24px;
+  }
+  .stat{padding:20px 10px 18px}
+  .stat-val{font-size:1.4rem}
+  .stat-lbl{font-size:.68rem}
+
+  /* CTAs */
+  .ctas{
+    padding:20px 80px 0;
+    grid-template-columns:220px 220px;
+    justify-content:start;
+    gap:14px;
+  }
+
+  /* Services — 3-col on desktop */
+  .srv-sec{padding:60px 80px 50px}
+  .srv-grid{grid-template-columns:repeat(3,1fr);gap:18px}
+  .srv-card{padding:24px 20px 20px}
+  .srv-icon{width:52px;height:52px;font-size:1.5rem}
+  .srv-name{font-size:.95rem}
+  .srv-desc{font-size:.78rem}
+
+  /* About — side by side */
+  .about-sec{padding:0 80px 60px}
+  .about-inner{grid-template-columns:200px 1fr}
+  .about-img-col{min-height:260px}
+  .about-name{font-size:1.25rem}
+  .about-p{font-size:.82rem}
+
+  /* Reviews */
+  .reviews-sec{padding:60px 80px}
+  .rev-card{min-width:320px;max-width:320px}
+
+  /* FAQ */
+  .faq-sec{padding:60px 80px}
+
+  /* Contact form */
+  .contact-sec{padding:60px 80px}
+  .form-card{max-width:700px;margin:0 auto}
+
+  /* Footer */
+  footer{padding:40px 80px 32px}
+
+  /* Trust bar — full width */
+  .trust-bar{
+    left:0;right:0;transform:none;
+    width:100%;
+    padding:14px 80px;
+  }
+
+  /* FAB position */
+  .fab{
+    right:40px;
+  }
+
+  /* Section headers — bigger on desktop */
+  .sec-h2{font-size:1.55rem}
+  .sec-tag{font-size:.65rem}
+}
+
+/* ══════════════════════
    NAV
 ══════════════════════ */
 .nav{
