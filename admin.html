@@ -1,339 +1,966 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>भारतीय वैदिक ज्योतिष केंद्र | Admin Dashboard</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700;800&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --bg:         #FBF4EC;
-            --bg-dark:    #F2EADB;
-            --white:      #FFFFFF;
-            --maroon:     #7B1D1D;
-            --maroon-dk:  #4D0C0C;
-            --gold:       #C08B2A;
-            --gold-lt:    #D8A94A;
-            --text-dk:    #1C0B00;
-            --text-lt:    #7A5535;
-            --border:     #E8D7B8;
-            --border-lt:  #F2E5CE;
-            --sh-sm: 0 4px 18px rgba(90,20,0,.04);
-            --sh-md: 0 10px 35px rgba(90,20,0,.07);
-            --sh-lg: 0 20px 55px rgba(90,20,0,.11);
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Panel | Bharatiya Vedic Jyotish Kendra</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+/* ─── RESET & TOKENS ─── */
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --bg:     #0F0F13;
+  --panel:  #17171D;
+  --card:   #1E1E27;
+  --card2:  #252530;
+  --border: rgba(255,255,255,.07);
+  --maroon: #8B1A1A;
+  --maroon-l:#A52020;
+  --gold:   #C9980A;
+  --gold-l: #E4B84D;
+  --green:  #10B981;
+  --red:    #EF4444;
+  --blue:   #6366F1;
+  --t1:     #F0F0F5;
+  --t2:     #9090A8;
+  --t3:     #55556A;
+  --r:      all .2s ease;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1);min-height:100vh}
+a{text-decoration:none;color:inherit}
+input,textarea,select{font-family:'Inter',sans-serif}
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--bg);
-            color: var(--text-dk);
-            min-height: 100vh;
-            display: flex;
-        }
+/* ─── LOGIN SCREEN ─── */
+#loginScreen{
+  display:flex;align-items:center;justify-content:center;
+  min-height:100vh;padding:20px;
+  background:radial-gradient(ellipse at top,#1A0A0A 0%,#0F0F13 60%);
+}
+.login-box{
+  background:var(--panel);border:1px solid var(--border);
+  border-radius:24px;padding:40px 36px;width:100%;max-width:400px;
+  box-shadow:0 24px 80px rgba(0,0,0,.5);
+}
+.login-logo{text-align:center;margin-bottom:30px}
+.login-om{
+  width:64px;height:64px;border-radius:18px;
+  background:linear-gradient(135deg,var(--maroon),#5C0E0E);
+  display:inline-flex;align-items:center;justify-content:center;
+  font-size:1.8rem;color:var(--gold-l);
+  box-shadow:0 8px 24px rgba(139,26,26,.4);margin-bottom:14px;
+}
+.login-title{font-size:1.25rem;font-weight:700;color:var(--t1);margin-bottom:4px}
+.login-sub{font-size:.78rem;color:var(--t3);letter-spacing:.3px}
+.login-form{display:flex;flex-direction:column;gap:14px}
+.lf-label{font-size:.72rem;font-weight:600;color:var(--t2);text-transform:uppercase;letter-spacing:.8px;margin-bottom:5px;display:block}
+.lf-input{
+  width:100%;background:var(--card);border:1.5px solid var(--border);border-radius:11px;
+  padding:12px 14px;font-size:.88rem;color:var(--t1);outline:none;
+  transition:var(--r);
+}
+.lf-input:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,152,10,.12)}
+.lf-input::placeholder{color:var(--t3)}
+.login-btn{
+  background:linear-gradient(135deg,var(--maroon),#5C0E0E);
+  color:#fff;border:none;border-radius:11px;padding:13px;
+  font-size:.9rem;font-weight:700;cursor:pointer;
+  box-shadow:0 6px 20px rgba(139,26,26,.35);transition:var(--r);
+  margin-top:4px;
+}
+.login-btn:hover{transform:translateY(-1px);box-shadow:0 8px 28px rgba(139,26,26,.45)}
+.login-btn:active{transform:scale(.98)}
+.login-err{
+  background:rgba(239,68,68,.1);border:1px solid rgba(239,68,68,.25);
+  border-radius:10px;padding:10px 14px;
+  font-size:.8rem;color:#FCA5A5;display:none;text-align:center;
+}
+.login-err.show{display:block}
+.login-creds{
+  background:rgba(201,152,10,.08);border:1px solid rgba(201,152,10,.2);
+  border-radius:10px;padding:12px 14px;margin-top:4px;
+}
+.login-creds p{font-size:.75rem;color:var(--gold-l);line-height:1.7}
+.login-creds strong{color:var(--t1)}
 
-        /* Sidebar Navigation */
-        .sidebar {
-            width: 260px;
-            background: var(--maroon-dk);
-            color: #fff;
-            padding: 30px 20px;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-            box-shadow: 4px 0 25px rgba(0,0,0,0.1);
-        }
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            text-decoration: none;
-            color: #fff;
-        }
-        .logo-om {
-            font-family: 'Inter', sans-serif;
-            font-size: 2.2rem;
-            color: var(--gold-lt);
-            font-weight: 700;
-        }
-        .logo-text h1 {
-            font-size: 0.85rem;
-            letter-spacing: 0.5px;
-            color: var(--gold-lt);
-            font-weight: 700;
-        }
-        .logo-text p {
-            font-size: 0.52rem;
-            color: rgba(255,255,255,0.6);
-            letter-spacing: 1.5px;
-        }
-        .nav-menu {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
-            list-style: none;
-        }
-        .nav-item a {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 16px;
-            color: rgba(255,255,255,0.7);
-            text-decoration: none;
-            font-size: 0.88rem;
-            font-weight: 500;
-            border-radius: 6px;
-            transition: all 0.3s;
-        }
-        .nav-item.active a, .nav-item a:hover {
-            background: rgba(255,255,255,0.1);
-            color: #fff;
-        }
+/* ─── DASHBOARD ─── */
+#dashboard{display:none}
 
-        /* Main Content Panel */
-        .main-panel {
-            flex: 1;
-            padding: 40px;
-            display: flex;
-            flex-direction: column;
-            gap: 30px;
-            overflow-y: auto;
-        }
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 1px solid var(--border);
-            padding-bottom: 20px;
-        }
-        .header h2 {
-            font-family: 'Cinzel', serif;
-            font-size: 1.6rem;
-            color: var(--maroon);
-            font-weight: 700;
-        }
-        .btn-action {
-            background: var(--gold);
-            color: #fff;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 6px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            cursor: pointer;
-            text-decoration: none;
-            transition: all 0.3s;
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .btn-action:hover {
-            background: var(--maroon);
-            transform: translateY(-1.5px);
-        }
+/* Sidebar */
+.sidebar{
+  position:fixed;top:0;left:0;bottom:0;width:240px;
+  background:var(--panel);border-right:1px solid var(--border);
+  display:flex;flex-direction:column;z-index:100;
+  transition:var(--r);
+}
+.sb-logo{
+  padding:22px 20px 18px;
+  border-bottom:1px solid var(--border);
+}
+.sb-brand{display:flex;align-items:center;gap:10px}
+.sb-om{
+  width:36px;height:36px;border-radius:10px;
+  background:linear-gradient(135deg,var(--maroon),#5C0E0E);
+  display:flex;align-items:center;justify-content:center;
+  font-size:1rem;color:var(--gold-l);flex-shrink:0;
+}
+.sb-name{font-size:.8rem;font-weight:700;color:var(--t1);line-height:1.3}
+.sb-sub{font-size:.62rem;color:var(--t3)}
+.sb-nav{flex:1;padding:14px 10px;overflow-y:auto}
+.sb-section{font-size:.62rem;font-weight:700;color:var(--t3);letter-spacing:1.2px;text-transform:uppercase;padding:10px 10px 5px;margin-top:6px}
+.sb-link{
+  display:flex;align-items:center;gap:10px;padding:10px 12px;
+  border-radius:10px;cursor:pointer;transition:var(--r);
+  font-size:.82rem;font-weight:500;color:var(--t2);
+  border:none;background:none;width:100%;text-align:left;
+}
+.sb-link:hover{background:var(--card);color:var(--t1)}
+.sb-link.active{background:rgba(139,26,26,.25);color:var(--gold-l)}
+.sb-link .sb-ico{width:18px;text-align:center;font-size:.9rem;flex-shrink:0}
+.sb-link .sb-badge{
+  margin-left:auto;background:var(--maroon);color:#fff;
+  border-radius:50px;font-size:.6rem;font-weight:700;
+  padding:2px 7px;min-width:18px;text-align:center;
+}
+.sb-foot{padding:14px 10px;border-top:1px solid var(--border)}
+.sb-logout{
+  display:flex;align-items:center;gap:8px;padding:10px 12px;
+  border-radius:10px;cursor:pointer;transition:var(--r);
+  font-size:.82rem;color:var(--t3);border:none;background:none;width:100%;
+}
+.sb-logout:hover{background:rgba(239,68,68,.1);color:#FCA5A5}
 
-        /* Stats Cards */
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
-        .stats-card {
-            background: #fff;
-            padding: 24px;
-            border-radius: 12px;
-            border: 1px solid var(--border-lt);
-            box-shadow: var(--sh-sm);
-        }
-        .stats-title {
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            color: var(--text-lt);
-            font-weight: 700;
-            margin-bottom: 10px;
-        }
-        .stats-number {
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--maroon);
-        }
+/* Main area */
+.main{margin-left:240px;padding:28px 30px;min-height:100vh}
+.topbar{display:flex;align-items:center;justify-content:space-between;margin-bottom:28px}
+.topbar-title{font-size:1.3rem;font-weight:700;color:var(--t1)}
+.topbar-sub{font-size:.78rem;color:var(--t3);margin-top:2px}
+.save-bar{display:flex;gap:10px}
+.btn-save{
+  background:linear-gradient(135deg,var(--maroon),#5C0E0E);
+  color:#fff;border:none;border-radius:10px;
+  padding:9px 20px;font-size:.82rem;font-weight:700;cursor:pointer;
+  box-shadow:0 4px 14px rgba(139,26,26,.3);transition:var(--r);
+}
+.btn-save:hover{transform:translateY(-1px)}
+.btn-save:active{transform:scale(.97)}
+.btn-preview{
+  background:var(--card);border:1px solid var(--border);
+  color:var(--t1);border-radius:10px;padding:9px 18px;
+  font-size:.82rem;font-weight:600;cursor:pointer;transition:var(--r);
+}
+.btn-preview:hover{border-color:var(--gold);color:var(--gold-l)}
 
-        /* Table Card */
-        .table-card {
-            background: #white;
-            background-color: #fff;
-            border: 1px solid var(--border-lt);
-            border-radius: 12px;
-            box-shadow: var(--sh-sm);
-            overflow: hidden;
-        }
-        .table-header {
-            padding: 20px 24px;
-            border-bottom: 1px solid var(--border-lt);
-            font-weight: 700;
-            color: var(--text-dk);
-        }
-        .table-container {
-            width: 100%;
-            overflow-x: auto;
-        }
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            text-align: left;
-        }
-        th, td {
-            padding: 16px 24px;
-            border-bottom: 1px solid var(--border-lt);
-            font-size: 0.88rem;
-        }
-        th {
-            background: var(--bg-dark);
-            color: var(--text-lt);
-            font-weight: 600;
-        }
-        tr:hover td {
-            background: rgba(251, 244, 236, 0.4);
-        }
-        .empty-state {
-            padding: 40px;
-            text-align: center;
-            color: var(--text-lt);
-            font-style: italic;
-        }
-        .btn-delete {
-            background: none;
-            border: none;
-            color: #ef4444;
-            cursor: pointer;
-            font-weight: 600;
-        }
-    </style>
+/* Toast notification */
+.toast{
+  position:fixed;top:20px;right:20px;z-index:1000;
+  background:var(--green);color:#fff;
+  border-radius:12px;padding:12px 20px;
+  font-size:.82rem;font-weight:700;
+  box-shadow:0 8px 24px rgba(16,185,129,.3);
+  transform:translateX(120%);transition:.3s cubic-bezier(.4,0,.2,1);
+  display:flex;align-items:center;gap:8px;
+}
+.toast.show{transform:translateX(0)}
+
+/* Section panels */
+.section-panel{display:none}
+.section-panel.active{display:block}
+
+/* Cards */
+.ed-card{
+  background:var(--card);border:1px solid var(--border);border-radius:16px;
+  padding:22px;margin-bottom:18px;
+}
+.ed-card-title{font-size:.9rem;font-weight:700;color:var(--t1);margin-bottom:4px;display:flex;align-items:center;gap:8px}
+.ed-card-sub{font-size:.73rem;color:var(--t3);margin-bottom:18px}
+.ed-grid{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.ed-grid-3{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.fg{display:flex;flex-direction:column;gap:5px}
+.fg label{font-size:.7rem;font-weight:600;color:var(--t2);text-transform:uppercase;letter-spacing:.6px}
+.fg input,.fg textarea,.fg select{
+  background:var(--card2);border:1.5px solid var(--border);border-radius:10px;
+  padding:10px 12px;font-size:.83rem;color:var(--t1);outline:none;transition:var(--r);
+  width:100%;
+}
+.fg input:focus,.fg textarea:focus,.fg select:focus{border-color:var(--gold);box-shadow:0 0 0 3px rgba(201,152,10,.1)}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--t3)}
+.fg textarea{resize:vertical;min-height:70px}
+.fg-full{grid-column:1/-1}
+
+/* Stat cards (overview) */
+.stat-row{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:22px}
+.stat-card{
+  background:var(--card);border:1px solid var(--border);border-radius:14px;
+  padding:16px;
+}
+.stat-card-label{font-size:.7rem;color:var(--t3);font-weight:600;text-transform:uppercase;letter-spacing:.6px;margin-bottom:8px}
+.stat-card-val{font-size:1.6rem;font-weight:800;color:var(--t1);line-height:1}
+.stat-card-sub{font-size:.7rem;color:var(--t3);margin-top:4px}
+.stat-card.green .stat-card-val{color:var(--green)}
+.stat-card.gold  .stat-card-val{color:var(--gold-l)}
+.stat-card.red   .stat-card-val{color:var(--red)}
+.stat-card.blue  .stat-card-val{color:#818CF8}
+
+/* Service cards grid in admin */
+.srv-admin-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px}
+.srv-admin-card{
+  background:var(--card2);border:1px solid var(--border);border-radius:14px;
+  padding:16px;display:flex;flex-direction:column;gap:10px;
+}
+.srv-admin-card-hd{font-size:.78rem;font-weight:700;color:var(--gold-l)}
+
+/* Leads table */
+.leads-table{width:100%;border-collapse:collapse;font-size:.78rem}
+.leads-table th{
+  padding:10px 14px;text-align:left;
+  font-size:.68rem;font-weight:700;color:var(--t3);
+  text-transform:uppercase;letter-spacing:.6px;
+  border-bottom:1px solid var(--border);background:var(--card2);
+}
+.leads-table th:first-child{border-radius:10px 0 0 0}
+.leads-table th:last-child{border-radius:0 10px 0 0}
+.leads-table td{
+  padding:12px 14px;border-bottom:1px solid var(--border);
+  color:var(--t1);vertical-align:top;
+}
+.leads-table tr:hover td{background:rgba(255,255,255,.02)}
+.leads-table tr:last-child td{border-bottom:none}
+.badge{
+  display:inline-block;padding:2px 9px;border-radius:50px;
+  font-size:.65rem;font-weight:700;
+}
+.badge-new{background:rgba(16,185,129,.15);color:#6EE7B7}
+.badge-pending{background:rgba(201,152,10,.15);color:var(--gold-l)}
+
+.empty-state{
+  text-align:center;padding:50px 20px;color:var(--t3);
+}
+.empty-state .es-ico{font-size:2.5rem;margin-bottom:10px}
+.empty-state p{font-size:.83rem}
+
+/* Divider */
+.divider{height:1px;background:var(--border);margin:22px 0}
+
+/* Color dot */
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;margin-right:5px}
+.dot-green{background:var(--green)}
+.dot-gold{background:var(--gold)}
+
+/* Mobile toggle */
+.mob-toggle{display:none;background:var(--panel);border:none;color:var(--t1);font-size:1.2rem;cursor:pointer;padding:8px}
+
+/* Password eye toggle */
+.lf-pw-wrap{position:relative}
+.lf-pw-wrap .lf-input{padding-right:42px}
+.lf-eye{
+  position:absolute;right:12px;top:50%;transform:translateY(-50%);
+  background:none;border:none;color:var(--t3);cursor:pointer;font-size:.9rem;
+  transition:var(--r);
+}
+.lf-eye:hover{color:var(--t1)}
+
+/* Responsive */
+@media(max-width:900px){
+  .sidebar{transform:translateX(-100%)}
+  .sidebar.mob-open{transform:translateX(0)}
+  .main{margin-left:0;padding:18px}
+  .mob-toggle{display:block;position:fixed;top:14px;left:14px;z-index:200;border-radius:8px}
+  .stat-row{grid-template-columns:1fr 1fr}
+  .ed-grid{grid-template-columns:1fr}
+  .ed-grid-3{grid-template-columns:1fr}
+  .srv-admin-grid{grid-template-columns:1fr}
+}
+</style>
 </head>
 <body>
 
-    <!-- SIDEBAR -->
-    <div class="sidebar">
-        <a href="index.html" class="logo">
-            <span class="logo-om">ॐ</span>
-            <div class="logo-text">
-                <h1>ज्योतिष केंद्र</h1>
-                <p>ADMIN PORTAL</p>
-            </div>
-        </a>
-        <ul class="nav-menu">
-            <li class="nav-item active"><a href="#">📊 Consultations</a></li>
-            <li class="nav-item"><a href="index.html?edit=true" target="_blank">📐 Visual Editor</a></li>
-        </ul>
+<!-- ████████ LOGIN SCREEN ████████ -->
+<div id="loginScreen">
+  <div class="login-box">
+    <div class="login-logo">
+      <div class="login-om">ॐ</div>
+      <div class="login-title">Admin Panel</div>
+      <div class="login-sub">Bharatiya Vedic Jyotish Kendra</div>
     </div>
 
-    <!-- MAIN PANEL -->
-    <div class="main-panel">
-        <div class="header">
-            <h2>Consultation Requests</h2>
-            <a href="index.html" class="btn-action">🌐 View Live Website</a>
-        </div>
-
-        <!-- STATS -->
-        <div class="stats-grid">
-            <div class="stats-card">
-                <div class="stats-title">Total Inquiries</div>
-                <div class="stats-number" id="inquiryCount">0</div>
-            </div>
-            <div class="stats-card">
-                <div class="stats-title">Pending Action</div>
-                <div class="stats-number" id="pendingCount">0</div>
-            </div>
-            <div class="stats-card">
-                <div class="stats-title">Vedic Consultations</div>
-                <div class="stats-number">Active</div>
-            </div>
-        </div>
-
-        <!-- TABLE -->
-        <div class="table-card">
-            <div class="table-header">Inquiry List</div>
-            <div class="table-container">
-                <table id="submissionsTable">
-                    <thead>
-                        <tr>
-                            <th>Date</th>
-                            <th>Name</th>
-                            <th>WhatsApp</th>
-                            <th>Date of Birth</th>
-                            <th>Service</th>
-                            <th>Question</th>
-                            <th>Action</th>
-                        </tr>
-                    </thead>
-                    <tbody id="tableBody">
-                        <!-- Submissions will load here -->
-                    </tbody>
-                </table>
-                <div class="empty-state" id="emptyState" style="display: none;">
-                    No consultation requests received yet.
-                </div>
-            </div>
-        </div>
+    <div class="login-creds">
+      <p>🔐 Your Login Credentials:<br>
+        Username: <strong>acharya.admin</strong><br>
+        Password: <strong>Vedic@2024</strong>
+      </p>
     </div>
 
-    <script>
-        // Load submissions from localStorage
-        function loadSubmissions() {
-            const tableBody = document.getElementById('tableBody');
-            const emptyState = document.getElementById('emptyState');
-            const inquiryCount = document.getElementById('inquiryCount');
-            const pendingCount = document.getElementById('pendingCount');
-            
-            // Get submissions array from localStorage
-            const submissions = JSON.parse(localStorage.getItem('vedic_consultations') || '[]');
-            
-            inquiryCount.textContent = submissions.length;
-            pendingCount.textContent = submissions.length;
+    <br>
+    <div class="login-form">
+      <div>
+        <label class="lf-label">Username</label>
+        <input class="lf-input" type="text" id="loginUser" placeholder="Enter username" autocomplete="username">
+      </div>
+      <div>
+        <label class="lf-label">Password</label>
+        <div class="lf-pw-wrap">
+          <input class="lf-input" type="password" id="loginPass" placeholder="Enter password" autocomplete="current-password">
+          <button class="lf-eye" onclick="togglePw()" id="eyeBtn" title="Show/hide password">👁</button>
+        </div>
+      </div>
+      <div class="login-err" id="loginErr">❌ Incorrect username or password. Please try again.</div>
+      <button class="login-btn" onclick="doLogin()">Login to Dashboard →</button>
+    </div>
+  </div>
+</div>
 
-            if (submissions.length === 0) {
-                tableBody.innerHTML = '';
-                emptyState.style.display = 'block';
-                return;
-            }
+<!-- ████████ DASHBOARD ████████ -->
+<div id="dashboard">
 
-            emptyState.style.display = 'none';
-            tableBody.innerHTML = submissions.map((sub, index) => `
-                <tr>
-                    <td>${sub.date || new Date().toLocaleDateString()}</td>
-                    <td><strong>${escapeHtml(sub.name)}</strong></td>
-                    <td><a href="https://wa.me/${sub.phone.replace(/[^0-9]/g, '')}" target="_blank" style="color:var(--maroon); font-weight:600;">${escapeHtml(sub.phone)} 💬</a></td>
-                    <td>${escapeHtml(sub.dob)}</td>
-                    <td><span style="background:var(--bg-dark); padding: 4px 8px; border-radius:4px; font-size:0.8rem; font-weight:500;">${escapeHtml(sub.service)}</span></td>
-                    <td>${escapeHtml(sub.message)}</td>
-                    <td><button class="btn-delete" onclick="deleteSubmission(${index})">Delete</button></td>
-                </tr>
-            `).reverse().join(''); // Show newest first
-        }
+  <!-- Sidebar -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sb-logo">
+      <div class="sb-brand">
+        <div class="sb-om">ॐ</div>
+        <div>
+          <div class="sb-name">Vedic Jyotish Admin</div>
+          <div class="sb-sub">Acharya Arvind</div>
+        </div>
+      </div>
+    </div>
 
-        function deleteSubmission(index) {
-            if (confirm('Are you sure you want to delete this inquiry?')) {
-                const submissions = JSON.parse(localStorage.getItem('vedic_consultations') || '[]');
-                // Submissions table is reversed in display, delete correct index
-                const realIndex = submissions.length - 1 - index;
-                submissions.splice(realIndex, 1);
-                localStorage.setItem('vedic_consultations', JSON.stringify(submissions));
-                loadSubmissions();
-            }
-        }
+    <nav class="sb-nav">
+      <div class="sb-section">Dashboard</div>
+      <button class="sb-link active" onclick="showPanel('overview',this)">
+        <span class="sb-ico">📊</span> Overview
+      </button>
 
-        function escapeHtml(text) {
-            if (!text) return '';
-            return text
-                .replace(/&/g, "&amp;")
-                .replace(/</g, "&lt;")
-                .replace(/>/g, "&gt;")
-                .replace(/"/g, "&quot;")
-                .replace(/'/g, "&#039;");
-        }
+      <div class="sb-section">Website Content</div>
+      <button class="sb-link" onclick="showPanel('hero',this)">
+        <span class="sb-ico">🏠</span> Hero Section
+      </button>
+      <button class="sb-link" onclick="showPanel('contact',this)">
+        <span class="sb-ico">📞</span> Phone & WhatsApp
+      </button>
+      <button class="sb-link" onclick="showPanel('stats',this)">
+        <span class="sb-ico">📈</span> Stats & Numbers
+      </button>
+      <button class="sb-link" onclick="showPanel('services',this)">
+        <span class="sb-ico">🔯</span> Services
+      </button>
+      <button class="sb-link" onclick="showPanel('about',this)">
+        <span class="sb-ico">🙏</span> About Section
+      </button>
+      <button class="sb-link" onclick="showPanel('trustbar',this)">
+        <span class="sb-ico">✨</span> Trust Bar
+      </button>
 
-        // Initialize table load
-        document.addEventListener('DOMContentLoaded', loadSubmissions);
-    </script>
+      <div class="sb-section">Data</div>
+      <button class="sb-link" onclick="showPanel('leads',this)" id="leadsNavBtn">
+        <span class="sb-ico">📋</span> Form Leads
+        <span class="sb-badge" id="leadsCount">0</span>
+      </button>
+      <button class="sb-link" onclick="showPanel('bookings',this)" id="bookingsNavBtn">
+        <span class="sb-ico">📅</span> Bookings
+        <span class="sb-badge" id="bookingsCount">0</span>
+      </button>
+
+      <div class="sb-section">Settings</div>
+      <button class="sb-link" onclick="showPanel('password',this)">
+        <span class="sb-ico">🔐</span> Change Password
+      </button>
+    </nav>
+
+    <div class="sb-foot">
+      <button class="sb-logout" onclick="doLogout()">
+        🚪 Logout
+      </button>
+    </div>
+  </aside>
+
+  <!-- Mobile sidebar toggle -->
+  <button class="mob-toggle" id="mobToggle" onclick="document.getElementById('sidebar').classList.toggle('mob-open')">☰</button>
+
+  <!-- Main Content -->
+  <main class="main" id="mainArea">
+    <div class="topbar">
+      <div>
+        <div class="topbar-title" id="panelTitle">Overview</div>
+        <div class="topbar-sub" id="panelSub">Welcome back, Admin</div>
+      </div>
+      <div class="save-bar">
+        <button class="btn-preview" onclick="window.open('index.html','_blank')">👁 Preview Site</button>
+        <button class="btn-save" id="topSaveBtn" onclick="saveAll()" style="display:none">💾 Save Changes</button>
+      </div>
+    </div>
+
+    <!-- ── OVERVIEW ── -->
+    <div class="section-panel active" id="panel-overview">
+      <div class="stat-row">
+        <div class="stat-card green">
+          <div class="stat-card-label">Form Leads</div>
+          <div class="stat-card-val" id="ov-leads">0</div>
+          <div class="stat-card-sub">from homepage form</div>
+        </div>
+        <div class="stat-card gold">
+          <div class="stat-card-label">Bookings</div>
+          <div class="stat-card-val" id="ov-bookings">0</div>
+          <div class="stat-card-sub">scheduled calls</div>
+        </div>
+        <div class="stat-card blue">
+          <div class="stat-card-label">Pages</div>
+          <div class="stat-card-val">2</div>
+          <div class="stat-card-sub">index + booking</div>
+        </div>
+        <div class="stat-card red">
+          <div class="stat-card-label">Last Saved</div>
+          <div class="stat-card-val" style="font-size:1rem" id="ov-saved">Never</div>
+          <div class="stat-card-sub">content update</div>
+        </div>
+      </div>
+
+      <div class="ed-card">
+        <div class="ed-card-title">🚀 Quick Actions</div>
+        <div class="ed-card-sub">Jump to sections or perform common tasks</div>
+        <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:12px">
+          <button class="btn-preview" style="padding:13px;border-radius:12px;font-size:.82rem" onclick="showPanel('hero',document.querySelector('[onclick*=hero]'))">✏️ Edit Hero Text</button>
+          <button class="btn-preview" style="padding:13px;border-radius:12px;font-size:.82rem" onclick="showPanel('contact',document.querySelector('[onclick*=contact]'))">📞 Update Numbers</button>
+          <button class="btn-preview" style="padding:13px;border-radius:12px;font-size:.82rem" onclick="showPanel('leads',document.querySelector('[onclick*=leads]'))">📋 View Leads</button>
+          <button class="btn-preview" style="padding:13px;border-radius:12px;font-size:.82rem" onclick="showPanel('services',document.querySelector('[onclick*=services]'))">🔯 Edit Services</button>
+          <button class="btn-preview" style="padding:13px;border-radius:12px;font-size:.82rem" onclick="showPanel('stats',document.querySelector('[onclick*=stats]'))">📈 Edit Stats</button>
+          <button class="btn-preview" style="padding:13px;border-radius:12px;font-size:.82rem" onclick="window.open('booking.html','_blank')">📅 Booking Page</button>
+        </div>
+      </div>
+
+      <div class="ed-card">
+        <div class="ed-card-title">ℹ️ How It Works</div>
+        <div class="ed-card-sub">Simple guide to using the admin panel</div>
+        <div style="display:flex;flex-direction:column;gap:10px;font-size:.8rem;color:var(--t2);line-height:1.6">
+          <p><span style="color:var(--gold-l);font-weight:700">1. Edit Content</span> — Click any section in the left menu to edit that part of the website.</p>
+          <p><span style="color:var(--gold-l);font-weight:700">2. Save Changes</span> — Click the <strong style="color:var(--t1)">"Save Changes"</strong> button to apply your edits. The website will update instantly.</p>
+          <p><span style="color:var(--gold-l);font-weight:700">3. Preview</span> — Click <strong style="color:var(--t1)">"Preview Site"</strong> to see the live website with your changes.</p>
+          <p><span style="color:var(--gold-l);font-weight:700">4. Leads & Bookings</span> — All form submissions and bookings appear in the Data section of the sidebar.</p>
+          <p style="color:rgba(239,68,68,.8)">⚠️ Note: Changes are saved in this browser. To update the live Vercel site, the developer needs to push changes to GitHub.</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── HERO SECTION ── -->
+    <div class="section-panel" id="panel-hero">
+      <div class="ed-card">
+        <div class="ed-card-title">🏠 Hero Heading</div>
+        <div class="ed-card-sub">The main title shown at the top of the homepage</div>
+        <div class="ed-grid">
+          <div class="fg">
+            <label>Heading Line 1 (Maroon)</label>
+            <input type="text" id="h-line1" placeholder="भारतीय वैदिक">
+          </div>
+          <div class="fg">
+            <label>Heading Line 2 (Gold)</label>
+            <input type="text" id="h-line2" placeholder="ज्योतिष केंद्र">
+          </div>
+          <div class="fg">
+            <label>Acharya Name Label</label>
+            <input type="text" id="h-name" placeholder="Acharya Arvind">
+          </div>
+          <div class="fg">
+            <label>Badge Text (small pill)</label>
+            <input type="text" id="h-badge" placeholder="प्रामाणिक वैदिक ज्योतिष">
+          </div>
+          <div class="fg fg-full">
+            <label>Quote / Tagline (Hindi)</label>
+            <input type="text" id="h-quote" placeholder='"सहीं की राह से जानें अपने जीवन का भविष्य !"'>
+          </div>
+          <div class="fg fg-full">
+            <label>Sub-tagline (English, italic)</label>
+            <input type="text" id="h-sub" placeholder="Discover the divine secrets of your destiny...">
+          </div>
+        </div>
+      </div>
+
+      <div class="ed-card">
+        <div class="ed-card-title">🔘 CTA Buttons Text</div>
+        <div class="ed-card-sub">The two main action buttons under the hero</div>
+        <div class="ed-grid">
+          <div class="fg">
+            <label>Primary Button (Maroon)</label>
+            <input type="text" id="h-btn1" placeholder="🙏 परामर्श बुक करें ›">
+          </div>
+          <div class="fg">
+            <label>Secondary Button (White)</label>
+            <input type="text" id="h-btn2" placeholder="✨ हमारे बारे में ›">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── CONTACT ── -->
+    <div class="section-panel" id="panel-contact">
+      <div class="ed-card">
+        <div class="ed-card-title">📞 Contact Numbers</div>
+        <div class="ed-card-sub">These numbers appear on the booking page and WhatsApp buttons</div>
+        <div class="ed-grid">
+          <div class="fg">
+            <label>Phone Number</label>
+            <input type="tel" id="c-phone" placeholder="+919876543210">
+          </div>
+          <div class="fg">
+            <label>WhatsApp Number</label>
+            <input type="tel" id="c-wa" placeholder="+919876543210">
+          </div>
+          <div class="fg fg-full">
+            <label>WhatsApp Pre-filled Message</label>
+            <input type="text" id="c-wamsg" placeholder="नमस्ते आचार्य जी, मुझे परामर्श चाहिए।">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── STATS ── -->
+    <div class="section-panel" id="panel-stats">
+      <div class="ed-card">
+        <div class="ed-card-title">📈 Statistics & Numbers</div>
+        <div class="ed-card-sub">The three achievement numbers shown below the hero</div>
+        <div class="ed-grid-3">
+          <div style="background:var(--card2);border-radius:12px;padding:16px">
+            <div style="font-size:.75rem;font-weight:700;color:var(--gold-l);margin-bottom:10px">🪔 STAT 1</div>
+            <div class="fg"><label>Number</label><input type="text" id="s-val1" placeholder="15+"></div>
+            <div class="fg" style="margin-top:8px"><label>Label</label><input type="text" id="s-lbl1" placeholder="वर्षों का अनुभव"></div>
+          </div>
+          <div style="background:var(--card2);border-radius:12px;padding:16px">
+            <div style="font-size:.75rem;font-weight:700;color:var(--gold-l);margin-bottom:10px">👥 STAT 2</div>
+            <div class="fg"><label>Number</label><input type="text" id="s-val2" placeholder="5000+"></div>
+            <div class="fg" style="margin-top:8px"><label>Label</label><input type="text" id="s-lbl2" placeholder="संतुष्ट ग्राहक"></div>
+          </div>
+          <div style="background:var(--card2);border-radius:12px;padding:16px">
+            <div style="font-size:.75rem;font-weight:700;color:var(--gold-l);margin-bottom:10px">🛡️ STAT 3</div>
+            <div class="fg"><label>Number</label><input type="text" id="s-val3" placeholder="98%"></div>
+            <div class="fg" style="margin-top:8px"><label>Label</label><input type="text" id="s-lbl3" placeholder="सटीकता दर"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── SERVICES ── -->
+    <div class="section-panel" id="panel-services">
+      <div class="ed-card">
+        <div class="ed-card-title">🔯 Services Section</div>
+        <div class="ed-card-sub">Edit the 6 service cards shown on the homepage</div>
+        <div class="fg" style="margin-bottom:16px">
+          <label>Section Sub-heading</label>
+          <input type="text" id="srv-sub" placeholder="प्रामाणिक वैदिक ज्योतिष सेवाएँ">
+        </div>
+        <div class="srv-admin-grid" id="srvGrid">
+          <!-- Filled by JS -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ── ABOUT ── -->
+    <div class="section-panel" id="panel-about">
+      <div class="ed-card">
+        <div class="ed-card-title">🙏 About Section</div>
+        <div class="ed-card-sub">The "About Acharya Arvind" section on the homepage</div>
+        <div class="ed-grid">
+          <div class="fg">
+            <label>Name</label>
+            <input type="text" id="ab-name" placeholder="आचार्य अरविंद">
+          </div>
+          <div class="fg">
+            <label>Role / Title</label>
+            <input type="text" id="ab-role" placeholder="वैदिक ज्योतिष विशेषज्ञ">
+          </div>
+          <div class="fg fg-full">
+            <label>Paragraph 1</label>
+            <textarea id="ab-p1" placeholder="First about paragraph..."></textarea>
+          </div>
+          <div class="fg fg-full">
+            <label>Paragraph 2</label>
+            <textarea id="ab-p2" placeholder="Second about paragraph..."></textarea>
+          </div>
+          <div class="fg">
+            <label>Credential 1</label>
+            <input type="text" id="ab-c1" placeholder="🎓 M.A. ज्योतिष">
+          </div>
+          <div class="fg">
+            <label>Credential 2</label>
+            <input type="text" id="ab-c2" placeholder="🏆 राष्ट्रीय पुरस्कार">
+          </div>
+          <div class="fg">
+            <label>Credential 3</label>
+            <input type="text" id="ab-c3" placeholder="📺 TV विशेषज्ञ">
+          </div>
+          <div class="fg">
+            <label>Credential 4</label>
+            <input type="text" id="ab-c4" placeholder="🌍 अंतर्राष्ट्रीय">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TRUST BAR ── -->
+    <div class="section-panel" id="panel-trustbar">
+      <div class="ed-card">
+        <div class="ed-card-title">✨ Bottom Trust Bar</div>
+        <div class="ed-card-sub">The fixed maroon bar at the bottom of every page</div>
+        <div class="ed-grid">
+          <div class="fg">
+            <label>Main Text</label>
+            <input type="text" id="tb-main" placeholder="जीवन के हर प्रश्न का सही समाधान">
+          </div>
+          <div class="fg">
+            <label>Sub Text (bullet points)</label>
+            <input type="text" id="tb-sub" placeholder="विश्वसनीय • गोपनीयता • वैदिक विधि">
+          </div>
+          <div class="fg">
+            <label>Call Button Text</label>
+            <input type="text" id="tb-btn" placeholder="📞 कॉल करें">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── FORM LEADS ── -->
+    <div class="section-panel" id="panel-leads">
+      <div class="ed-card" style="padding:0;overflow:hidden">
+        <div style="padding:20px 22px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between">
+          <div>
+            <div class="ed-card-title">📋 Form Leads</div>
+            <div class="ed-card-sub" style="margin-bottom:0">Submitted via homepage contact form</div>
+          </div>
+          <button class="btn-preview" onclick="clearLeads()" style="font-size:.75rem;padding:6px 14px;color:#FCA5A5;border-color:rgba(239,68,68,.3)">🗑 Clear All</button>
+        </div>
+        <div id="leadsTableWrap" style="overflow-x:auto"></div>
+      </div>
+    </div>
+
+    <!-- ── BOOKINGS ── -->
+    <div class="section-panel" id="panel-bookings">
+      <div class="ed-card" style="padding:0;overflow:hidden">
+        <div style="padding:20px 22px 16px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between">
+          <div>
+            <div class="ed-card-title">📅 Scheduled Bookings</div>
+            <div class="ed-card-sub" style="margin-bottom:0">Calls booked via the booking page</div>
+          </div>
+          <button class="btn-preview" onclick="clearBookings()" style="font-size:.75rem;padding:6px 14px;color:#FCA5A5;border-color:rgba(239,68,68,.3)">🗑 Clear All</button>
+        </div>
+        <div id="bookingsTableWrap" style="overflow-x:auto"></div>
+      </div>
+    </div>
+
+    <!-- ── CHANGE PASSWORD ── -->
+    <div class="section-panel" id="panel-password">
+      <div class="ed-card" style="max-width:440px">
+        <div class="ed-card-title">🔐 Change Password</div>
+        <div class="ed-card-sub">Update the admin panel login password</div>
+        <div style="display:flex;flex-direction:column;gap:14px">
+          <div class="fg">
+            <label>Current Password</label>
+            <input type="password" id="pw-current" placeholder="Current password">
+          </div>
+          <div class="fg">
+            <label>New Password</label>
+            <input type="password" id="pw-new" placeholder="New password (min 6 chars)">
+          </div>
+          <div class="fg">
+            <label>Confirm New Password</label>
+            <input type="password" id="pw-confirm" placeholder="Repeat new password">
+          </div>
+          <div id="pw-err" style="font-size:.78rem;color:#FCA5A5;display:none"></div>
+          <button class="btn-save" onclick="changePassword()" style="width:fit-content;padding:10px 24px">Update Password</button>
+        </div>
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<!-- Toast -->
+<div class="toast" id="toast">✓ Changes saved successfully!</div>
+
+<script>
+/* ════════════════════════════════════════
+   CONFIG & DEFAULTS
+════════════════════════════════════════ */
+var ADMIN_USER = 'acharya.admin';
+var ADMIN_PASS_KEY = 'vedic_admin_pass';
+var CONTENT_KEY  = 'vedic_content';
+var LEADS_KEY    = 'vedic_leads';
+var BOOKS_KEY    = 'scheduled_calls';
+
+/* Default content values */
+var DEFAULTS = {
+  h_line1: 'भारतीय वैदिक',
+  h_line2: 'ज्योतिष केंद्र',
+  h_name:  'Acharya Arvind',
+  h_badge: 'प्रामाणिक वैदिक ज्योतिष',
+  h_quote: '"सहीं की राह से जानें अपने जीवन का भविष्य !"',
+  h_sub:   'Discover the divine secrets of your destiny through authentic Vedic wisdom.',
+  h_btn1:  '🙏 परामर्श बुक करें ›',
+  h_btn2:  '✨ हमारे बारे में ›',
+  c_phone: '+919876543210',
+  c_wa:    '+919876543210',
+  c_wamsg: 'नमस्ते आचार्य जी, मुझे परामर्श चाहिए।',
+  s_val1: '15+',  s_lbl1: 'वर्षों का अनुभव',
+  s_val2: '5000+',s_lbl2: 'संतुष्ट ग्राहक',
+  s_val3: '98%',  s_lbl3: 'सटीकता दर',
+  srv_sub: 'प्रामाणिक वैदिक ज्योतिष सेवाएँ',
+  srv: [
+    {icon:'📅', name:'जन्म कुंडली विश्लेषण', desc:'अपने जीवन की विस्तृत जानकारी'},
+    {icon:'❤️', name:'विवाह मिलान',          desc:'वैवाहिक जीवन की संपूर्ण जानकारी'},
+    {icon:'💼', name:'कैरियर मार्गदर्शन',   desc:'सही करियर चुनने में मदद'},
+    {icon:'🏠', name:'वास्तु शास्त्र',       desc:'घर में सुख-समृद्धि लाएं'},
+    {icon:'💎', name:'रत्न परामर्श',         desc:'जीवन बदलने वाला सही रत्न'},
+    {icon:'🔮', name:'वार्षिक भविष्यवाणी',  desc:'पूरे साल की ज्योतिष झलक'},
+  ],
+  ab_name: 'आचार्य अरविंद',
+  ab_role: 'वैदिक ज्योतिष विशेषज्ञ',
+  ab_p1:   'आचार्य अरविंद जी ने वैदिक ज्योतिष की शिक्षा अपने गुरुजनों से प्राप्त की। 15+ वर्षों में उन्होंने हजारों लोगों का जीवन सकारात्मक दिशा में बदला है।',
+  ab_p2:   'उनकी विशेषता है — सटीकता, गोपनीयता और व्यक्तिगत दृष्टिकोण। भारत के साथ-साथ विदेश में भी उनके हजारों संतुष्ट ग्राहक हैं।',
+  ab_c1: '🎓 M.A. ज्योतिष', ab_c2: '🏆 राष्ट्रीय पुरस्कार',
+  ab_c3: '📺 TV विशेषज्ञ',  ab_c4: '🌍 अंतर्राष्ट्रीय',
+  tb_main: 'जीवन के हर प्रश्न का सही समाधान',
+  tb_sub:  'विश्वसनीय • गोपनीयता की गारंटी • वैदिक विधि',
+  tb_btn:  '📞 कॉल करें',
+  last_saved: 'Never'
+};
+
+/* ════════════════════════════════════════
+   AUTH
+════════════════════════════════════════ */
+function getPass(){ return localStorage.getItem(ADMIN_PASS_KEY) || 'Vedic@2024'; }
+
+function doLogin(){
+  var u = document.getElementById('loginUser').value.trim();
+  var p = document.getElementById('loginPass').value;
+  if(u === ADMIN_USER && p === getPass()){
+    document.getElementById('loginScreen').style.display = 'none';
+    document.getElementById('dashboard').style.display = 'block';
+    initDashboard();
+  } else {
+    document.getElementById('loginErr').classList.add('show');
+    document.getElementById('loginPass').value = '';
+  }
+}
+document.getElementById('loginPass').addEventListener('keydown', function(e){ if(e.key==='Enter') doLogin(); });
+document.getElementById('loginUser').addEventListener('keydown', function(e){ if(e.key==='Enter') doLogin(); });
+
+function doLogout(){
+  document.getElementById('dashboard').style.display='none';
+  document.getElementById('loginScreen').style.display='flex';
+  document.getElementById('loginUser').value='';
+  document.getElementById('loginPass').value='';
+  document.getElementById('loginErr').classList.remove('show');
+}
+
+function togglePw(){
+  var inp = document.getElementById('loginPass');
+  var btn = document.getElementById('eyeBtn');
+  if(inp.type==='password'){ inp.type='text'; btn.textContent='🙈'; }
+  else { inp.type='password'; btn.textContent='👁'; }
+}
+
+function changePassword(){
+  var cur   = document.getElementById('pw-current').value;
+  var nw    = document.getElementById('pw-new').value;
+  var cnf   = document.getElementById('pw-confirm').value;
+  var err   = document.getElementById('pw-err');
+  err.style.display='none';
+  if(cur !== getPass()){ err.textContent='❌ Current password is incorrect.'; err.style.display='block'; return; }
+  if(nw.length < 6){     err.textContent='❌ New password must be at least 6 characters.'; err.style.display='block'; return; }
+  if(nw !== cnf){        err.textContent='❌ Passwords do not match.'; err.style.display='block'; return; }
+  localStorage.setItem(ADMIN_PASS_KEY, nw);
+  ['pw-current','pw-new','pw-confirm'].forEach(function(id){ document.getElementById(id).value=''; });
+  showToast('✓ Password updated successfully!');
+}
+
+/* ════════════════════════════════════════
+   CONTENT LOAD / SAVE
+════════════════════════════════════════ */
+function loadContent(){
+  var saved = JSON.parse(localStorage.getItem(CONTENT_KEY) || '{}');
+  return Object.assign({}, DEFAULTS, saved);
+}
+
+function fillFields(){
+  var c = loadContent();
+  function set(id, val){ var el=document.getElementById(id); if(el) el.value=val||''; }
+  set('h-line1', c.h_line1); set('h-line2', c.h_line2);
+  set('h-name',  c.h_name);  set('h-badge', c.h_badge);
+  set('h-quote', c.h_quote); set('h-sub',   c.h_sub);
+  set('h-btn1',  c.h_btn1);  set('h-btn2',  c.h_btn2);
+  set('c-phone', c.c_phone); set('c-wa', c.c_wa); set('c-wamsg', c.c_wamsg);
+  set('s-val1', c.s_val1); set('s-lbl1', c.s_lbl1);
+  set('s-val2', c.s_val2); set('s-lbl2', c.s_lbl2);
+  set('s-val3', c.s_val3); set('s-lbl3', c.s_lbl3);
+  set('srv-sub', c.srv_sub);
+  set('ab-name', c.ab_name); set('ab-role', c.ab_role);
+  set('ab-p1',   c.ab_p1);   set('ab-p2',   c.ab_p2);
+  set('ab-c1',   c.ab_c1);   set('ab-c2',   c.ab_c2);
+  set('ab-c3',   c.ab_c3);   set('ab-c4',   c.ab_c4);
+  set('tb-main', c.tb_main); set('tb-sub',  c.tb_sub); set('tb-btn', c.tb_btn);
+  // Services
+  buildSrvGrid(c.srv);
+}
+
+function buildSrvGrid(srvArr){
+  var grid = document.getElementById('srvGrid');
+  grid.innerHTML = '';
+  srvArr.forEach(function(s, i){
+    grid.innerHTML += '<div class="srv-admin-card">'
+      + '<div class="srv-admin-card-hd">' + s.icon + ' Service ' + (i+1) + '</div>'
+      + '<div class="fg"><label>Name</label><input type="text" id="srv-name-'+i+'" value="' + (s.name||'') + '"></div>'
+      + '<div class="fg" style="margin-top:8px"><label>Description</label><input type="text" id="srv-desc-'+i+'" value="' + (s.desc||'') + '"></div>'
+      + '</div>';
+  });
+}
+
+function collectContent(){
+  function get(id){ var el=document.getElementById(id); return el ? el.value : ''; }
+  var srv = DEFAULTS.srv.map(function(s, i){
+    return {
+      icon: s.icon,
+      name: get('srv-name-'+i) || s.name,
+      desc: get('srv-desc-'+i) || s.desc
+    };
+  });
+  return {
+    h_line1: get('h-line1'), h_line2: get('h-line2'),
+    h_name:  get('h-name'),  h_badge: get('h-badge'),
+    h_quote: get('h-quote'), h_sub:   get('h-sub'),
+    h_btn1:  get('h-btn1'),  h_btn2:  get('h-btn2'),
+    c_phone: get('c-phone'), c_wa: get('c-wa'), c_wamsg: get('c-wamsg'),
+    s_val1: get('s-val1'), s_lbl1: get('s-lbl1'),
+    s_val2: get('s-val2'), s_lbl2: get('s-lbl2'),
+    s_val3: get('s-val3'), s_lbl3: get('s-lbl3'),
+    srv_sub: get('srv-sub'), srv: srv,
+    ab_name: get('ab-name'), ab_role: get('ab-role'),
+    ab_p1:   get('ab-p1'),   ab_p2:   get('ab-p2'),
+    ab_c1:   get('ab-c1'),   ab_c2:   get('ab-c2'),
+    ab_c3:   get('ab-c3'),   ab_c4:   get('ab-c4'),
+    tb_main: get('tb-main'), tb_sub: get('tb-sub'), tb_btn: get('tb-btn'),
+    last_saved: new Date().toLocaleString()
+  };
+}
+
+function saveAll(){
+  var c = collectContent();
+  localStorage.setItem(CONTENT_KEY, JSON.stringify(c));
+  document.getElementById('ov-saved').textContent = 'Just now';
+  showToast('✓ Changes saved! Preview the site to see updates.');
+}
+
+/* ════════════════════════════════════════
+   LEADS & BOOKINGS
+════════════════════════════════════════ */
+function renderLeads(){
+  var leads = JSON.parse(localStorage.getItem(LEADS_KEY) || '[]');
+  var n = leads.length;
+  document.getElementById('leadsCount').textContent = n;
+  document.getElementById('ov-leads').textContent = n;
+  var wrap = document.getElementById('leadsTableWrap');
+  if(!n){ wrap.innerHTML = '<div class="empty-state"><div class="es-ico">📭</div><p>No form leads yet.<br>They will appear here once someone fills the contact form.</p></div>'; return; }
+  var rows = leads.slice().reverse().map(function(l, i){
+    return '<tr>'
+      +'<td><span class="badge badge-new">New</span></td>'
+      +'<td><strong>'+esc(l.name||'—')+'</strong></td>'
+      +'<td>'+esc(l.phone||'—')+'</td>'
+      +'<td>'+esc(l.dob||'—')+'</td>'
+      +'<td>'+esc(l.place||'—')+'</td>'
+      +'<td>'+esc(l.problem||'—')+'</td>'
+      +'<td style="color:var(--t3);font-size:.7rem">'+esc(l.date||'—')+'</td>'
+      +'</tr>';
+  }).join('');
+  wrap.innerHTML = '<table class="leads-table"><thead><tr>'
+    +'<th>Status</th><th>Name</th><th>Phone</th><th>DOB</th><th>Place</th><th>Problem</th><th>Date</th>'
+    +'</tr></thead><tbody>'+rows+'</tbody></table>';
+}
+
+function renderBookings(){
+  var books = JSON.parse(localStorage.getItem(BOOKS_KEY) || '[]');
+  var n = books.length;
+  document.getElementById('bookingsCount').textContent = n;
+  document.getElementById('ov-bookings').textContent = n;
+  var wrap = document.getElementById('bookingsTableWrap');
+  if(!n){ wrap.innerHTML = '<div class="empty-state"><div class="es-ico">📭</div><p>No bookings yet.<br>They will appear here once someone schedules a call.</p></div>'; return; }
+  var rows = books.slice().reverse().map(function(b){
+    return '<tr>'
+      +'<td><span class="badge badge-pending">Scheduled</span></td>'
+      +'<td><strong>'+esc(b.name||'—')+'</strong></td>'
+      +'<td>'+esc(b.phone||'—')+'</td>'
+      +'<td>'+esc(b.date||'—')+'</td>'
+      +'<td>'+esc(b.slot||'—')+'</td>'
+      +'<td>'+esc(b.topic||'—')+'</td>'
+      +'<td style="color:var(--t3);font-size:.7rem">'+esc(b.bookedAt||'—')+'</td>'
+      +'</tr>';
+  }).join('');
+  wrap.innerHTML = '<table class="leads-table"><thead><tr>'
+    +'<th>Status</th><th>Name</th><th>Phone</th><th>Date</th><th>Slot</th><th>Topic</th><th>Booked At</th>'
+    +'</tr></thead><tbody>'+rows+'</tbody></table>';
+}
+
+function clearLeads(){
+  if(!confirm('Delete all form leads? This cannot be undone.')) return;
+  localStorage.removeItem(LEADS_KEY);
+  renderLeads();
+  showToast('🗑 Leads cleared.');
+}
+function clearBookings(){
+  if(!confirm('Delete all bookings? This cannot be undone.')) return;
+  localStorage.removeItem(BOOKS_KEY);
+  renderBookings();
+  showToast('🗑 Bookings cleared.');
+}
+function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+/* ════════════════════════════════════════
+   PANEL NAVIGATION
+════════════════════════════════════════ */
+var PANEL_META = {
+  overview:  {title:'Overview',           sub:'Dashboard summary'},
+  hero:      {title:'Hero Section',       sub:'Edit the homepage headline, badge and tagline'},
+  contact:   {title:'Phone & WhatsApp',   sub:'Update contact numbers shown on the site'},
+  stats:     {title:'Stats & Numbers',    sub:'Edit the achievement stats below the hero'},
+  services:  {title:'Services',           sub:'Edit the 6 service cards on the homepage'},
+  about:     {title:'About Section',      sub:'Edit the Acharya Arvind about card'},
+  trustbar:  {title:'Trust Bar',          sub:'Edit the fixed bottom bar content'},
+  leads:     {title:'Form Leads',         sub:'All submissions from the homepage contact form'},
+  bookings:  {title:'Scheduled Bookings', sub:'All calls booked via the booking page'},
+  password:  {title:'Change Password',    sub:'Update your admin panel login password'},
+};
+
+function showPanel(name, btn){
+  document.querySelectorAll('.section-panel').forEach(function(p){ p.classList.remove('active'); });
+  document.querySelectorAll('.sb-link').forEach(function(l){ l.classList.remove('active'); });
+  document.getElementById('panel-'+name).classList.add('active');
+  if(btn) btn.classList.add('active');
+  var meta = PANEL_META[name] || {};
+  document.getElementById('panelTitle').textContent = meta.title || name;
+  document.getElementById('panelSub').textContent   = meta.sub   || '';
+  var hasSave = ['hero','contact','stats','services','about','trustbar'].indexOf(name) >= 0;
+  document.getElementById('topSaveBtn').style.display = hasSave ? 'inline-flex' : 'none';
+  if(name === 'leads')    renderLeads();
+  if(name === 'bookings') renderBookings();
+  // close mobile sidebar
+  document.getElementById('sidebar').classList.remove('mob-open');
+}
+
+/* ════════════════════════════════════════
+   INIT
+════════════════════════════════════════ */
+function initDashboard(){
+  fillFields();
+  renderLeads();
+  renderBookings();
+  // Set last-saved
+  var c = loadContent();
+  document.getElementById('ov-saved').textContent = c.last_saved && c.last_saved !== 'Never' ? c.last_saved.split(',')[0] : 'Never';
+}
+
+function showToast(msg){
+  var t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(function(){ t.classList.remove('show'); }, 3000);
+}
+</script>
 </body>
 </html>

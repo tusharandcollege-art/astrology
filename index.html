@@ -907,6 +907,83 @@ document.getElementById('cForm').addEventListener('submit',function(e){
   localStorage.setItem('vedic_leads',JSON.stringify(l));
   window.location.href='booking.html';
 });
+
+/* ── ADMIN CONTENT LOADER ── */
+(function(){
+  var c = JSON.parse(localStorage.getItem('vedic_content') || '{}');
+  function set(sel, val, prop){
+    if(!val) return;
+    var el = document.querySelector(sel);
+    if(!el) return;
+    if(prop === 'href') el.href = val;
+    else el.textContent = val;
+  }
+  function setAll(sel, val){
+    if(!val) return;
+    document.querySelectorAll(sel).forEach(function(el){ el.textContent = val; });
+  }
+  function setHref(sel, val){
+    if(!val) return;
+    document.querySelectorAll(sel).forEach(function(el){ el.href = val; });
+  }
+  // Hero
+  set('.h1-a',     c.h_line1);
+  set('.h1-b',     c.h_line2);
+  set('.hero-label', c.h_name);
+  set('.hero-quote', c.h_quote);
+  set('.hero-sub',   c.h_sub);
+  set('.badge',      c.h_badge ? c.h_badge : null);
+  // CTA buttons
+  var btn1 = document.querySelector('.cta-p');
+  var btn2 = document.querySelector('.cta-s');
+  if(btn1 && c.h_btn1) btn1.textContent = c.h_btn1;
+  if(btn2 && c.h_btn2) btn2.textContent = c.h_btn2;
+  // Stats
+  var statVals = document.querySelectorAll('.stat-val');
+  var statLbls = document.querySelectorAll('.stat-lbl');
+  if(c.s_val1 && statVals[0]) statVals[0].textContent = c.s_val1;
+  if(c.s_val2 && statVals[1]) statVals[1].textContent = c.s_val2;
+  if(c.s_val3 && statVals[2]) statVals[2].textContent = c.s_val3;
+  if(c.s_lbl1 && statLbls[0]) statLbls[0].textContent = c.s_lbl1;
+  if(c.s_lbl2 && statLbls[1]) statLbls[1].textContent = c.s_lbl2;
+  if(c.s_lbl3 && statLbls[2]) statLbls[2].textContent = c.s_lbl3;
+  // Services
+  if(c.srv && c.srv.length){
+    var srvNames = document.querySelectorAll('.srv-name');
+    var srvDescs = document.querySelectorAll('.srv-desc');
+    c.srv.forEach(function(s, i){
+      if(srvNames[i]) srvNames[i].textContent = s.name;
+      if(srvDescs[i]) srvDescs[i].textContent = s.desc;
+    });
+  }
+  if(c.srv_sub) set('.srv-sec .sec-sub', c.srv_sub);
+  // About
+  set('.about-name',  c.ab_name);
+  set('.about-role',  c.ab_role);
+  var abPs = document.querySelectorAll('.about-p');
+  if(c.ab_p1 && abPs[0]) abPs[0].textContent = c.ab_p1;
+  if(c.ab_p2 && abPs[1]) abPs[1].textContent = c.ab_p2;
+  var creds = document.querySelectorAll('.about-badge');
+  if(c.ab_c1 && creds[0]) creds[0].textContent = c.ab_c1;
+  if(c.ab_c2 && creds[1]) creds[1].textContent = c.ab_c2;
+  if(c.ab_c3 && creds[2]) creds[2].textContent = c.ab_c3;
+  if(c.ab_c4 && creds[3]) creds[3].textContent = c.ab_c4;
+  // Trust bar
+  set('.tb-main', c.tb_main);
+  set('.tb-sub',  c.tb_sub);
+  set('.tb-cta',  c.tb_btn);
+  // Phone / WhatsApp links
+  if(c.c_phone){
+    document.querySelectorAll('a[href^="tel:"]').forEach(function(a){ a.href = 'tel:' + c.c_phone.replace(/\s/g,''); });
+  }
+  if(c.c_wa){
+    var waNum = c.c_wa.replace(/[^0-9]/g,'');
+    var waMsg = encodeURIComponent(c.c_wamsg || 'नमस्ते आचार्य जी');
+    document.querySelectorAll('.fab').forEach(function(btn){
+      btn.onclick = function(){ window.open('https://wa.me/'+waNum+'?text='+waMsg,'_blank'); };
+    });
+  }
+})();
 </script>
 </body>
 </html>
