@@ -41,8 +41,8 @@ html{scroll-behavior:smooth;-webkit-tap-highlight-color:transparent}
 a{text-decoration:none;color:inherit}
 
 body{
-  background:var(--cream);
-  min-height:100vh;
+  background:#D6C8B0;
+  display:flex;justify-content:center;min-height:100vh;
   font-family:var(--fe);
 }
 
@@ -50,273 +50,13 @@ body{
    APP FRAME
 ══════════════════════ */
 .app{
-  width:100%;
+  width:100%;max-width:430px;
   background:var(--cream);
   min-height:100vh;
   display:flex;flex-direction:column;
   position:relative;overflow-x:hidden;
-}
-
-/* ══════════════════════════════════════════════
-   DESKTOP — ≥769px  (full normal website)
-══════════════════════════════════════════════ */
-@media(min-width:769px){
-  /* Show desktop nav links, hide hamburger */
-  .d-nav-links{display:flex !important}
-  .hbg{display:none !important}
-  .app{padding-bottom:0}
-
-  /* NAV */
-  .nav{
-    height:76px;
-    padding:0 60px;
-    background:rgba(250,247,240,.97);
-    box-shadow:0 1px 0 var(--border-l);
-  }
-  .logo-hi{font-size:1.05rem}
-  .logo-en{font-size:.5rem;letter-spacing:2px}
-  .logo-icon{width:44px;height:44px;font-size:1.5rem;border-radius:13px}
-  .nav-book{
-    font-size:.72rem;padding:11px 24px;border-radius:50px;
-    background:var(--maroon);
-  }
-
-  /* Desktop nav links (added in HTML) */
-  .d-nav-links{
-    display:flex;
-    align-items:center;
-    gap:32px;
-    flex:1;
-    justify-content:center;
-  }
-  .d-nav-links a{
-    font-family:var(--fh);font-size:.82rem;font-weight:700;
-    color:var(--t2);transition:var(--ease);position:relative;
-    padding-bottom:2px;
-  }
-  .d-nav-links a::after{
-    content:'';position:absolute;bottom:-2px;left:0;right:0;
-    height:2px;background:var(--maroon);
-    transform:scaleX(0);transition:transform .2s ease;
-    border-radius:2px;
-  }
-  .d-nav-links a:hover{color:var(--maroon)}
-  .d-nav-links a:hover::after{transform:scaleX(1)}
-
-  /* HERO */
-  .hero{
-    min-height:calc(100vh - 76px);
-    padding:0 60px;
-    display:grid;
-    grid-template-columns:1fr 480px;
-    align-items:center;
-    gap:60px;
-    background:var(--cream);
-    position:relative;
-  }
-  .hero-mandala{
-    width:600px;height:600px;
-    top:50%;right:-100px;transform:translateY(-50%);
-  }
-  .badge{font-size:.82rem;padding:9px 20px;margin-bottom:22px}
-  .hero-row{
-    display:contents; /* children become direct grid children */
-  }
-  .hero-row > div:first-child{
-    display:flex;flex-direction:column;
-  }
-  .h1-a,.h1-b{font-size:3.6rem;line-height:1.1}
-  .hero-sep{margin:18px 0}
-  .hero-label{font-size:.75rem;letter-spacing:5px;margin-bottom:12px}
-  .hero-quote{
-    font-size:1.3rem;line-height:1.6;margin-bottom:12px;
-    max-width:560px;
-  }
-  .hero-sub{font-size:.9rem;max-width:480px;line-height:1.7}
-  .portrait-col{justify-content:center}
-  .portrait{width:380px;height:480px}
-  .p-outer-ring{inset:-14px}
-  .p-inner-ring{inset:0;border-width:3px}
-  .p-leaf{font-size:1.8rem}
-  .p-leaf.l{left:-26px}
-  .p-leaf.r{right:-26px}
-  .p-om{width:60px;height:60px;font-size:1.5rem;bottom:-20px}
-  .p-deco{width:13px;height:13px;right:-8px}
-
-  /* STATS */
-  .stats{
-    margin:0 60px;
-    border-radius:22px;
-    box-shadow:0 8px 40px rgba(0,0,0,.1);
-  }
-  .stat{padding:22px 12px 20px}
-  .stat-ico{width:38px;height:38px;font-size:1.1rem}
-  .stat-val{font-size:1.3rem}
-  .stat-lbl{font-size:.65rem}
-
-  /* CTAs */
-  .ctas{
-    padding:22px 60px 0;
-    grid-template-columns:240px 200px;
-    justify-content:start;
-    gap:14px;
-  }
-  .cta-p,.cta-s{
-    border-radius:16px;padding:16px 20px;font-size:.92rem;
-  }
-
-  /* SERVICES */
-  .srv-sec{
-    padding:80px 60px 70px;
-    background:var(--white);
-  }
-  .srv-grid{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:22px;
-  }
-  .srv-card{
-    padding:28px 22px 22px;
-    border-radius:22px;
-  }
-  .srv-icon{width:54px;height:54px;font-size:1.5rem;border-radius:16px}
-  .srv-name{font-size:.95rem}
-  .srv-desc{font-size:.78rem}
-  .srv-link{font-size:.75rem}
-
-  /* ABOUT */
-  .about-sec{
-    padding:80px 60px;
-    background:var(--cream);
-  }
-  .about-card{border-radius:28px}
-  .about-inner{grid-template-columns:260px 1fr}
-  .about-img-col{min-height:300px}
-  .about-text{padding:28px 28px 28px 20px;gap:12px}
-  .about-name{font-size:1.35rem}
-  .about-role{font-size:.8rem}
-  .about-p{font-size:.82rem}
-  .about-badge{font-size:.7rem;padding:5px 13px}
-  .about-strip{padding:20px 24px;font-size:.82rem;line-height:1.7}
-
-  /* SECTION HEADERS */
-  .sec-h2{font-size:1.7rem}
-  .sec-tag{font-size:.65rem;letter-spacing:3px}
-  .sec-sub{font-size:.82rem}
-  .sec-rule{width:50px}
-
-  /* REVIEWS */
-  .reviews-sec{
-    padding:80px 60px;
-    background:var(--sand);
-    border-top:1px solid var(--border);
-  }
-  /* On desktop show 3 cards in a grid instead of horizontal scroll */
-  .rev-scroll{
-    display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:20px;
-    overflow:visible;
-  }
-  .rev-card{
-    min-width:unset;max-width:unset;
-    border-radius:20px;
-  }
-  .rev-q{font-size:.8rem}
-  .rev-name{font-size:.82rem}
-
-  /* FAQ */
-  .faq-sec{
-    padding:80px 60px;
-    background:var(--white);
-    border-top:none;
-  }
-  .faq-item{border-radius:18px;margin-bottom:12px}
-  .faq-q{padding:18px 20px;font-size:.88rem}
-  .faq-body{font-size:.8rem}
-
-  /* CONTACT */
-  .contact-sec{
-    padding:80px 60px;
-    background:var(--cream);
-    border-top:1px solid var(--border);
-  }
-  .form-card{
-    max-width:760px;
-    margin:0 auto;
-    border-radius:28px;
-  }
-  .form-head{padding:28px 28px}
-  .form-head-title{font-size:1.2rem}
-  .form-head-sub{font-size:.78rem}
-  .form-body{padding:28px 28px}
-  .fg label{font-size:.76rem}
-  .fg input,.fg select{padding:13px 15px;font-size:.85rem;border-radius:13px}
-  .btn-submit{padding:16px;font-size:.95rem;border-radius:14px}
-
-  /* FOOTER */
-  footer{
-    background:var(--t1);
-    padding:50px 60px 30px;
-    border-top:2px solid rgba(196,150,15,.15);
-  }
-  .d-footer-grid{
-    display:grid !important;
-    grid-template-columns:1fr 1fr 1fr 1fr;
-    gap:40px;
-    margin-bottom:36px;
-    text-align:left;
-  }
-  .ft-om{font-size:2.2rem;margin-bottom:6px;text-align:left}
-  .ft-name{font-size:.95rem;text-align:left}
-  .ft-sub{text-align:left}
-  .ft-links{
-    flex-direction:column;
-    gap:10px;
-    align-items:flex-start;
-    margin-bottom:0;
-  }
-  .ft-links a{
-    font-size:.78rem;
-    color:rgba(255,255,255,.5);
-  }
-  .ft-links a:hover{color:var(--gold-l)}
-  .ft-copy{
-    font-size:.65rem;
-    border-top:1px solid rgba(255,255,255,.07);
-    padding-top:24px;
-    text-align:center;
-  }
-
-  /* TRUST BAR — hide on desktop, show as top announcement or just hide */
-  .trust-bar{display:none !important}
-
-  /* FAB — reposition */
-  .fab{
-    bottom:30px;
-    right:40px;
-    width:56px;height:56px;
-  }
-  .fab svg{width:28px;height:28px}
-}
-
-/* ══════════════════════
-   MOBILE ONLY — ≤768px
-══════════════════════ */
-@media(max-width:768px){
-  body{
-    background:#D6C8B0;
-    display:flex;justify-content:center;
-  }
-  .app{
-    max-width:430px;
-    box-shadow:0 0 60px rgba(0,0,0,.22);
-    padding-bottom:72px;
-  }
-  .d-nav-links{display:none !important}
-  .d-footer-grid{display:none !important}
-  .fab{right:max(14px, calc(50% - 215px + 14px));bottom:84px}
-  .trust-bar{width:min(100%,430px);left:50%;transform:translateX(-50%)}
+  box-shadow:0 0 60px rgba(0,0,0,.22);
+  padding-bottom:72px;
 }
 
 /* ══════════════════════
@@ -771,6 +511,144 @@ footer{
 ══════════════════════ */
 .reveal{opacity:0;transform:translateY(24px);transition:opacity .55s ease,transform .55s ease}
 .reveal.in{opacity:1;transform:translateY(0)}
+
+/* ══════════════════════════════════════════
+   DESKTOP  ≥ 769px  — full normal website
+══════════════════════════════════════════ */
+.d-nav { display:none } /* hidden on mobile */
+
+@media(min-width:769px){
+  /* ── Reset mobile centering ── */
+  body {
+    background: var(--cream);
+    display: block;
+  }
+  .app {
+    max-width: 100%;
+    box-shadow: none;
+    padding-bottom: 0;
+  }
+
+  /* ── NAV ── */
+  .nav { height:72px; padding:0 60px; }
+  .logo-hi { font-size:1rem }
+  .logo-icon { width:44px; height:44px; font-size:1.5rem }
+  .hbg { display:none }
+  .nav-book { font-size:.72rem; padding:10px 22px }
+
+  /* Desktop nav links */
+  .d-nav {
+    display:flex;
+    align-items:center;
+    gap:28px;
+    flex:1;
+    justify-content:center;
+  }
+  .d-nav a {
+    font-family:var(--fh);
+    font-size:.82rem;
+    font-weight:700;
+    color:var(--t2);
+    transition:var(--ease);
+    position:relative;
+    padding-bottom:3px;
+  }
+  .d-nav a::after {
+    content:'';
+    position:absolute; bottom:0; left:0; right:0;
+    height:2px;
+    background:var(--maroon);
+    transform:scaleX(0);
+    transition:transform .2s ease;
+    border-radius:2px;
+  }
+  .d-nav a:hover { color:var(--maroon) }
+  .d-nav a:hover::after { transform:scaleX(1) }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: calc(100vh - 72px);
+    padding: 0 60px;
+    display: grid;
+    grid-template-columns: 1fr 420px;
+    align-items: center;
+    gap: 50px;
+  }
+  .hero-mandala { width:560px; height:560px; right:-80px }
+  .badge { font-size:.82rem; padding:9px 20px; margin-bottom:20px }
+  .h1-a,.h1-b { font-size:3.4rem; line-height:1.1 }
+  .hero-sep { margin:16px 0 }
+  .hero-label { font-size:.75rem; letter-spacing:5px; margin-bottom:14px }
+  .hero-quote { font-size:1.2rem; line-height:1.6; margin-bottom:14px }
+  .hero-sub { font-size:.88rem; line-height:1.7 }
+  .portrait { width:340px; height:430px }
+  .portrait-col { justify-content:center }
+  .p-om { width:58px; height:58px; font-size:1.5rem; bottom:-18px }
+
+  /* ── STATS ── */
+  .stats { margin:0 60px; border-radius:22px }
+  .stat { padding:22px 14px 20px }
+  .stat-val { font-size:1.35rem }
+
+  /* ── CTAs ── */
+  .ctas {
+    padding:22px 60px 0;
+    grid-template-columns:240px 200px;
+    justify-content:start;
+  }
+  .cta-p,.cta-s { font-size:.88rem; padding:15px 18px; border-radius:16px }
+
+  /* ── SERVICES ── */
+  .srv-sec { padding:72px 60px 64px; background:var(--white) }
+  .srv-grid { grid-template-columns:repeat(3,1fr); gap:20px }
+  .srv-card { padding:26px 20px 22px; border-radius:22px }
+  .srv-icon { width:52px; height:52px; font-size:1.5rem }
+  .srv-name { font-size:.95rem }
+  .srv-desc { font-size:.78rem }
+
+  /* ── ABOUT ── */
+  .about-sec { padding:72px 60px 64px }
+  .about-inner { grid-template-columns:240px 1fr }
+  .about-img-col { min-height:280px }
+  .about-name { font-size:1.3rem }
+  .about-text { padding:24px 24px 24px 20px }
+
+  /* ── SECTION HEADS ── */
+  .sec-h2 { font-size:1.6rem }
+
+  /* ── REVIEWS ── */
+  .reviews-sec { padding:72px 60px }
+  .rev-scroll {
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+    overflow:visible;
+  }
+  .rev-card { min-width:unset; max-width:unset }
+
+  /* ── FAQ ── */
+  .faq-sec { padding:72px 60px; background:var(--white); border-top:none }
+  .faq-q { padding:18px 20px; font-size:.88rem }
+
+  /* ── CONTACT ── */
+  .contact-sec { padding:72px 60px }
+  .form-card { max-width:720px; margin:0 auto; border-radius:26px }
+  .form-head { padding:26px 26px }
+  .form-body { padding:26px 26px }
+  .fg input,.fg select { padding:13px 14px; font-size:.85rem }
+  .btn-submit { padding:15px; font-size:.92rem }
+
+  /* ── FOOTER ── */
+  footer { padding:48px 60px 28px; text-align:left }
+  .ft-links { justify-content:flex-start; gap:22px }
+
+  /* ── TRUST BAR — hide on desktop ── */
+  .trust-bar { display:none !important }
+
+  /* ── FAB ── */
+  .fab { bottom:28px; right:36px; width:56px; height:56px }
+  .fab svg { width:28px; height:28px }
+}
 </style>
 </head>
 <body>
@@ -785,9 +663,8 @@ footer{
         <span class="logo-en">Bharatiya Vedic Jyotish Kendra</span>
       </div>
     </a>
-    <!-- Desktop navigation links (hidden on mobile) -->
-    <div class="d-nav-links" style="display:none">
-      <a href="#home">Home</a>
+    <!-- Desktop links: hidden on mobile, shown via @media -->
+    <div class="d-nav">
       <a href="#services">Services</a>
       <a href="#about">About</a>
       <a href="#reviews">Reviews</a>
@@ -1176,103 +1053,6 @@ document.getElementById('cForm').addEventListener('submit',function(e){
   localStorage.setItem('vedic_leads',JSON.stringify(l));
   window.location.href='booking.html';
 });
-
-/* ── ADMIN CONTENT LOADER ── */
-(function(){
-  var c = JSON.parse(localStorage.getItem('vedic_content') || '{}');
-  function set(sel, val, prop){
-    if(!val) return;
-    var el = document.querySelector(sel);
-    if(!el) return;
-    if(prop === 'href') el.href = val;
-    else el.textContent = val;
-  }
-  function setAll(sel, val){
-    if(!val) return;
-    document.querySelectorAll(sel).forEach(function(el){ el.textContent = val; });
-  }
-  function setHref(sel, val){
-    if(!val) return;
-    document.querySelectorAll(sel).forEach(function(el){ el.href = val; });
-  }
-  // Hero
-  set('.h1-a',     c.h_line1);
-  set('.h1-b',     c.h_line2);
-  set('.hero-label', c.h_name);
-  set('.hero-quote', c.h_quote);
-  set('.hero-sub',   c.h_sub);
-  set('.badge',      c.h_badge ? c.h_badge : null);
-  // CTA buttons
-  var btn1 = document.querySelector('.cta-p');
-  var btn2 = document.querySelector('.cta-s');
-  if(btn1 && c.h_btn1) btn1.textContent = c.h_btn1;
-  if(btn2 && c.h_btn2) btn2.textContent = c.h_btn2;
-  // Stats
-  var statVals = document.querySelectorAll('.stat-val');
-  var statLbls = document.querySelectorAll('.stat-lbl');
-  if(c.s_val1 && statVals[0]) statVals[0].textContent = c.s_val1;
-  if(c.s_val2 && statVals[1]) statVals[1].textContent = c.s_val2;
-  if(c.s_val3 && statVals[2]) statVals[2].textContent = c.s_val3;
-  if(c.s_lbl1 && statLbls[0]) statLbls[0].textContent = c.s_lbl1;
-  if(c.s_lbl2 && statLbls[1]) statLbls[1].textContent = c.s_lbl2;
-  if(c.s_lbl3 && statLbls[2]) statLbls[2].textContent = c.s_lbl3;
-  // Services
-  if(c.srv && c.srv.length){
-    var srvNames = document.querySelectorAll('.srv-name');
-    var srvDescs = document.querySelectorAll('.srv-desc');
-    c.srv.forEach(function(s, i){
-      if(srvNames[i]) srvNames[i].textContent = s.name;
-      if(srvDescs[i]) srvDescs[i].textContent = s.desc;
-    });
-  }
-  if(c.srv_sub) set('.srv-sec .sec-sub', c.srv_sub);
-  // About
-  set('.about-name',  c.ab_name);
-  set('.about-role',  c.ab_role);
-  var abPs = document.querySelectorAll('.about-p');
-  if(c.ab_p1 && abPs[0]) abPs[0].textContent = c.ab_p1;
-  if(c.ab_p2 && abPs[1]) abPs[1].textContent = c.ab_p2;
-  var creds = document.querySelectorAll('.about-badge');
-  if(c.ab_c1 && creds[0]) creds[0].textContent = c.ab_c1;
-  if(c.ab_c2 && creds[1]) creds[1].textContent = c.ab_c2;
-  if(c.ab_c3 && creds[2]) creds[2].textContent = c.ab_c3;
-  if(c.ab_c4 && creds[3]) creds[3].textContent = c.ab_c4;
-  // Trust bar
-  set('.tb-main', c.tb_main);
-  set('.tb-sub',  c.tb_sub);
-  set('.tb-cta',  c.tb_btn);
-  // Phone / WhatsApp links
-  if(c.c_phone){
-    document.querySelectorAll('a[href^="tel:"]').forEach(function(a){ a.href = 'tel:' + c.c_phone.replace(/\s/g,''); });
-  }
-  if(c.c_wa){
-    var waNum = c.c_wa.replace(/[^0-9]/g,'');
-    var waMsg = encodeURIComponent(c.c_wamsg || 'नमस्ते आचार्य जी');
-    document.querySelectorAll('.fab').forEach(function(btn){
-      btn.onclick = function(){ window.open('https://wa.me/'+waNum+'?text='+waMsg,'_blank'); };
-    });
-  }
-})();
-
-/* ── VISUAL EDITOR CHANGES LOADER ── */
-(function(){
-  var stored = JSON.parse(localStorage.getItem('vedic_visual_edits') || '{}');
-  var pageChanges = stored['index.html'] || {};
-  Object.keys(pageChanges).forEach(function(eid){
-    try {
-      var el = document.querySelector('[data-eid="'+eid+'"]');
-      if(!el) return;
-      var ch = pageChanges[eid];
-      if(ch.text !== undefined && ch.text !== '') el.innerText = ch.text;
-      if(ch.style){
-        Object.keys(ch.style).forEach(function(prop){
-          if(ch.style[prop] !== undefined) el.style[prop] = ch.style[prop];
-        });
-      }
-    } catch(e){}
-  });
-})();
 </script>
 </body>
 </html>
-
