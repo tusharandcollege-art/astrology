@@ -850,12 +850,26 @@ function saveChanges(){
   // Sync edited text content to Supabase
   var doc = document.getElementById('siteFrame').contentDocument;
   var content = JSON.parse(localStorage.getItem('vedic_content') || '{}');
+  
+  // Always ensure img_hero defaults to acharya-arvind.png if set to old hero image
+  if(!content.img_hero || content.img_hero.indexOf('hero.png') >= 0) {
+    content.img_hero = 'acharya-arvind.png';
+  }
+  if(!content.img_booking) content.img_booking = 'acharya-arvind.png';
+  if(!content.img_about) content.img_about = 'acharya-arvind.png';
+
   if(doc) {
     var h1m = doc.querySelector('.h1m'); if(h1m) content.h_line1 = h1m.textContent.trim();
     var h1g = doc.querySelector('.h1g'); if(h1g) content.h_line2 = h1g.textContent.trim();
     var nameEl = doc.querySelector('.hero-name'); if(nameEl) content.h_name = nameEl.textContent.trim();
     var quoteEl = doc.querySelector('.hero-quote'); if(quoteEl) content.h_quote = quoteEl.textContent.trim();
+    var subEl = doc.querySelector('.hero-sub'); if(subEl) content.h_sub = subEl.textContent.trim();
+    var b1 = doc.querySelector('.btn-main-maroon'); if(b1) content.h_btn1 = b1.textContent.trim();
+    var b2 = doc.querySelector('.btn-main-outline'); if(b2) content.h_btn2 = b2.textContent.trim();
+    var abName = doc.querySelector('.about-name'); if(abName) content.ab_name = abName.textContent.trim();
+    var abRole = doc.querySelector('.about-role'); if(abRole) content.ab_role = abRole.textContent.trim();
   }
+  
   localStorage.setItem('vedic_content', JSON.stringify(content));
 
   fetch('https://mztygriwhmkujloggwjr.supabase.co/rest/v1/site_content', {
