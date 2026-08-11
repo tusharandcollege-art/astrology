@@ -682,10 +682,23 @@ a { text-decoration:none; color:inherit }
       topic = document.getElementById('sManualTopic').value || 'अन्य समस्या';
     }
 
+    var bookingObj = { name: name, phone: phone, date: date, slot: selectedSlotTime, topic: topic, bookedAt: new Date().toLocaleString() };
+
     // Save booking locally
     var bookings = JSON.parse(localStorage.getItem('scheduled_calls') || '[]');
-    bookings.push({ name: name, phone: phone, date: date, slot: selectedSlotTime, topic: topic, bookedAt: new Date().toLocaleString() });
+    bookings.push(bookingObj);
     localStorage.setItem('scheduled_calls', JSON.stringify(bookings));
+
+    // Push booking to Supabase
+    fetch('https://mztygriwhmkujloggwjr.supabase.co/rest/v1/bookings', {
+      method: 'POST',
+      headers: {
+        'apikey': 'sb_publishable_x0xJkdW1eYFr4Nu6P0OU9A_8cP98C-Y',
+        'Authorization': 'Bearer sb_publishable_x0xJkdW1eYFr4Nu6P0OU9A_8cP98C-Y',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(bookingObj)
+    }).catch(function(err){ console.warn('Supabase booking sync:', err); });
 
     // Show Confirmation
     document.getElementById('schForm').style.display = 'none';

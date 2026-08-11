@@ -848,24 +848,65 @@ function collectContent(){
   };
 }
 
+/* ════════════════════════════════════════
+   SUPABASE INTEGRATION
+════════════════════════════════════════ */
+var SUPABASE_URL = "https://mztygriwhmkujloggwjr.supabase.co";
+var SUPABASE_KEY = "sb_publishable_x0xJkdW1eYFr4Nu6P0OU9A_8cP98C-Y";
+var SUPABASE_PUB = "sb_publishable_x0xJkdW1eYFr4Nu6P0OU9A_8cP98C-Y";
+
+function syncToSupabase(content) {
+  fetch(SUPABASE_URL + '/rest/v1/site_content', {
+    method: 'POST',
+    headers: {
+      'apikey': SUPABASE_KEY,
+      'Authorization': 'Bearer ' + SUPABASE_KEY,
+      'Content-Type': 'application/json',
+      'Prefer': 'resolution=merge-duplicates'
+    },
+    body: JSON.stringify([{ id: 'main', data: content }])
+  }).then(function(res) {
+    if (res.ok) {
+      showToast('⚡ Saved globally to Supabase & Live Site!');
+    } else {
+      showToast('✓ Saved locally! (Run SQL setup in Supabase to sync live)');
+    }
+  }).catch(function(err) {
+    showToast('✓ Saved locally!');
+  });
+}
+
 function saveAll(){
   var c = collectContent();
   localStorage.setItem(CONTENT_KEY, JSON.stringify(c));
   document.getElementById('ov-saved').textContent = 'Just now';
-  showToast('✓ Changes saved! Preview the site to see updates.');
+  syncToSupabase(c);
 }
 
 /* ════════════════════════════════════════
    LEADS & BOOKINGS
 ════════════════════════════════════════ */
 function renderLeads(){
-  var leads = JSON.parse(localStorage.getItem(LEADS_KEY) || '[]');
+  var localLeads = JSON.parse(localStorage.getItem(LEADS_KEY) || '[]');
+  
+  // Try fetching from Supabase
+  fetch(SUPABASE_URL + '/rest/v1/leads?select=*&order=created_at.desc', {
+    headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+  }).then(function(res){ return res.json(); }).then(function(spLeads){
+    var leads = (Array.isArray(spLeads) && spLeads.length > 0) ? spLeads : localLeads;
+    displayLeads(leads);
+  }).catch(function(){
+    displayLeads(localLeads);
+  });
+}
+
+function displayLeads(leads) {
   var n = leads.length;
   document.getElementById('leadsCount').textContent = n;
   document.getElementById('ov-leads').textContent = n;
   var wrap = document.getElementById('leadsTableWrap');
   if(!n){ wrap.innerHTML = '<div class="empty-state"><div class="es-ico">📭</div><p>No form leads yet.<br>They will appear here once someone fills the contact form.</p></div>'; return; }
-  var rows = leads.slice().reverse().map(function(l, i){
+  var rows = leads.map(function(l, i){
     return '<tr>'
       +'<td><span class="badge badge-new">New</span></td>'
       +'<td><strong>'+esc(l.name||'—')+'</strong></td>'
@@ -873,7 +914,7 @@ function renderLeads(){
       +'<td>'+esc(l.dob||'—')+'</td>'
       +'<td>'+esc(l.place||'—')+'</td>'
       +'<td>'+esc(l.problem||'—')+'</td>'
-      +'<td style="color:var(--t3);font-size:.7rem">'+esc(l.date||'—')+'</td>'
+      +'<td style="color:var(--t3);font-size:.7rem">'+esc(l.date || l.created_at || '—')+'</td>'
       +'</tr>';
   }).join('');
   wrap.innerHTML = '<table class="leads-table"><thead><tr>'
@@ -882,13 +923,25 @@ function renderLeads(){
 }
 
 function renderBookings(){
-  var books = JSON.parse(localStorage.getItem(BOOKS_KEY) || '[]');
+  var localBooks = JSON.parse(localStorage.getItem(BOOKS_KEY) || '[]');
+  
+  fetch(SUPABASE_URL + '/rest/v1/bookings?select=*&order=created_at.desc', {
+    headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+  }).then(function(res){ return res.json(); }).then(function(spBooks){
+    var books = (Array.isArray(spBooks) && spBooks.length > 0) ? spBooks : localBooks;
+    displayBookings(books);
+  }).catch(function(){
+    displayBookings(localBooks);
+  });
+}
+
+function displayBookings(books) {
   var n = books.length;
   document.getElementById('bookingsCount').textContent = n;
   document.getElementById('ov-bookings').textContent = n;
   var wrap = document.getElementById('bookingsTableWrap');
   if(!n){ wrap.innerHTML = '<div class="empty-state"><div class="es-ico">📭</div><p>No bookings yet.<br>They will appear here once someone schedules a call.</p></div>'; return; }
-  var rows = books.slice().reverse().map(function(b){
+  var rows = books.map(function(b){
     return '<tr>'
       +'<td><span class="badge badge-pending">Scheduled</span></td>'
       +'<td><strong>'+esc(b.name||'—')+'</strong></td>'
@@ -896,7 +949,7 @@ function renderBookings(){
       +'<td>'+esc(b.date||'—')+'</td>'
       +'<td>'+esc(b.slot||'—')+'</td>'
       +'<td>'+esc(b.topic||'—')+'</td>'
-      +'<td style="color:var(--t3);font-size:.7rem">'+esc(b.bookedAt||'—')+'</td>'
+      +'<td style="color:var(--t3);font-size:.7rem">'+esc(b.bookedAt || b.created_at || '—')+'</td>'
       +'</tr>';
   }).join('');
   wrap.innerHTML = '<table class="leads-table"><thead><tr>'
@@ -957,7 +1010,6 @@ function initDashboard(){
   fillFields();
   renderLeads();
   renderBookings();
-  // Set last-saved
   var c = loadContent();
   document.getElementById('ov-saved').textContent = c.last_saved && c.last_saved !== 'Never' ? c.last_saved.split(',')[0] : 'Never';
 }
@@ -966,7 +1018,7 @@ function showToast(msg){
   var t = document.getElementById('toast');
   t.textContent = msg;
   t.classList.add('show');
-  setTimeout(function(){ t.classList.remove('show'); }, 3000);
+  setTimeout(function(){ t.classList.remove('show'); }, 3500);
 }
 </script>
 </body>

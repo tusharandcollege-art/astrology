@@ -1478,11 +1478,57 @@ function filterCategory(cat, btn) {
 
 document.getElementById('cForm').addEventListener('submit', function(e){
   e.preventDefault();
+  var leadObj = {
+    name: document.getElementById('fn').value,
+    phone: document.getElementById('fp').value,
+    dob: document.getElementById('fd').value,
+    place: document.getElementById('fpl').value,
+    problem: document.getElementById('fprob').value,
+    date: new Date().toLocaleString()
+  };
   var s = JSON.parse(localStorage.getItem('vedic_leads') || '[]');
-  s.push({ date: new Date().toLocaleString(), name: document.getElementById('fn').value, phone: document.getElementById('fp').value, dob: document.getElementById('fd').value, place: document.getElementById('fpl').value, problem: document.getElementById('fprob').value, message: document.getElementById('fm').value });
+  s.push(leadObj);
   localStorage.setItem('vedic_leads', JSON.stringify(s));
-  window.location.href = 'booking.html';
+
+  // Sync to Supabase
+  fetch('https://mztygriwhmkujloggwjr.supabase.co/rest/v1/leads', {
+    method: 'POST',
+    headers: {
+      'apikey': 'sb_publishable_x0xJkdW1eYFr4Nu6P0OU9A_8cP98C-Y',
+      'Authorization': 'Bearer sb_publishable_x0xJkdW1eYFr4Nu6P0OU9A_8cP98C-Y',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify(leadObj)
+  }).catch(function(err){ console.warn('Supabase lead push:', err); }).finally(function(){
+    window.location.href = 'booking.html';
+  });
 });
+
+// Supabase Live Reader
+(function(){
+  fetch('https://mztygriwhmkujloggwjr.supabase.co/rest/v1/site_content?id=eq.main', {
+    headers: {
+      'apikey': 'sb_publishable_x0xJkdW1eYFr4Nu6P0OU9A_8cP98C-Y',
+      'Authorization': 'Bearer sb_publishable_x0xJkdW1eYFr4Nu6P0OU9A_8cP98C-Y'
+    }
+  }).then(function(r){ return r.json(); }).then(function(rows){
+    if(Array.isArray(rows) && rows.length > 0 && rows[0].data) {
+      var d = rows[0].data;
+      if(d.h_line1) { var el = document.querySelector('.h1m'); if(el) el.textContent = d.h_line1; }
+      if(d.h_line2) { var el = document.querySelector('.h1g'); if(el) el.textContent = d.h_line2; }
+      if(d.h_name)  { var el = document.querySelector('.hero-name'); if(el) el.textContent = d.h_name; }
+      if(d.h_quote) { var el = document.querySelector('.hero-quote'); if(el) el.textContent = d.h_quote; }
+      if(d.c_phone) {
+        document.querySelectorAll('a[href^="tel:"]').forEach(function(a){ a.href = 'tel:' + d.c_phone.replace(/\s+/g,''); });
+      }
+      if(d.c_wa) {
+        document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){
+          a.href = 'https://wa.me/' + d.c_wa.replace(/\+/g,'').replace(/\s+/g,'');
+        });
+      }
+    }
+  }).catch(function(e){});
+})();
 
 // Show mobile trust banner only on mobile
 function handleMobTrust() {
