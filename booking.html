@@ -726,6 +726,10 @@ a { text-decoration:none; color:inherit }
           var img = document.querySelector('.profile-avatar img');
           if(img) img.src = avatarUrl;
         }
+        if(d.bk_h1) { var el = document.querySelector('.hdr-title'); if(el) el.textContent = d.bk_h1; }
+        if(d.bk_sub) { var el = document.querySelector('.hdr-sub'); if(el) el.textContent = d.bk_sub; }
+        if(d.bk_notice) { var el = document.querySelector('.notice-bar'); if(el) el.innerHTML = d.bk_notice; }
+        if(d.ft_copy) { document.querySelectorAll('footer p').forEach(function(p){ p.textContent = d.ft_copy; }); }
       }
     }).catch(function(e){});
   })();

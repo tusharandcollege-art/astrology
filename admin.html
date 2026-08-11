@@ -345,16 +345,25 @@ input,textarea,select{font-family:'Inter',sans-serif}
         <span class="sb-ico">📞</span> Phone &amp; WhatsApp
       </button>
       <button class="sb-link" onclick="showPanel('stats',this)">
-        <span class="sb-ico">📈</span> Stats & Numbers
+        <span class="sb-ico">📈</span> Stats &amp; Numbers
       </button>
       <button class="sb-link" onclick="showPanel('services',this)">
-        <span class="sb-ico">🔯</span> Services
+        <span class="sb-ico">🔯</span> Services Cards
       </button>
       <button class="sb-link" onclick="showPanel('about',this)">
         <span class="sb-ico">🙏</span> About Section
       </button>
+      <button class="sb-link" onclick="showPanel('bookingtext',this)">
+        <span class="sb-ico">📅</span> Booking Page Text
+      </button>
+      <button class="sb-link" onclick="showPanel('faqs',this)">
+        <span class="sb-ico">❓</span> FAQs Section
+      </button>
       <button class="sb-link" onclick="showPanel('trustbar',this)">
         <span class="sb-ico">✨</span> Trust Bar
+      </button>
+      <button class="sb-link" onclick="showPanel('footer',this)">
+        <span class="sb-ico">©️</span> Footer &amp; Copyright
       </button>
 
       <div class="sb-section">Data</div>
@@ -799,6 +808,75 @@ input,textarea,select{font-family:'Inter',sans-serif}
       </div>
     </div>
 
+    <!-- ── BOOKING PAGE TEXT ── -->
+    <div class="section-panel" id="panel-bookingtext">
+      <div class="ed-card">
+        <div class="ed-card-title">📅 Booking Page Headlines &amp; Notice Bar</div>
+        <div class="ed-card-sub">Edit the title, subtitle, and notice banner on the booking page (/booking.html)</div>
+        <div class="ed-grid">
+          <div class="fg fg-full">
+            <label>Main Booking Page Title</label>
+            <input type="text" id="bk-h1" placeholder="वैदिक परामर्श समय सारणी">
+          </div>
+          <div class="fg fg-full">
+            <label>Subtitle / Description</label>
+            <input type="text" id="bk-sub" placeholder="अपनी सुविधा अनुसार तिथि व समय चुनें">
+          </div>
+          <div class="fg fg-full">
+            <label>Notice Bar / Limited Slots Banner</label>
+            <input type="text" id="bk-notice" placeholder="⚡ आज के केवल 3 स्लॉट शेष हैं — शीघ्र बुक करें">
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── FAQS SECTION ── -->
+    <div class="section-panel" id="panel-faqs">
+      <div class="ed-card">
+        <div class="ed-card-title">❓ Frequently Asked Questions (FAQs)</div>
+        <div class="ed-card-sub">Edit the questions and answers shown in the FAQ accordion</div>
+        <div style="display:flex;flex-direction:column;gap:16px">
+          
+          <div style="background:var(--card2);padding:14px;border-radius:12px">
+            <div style="font-size:.78rem;font-weight:700;color:var(--gold-l);margin-bottom:8px">Q1. Confidentiality</div>
+            <div class="fg" style="margin-bottom:8px"><label>Question 1</label><input type="text" id="faq1-q" placeholder="क्या मेरी जानकारी गोपनीय रहेगी?"></div>
+            <div class="fg"><label>Answer 1</label><textarea id="faq1-a" placeholder="Answer content..."></textarea></div>
+          </div>
+
+          <div style="background:var(--card2);padding:14px;border-radius:12px">
+            <div style="font-size:.78rem;font-weight:700;color:var(--gold-l);margin-bottom:8px">Q2. Duration</div>
+            <div class="fg" style="margin-bottom:8px"><label>Question 2</label><input type="text" id="faq2-q" placeholder="परामर्श का समय कितना होता है?"></div>
+            <div class="fg"><label>Answer 2</label><textarea id="faq2-a" placeholder="Answer content..."></textarea></div>
+          </div>
+
+          <div style="background:var(--card2);padding:14px;border-radius:12px">
+            <div style="font-size:.78rem;font-weight:700;color:var(--gold-l);margin-bottom:8px">Q3. Remedies</div>
+            <div class="fg" style="margin-bottom:8px"><label>Question 3</label><input type="text" id="faq3-q" placeholder="क्या उपाय सरल और प्रभावकारी होते हैं?"></div>
+            <div class="fg"><label>Answer 3</label><textarea id="faq3-a" placeholder="Answer content..."></textarea></div>
+          </div>
+
+          <div style="background:var(--card2);padding:14px;border-radius:12px">
+            <div style="font-size:.78rem;font-weight:700;color:var(--gold-l);margin-bottom:8px">Q4. Online Consult</div>
+            <div class="fg" style="margin-bottom:8px"><label>Question 4</label><input type="text" id="faq4-q" placeholder="क्या कॉल परामर्श ऑनलाइन उपलब्ध है?"></div>
+            <div class="fg"><label>Answer 4</label><textarea id="faq4-a" placeholder="Answer content..."></textarea></div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <!-- ── FOOTER & COPYRIGHT ── -->
+    <div class="section-panel" id="panel-footer">
+      <div class="ed-card">
+        <div class="ed-card-title">©️ Footer &amp; Copyright Text</div>
+        <div class="ed-card-sub">Edit the footer text shown at the bottom of all pages</div>
+        <div class="fg fg-full">
+          <label>Footer Copyright Text</label>
+          <input type="text" id="ft-copy" placeholder="© 2026 Acharya Arvind | Bharatiya Vedic Jyotish Kendra | All Rights Reserved">
+        </div>
+      </div>
+    </div>
+
     <!-- ── CHANGE PASSWORD ── -->
     <div class="section-panel" id="panel-password">
       <div class="ed-card" style="max-width:440px">
@@ -873,6 +951,18 @@ var DEFAULTS = {
   tb_main: 'जीवन के हर प्रश्न का सही समाधान',
   tb_sub:  'विश्वसनीय • गोपनीयता की गारंटी • वैदिक विधि',
   tb_btn:  '📞 कॉल करें',
+  bk_h1:   'वैदिक परामर्श समय सारणी',
+  bk_sub:  'अपनी सुविधा अनुसार तिथि व समय चुनें',
+  bk_notice: '⚡ आज के केवल 3 स्लॉट शेष हैं — शीघ्र बुक करें',
+  faq1_q: 'क्या मेरी जानकारी गोपनीय रहेगी?',
+  faq1_a: 'हाँ, आपकी समस्त जानकारी एवं कुंडली विश्लेषण 100% पूर्णतः गोपनीय रखी जाती है।',
+  faq2_q: 'परामर्श का समय कितना होता है?',
+  faq2_a: 'प्रत्येक परामर्श सत्र 20 से 30 मिनट का होता है जिसमें आपकी सभी समस्याओं का विस्तृत समाधान दिया जाता है।',
+  faq3_q: 'क्या उपाय सरल और प्रभावकारी होते हैं?',
+  faq3_a: 'जी हाँ, आचार्य जी केवल वैदिक और सात्विक उपाय बताते हैं जिन्हें आसानी से किया जा सकता है।',
+  faq4_q: 'क्या कॉल परामर्श ऑनलाइन उपलब्ध है?',
+  faq4_a: 'हाँ, आप भारत या विदेश कहीं से भी फोन कॉल या व्हाट्सएप वीडियो कॉल द्वारा परामर्श ले सकते हैं।',
+  ft_copy: '© 2026 Acharya Arvind | Bharatiya Vedic Jyotish Kendra | All Rights Reserved',
   img_hero:    'acharya-arvind-hero.png',
   img_booking: 'acharya-arvind.png',
   img_about:   'acharya-arvind-pro.png',
@@ -1004,6 +1094,12 @@ function fillFields(){
   set('ab-c1',   c.ab_c1);   set('ab-c2',   c.ab_c2);
   set('ab-c3',   c.ab_c3);   set('ab-c4',   c.ab_c4);
   set('tb-main', c.tb_main); set('tb-sub',  c.tb_sub); set('tb-btn', c.tb_btn);
+  set('bk-h1', c.bk_h1); set('bk-sub', c.bk_sub); set('bk-notice', c.bk_notice);
+  set('faq1-q', c.faq1_q); set('faq1-a', c.faq1_a);
+  set('faq2-q', c.faq2_q); set('faq2-a', c.faq2_a);
+  set('faq3-q', c.faq3_q); set('faq3-a', c.faq3_a);
+  set('faq4-q', c.faq4_q); set('faq4-a', c.faq4_a);
+  set('ft-copy', c.ft_copy);
   
   // Fill Image Manager inputs & previews
   set('img-hero', c.img_hero); previewImg('img-hero-prev', c.img_hero);
@@ -1056,6 +1152,12 @@ function collectContent(){
     ab_c1:   get('ab-c1'),   ab_c2:   get('ab-c2'),
     ab_c3:   get('ab-c3'),   ab_c4:   get('ab-c4'),
     tb_main: get('tb-main'), tb_sub: get('tb-sub'), tb_btn: get('tb-btn'),
+    bk_h1: get('bk-h1'), bk_sub: get('bk-sub'), bk_notice: get('bk-notice'),
+    faq1_q: get('faq1-q'), faq1_a: get('faq1-a'),
+    faq2_q: get('faq2-q'), faq2_a: get('faq2-a'),
+    faq3_q: get('faq3-q'), faq3_a: get('faq3-a'),
+    faq4_q: get('faq4-q'), faq4_a: get('faq4-a'),
+    ft_copy: get('ft-copy'),
     img_hero: get('img-hero'), img_booking: get('img-booking'), img_about: get('img-about'),
     img_srv1: get('img-srv1'), img_srv2: get('img-srv2'), img_srv3: get('img-srv3'),
     img_srv4: get('img-srv4'), img_srv5: get('img-srv5'), img_srv6: get('img-srv6'),
@@ -1198,27 +1300,32 @@ function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').rep
    PANEL NAVIGATION
 ════════════════════════════════════════ */
 var PANEL_META = {
-  overview:  {title:'Overview',           sub:'Dashboard summary'},
-  hero:      {title:'Hero Section',       sub:'Edit the homepage headline, badge and tagline'},
-  contact:   {title:'Phone & WhatsApp',   sub:'Update contact numbers shown on the site'},
-  stats:     {title:'Stats & Numbers',    sub:'Edit the achievement stats below the hero'},
-  services:  {title:'Services',           sub:'Edit the 6 service cards on the homepage'},
-  about:     {title:'About Section',      sub:'Edit the Acharya Arvind about card'},
-  trustbar:  {title:'Trust Bar',          sub:'Edit the fixed bottom bar content'},
-  leads:     {title:'Form Leads',         sub:'All submissions from the homepage contact form'},
-  bookings:  {title:'Scheduled Bookings', sub:'All calls booked via the booking page'},
-  password:  {title:'Change Password',    sub:'Update your admin panel login password'},
+  overview:    {title:'Overview',                 sub:'Dashboard summary'},
+  hero:        {title:'Hero Section',             sub:'Edit the homepage headline, badge and tagline'},
+  images:      {title:'Image & Photo Manager',    sub:'Upload or change photos for all sections of your website'},
+  contact:     {title:'Phone & WhatsApp',         sub:'Update contact numbers shown on the site'},
+  stats:       {title:'Stats & Numbers',          sub:'Edit the achievement stats below the hero'},
+  services:    {title:'Services Cards',           sub:'Edit the 6 service cards on the homepage'},
+  about:       {title:'About Section',            sub:'Edit the Acharya Arvind about card'},
+  bookingtext: {title:'Booking Page Text',        sub:'Edit title, subtitle, and notice banner on /booking.html'},
+  faqs:        {title:'FAQs Section',             sub:'Edit questions & answers in the FAQ section'},
+  trustbar:    {title:'Trust Bar',                sub:'Edit the fixed bottom bar content'},
+  footer:      {title:'Footer & Copyright',       sub:'Edit footer copyright text'},
+  leads:       {title:'Form Leads',               sub:'All submissions from the homepage contact form'},
+  bookings:    {title:'Scheduled Bookings',       sub:'All calls booked via the booking page'},
+  password:    {title:'Change Password',          sub:'Update your admin panel login password'},
 };
 
 function showPanel(name, btn){
   document.querySelectorAll('.section-panel').forEach(function(p){ p.classList.remove('active'); });
   document.querySelectorAll('.sb-link').forEach(function(l){ l.classList.remove('active'); });
-  document.getElementById('panel-'+name).classList.add('active');
+  var targetPanel = document.getElementById('panel-'+name);
+  if(targetPanel) targetPanel.classList.add('active');
   if(btn) btn.classList.add('active');
   var meta = PANEL_META[name] || {};
   document.getElementById('panelTitle').textContent = meta.title || name;
   document.getElementById('panelSub').textContent   = meta.sub   || '';
-  var hasSave = ['hero','images','contact','stats','services','about','trustbar'].indexOf(name) >= 0;
+  var hasSave = ['hero','images','contact','stats','services','about','bookingtext','faqs','trustbar','footer'].indexOf(name) >= 0;
   document.getElementById('topSaveBtn').style.display = hasSave ? 'inline-flex' : 'none';
   if(name === 'leads')    renderLeads();
   if(name === 'bookings') renderBookings();

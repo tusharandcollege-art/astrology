@@ -1545,6 +1545,30 @@ document.getElementById('cForm').addEventListener('submit', function(e){
       if(srvImgs[3] && d.img_srv4) srvImgs[3].src = d.img_srv4;
       if(srvImgs[4] && d.img_srv5) srvImgs[4].src = d.img_srv5;
       if(srvImgs[5] && d.img_srv6) srvImgs[5].src = d.img_srv6;
+
+      // FAQs Updates
+      var faqs = document.querySelectorAll('.faq-item');
+      if(faqs[0]) {
+        if(d.faq1_q) { var q = faqs[0].querySelector('.faq-q'); if(q) q.textContent = d.faq1_q; }
+        if(d.faq1_a) { var a = faqs[0].querySelector('.faq-a'); if(a) a.textContent = d.faq1_a; }
+      }
+      if(faqs[1]) {
+        if(d.faq2_q) { var q = faqs[1].querySelector('.faq-q'); if(q) q.textContent = d.faq2_q; }
+        if(d.faq2_a) { var a = faqs[1].querySelector('.faq-a'); if(a) a.textContent = d.faq2_a; }
+      }
+      if(faqs[2]) {
+        if(d.faq3_q) { var q = faqs[2].querySelector('.faq-q'); if(q) q.textContent = d.faq3_q; }
+        if(d.faq3_a) { var a = faqs[2].querySelector('.faq-a'); if(a) a.textContent = d.faq3_a; }
+      }
+      if(faqs[3]) {
+        if(d.faq4_q) { var q = faqs[3].querySelector('.faq-q'); if(q) q.textContent = d.faq4_q; }
+        if(d.faq4_a) { var a = faqs[3].querySelector('.faq-a'); if(a) a.textContent = d.faq4_a; }
+      }
+
+      // Footer Copyright Update
+      if(d.ft_copy) {
+        document.querySelectorAll('footer p').forEach(function(p){ p.textContent = d.ft_copy; });
+      }
     }
   }).catch(function(e){});
 })();
