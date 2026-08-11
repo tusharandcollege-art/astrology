@@ -935,6 +935,51 @@ function changePassword(){
 }
 
 /* ════════════════════════════════════════
+   IMAGE HANDLING & COMPRESSION
+════════════════════════════════════════ */
+function uploadImgFile(inputEl, targetInputId, prevImgId) {
+  var file = inputEl.files[0];
+  if(!file) return;
+  
+  showToast('⌛ Processing photo...');
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    var img = new Image();
+    img.onload = function() {
+      // Compress & Resize via HTML5 Canvas (Max 800px)
+      var canvas = document.createElement('canvas');
+      var maxDim = 800;
+      var width = img.width;
+      var height = img.height;
+      if (width > height) {
+        if (width > maxDim) { height = Math.round(height * (maxDim / width)); width = maxDim; }
+      } else {
+        if (height > maxDim) { width = Math.round(width * (maxDim / height)); height = maxDim; }
+      }
+      canvas.width = width;
+      canvas.height = height;
+      var ctx = canvas.getContext('2d');
+      ctx.drawImage(img, 0, 0, width, height);
+      
+      var dataUrl = canvas.toDataURL('image/webp', 0.8);
+      document.getElementById(targetInputId).value = dataUrl;
+      if(prevImgId && document.getElementById(prevImgId)) {
+        document.getElementById(prevImgId).src = dataUrl;
+      }
+      showToast('🖼️ Photo ready! Click "Save Image Changes" to publish live.');
+    };
+    img.src = e.target.result;
+  };
+  reader.readAsDataURL(file);
+}
+
+function previewImg(prevId, val) {
+  if(val && document.getElementById(prevId)) {
+    document.getElementById(prevId).src = val;
+  }
+}
+
+/* ════════════════════════════════════════
    CONTENT LOAD / SAVE
 ════════════════════════════════════════ */
 function loadContent(){
