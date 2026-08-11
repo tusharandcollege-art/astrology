@@ -710,6 +710,25 @@ a { text-decoration:none; color:inherit }
     
     document.getElementById('cBox').classList.add('active');
   });
+
+  // Supabase Live Reader for Booking Page
+  (function(){
+    fetch('https://mztygriwhmkujloggwjr.supabase.co/rest/v1/site_content?id=eq.main', {
+      headers: {
+        'apikey': 'sb_publishable_x0xJkdW1eYFr4Nu6P0OU9A_8cP98C-Y',
+        'Authorization': 'Bearer sb_publishable_x0xJkdW1eYFr4Nu6P0OU9A_8cP98C-Y'
+      }
+    }).then(function(r){ return r.json(); }).then(function(rows){
+      if(Array.isArray(rows) && rows.length > 0 && rows[0].data) {
+        var d = rows[0].data;
+        var avatarUrl = d.img_booking || d.img_hero;
+        if(avatarUrl) {
+          var img = document.querySelector('.profile-avatar img');
+          if(img) img.src = avatarUrl;
+        }
+      }
+    }).catch(function(e){});
+  })();
   </script>
 </body>
 </html>

@@ -1535,6 +1535,16 @@ document.getElementById('cForm').addEventListener('submit', function(e){
           a.href = 'https://wa.me/' + waNum + '?text=' + waMsg;
         });
       }
+      // Image Updates
+      if(d.img_hero) { var img = document.querySelector('.portrait-container img'); if(img) img.src = d.img_hero; }
+      if(d.img_about) { var img = document.querySelector('.about-img img'); if(img) img.src = d.img_about; }
+      var srvImgs = document.querySelectorAll('.sol-card-img img');
+      if(srvImgs[0] && d.img_srv1) srvImgs[0].src = d.img_srv1;
+      if(srvImgs[1] && d.img_srv2) srvImgs[1].src = d.img_srv2;
+      if(srvImgs[2] && d.img_srv3) srvImgs[2].src = d.img_srv3;
+      if(srvImgs[3] && d.img_srv4) srvImgs[3].src = d.img_srv4;
+      if(srvImgs[4] && d.img_srv5) srvImgs[4].src = d.img_srv5;
+      if(srvImgs[5] && d.img_srv6) srvImgs[5].src = d.img_srv6;
     }
   }).catch(function(e){});
 })();

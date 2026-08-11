@@ -338,8 +338,11 @@ input,textarea,select{font-family:'Inter',sans-serif}
       <button class="sb-link" onclick="showPanel('hero',this)">
         <span class="sb-ico">🏠</span> Hero Section
       </button>
+      <button class="sb-link" onclick="showPanel('images',this)">
+        <span class="sb-ico">🖼️</span> Image Manager
+      </button>
       <button class="sb-link" onclick="showPanel('contact',this)">
-        <span class="sb-ico">📞</span> Phone & WhatsApp
+        <span class="sb-ico">📞</span> Phone &amp; WhatsApp
       </button>
       <button class="sb-link" onclick="showPanel('stats',this)">
         <span class="sb-ico">📈</span> Stats & Numbers
@@ -653,6 +656,144 @@ input,textarea,select{font-family:'Inter',sans-serif}
       </div>
     </div>
 
+    <!-- ── IMAGE MANAGER ── -->
+    <div class="section-panel" id="panel-images">
+      <div class="ed-card">
+        <div class="ed-card-title">🖼️ Website Image &amp; Photo Manager</div>
+        <div class="ed-card-sub">Upload your own photos or paste image URLs for all sections of your website. Click "Save Changes" at the top to apply globally.</div>
+
+        <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:16px">
+
+          <!-- Hero Acharya Portrait -->
+          <div class="srv-admin-card">
+            <div class="srv-admin-card-hd">👤 Homepage Hero Acharya Portrait</div>
+            <div class="fg">
+              <label>Image URL / Upload</label>
+              <input type="text" id="img-hero" placeholder="acharya-arvind-hero.png" oninput="previewImg('img-hero-prev', this.value)">
+              <input type="file" accept="image/*" style="display:none" id="file-hero" onchange="uploadImgFile(this, 'img-hero', 'img-hero-prev')">
+              <button class="btn-preview" style="font-size:.7rem;padding:6px;margin-top:4px" onclick="document.getElementById('file-hero').click()">📁 Select Image File</button>
+            </div>
+            <div style="width:100%;height:110px;background:#000;border-radius:8px;overflow:hidden;margin-top:6px">
+              <img id="img-hero-prev" src="acharya-arvind-hero.png" style="width:100%;height:100%;object-fit:cover" onerror="this.src='acharya-arvind.png'">
+            </div>
+          </div>
+
+          <!-- Booking Page Avatar -->
+          <div class="srv-admin-card">
+            <div class="srv-admin-card-hd">📅 Booking Page Profile Avatar</div>
+            <div class="fg">
+              <label>Image URL / Upload</label>
+              <input type="text" id="img-booking" placeholder="acharya-arvind.png" oninput="previewImg('img-booking-prev', this.value)">
+              <input type="file" accept="image/*" style="display:none" id="file-booking" onchange="uploadImgFile(this, 'img-booking', 'img-booking-prev')">
+              <button class="btn-preview" style="font-size:.7rem;padding:6px;margin-top:4px" onclick="document.getElementById('file-booking').click()">📁 Select Image File</button>
+            </div>
+            <div style="width:100%;height:110px;background:#000;border-radius:8px;overflow:hidden;margin-top:6px">
+              <img id="img-booking-prev" src="acharya-arvind.png" style="width:100%;height:100%;object-fit:cover">
+            </div>
+          </div>
+
+          <!-- About Section Acharya Photo -->
+          <div class="srv-admin-card">
+            <div class="srv-admin-card-hd">🙏 About Section Acharya Photo</div>
+            <div class="fg">
+              <label>Image URL / Upload</label>
+              <input type="text" id="img-about" placeholder="acharya-arvind-pro.png" oninput="previewImg('img-about-prev', this.value)">
+              <input type="file" accept="image/*" style="display:none" id="file-about" onchange="uploadImgFile(this, 'img-about', 'img-about-prev')">
+              <button class="btn-preview" style="font-size:.7rem;padding:6px;margin-top:4px" onclick="document.getElementById('file-about').click()">📁 Select Image File</button>
+            </div>
+            <div style="width:100%;height:110px;background:#000;border-radius:8px;overflow:hidden;margin-top:6px">
+              <img id="img-about-prev" src="acharya-arvind-pro.png" style="width:100%;height:100%;object-fit:cover" onerror="this.src='acharya-arvind.png'">
+            </div>
+          </div>
+
+          <!-- Service 1: Marriage -->
+          <div class="srv-admin-card">
+            <div class="srv-admin-card-hd">❤️ Service 1: Marriage &amp; Relationships</div>
+            <div class="fg">
+              <label>Image URL / Upload</label>
+              <input type="text" id="img-srv1" placeholder="flower_rangoli_mandala.jpg" oninput="previewImg('img-srv1-prev', this.value)">
+              <input type="file" accept="image/*" style="display:none" id="file-srv1" onchange="uploadImgFile(this, 'img-srv1', 'img-srv1-prev')">
+              <button class="btn-preview" style="font-size:.7rem;padding:6px;margin-top:4px" onclick="document.getElementById('file-srv1').click()">📁 Select Image File</button>
+            </div>
+            <div style="width:100%;height:110px;background:#000;border-radius:8px;overflow:hidden;margin-top:6px">
+              <img id="img-srv1-prev" src="flower_rangoli_mandala.jpg" style="width:100%;height:100%;object-fit:cover">
+            </div>
+          </div>
+
+          <!-- Service 2: Kundli -->
+          <div class="srv-admin-card">
+            <div class="srv-admin-card-hd">🔮 Service 2: Kundli &amp; Reading</div>
+            <div class="fg">
+              <label>Image URL / Upload</label>
+              <input type="text" id="img-srv2" placeholder="sanskrit_manuscript.jpg" oninput="previewImg('img-srv2-prev', this.value)">
+              <input type="file" accept="image/*" style="display:none" id="file-srv2" onchange="uploadImgFile(this, 'img-srv2', 'img-srv2-prev')">
+              <button class="btn-preview" style="font-size:.7rem;padding:6px;margin-top:4px" onclick="document.getElementById('file-srv2').click()">📁 Select Image File</button>
+            </div>
+            <div style="width:100%;height:110px;background:#000;border-radius:8px;overflow:hidden;margin-top:6px">
+              <img id="img-srv2-prev" src="sanskrit_manuscript.jpg" style="width:100%;height:100%;object-fit:cover">
+            </div>
+          </div>
+
+          <!-- Service 3: Pujas -->
+          <div class="srv-admin-card">
+            <div class="srv-admin-card-hd">🔱 Service 3: Pujas &amp; Rituals</div>
+            <div class="fg">
+              <label>Image URL / Upload</label>
+              <input type="text" id="img-srv3" placeholder="vedic_trishul_temple.jpg" oninput="previewImg('img-srv3-prev', this.value)">
+              <input type="file" accept="image/*" style="display:none" id="file-srv3" onchange="uploadImgFile(this, 'img-srv3', 'img-srv3-prev')">
+              <button class="btn-preview" style="font-size:.7rem;padding:6px;margin-top:4px" onclick="document.getElementById('file-srv3').click()">📁 Select Image File</button>
+            </div>
+            <div style="width:100%;height:110px;background:#000;border-radius:8px;overflow:hidden;margin-top:6px">
+              <img id="img-srv3-prev" src="vedic_trishul_temple.jpg" style="width:100%;height:100%;object-fit:cover">
+            </div>
+          </div>
+
+          <!-- Service 4: Vastu -->
+          <div class="srv-admin-card">
+            <div class="srv-admin-card-hd">🏠 Service 4: Vastu &amp; Property</div>
+            <div class="fg">
+              <label>Image URL / Upload</label>
+              <input type="text" id="img-srv4" placeholder="vedic_pooja_kalash.jpg" oninput="previewImg('img-srv4-prev', this.value)">
+              <input type="file" accept="image/*" style="display:none" id="file-srv4" onchange="uploadImgFile(this, 'img-srv4', 'img-srv4-prev')">
+              <button class="btn-preview" style="font-size:.7rem;padding:6px;margin-top:4px" onclick="document.getElementById('file-srv4').click()">📁 Select Image File</button>
+            </div>
+            <div style="width:100%;height:110px;background:#000;border-radius:8px;overflow:hidden;margin-top:6px">
+              <img id="img-srv4-prev" src="vedic_pooja_kalash.jpg" style="width:100%;height:100%;object-fit:cover">
+            </div>
+          </div>
+
+          <!-- Service 5: Career -->
+          <div class="srv-admin-card">
+            <div class="srv-admin-card-hd">💼 Service 5: Career &amp; Business</div>
+            <div class="fg">
+              <label>Image URL / Upload</label>
+              <input type="text" id="img-srv5" placeholder="career_astrology.jpg" oninput="previewImg('img-srv5-prev', this.value)">
+              <input type="file" accept="image/*" style="display:none" id="file-srv5" onchange="uploadImgFile(this, 'img-srv5', 'img-srv5-prev')">
+              <button class="btn-preview" style="font-size:.7rem;padding:6px;margin-top:4px" onclick="document.getElementById('file-srv5').click()">📁 Select Image File</button>
+            </div>
+            <div style="width:100%;height:110px;background:#000;border-radius:8px;overflow:hidden;margin-top:6px">
+              <img id="img-srv5-prev" src="career_astrology.jpg" style="width:100%;height:100%;object-fit:cover">
+            </div>
+          </div>
+
+          <!-- Service 6: Gemstones -->
+          <div class="srv-admin-card">
+            <div class="srv-admin-card-hd">💎 Service 6: Remedies &amp; Gemstones</div>
+            <div class="fg">
+              <label>Image URL / Upload</label>
+              <input type="text" id="img-srv6" placeholder="gemstones_remedies.jpg" oninput="previewImg('img-srv6-prev', this.value)">
+              <input type="file" accept="image/*" style="display:none" id="file-srv6" onchange="uploadImgFile(this, 'img-srv6', 'img-srv6-prev')">
+              <button class="btn-preview" style="font-size:.7rem;padding:6px;margin-top:4px" onclick="document.getElementById('file-srv6').click()">📁 Select Image File</button>
+            </div>
+            <div style="width:100%;height:110px;background:#000;border-radius:8px;overflow:hidden;margin-top:6px">
+              <img id="img-srv6-prev" src="gemstones_remedies.jpg" style="width:100%;height:100%;object-fit:cover">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
     <!-- ── CHANGE PASSWORD ── -->
     <div class="section-panel" id="panel-password">
       <div class="ed-card" style="max-width:440px">
@@ -727,6 +868,15 @@ var DEFAULTS = {
   tb_main: 'जीवन के हर प्रश्न का सही समाधान',
   tb_sub:  'विश्वसनीय • गोपनीयता की गारंटी • वैदिक विधि',
   tb_btn:  '📞 कॉल करें',
+  img_hero:    'acharya-arvind-hero.png',
+  img_booking: 'acharya-arvind.png',
+  img_about:   'acharya-arvind-pro.png',
+  img_srv1:    'flower_rangoli_mandala.jpg',
+  img_srv2:    'sanskrit_manuscript.jpg',
+  img_srv3:    'vedic_trishul_temple.jpg',
+  img_srv4:    'vedic_pooja_kalash.jpg',
+  img_srv5:    'career_astrology.jpg',
+  img_srv6:    'gemstones_remedies.jpg',
   last_saved: 'Never'
 };
 
