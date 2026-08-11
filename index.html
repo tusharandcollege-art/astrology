@@ -1523,8 +1523,10 @@ document.getElementById('cForm').addEventListener('submit', function(e){
         document.querySelectorAll('a[href^="tel:"]').forEach(function(a){ a.href = 'tel:' + d.c_phone.replace(/\s+/g,''); });
       }
       if(d.c_wa) {
+        var waNum = d.c_wa.replace(/\+/g,'').replace(/\s+/g,'');
+        var waMsg = encodeURIComponent('नमस्ते आचार्य जी, मुझे वैदिक ज्योतिष परामर्श चाहिए।');
         document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){
-          a.href = 'https://wa.me/' + d.c_wa.replace(/\+/g,'').replace(/\s+/g,'');
+          a.href = 'https://wa.me/' + waNum + '?text=' + waMsg;
         });
       }
     }
