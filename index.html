@@ -546,13 +546,16 @@ footer .f-logo { font-family:var(--fh); font-size:1.15rem; font-weight:800; colo
     justify-content:center
   }
 
-  /* ── Portrait: small, centered, top ── */
+  /* ── Portrait: nicely fitted, centered ── */
   .hero-right{
     order:-1; width:100%;
     display:flex; justify-content:center;
-    padding:0; margin:0 0 10px
+    padding:0; margin:0 0 14px
   }
-  .portrait-container{ width:120px; height:148px }
+  .portrait-container{ width:140px; height:175px; max-width:45vw; max-height:210px; margin:0 auto }
+  .portrait-container img, .hero-portrait img, .oval-inner-frame img {
+    width:100%!important; height:100%!important; object-fit:cover!important; object-position:top center!important;
+  }
   .oval-outer-line{
     inset:-6px;
     border:1.5px solid rgba(197,155,39,0.4);
@@ -560,7 +563,8 @@ footer .f-logo { font-family:var(--fh); font-size:1.15rem; font-weight:800; colo
   }
   .oval-inner-frame{
     border:2px solid rgba(197,155,39,0.28);
-    box-shadow:0 6px 20px rgba(122,21,21,0.12)
+    box-shadow:0 6px 20px rgba(122,21,21,0.12);
+    overflow:hidden
   }
   .leaf-deco{ display:none }
   .deco-diamond{ display:none }

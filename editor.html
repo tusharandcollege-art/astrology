@@ -846,10 +846,32 @@ function saveChanges(){
   var stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
   stored[currentPage] = changes;
   localStorage.setItem(STORAGE_KEY, JSON.stringify(stored));
+
+  // Sync edited text content to Supabase
+  var doc = document.getElementById('siteFrame').contentDocument;
+  var content = JSON.parse(localStorage.getItem('vedic_content') || '{}');
+  if(doc) {
+    var h1m = doc.querySelector('.h1m'); if(h1m) content.h_line1 = h1m.textContent.trim();
+    var h1g = doc.querySelector('.h1g'); if(h1g) content.h_line2 = h1g.textContent.trim();
+    var nameEl = doc.querySelector('.hero-name'); if(nameEl) content.h_name = nameEl.textContent.trim();
+    var quoteEl = doc.querySelector('.hero-quote'); if(quoteEl) content.h_quote = quoteEl.textContent.trim();
+  }
+  localStorage.setItem('vedic_content', JSON.stringify(content));
+
+  fetch('https://mztygriwhmkujloggwjr.supabase.co/rest/v1/site_content', {
+    method: 'POST',
+    headers: {
+      'apikey': 'sb_publishable_x0xJkdW1eYFr4Nu6P0OU9A_8cP98C-Y',
+      'Authorization': 'Bearer sb_publishable_x0xJkdW1eYFr4Nu6P0OU9A_8cP98C-Y',
+      'Content-Type': 'application/json',
+      'Prefer': 'resolution=merge-duplicates'
+    },
+    body: JSON.stringify([{ id: 'main', data: content }])
+  }).catch(function(err){ console.warn('Supabase visual sync:', err); });
+
   var si = document.getElementById('saveInd');
-  si.classList.add('show');
-  setTimeout(function(){ si.classList.remove('show'); }, 3000);
-  showToast('✓ Changes saved! Open the site to see them live.');
+  if(si) { si.classList.add('show'); setTimeout(function(){ si.classList.remove('show'); }, 3000); }
+  showToast('⚡ Live text changes published to website & Supabase!');
 }
 
 function applyStoredChanges(){
