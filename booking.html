@@ -3,322 +3,726 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Book a Consultation | Acharya Arvind</title>
-<meta name="description" content="Talk to Acharya Arvind directly or schedule a call at your convenience.">
+<title>Book a Consultation | Acharya Arvind — भारतीय वैदिक ज्योतिष केंद्र</title>
+<meta name="description" content="Book a Vedic astrology consultation with Acharya Arvind. Call directly, WhatsApp, or schedule a call at your convenience.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Noto+Sans+Devanagari:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700&family=EB+Garamond:ital,wght@0,400;1,500&display=swap" rel="stylesheet">
 <style>
+/* ── BRAND TOKENS (matches main site exactly) ── */
 :root {
   --bg-cream:    #FAF7F2;
   --bg-white:    #FFFFFF;
   --maroon:      #7A1515;
   --maroon-dark: #5C0E0E;
-  --maroon-light:rgba(122, 21, 21, 0.05);
+  --maroon-light:rgba(122,21,21,0.06);
   --gold:        #C59B27;
   --gold-dark:   #9E7B1A;
   --gold-light:  #DFBE6B;
-  --gold-bg:     rgba(197, 155, 39, 0.08);
+  --gold-bg:     rgba(197,155,39,0.08);
   --text-dark:   #2C1808;
   --text-mid:    #5E4329;
   --text-muted:  #8E7356;
   --border-gold: #E6D5B8;
-  --border-light:rgba(230, 213, 184, 0.6);
+  --border-light:rgba(230,213,184,0.6);
   --fh: 'Noto Sans Devanagari', sans-serif;
   --fe: 'Inter', sans-serif;
   --fs: 'Cinzel', serif;
-  --shadow-md: 0 10px 30px rgba(44, 24, 8, 0.06);
-  --tr: all .25s ease;
+  --fi: 'EB Garamond', serif;
+  --shadow-sm: 0 2px 10px rgba(0,0,0,0.04);
+  --shadow-md: 0 8px 32px rgba(44,24,8,0.07);
+  --tr: all .25s cubic-bezier(0.4,0,0.2,1);
 }
 
 *, *::before, *::after { margin:0; padding:0; box-sizing:border-box }
-
-/* ── PREVENT DEKTOP SKEW (CENTERS MOBILE APP MODE ON DESKTOP) ── */
+html { scroll-behavior:smooth }
 body {
   font-family:var(--fe);
-  background:radial-gradient(circle at center, #F4EFE7 0%, #E8DFD0 100%);
+  background:var(--bg-cream);
   color:var(--text-dark);
-  display:flex;
-  justify-content:center;
-  align-items:flex-start;
   min-height:100vh;
-  margin:0;
+  -webkit-font-smoothing:antialiased;
 }
-
-.app-frame {
-  width: 100%;
-  max-width: 480px; /* Matching index.html mobile frame */
-  background: var(--bg-cream);
-  min-height: 100vh;
-  box-shadow: 0 0 60px rgba(44, 24, 8, 0.18);
-  position: relative;
-  display: flex;
-  flex-direction: column;
-}
-
 a { text-decoration:none; color:inherit }
+img { display:block; max-width:100% }
 
-/* Compact Navbar */
+/* ══════════════════════════════
+   NAVBAR — identical to main site
+══════════════════════════════ */
 .navbar {
-  height:54px; background:rgba(250, 247, 242, 0.98);
-  border-bottom:1px solid var(--border-light);
-  padding:0 20px; display:flex; align-items:center; justify-content:space-between;
+  position:sticky; top:0; z-index:1000;
+  background:rgba(250,247,242,0.97);
+  backdrop-filter:blur(14px);
+  -webkit-backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border-gold);
+  padding:0 60px; height:76px;
+  display:flex; align-items:center; justify-content:space-between;
+}
+.logo { display:flex; align-items:center; gap:14px }
+.logo-om { font-family:var(--fh); font-size:2.6rem; color:var(--gold); line-height:1 }
+.logo-text { display:flex; flex-direction:column }
+.logo-title { font-family:var(--fh); font-size:1.15rem; font-weight:800; color:var(--maroon); line-height:1.2 }
+.logo-sub { font-family:var(--fs); font-size:.56rem; letter-spacing:2.5px; color:var(--text-mid); font-weight:600; text-transform:uppercase; margin-top:2px }
+
+.nav-right { display:flex; align-items:center; gap:32px }
+.nav-links { list-style:none; display:flex; gap:28px }
+.nav-links a {
+  font-family:var(--fs); font-size:.76rem; font-weight:600;
+  letter-spacing:2px; color:var(--text-mid); text-transform:uppercase;
+  transition:var(--tr); padding-bottom:4px;
+}
+.nav-links a:hover { color:var(--gold) }
+.btn-back-home {
+  font-family:var(--fs); font-size:.75rem; font-weight:700;
+  letter-spacing:1px; text-transform:uppercase;
+  background:#fff; color:var(--maroon);
+  border:1.5px solid var(--border-gold);
+  padding:10px 22px; border-radius:30px;
+  display:flex; align-items:center; gap:8px;
+  transition:var(--tr);
+  box-shadow:var(--shadow-sm);
+}
+.btn-back-home:hover { background:var(--maroon); color:#fff; border-color:var(--maroon) }
+
+/* ══════════════════════════════
+   PAGE HERO STRIP
+══════════════════════════════ */
+.page-hero {
+  background:linear-gradient(135deg, var(--maroon) 0%, #9B1C1C 100%);
+  padding:52px 60px;
+  display:flex; align-items:center; justify-content:space-between;
+  position:relative; overflow:hidden;
+}
+.page-hero::before {
+  content:'';
+  position:absolute; top:-80px; right:-80px;
+  width:340px; height:340px;
+  border:1px solid rgba(197,155,39,0.15); border-radius:50%;
+  pointer-events:none;
+}
+.page-hero::after {
+  content:'';
+  position:absolute; bottom:-60px; right:80px;
+  width:240px; height:240px;
+  border:1px solid rgba(197,155,39,0.1); border-radius:50%;
+  pointer-events:none;
+}
+.hero-tag {
+  font-family:var(--fs); font-size:.7rem; letter-spacing:3px;
+  text-transform:uppercase; color:var(--gold-light);
+  font-weight:700; margin-bottom:10px;
+}
+.hero-h1 {
+  font-family:var(--fh); font-size:2.5rem; font-weight:900;
+  color:#fff; line-height:1.18; margin-bottom:12px;
+}
+.hero-h1 span { color:var(--gold-light) }
+.hero-desc {
+  font-family:var(--fh); font-size:.92rem;
+  color:rgba(255,255,255,0.72); line-height:1.6; max-width:480px;
+}
+.hero-right-badge {
+  display:flex; flex-direction:column; align-items:center; gap:6px;
+  background:rgba(255,255,255,0.08); border:1px solid rgba(197,155,39,0.3);
+  border-radius:20px; padding:24px 32px; text-align:center;
+  flex-shrink:0; backdrop-filter:blur(8px);
+}
+.hero-om { font-family:var(--fh); font-size:3rem; color:var(--gold-light); line-height:1 }
+.hero-badge-title { font-family:var(--fh); font-size:.82rem; font-weight:800; color:#fff; margin-top:4px }
+.hero-badge-sub { font-family:var(--fs); font-size:.58rem; letter-spacing:1.5px; color:rgba(255,255,255,0.6); text-transform:uppercase }
+
+/* ══════════════════════════════
+   MAIN TWO-COLUMN LAYOUT
+══════════════════════════════ */
+.page-body {
+  max-width:1200px; margin:0 auto;
+  padding:52px 60px;
+  display:grid; grid-template-columns:1fr 1fr;
+  gap:36px; align-items:start;
+}
+
+/* ── LEFT COLUMN ── */
+.left-col { display:flex; flex-direction:column; gap:24px }
+
+/* Instant connect card */
+.connect-card {
+  background:#fff; border:1px solid var(--border-gold);
+  border-radius:24px; padding:32px;
+  box-shadow:var(--shadow-md);
+}
+.card-tag {
+  font-family:var(--fs); font-size:.65rem; letter-spacing:2.5px;
+  text-transform:uppercase; color:var(--gold); font-weight:700; margin-bottom:8px;
+}
+.card-h2 {
+  font-family:var(--fh); font-size:1.45rem; font-weight:900;
+  color:var(--maroon); margin-bottom:8px; line-height:1.25;
+}
+.card-desc {
+  font-family:var(--fh); font-size:.86rem; color:var(--text-muted);
+  line-height:1.6; margin-bottom:24px;
+}
+
+/* Divider */
+.section-divider {
+  display:flex; align-items:center; gap:12px; margin:20px 0;
+}
+.section-divider::before, .section-divider::after {
+  content:''; flex:1; height:1px; background:var(--border-gold);
+}
+.section-divider span {
+  font-family:var(--fs); font-size:.65rem; letter-spacing:2px;
+  color:var(--text-muted); text-transform:uppercase; white-space:nowrap;
+}
+
+/* Direct contact buttons */
+.direct-btns { display:flex; flex-direction:column; gap:12px; margin-bottom:24px }
+.btn-phone {
+  background:var(--maroon); color:#fff;
+  padding:15px 24px; border-radius:14px;
+  display:flex; align-items:center; gap:14px;
+  font-family:var(--fh); font-size:.92rem; font-weight:700;
+  box-shadow:0 4px 18px rgba(122,21,21,0.22); transition:var(--tr);
+}
+.btn-phone:hover { background:var(--maroon-dark); transform:translateY(-2px) }
+.btn-phone .btn-icon {
+  width:42px; height:42px; background:rgba(255,255,255,0.15);
+  border-radius:10px; display:flex; align-items:center; justify-content:center;
+  font-size:1.2rem; flex-shrink:0;
+}
+.btn-phone .btn-text { display:flex; flex-direction:column; align-items:flex-start }
+.btn-phone .btn-label { font-size:.68rem; opacity:0.75; font-weight:600; margin-bottom:2px }
+.btn-phone .btn-val { font-size:.96rem; font-weight:800 }
+
+.btn-wa {
+  background:#25D366; color:#fff;
+  padding:15px 24px; border-radius:14px;
+  display:flex; align-items:center; gap:14px;
+  font-family:var(--fe); font-size:.92rem; font-weight:700;
+  box-shadow:0 4px 18px rgba(37,211,102,0.25); transition:var(--tr);
+}
+.btn-wa:hover { background:#1EBE5D; transform:translateY(-2px) }
+.btn-wa .btn-icon {
+  width:42px; height:42px; background:rgba(255,255,255,0.15);
+  border-radius:10px; display:flex; align-items:center; justify-content:center;
   flex-shrink:0;
 }
-.logo { display:flex; align-items:center; gap:10px }
-.logo-om { font-family:var(--fh); font-size:1.9rem; color:var(--gold); line-height:1 }
-.logo-title { font-family:var(--fh); font-size:1rem; font-weight:800; color:var(--maroon) }
+.btn-wa .wa-icon { width:24px; height:24px; fill:#fff }
+.btn-wa .btn-text { display:flex; flex-direction:column; align-items:flex-start }
+.btn-wa .btn-label { font-size:.68rem; opacity:0.75; font-weight:600; margin-bottom:2px }
+.btn-wa .btn-val { font-size:.96rem; font-weight:800 }
 
-.btn-back-home {
-  font-family:var(--fh); font-size:.78rem; font-weight:700;
-  color:var(--maroon); border:1px solid var(--border-gold);
-  padding:5px 14px; border-radius:20px; background:#FFF; transition:var(--tr);
+/* Trust grid */
+.trust-grid {
+  display:grid; grid-template-columns:1fr 1fr; gap:10px;
+  background:var(--bg-cream); border-radius:14px;
+  padding:16px; border:1px solid var(--border-light);
 }
-.btn-back-home:hover { background:var(--maroon); color:#FFF }
-
-/* scrollable wrapper for booking cards */
-.viewport-body {
-  flex:1; display:flex; flex-direction:column;
-  padding:20px 16px; gap:16px;
+.trust-item {
+  display:flex; align-items:center; gap:8px;
+  font-family:var(--fh); font-size:.78rem; font-weight:700; color:var(--text-dark);
+}
+.trust-check {
+  width:22px; height:22px; border-radius:50%;
+  background:var(--gold-bg); border:1px solid rgba(197,155,39,0.3);
+  display:flex; align-items:center; justify-content:center;
+  color:var(--gold); font-size:.7rem; flex-shrink:0;
 }
 
-.left-card {
-  background:#FFFFFF; border:1px solid var(--border-gold);
-  border-radius:20px; padding:20px; box-shadow:var(--shadow-md);
-  display:flex; flex-direction:column; gap:14px;
+/* Acharya mini profile card */
+.acharya-card {
+  background:#fff; border:1px solid var(--border-gold);
+  border-radius:24px; padding:24px 28px;
+  box-shadow:var(--shadow-md);
+  display:flex; align-items:center; gap:20px;
 }
-.hdr-group .tag { font-family:var(--fs); font-size:.65rem; letter-spacing:2px; color:var(--gold); font-weight:700; text-transform:uppercase; margin-bottom:4px }
-.hdr-group h1 { font-family:var(--fh); font-size:1.35rem; font-weight:900; color:var(--maroon); line-height:1.2; margin-bottom:6px }
-.hdr-group p { font-family:var(--fh); font-size:.78rem; color:var(--text-muted); line-height:1.4 }
-
-.direct-btns { display:flex; flex-direction:column; gap:10px }
-.btn-direct-phone {
-  background:var(--maroon); color:#FFF; padding:12px 16px; border-radius:12px;
-  display:flex; align-items:center; justify-content:center; gap:10px; font-family:var(--fh); font-size:.82rem; font-weight:700;
-  box-shadow:0 4px 14px rgba(122, 21, 21, 0.15); transition:var(--tr);
+.acharya-avatar {
+  width:80px; height:80px; border-radius:50%;
+  overflow:hidden; flex-shrink:0;
+  border:2px solid var(--gold);
+  box-shadow:0 4px 16px rgba(197,155,39,0.2);
+  background:linear-gradient(135deg,#F5EAD4,#E8D5A8);
+  display:flex; align-items:center; justify-content:center;
+  font-family:var(--fh); font-size:2rem; color:var(--gold);
 }
-.btn-direct-phone:hover { background:var(--maroon-dark) }
+.acharya-avatar img { width:100%; height:100%; object-fit:cover; object-position:top }
+.acharya-info {}
+.acharya-name { font-family:var(--fh); font-size:1.05rem; font-weight:900; color:var(--maroon); margin-bottom:3px }
+.acharya-role { font-family:var(--fs); font-size:.62rem; letter-spacing:1.5px; color:var(--gold-dark); text-transform:uppercase; margin-bottom:8px }
+.acharya-stats { display:flex; gap:16px }
+.ach-stat { text-align:center }
+.ach-stat-n { font-family:var(--fh); font-size:.95rem; font-weight:900; color:var(--text-dark); display:block; line-height:1 }
+.ach-stat-l { font-family:var(--fh); font-size:.58rem; color:var(--text-muted); font-weight:600; margin-top:2px }
 
-.btn-direct-wa {
-  background:#25D366; color:#FFF; padding:13px 16px; border-radius:12px;
-  display:flex; align-items:center; justify-content:center; gap:10px;
-  font-family:var(--fe); font-size:.88rem; font-weight:700; letter-spacing:.2px;
-  box-shadow:0 4px 18px rgba(37, 211, 102, 0.3); transition:var(--tr);
-}
-.btn-direct-wa:hover { background:#1EBE5D; transform:translateY(-1px); }
-.btn-direct-wa:active { transform:scale(.98); }
-.btn-direct-wa .wa-icon { width:22px; height:22px; fill:#fff; flex-shrink:0; }
-
-.trust-pills { display:grid; grid-template-columns:1fr 1fr; gap:6px; background:var(--bg-cream); padding:8px 12px; border-radius:12px; border:1px solid var(--border-light) }
-.trust-item { display:flex; align-items:center; gap:6px; font-family:var(--fh); font-size:.68rem; font-weight:700; color:var(--text-dark) }
-.trust-item span { color:var(--gold) }
-
-/* Form Card */
+/* ── RIGHT COLUMN: FORM ── */
+.right-col {}
 .form-card {
-  background:#FFFFFF; border:1px solid var(--border-gold);
-  border-radius:20px; padding:20px; box-shadow:var(--shadow-md);
-  display:flex; flex-direction:column; gap:14px;
+  background:#fff; border:1px solid var(--border-gold);
+  border-radius:24px;
+  box-shadow:var(--shadow-md);
+  overflow:hidden;
 }
-.form-title { font-family:var(--fh); font-size:1rem; font-weight:800; color:var(--maroon); margin-bottom:4px }
+.form-header {
+  background:linear-gradient(135deg, var(--bg-cream) 0%, #F0E8D5 100%);
+  border-bottom:1px solid var(--border-gold);
+  padding:28px 32px 22px;
+}
+.form-tag {
+  font-family:var(--fs); font-size:.65rem; letter-spacing:2.5px;
+  text-transform:uppercase; color:var(--gold); font-weight:700; margin-bottom:6px;
+}
+.form-h2 {
+  font-family:var(--fh); font-size:1.35rem; font-weight:900;
+  color:var(--maroon); line-height:1.2; margin-bottom:6px;
+}
+.form-sub {
+  font-family:var(--fh); font-size:.8rem; color:var(--text-muted); line-height:1.5;
+}
 
-.f-grp { display:flex; flex-direction:column; gap:4px; margin-bottom:12px }
-.f-grp label { font-family:var(--fh); font-size:.74rem; font-weight:700; color:var(--text-dark) }
-.f-grp input, .f-grp select {
-  font-family:var(--fh); font-size:.8rem; padding:10px 12px;
-  border:1px solid var(--border-gold); border-radius:8px;
+.form-body { padding:28px 32px }
+
+.f-row { display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-bottom:0 }
+.f-grp { display:flex; flex-direction:column; gap:5px; margin-bottom:16px }
+.f-grp label {
+  font-family:var(--fh); font-size:.76rem; font-weight:700; color:var(--text-dark);
+}
+.f-grp input, .f-grp select, .f-grp textarea {
+  font-family:var(--fh); font-size:.86rem; padding:12px 14px;
+  border:1.5px solid var(--border-gold); border-radius:10px;
   background:var(--bg-cream); outline:none; transition:var(--tr);
+  color:var(--text-dark);
 }
-.f-grp input:focus, .f-grp select:focus { border-color:var(--gold); background:#FFF }
+.f-grp input:focus, .f-grp select:focus, .f-grp textarea:focus {
+  border-color:var(--gold); background:#fff;
+  box-shadow:0 0 0 3px rgba(197,155,39,0.1);
+}
 
-/* Slots selector */
-.slots-lbl { font-family:var(--fh); font-size:.74rem; font-weight:700; color:var(--text-dark); margin-bottom:6px; display:block }
-.mini-slots { display:grid; grid-template-columns:repeat(3, 1fr); gap:8px; margin-bottom:12px }
+/* Time slot selector */
+.slots-lbl {
+  font-family:var(--fh); font-size:.76rem; font-weight:700;
+  color:var(--text-dark); margin-bottom:10px; display:block;
+}
+.slots-grid {
+  display:grid; grid-template-columns:repeat(3,1fr); gap:10px; margin-bottom:20px;
+}
 .slot-chip {
-  background:var(--bg-cream); border:1px solid var(--border-gold);
-  border-radius:8px; padding:8px 6px; text-align:center; cursor:pointer;
-  font-family:var(--fe); font-size:.74rem; font-weight:700; color:var(--text-dark); transition:var(--tr);
+  background:var(--bg-cream); border:1.5px solid var(--border-gold);
+  border-radius:10px; padding:11px 8px; text-align:center; cursor:pointer;
+  font-family:var(--fe); font-size:.78rem; font-weight:700; color:var(--text-dark);
+  transition:var(--tr); line-height:1.3;
 }
-.slot-chip.selected, .slot-chip:hover { background:var(--maroon); border-color:var(--maroon); color:#FFF }
+.slot-chip .slot-period { display:block; font-size:.62rem; font-weight:500; color:var(--text-muted); margin-top:2px }
+.slot-chip:hover, .slot-chip.selected {
+  background:var(--maroon); border-color:var(--maroon); color:#fff;
+}
+.slot-chip.selected .slot-period, .slot-chip:hover .slot-period { color:rgba(255,255,255,0.7) }
 
+/* Submit button */
 .btn-submit-sch {
-  font-family:var(--fh); font-size:.9rem; font-weight:800;
-  background:var(--maroon); color:#FFF; border:none; padding:13px;
-  border-radius:10px; cursor:pointer; transition:var(--tr); width:100%;
-  box-shadow:0 4px 14px rgba(122, 21, 21, 0.2);
+  font-family:var(--fh); font-size:1.0rem; font-weight:800;
+  background:var(--maroon); color:#fff; border:none;
+  padding:16px 24px; border-radius:12px; cursor:pointer;
+  transition:var(--tr); width:100%;
+  box-shadow:0 4px 18px rgba(122,21,21,0.25);
+  display:flex; align-items:center; justify-content:center; gap:10px;
 }
-.btn-submit-sch:hover { background:var(--maroon-dark) }
+.btn-submit-sch:hover { background:var(--maroon-dark); transform:translateY(-2px) }
 
+/* Confirmation box */
 .confirm-box {
-  display:none; background:#F0FDF4; border:1.5px solid #22C55E;
-  border-radius:12px; padding:16px; text-align:center; margin-top:8px;
+  display:none; background:linear-gradient(135deg,#F0FDF4,#DCFCE7);
+  border:1.5px solid #22C55E; border-radius:16px;
+  padding:24px; text-align:center; margin-top:16px;
 }
 .confirm-box.active { display:block }
-.confirm-title { font-family:var(--fh); font-size:.95rem; font-weight:800; color:#15803D; margin-bottom:4px }
-.confirm-desc { font-family:var(--fh); font-size:.74rem; color:#166534; line-height:1.4 }
+.confirm-icon { font-size:2.5rem; margin-bottom:10px }
+.confirm-title { font-family:var(--fh); font-size:1.1rem; font-weight:900; color:#15803D; margin-bottom:6px }
+.confirm-desc { font-family:var(--fh); font-size:.82rem; color:#166534; line-height:1.5 }
 
-/* Floating WhatsApp FAB */
+/* ══════════════════════════════
+   BOTTOM TRUST STRIP
+══════════════════════════════ */
+.trust-strip {
+  background:#fff; border-top:1px solid var(--border-gold);
+  padding:28px 60px;
+}
+.trust-strip-inner {
+  max-width:1200px; margin:0 auto;
+  display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:20px;
+}
+.trust-strip-label {
+  font-family:var(--fs); font-size:.7rem; letter-spacing:2px;
+  text-transform:uppercase; color:var(--text-muted);
+}
+.trust-strip-items { display:flex; gap:32px; flex-wrap:wrap }
+.ts-item { display:flex; align-items:center; gap:8px }
+.ts-icon {
+  width:32px; height:32px; border-radius:8px;
+  background:var(--gold-bg); display:flex; align-items:center;
+  justify-content:center; color:var(--gold); font-size:0.9rem;
+}
+.ts-text { font-family:var(--fh); font-size:.78rem; font-weight:700; color:var(--text-dark) }
+
+/* ══════════════════════════════
+   FLOATING WHATSAPP FAB
+══════════════════════════════ */
 .chat-fab {
-  position:fixed; bottom:20px; right:20px;
+  position:fixed; bottom:28px; right:28px;
   background:#25D366; border-radius:50px;
   display:flex; align-items:center; justify-content:center; gap:8px;
-  color:#FFF; box-shadow:0 4px 24px rgba(37, 211, 102, 0.45);
+  color:#fff; box-shadow:0 4px 24px rgba(37,211,102,0.45);
   z-index:999; transition:var(--tr);
-  padding:11px 16px 11px 13px;
-  font-family:var(--fe); font-size:.78rem; font-weight:700;
-  white-space:nowrap; text-decoration:none;
+  padding:12px 18px 12px 14px;
+  font-family:var(--fe); font-size:.8rem; font-weight:700;
 }
-.chat-fab:hover { transform:translateY(-2px); box-shadow:0 8px 28px rgba(37, 211, 102, 0.5); }
-.chat-fab:active { transform:scale(.97); }
-.chat-fab .wa-icon { width:20px; height:20px; fill:#fff; flex-shrink:0; }
+.chat-fab:hover { transform:translateY(-3px); box-shadow:0 8px 32px rgba(37,211,102,0.5) }
+.wa-icon { width:22px; height:22px; fill:#fff; flex-shrink:0 }
+
+/* ══════════════════════════════
+   FOOTER
+══════════════════════════════ */
+footer {
+  background:var(--maroon); color:rgba(255,255,255,0.8);
+  padding:28px 60px; text-align:center;
+  border-top:2px solid rgba(197,155,39,0.3);
+}
+footer .f-logo { font-family:var(--fh); font-size:1.0rem; font-weight:800; color:#fff; margin-bottom:6px }
+footer p { font-family:var(--fe); font-size:.72rem; color:rgba(255,255,255,0.5) }
+
+/* ══════════════════════════════
+   MOBILE RESPONSIVE  (≤768px)
+══════════════════════════════ */
+@media(max-width:768px){
+  .navbar{ padding:0 16px; height:60px }
+  .logo-om{ font-size:1.8rem }
+  .logo-title{ font-size:0.88rem }
+  .logo-sub{ display:none }
+  .nav-links{ display:none }
+  .btn-back-home{ padding:8px 14px; font-size:.65rem; letter-spacing:0.5px }
+
+  .page-hero{ padding:28px 18px; flex-direction:column; gap:20px; align-items:flex-start }
+  .hero-h1{ font-size:1.65rem }
+  .hero-desc{ font-size:.8rem }
+  .hero-right-badge{ width:100%; flex-direction:row; padding:14px 20px; gap:14px; justify-content:flex-start }
+  .hero-om{ font-size:2rem }
+
+  .page-body{ grid-template-columns:1fr; padding:20px 16px; gap:20px }
+
+  .connect-card{ padding:20px }
+  .card-h2{ font-size:1.2rem }
+  .btn-phone, .btn-wa{ padding:13px 18px }
+
+  .acharya-card{ padding:18px; gap:14px }
+  .acharya-avatar{ width:64px; height:64px; font-size:1.5rem }
+  .acharya-name{ font-size:.95rem }
+
+  .form-header{ padding:20px 20px 16px }
+  .form-body{ padding:20px }
+  .f-row{ grid-template-columns:1fr }
+  .slots-grid{ grid-template-columns:repeat(2,1fr) }
+  .form-h2{ font-size:1.15rem }
+
+  .trust-strip{ padding:20px 16px }
+  .trust-strip-inner{ flex-direction:column; align-items:flex-start; gap:12px }
+  .trust-strip-items{ gap:14px }
+
+  footer{ padding:20px 16px }
+}
 </style>
 </head>
 <body>
 
-<div class="app-frame">
-  <!-- Navbar -->
-  <nav class="navbar">
-    <a class="logo" href="index.html">
-      <div class="logo-om">ॐ</div>
-      <span class="logo-title">Bharatiya Vedic Jyotish Kendra</span>
-    </a>
-    <a href="index.html" class="btn-back-home">← Home</a>
-  </nav>
+<!-- ══ NAVBAR ══ -->
+<nav class="navbar">
+  <a class="logo" href="index.html">
+    <div class="logo-om">ॐ</div>
+    <div class="logo-text">
+      <span class="logo-title">भारतीय वैदिक ज्योतिष केंद्र</span>
+      <span class="logo-sub">Bharatiya Vedic Jyotish Kendra</span>
+    </div>
+  </a>
+  <div class="nav-right">
+    <ul class="nav-links">
+      <li><a href="index.html">Home</a></li>
+      <li><a href="index.html#solutions">Services</a></li>
+      <li><a href="index.html#about">About</a></li>
+      <li><a href="index.html#testimonials">Reviews</a></li>
+    </ul>
+    <a href="index.html" class="btn-back-home">← Back to Home</a>
+  </div>
+</nav>
 
-  <!-- Scrollable App Body Container -->
-  <div class="viewport-body">
+<!-- ══ PAGE HERO STRIP ══ -->
+<div class="page-hero">
+  <div>
+    <div class="hero-tag">✦ Vedic Consultation Booking ✦</div>
+    <h1 class="hero-h1">
+      परामर्श बुक करें<br>
+      <span>Acharya Arvind के साथ</span>
+    </h1>
+    <p class="hero-desc">Call directly for instant guidance, or schedule a consultation at a time that suits you. Personalised Vedic astrology for every life situation.</p>
+  </div>
+  <div class="hero-right-badge">
+    <div class="hero-om">ॐ</div>
+    <div>
+      <div class="hero-badge-title">100% Confidential</div>
+      <div class="hero-badge-sub">Authentic Vedic Guidance</div>
+    </div>
+  </div>
+</div>
 
-    <!-- LEFT CARD: Instant Connect -->
-    <div class="left-card">
-      <div class="hdr-group">
-        <div class="tag">✦ INSTANT CONNECT ✦</div>
-        <h1>Talk Directly or Schedule a Call</h1>
-        <p>Connect with Acharya Arvind in one click, or choose a time that suits you.</p>
+<!-- ══ MAIN TWO-COLUMN LAYOUT ══ -->
+<div class="page-body">
+
+  <!-- ── LEFT: INSTANT CONNECT + PROFILE ── -->
+  <div class="left-col">
+
+    <!-- Acharya Profile -->
+    <div class="acharya-card">
+      <div class="acharya-avatar">
+        <img src="acharya-arvind.png" alt="Acharya Arvind" onerror="this.style.display='none'">
+        ॐ
       </div>
-
-      <div class="direct-btns">
-        <a href="tel:+919876543210" class="btn-direct-phone">
-          📞 Call Now
-        </a>
-        <a href="https://wa.me/919876543210" target="_blank" rel="noopener" class="btn-direct-wa">
-          <svg class="wa-icon" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.461c-1.78 0-3.525-.479-5.057-1.386l-.363-.215-3.76.986.998-3.666-.236-.375c-.996-1.584-1.524-3.419-1.524-5.304 0-5.423 4.412-9.835 9.837-9.835 2.628 0 5.097 1.023 6.953 2.88 1.857 1.856 2.88 4.326 2.879 6.954-.001 5.424-4.413 9.837-9.837 9.837m0-18.421c-4.73 0-8.577 3.846-8.577 8.584 0 1.688.49 3.328 1.418 4.743l.217.334-.932 3.421 3.501-.918.327.194c1.373.815 2.946 1.246 4.545 1.246 4.732 0 8.578-3.846 8.578-8.584 0-2.292-.893-4.447-2.518-6.071-1.625-1.624-3.78-2.517-6.069-2.517z"/></svg>
-          Chat on WhatsApp
-        </a>
-      </div>
-
-      <div class="trust-pills">
-        <div class="trust-item"><span>✓</span> 100% Confidential</div>
-        <div class="trust-item"><span>✓</span> 15+ Years Experience</div>
-        <div class="trust-item"><span>✓</span> Vedic & Authentic</div>
-        <div class="trust-item"><span>✓</span> Personalised Guidance</div>
+      <div class="acharya-info">
+        <div class="acharya-name">Acharya Arvind</div>
+        <div class="acharya-role">Vedic Astrologer & Consultant</div>
+        <div class="acharya-stats">
+          <div class="ach-stat">
+            <span class="ach-stat-n">15+</span>
+            <span class="ach-stat-l">वर्ष अनुभव</span>
+          </div>
+          <div class="ach-stat">
+            <span class="ach-stat-n">5000+</span>
+            <span class="ach-stat-l">Consultations</span>
+          </div>
+          <div class="ach-stat">
+            <span class="ach-stat-n">98%</span>
+            <span class="ach-stat-l">Accuracy</span>
+          </div>
+        </div>
       </div>
     </div>
 
-    <!-- RIGHT CARD: Scheduler Form -->
-    <div class="form-card">
-      <div class="form-title">
-        <span>🗓️ Schedule a Call</span>
+    <!-- Instant Connect -->
+    <div class="connect-card">
+      <div class="card-tag">✦ Instant Connect ✦</div>
+      <h2 class="card-h2">अभी सम्पर्क करें</h2>
+      <p class="card-desc">Get immediate guidance — call directly or start a WhatsApp chat right now.</p>
+
+      <div class="direct-btns">
+        <a href="tel:+919876543210" class="btn-phone" id="callBtn">
+          <div class="btn-icon">📞</div>
+          <div class="btn-text">
+            <span class="btn-label">Call directly</span>
+            <span class="btn-val">+91 98765 43210</span>
+          </div>
+        </a>
+        <a href="https://wa.me/919876543210?text=नमस्ते%20आचार्य%20जी,%20मुझे%20वैदिक%20ज्योतिष%20परामर्श%20चाहिए।" target="_blank" rel="noopener" class="btn-wa" id="waBtn">
+          <div class="btn-icon">
+            <svg class="wa-icon" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.461c-1.78 0-3.525-.479-5.057-1.386l-.363-.215-3.76.986.998-3.666-.236-.375c-.996-1.584-1.524-3.419-1.524-5.304 0-5.423 4.412-9.835 9.837-9.835 2.628 0 5.097 1.023 6.953 2.88 1.857 1.856 2.88 4.326 2.879 6.954-.001 5.424-4.413 9.837-9.837 9.837m0-18.421c-4.73 0-8.577 3.846-8.577 8.584 0 1.688.49 3.328 1.418 4.743l.217.334-.932 3.421 3.501-.918.327.194c1.373.815 2.946 1.246 4.545 1.246 4.732 0 8.578-3.846 8.578-8.584 0-2.292-.893-4.447-2.518-6.071-1.625-1.624-3.78-2.517-6.069-2.517z"/></svg>
+          </div>
+          <div class="btn-text">
+            <span class="btn-label">Chat on WhatsApp</span>
+            <span class="btn-val">Message Us Now</span>
+          </div>
+        </a>
       </div>
 
-      <form id="schForm">
-        <div class="f-grp">
-          <label for="sName">Full Name *</label>
-          <input type="text" id="sName" placeholder="Your full name" required>
+      <div class="section-divider"><span>Why Choose Us</span></div>
+
+      <div class="trust-grid">
+        <div class="trust-item">
+          <div class="trust-check">✓</div>
+          100% Confidential
         </div>
-
-        <div class="f-grp">
-          <label for="sPhone">Mobile / WhatsApp *</label>
-          <input type="tel" id="sPhone" placeholder="+91 XXXXXXXXXX" required>
+        <div class="trust-item">
+          <div class="trust-check">✓</div>
+          15+ Years Experience
         </div>
-
-        <div class="f-grp">
-          <label for="sDate">Preferred Date *</label>
-          <input type="date" id="sDate" required>
+        <div class="trust-item">
+          <div class="trust-check">✓</div>
+          Vedic & Authentic
         </div>
-
-        <div class="f-grp">
-          <label for="sTopic">Main Concern *</label>
-          <select id="sTopic" onchange="toggleOtherProblem(this)" required>
-            <option value="">Select your concern</option>
-            <option value="Marriage &amp; Relationship">Marriage &amp; Relationship</option>
-            <option value="Career, Job &amp; Business">Career, Job &amp; Business</option>
-            <option value="Vastu &amp; Property">Vastu &amp; Property</option>
-            <option value="Janam Kundli &amp; Horoscope">Janam Kundli &amp; Horoscope</option>
-            <option value="Remedies &amp; Gemstones">Remedies &amp; Gemstones</option>
-            <option value="Other">Other — I'll describe it</option>
-          </select>
+        <div class="trust-item">
+          <div class="trust-check">✓</div>
+          Personalised Guidance
         </div>
-
-        <!-- Manual Problem Input -->
-        <div class="f-grp" id="manualProbGrp" style="display:none">
-          <label for="sManualTopic">Describe Your Concern</label>
-          <input type="text" id="sManualTopic" placeholder="Briefly describe your issue...">
+        <div class="trust-item">
+          <div class="trust-check">✓</div>
+          Same-Day Consultation
         </div>
-
-        <span class="slots-lbl">Select a Time Slot *</span>
-        <div class="mini-slots">
-          <div class="slot-chip selected" onclick="selectSlot(this, '09:30 AM - 10:30 AM')">09:30 AM</div>
-          <div class="slot-chip" onclick="selectSlot(this, '11:00 AM - 12:00 PM')">11:00 AM</div>
-          <div class="slot-chip" onclick="selectSlot(this, '02:30 PM - 03:30 PM')">02:30 PM</div>
-          <div class="slot-chip" onclick="selectSlot(this, '04:30 PM - 05:30 PM')">04:30 PM</div>
-          <div class="slot-chip" onclick="selectSlot(this, '07:00 PM - 08:00 PM')">07:00 PM</div>
-          <div class="slot-chip" onclick="selectSlot(this, '08:30 PM - 09:30 PM')">08:30 PM</div>
+        <div class="trust-item">
+          <div class="trust-check">✓</div>
+          5000+ Happy Clients
         </div>
-
-        <button type="submit" class="btn-submit-sch" id="schBtn">
-          ⚡ Confirm Booking
-        </button>
-      </form>
-
-      <div class="confirm-box" id="cBox">
-        <div class="confirm-title">✓ Call Scheduled Successfully!</div>
-        <div class="confirm-desc" id="cDesc">Acharya Arvind will contact you at your chosen time.</div>
       </div>
     </div>
 
   </div>
+
+  <!-- ── RIGHT: SCHEDULE FORM ── -->
+  <div class="right-col">
+    <div class="form-card">
+      <div class="form-header">
+        <div class="form-tag">🗓️ Schedule a Consultation</div>
+        <h2 class="form-h2">अपनी सुविधा अनुसार<br>Call बुक करें</h2>
+        <p class="form-sub">Fill in your details and choose a convenient time slot. Acharya Arvind will call you at your scheduled time.</p>
+      </div>
+
+      <div class="form-body">
+        <form id="schForm">
+          <div class="f-row">
+            <div class="f-grp">
+              <label for="sName">Full Name *</label>
+              <input type="text" id="sName" placeholder="Your full name" required>
+            </div>
+            <div class="f-grp">
+              <label for="sPhone">Mobile / WhatsApp *</label>
+              <input type="tel" id="sPhone" placeholder="+91 XXXXXXXXXX" required>
+            </div>
+          </div>
+
+          <div class="f-row">
+            <div class="f-grp">
+              <label for="sDate">Preferred Date *</label>
+              <input type="date" id="sDate" required>
+            </div>
+            <div class="f-grp">
+              <label for="sTopic">Main Concern *</label>
+              <select id="sTopic" onchange="toggleOtherProblem(this)" required>
+                <option value="">Select your concern</option>
+                <option value="Marriage &amp; Relationship">Marriage &amp; Relationship</option>
+                <option value="Career, Job &amp; Business">Career, Job &amp; Business</option>
+                <option value="Vastu &amp; Property">Vastu &amp; Property</option>
+                <option value="Janam Kundli &amp; Horoscope">Janam Kundli &amp; Horoscope</option>
+                <option value="Remedies &amp; Gemstones">Remedies &amp; Gemstones</option>
+                <option value="Health &amp; Wellness">Health &amp; Wellness</option>
+                <option value="Other">Other — I'll describe it</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="f-grp" id="manualProbGrp" style="display:none">
+            <label for="sManualTopic">Describe Your Concern</label>
+            <input type="text" id="sManualTopic" placeholder="Briefly describe your issue...">
+          </div>
+
+          <span class="slots-lbl">Choose a Time Slot *</span>
+          <div class="slots-grid" id="slotsGrid">
+            <div class="slot-chip selected" onclick="selectSlot(this,'09:30 AM – 10:30 AM')">
+              09:30 AM<span class="slot-period">Morning</span>
+            </div>
+            <div class="slot-chip" onclick="selectSlot(this,'11:00 AM – 12:00 PM')">
+              11:00 AM<span class="slot-period">Morning</span>
+            </div>
+            <div class="slot-chip" onclick="selectSlot(this,'02:30 PM – 03:30 PM')">
+              02:30 PM<span class="slot-period">Afternoon</span>
+            </div>
+            <div class="slot-chip" onclick="selectSlot(this,'04:30 PM – 05:30 PM')">
+              04:30 PM<span class="slot-period">Afternoon</span>
+            </div>
+            <div class="slot-chip" onclick="selectSlot(this,'07:00 PM – 08:00 PM')">
+              07:00 PM<span class="slot-period">Evening</span>
+            </div>
+            <div class="slot-chip" onclick="selectSlot(this,'08:30 PM – 09:30 PM')">
+              08:30 PM<span class="slot-period">Evening</span>
+            </div>
+          </div>
+
+          <button type="submit" class="btn-submit-sch" id="schBtn">
+            ⚡ Confirm Booking
+          </button>
+        </form>
+
+        <div class="confirm-box" id="cBox">
+          <div class="confirm-icon">🙏</div>
+          <div class="confirm-title">Call Scheduled Successfully!</div>
+          <div class="confirm-desc" id="cDesc">Acharya Arvind will contact you at your chosen time.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 
+<!-- ══ BOTTOM TRUST STRIP ══ -->
+<div class="trust-strip">
+  <div class="trust-strip-inner">
+    <span class="trust-strip-label">Trusted By Thousands</span>
+    <div class="trust-strip-items">
+      <div class="ts-item">
+        <div class="ts-icon">🛡️</div>
+        <span class="ts-text">100% Confidential</span>
+      </div>
+      <div class="ts-item">
+        <div class="ts-icon">⭐</div>
+        <span class="ts-text">5000+ Satisfied Clients</span>
+      </div>
+      <div class="ts-item">
+        <div class="ts-icon">📖</div>
+        <span class="ts-text">Authentic Vedic Methods</span>
+      </div>
+      <div class="ts-item">
+        <div class="ts-icon">⚡</div>
+        <span class="ts-text">Same-Day Response</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="f-logo">ॐ भारतीय वैदिक ज्योतिष केंद्र</div>
+  <p>© 2025 Acharya Arvind. All rights reserved. | Authentic Vedic Guidance Since 2009</p>
+</footer>
+
 <!-- Floating WhatsApp FAB -->
-<a href="https://wa.me/919876543210" class="chat-fab" target="_blank" rel="noopener" title="Chat on WhatsApp">
+<a href="https://wa.me/919876543210" class="chat-fab" target="_blank" rel="noopener" title="Chat on WhatsApp" id="chatFab">
   <svg class="wa-icon" viewBox="0 0 24 24"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.461c-1.78 0-3.525-.479-5.057-1.386l-.363-.215-3.76.986.998-3.666-.236-.375c-.996-1.584-1.524-3.419-1.524-5.304 0-5.423 4.412-9.835 9.837-9.835 2.628 0 5.097 1.023 6.953 2.88 1.857 1.856 2.88 4.326 2.879 6.954-.001 5.424-4.413 9.837-9.837 9.837m0-18.421c-4.73 0-8.577 3.846-8.577 8.584 0 1.688.49 3.328 1.418 4.743l.217.334-.932 3.421 3.501-.918.327.194c1.373.815 2.946 1.246 4.545 1.246 4.732 0 8.578-3.846 8.578-8.584 0-2.292-.893-4.447-2.518-6.071-1.625-1.624-3.78-2.517-6.069-2.517z"/></svg>
   WhatsApp
 </a>
 
 <script>
+// Set today as default date
 document.getElementById('sDate').valueAsDate = new Date();
 
+// Toggle other concern input
 function toggleOtherProblem(sel) {
-  var mGrp = document.getElementById('manualProbGrp');
-  if(sel.value === 'Other') {
-    mGrp.style.display = 'block';
-  } else {
-    mGrp.style.display = 'none';
-  }
+  document.getElementById('manualProbGrp').style.display = sel.value === 'Other' ? 'block' : 'none';
 }
 
-var selectedSlotTime = '09:30 AM - 10:30 AM';
+// Slot selection
+var selectedSlotTime = '09:30 AM – 10:30 AM';
 function selectSlot(el, slot) {
-  document.querySelectorAll('.slot-chip').forEach(function(c){ c.classList.remove('selected'); });
+  document.querySelectorAll('.slot-chip').forEach(function(c){ c.classList.remove('selected') });
   el.classList.add('selected');
   selectedSlotTime = slot;
 }
 
+// Form submit
 document.getElementById('schForm').addEventListener('submit', function(e){
   e.preventDefault();
-  var name = document.getElementById('sName').value;
+  var name  = document.getElementById('sName').value;
   var phone = document.getElementById('sPhone').value;
-  var date = document.getElementById('sDate').value;
+  var date  = document.getElementById('sDate').value;
   var topic = document.getElementById('sTopic').value;
   if(topic === 'Other') {
     topic = document.getElementById('sManualTopic').value || 'अन्य समस्या';
   }
-
+  // Save to localStorage
   var bookings = JSON.parse(localStorage.getItem('scheduled_calls') || '[]');
-  bookings.push({ name: name, phone: phone, date: date, slot: selectedSlotTime, topic: topic, bookedAt: new Date().toLocaleString() });
+  bookings.push({ name:name, phone:phone, date:date, slot:selectedSlotTime, topic:topic, bookedAt:new Date().toLocaleString() });
   localStorage.setItem('scheduled_calls', JSON.stringify(bookings));
 
+  // Show confirmation
   document.getElementById('schForm').style.display = 'none';
-  document.getElementById('cDesc').innerHTML = 'Hi <strong>' + name + '</strong>, your call is confirmed for <strong>' + date + '</strong> at <strong>' + selectedSlotTime + '</strong>. Topic: <strong>' + topic + '</strong>.';
+  var d = new Date(date);
+  var fmt = d.toLocaleDateString('en-IN', { weekday:'long', day:'numeric', month:'long', year:'numeric' });
+  document.getElementById('cDesc').innerHTML =
+    'नमस्ते <strong>' + name + '</strong> जी,<br>' +
+    'आपकी consultation <strong>' + fmt + '</strong> को <strong>' + selectedSlotTime + '</strong> पर confirm हो गई है।<br>' +
+    'Topic: <strong>' + topic + '</strong><br><br>' +
+    'Acharya Arvind आपको इस नम्बर पर call करेंगे: <strong>' + phone + '</strong>';
   document.getElementById('cBox').classList.add('active');
 });
 </script>
