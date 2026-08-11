@@ -1004,6 +1004,18 @@ function fillFields(){
   set('ab-c1',   c.ab_c1);   set('ab-c2',   c.ab_c2);
   set('ab-c3',   c.ab_c3);   set('ab-c4',   c.ab_c4);
   set('tb-main', c.tb_main); set('tb-sub',  c.tb_sub); set('tb-btn', c.tb_btn);
+  
+  // Fill Image Manager inputs & previews
+  set('img-hero', c.img_hero); previewImg('img-hero-prev', c.img_hero);
+  set('img-booking', c.img_booking); previewImg('img-booking-prev', c.img_booking);
+  set('img-about', c.img_about); previewImg('img-about-prev', c.img_about);
+  set('img-srv1', c.img_srv1); previewImg('img-srv1-prev', c.img_srv1);
+  set('img-srv2', c.img_srv2); previewImg('img-srv2-prev', c.img_srv2);
+  set('img-srv3', c.img_srv3); previewImg('img-srv3-prev', c.img_srv3);
+  set('img-srv4', c.img_srv4); previewImg('img-srv4-prev', c.img_srv4);
+  set('img-srv5', c.img_srv5); previewImg('img-srv5-prev', c.img_srv5);
+  set('img-srv6', c.img_srv6); previewImg('img-srv6-prev', c.img_srv6);
+
   // Services
   buildSrvGrid(c.srv);
 }
@@ -1044,6 +1056,9 @@ function collectContent(){
     ab_c1:   get('ab-c1'),   ab_c2:   get('ab-c2'),
     ab_c3:   get('ab-c3'),   ab_c4:   get('ab-c4'),
     tb_main: get('tb-main'), tb_sub: get('tb-sub'), tb_btn: get('tb-btn'),
+    img_hero: get('img-hero'), img_booking: get('img-booking'), img_about: get('img-about'),
+    img_srv1: get('img-srv1'), img_srv2: get('img-srv2'), img_srv3: get('img-srv3'),
+    img_srv4: get('img-srv4'), img_srv5: get('img-srv5'), img_srv6: get('img-srv6'),
     last_saved: new Date().toLocaleString()
   };
 }
