@@ -115,7 +115,7 @@ a { text-decoration:none; color:inherit }
 
 .main-grid {
   width: 100%;
-  max-width: 1100px;
+  max-width: 1120px;
   display: grid;
   grid-template-columns: 1fr 1.15fr;
   gap: 32px;
@@ -190,6 +190,20 @@ a { text-decoration:none; color:inherit }
 .profile-badges { display:flex; gap:12px; margin-top:5px }
 .p-badge { font-family:var(--fh); font-size:0.7rem; font-weight:700; color:var(--text-dark) }
 .p-badge span { color:var(--gold) }
+
+/* Rating Badge Pill */
+.rating-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(197, 155, 39, 0.12);
+  border: 1px solid rgba(197, 155, 39, 0.35);
+  border-radius: 30px;
+  padding: 6px 14px;
+  width: fit-content;
+}
+.rating-stars { color: var(--gold); font-size: 0.85rem; letter-spacing: 1px }
+.rating-text { font-family: var(--fh); font-size: 0.72rem; font-weight: 700; color: var(--maroon) }
 
 /* Direct Contact Buttons */
 .direct-btns { display:flex; flex-direction:column; gap:10px }
@@ -309,6 +323,22 @@ a { text-decoration:none; color:inherit }
   box-shadow: 0 0 0 3px rgba(197, 155, 39, 0.15);
 }
 
+/* Quick Date Chips */
+.quick-date-row { display: flex; gap: 6px; margin-top: 2px }
+.q-date-btn {
+  font-family: var(--fe);
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 3px 8px;
+  border-radius: 4px;
+  background: var(--gold-bg);
+  color: var(--gold-dark);
+  border: 1px solid rgba(197, 155, 39, 0.3);
+  cursor: pointer;
+  transition: var(--tr);
+}
+.q-date-btn:hover { background: var(--maroon); color: #fff; border-color: var(--maroon) }
+
 /* Slots Selector */
 .slots-lbl { font-family:var(--fh); font-size:.74rem; font-weight:700; color:var(--text-dark); margin-bottom:4px; display:block }
 .mini-slots { display:grid; grid-template-columns:repeat(3, 1fr); gap:6px; margin-bottom:8px }
@@ -316,7 +346,7 @@ a { text-decoration:none; color:inherit }
   background: var(--bg-cream);
   border: 1.5px solid var(--border-gold);
   border-radius: 9px;
-  padding: 7px 4px;
+  padding: 8px 4px;
   text-align: center;
   cursor: pointer;
   font-family: var(--fe);
@@ -324,13 +354,20 @@ a { text-decoration:none; color:inherit }
   font-weight: 700;
   color: var(--text-dark);
   transition: var(--tr);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
 }
+.slot-time { font-weight: 800 }
+.slot-period { font-size: 0.58rem; color: var(--text-muted); font-weight: 600 }
 .slot-chip.selected, .slot-chip:hover {
   background: var(--maroon);
   border-color: var(--maroon);
   color: #FFF;
   box-shadow: 0 3px 10px rgba(122, 21, 21, 0.2);
 }
+.slot-chip.selected .slot-period, .slot-chip:hover .slot-period { color: rgba(255,255,255,0.7) }
 
 .btn-submit-sch {
   font-family: var(--fh);
@@ -361,13 +398,26 @@ a { text-decoration:none; color:inherit }
   display: none;
   background: #F0FDF4;
   border: 1.5px solid #22C55E;
-  border-radius: 12px;
-  padding: 14px;
+  border-radius: 14px;
+  padding: 16px;
   text-align: center;
 }
 .confirm-box.active { display:block }
-.confirm-title { font-family:var(--fh); font-size:.95rem; font-weight:800; color:#15803D; margin-bottom:3px }
-.confirm-desc { font-family:var(--fh); font-size:.76rem; color:#166534; line-height:1.4 }
+.confirm-title { font-family:var(--fh); font-size:1.0rem; font-weight:800; color:#15803D; margin-bottom:4px }
+.confirm-desc { font-family:var(--fh); font-size:.78rem; color:#166534; line-height:1.45; margin-bottom:12px }
+.btn-confirm-wa {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #25D366;
+  color: #FFF;
+  font-family: var(--fe);
+  font-size: 0.8rem;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(37, 211, 102, 0.3);
+}
 
 /* Floating WhatsApp FAB */
 .chat-fab {
@@ -451,6 +501,12 @@ a { text-decoration:none; color:inherit }
           <p>Connect with Acharya Arvind in one click, or choose a time that suits you best.</p>
         </div>
 
+        <!-- Rating pill -->
+        <div class="rating-pill">
+          <span class="rating-stars">★★★★★</span>
+          <span class="rating-text">4.9/5 Rating (5,000+ Consultations)</span>
+        </div>
+
         <!-- Profile badge -->
         <div class="profile-card">
           <div class="profile-avatar">
@@ -509,7 +565,13 @@ a { text-decoration:none; color:inherit }
 
           <div class="f-row">
             <div class="f-grp">
-              <label for="sDate">Preferred Date *</label>
+              <div style="display:flex; justify-content:space-between; align-items:center;">
+                <label for="sDate">Preferred Date *</label>
+                <div class="quick-date-row">
+                  <button type="button" class="q-date-btn" onclick="setQuickDate(0)">Today</button>
+                  <button type="button" class="q-date-btn" onclick="setQuickDate(1)">Tomorrow</button>
+                </div>
+              </div>
               <input type="date" id="sDate" required>
             </div>
 
@@ -535,12 +597,30 @@ a { text-decoration:none; color:inherit }
 
           <span class="slots-lbl">Select a Time Slot *</span>
           <div class="mini-slots">
-            <div class="slot-chip selected" onclick="selectSlot(this, '09:30 AM - 10:30 AM')">09:30 AM</div>
-            <div class="slot-chip" onclick="selectSlot(this, '11:00 AM - 12:00 PM')">11:00 AM</div>
-            <div class="slot-chip" onclick="selectSlot(this, '02:30 PM - 03:30 PM')">02:30 PM</div>
-            <div class="slot-chip" onclick="selectSlot(this, '04:30 PM - 05:30 PM')">04:30 PM</div>
-            <div class="slot-chip" onclick="selectSlot(this, '07:00 PM - 08:00 PM')">07:00 PM</div>
-            <div class="slot-chip" onclick="selectSlot(this, '08:30 PM - 09:30 PM')">08:30 PM</div>
+            <div class="slot-chip selected" onclick="selectSlot(this, '09:30 AM - 10:30 AM')">
+              <span class="slot-time">09:30 AM</span>
+              <span class="slot-period">🌅 Morning</span>
+            </div>
+            <div class="slot-chip" onclick="selectSlot(this, '11:00 AM - 12:00 PM')">
+              <span class="slot-time">11:00 AM</span>
+              <span class="slot-period">🌅 Morning</span>
+            </div>
+            <div class="slot-chip" onclick="selectSlot(this, '02:30 PM - 03:30 PM')">
+              <span class="slot-time">02:30 PM</span>
+              <span class="slot-period">☀️ Afternoon</span>
+            </div>
+            <div class="slot-chip" onclick="selectSlot(this, '04:30 PM - 05:30 PM')">
+              <span class="slot-time">04:30 PM</span>
+              <span class="slot-period">☀️ Afternoon</span>
+            </div>
+            <div class="slot-chip" onclick="selectSlot(this, '07:00 PM - 08:00 PM')">
+              <span class="slot-time">07:00 PM</span>
+              <span class="slot-period">🌙 Evening</span>
+            </div>
+            <div class="slot-chip" onclick="selectSlot(this, '08:30 PM - 09:30 PM')">
+              <span class="slot-time">08:30 PM</span>
+              <span class="slot-period">🌙 Evening</span>
+            </div>
           </div>
 
           <button type="submit" class="btn-submit-sch" id="schBtn">
@@ -551,6 +631,9 @@ a { text-decoration:none; color:inherit }
         <div class="confirm-box" id="cBox">
           <div class="confirm-title">✓ Call Scheduled Successfully!</div>
           <div class="confirm-desc" id="cDesc">Acharya Arvind will contact you at your chosen time.</div>
+          <a id="cWaLink" href="#" target="_blank" rel="noopener" class="btn-confirm-wa">
+            💬 Send Booking via WhatsApp
+          </a>
         </div>
       </div>
 
@@ -564,7 +647,14 @@ a { text-decoration:none; color:inherit }
   </a>
 
   <script>
+  // Default date to today
   document.getElementById('sDate').valueAsDate = new Date();
+
+  function setQuickDate(daysToAdd) {
+    var d = new Date();
+    d.setDate(d.getDate() + daysToAdd);
+    document.getElementById('sDate').valueAsDate = d;
+  }
 
   function toggleOtherProblem(sel) {
     var mGrp = document.getElementById('manualProbGrp');
@@ -592,12 +682,19 @@ a { text-decoration:none; color:inherit }
       topic = document.getElementById('sManualTopic').value || 'अन्य समस्या';
     }
 
+    // Save booking locally
     var bookings = JSON.parse(localStorage.getItem('scheduled_calls') || '[]');
     bookings.push({ name: name, phone: phone, date: date, slot: selectedSlotTime, topic: topic, bookedAt: new Date().toLocaleString() });
     localStorage.setItem('scheduled_calls', JSON.stringify(bookings));
 
+    // Show Confirmation
     document.getElementById('schForm').style.display = 'none';
     document.getElementById('cDesc').innerHTML = 'Hi <strong>' + name + '</strong>, your call is confirmed for <strong>' + date + '</strong> at <strong>' + selectedSlotTime + '</strong>.';
+    
+    // Direct WhatsApp message link
+    var waMsg = encodeURIComponent('नमस्ते आचार्य जी, मैंने परामर्श बुक किया है:\nनाम: ' + name + '\nफोन: ' + phone + '\nदिनांक: ' + date + '\nसमय: ' + selectedSlotTime + '\nविषय: ' + topic);
+    document.getElementById('cWaLink').href = 'https://wa.me/919876543210?text=' + waMsg;
+    
     document.getElementById('cBox').classList.add('active');
   });
   </script>
