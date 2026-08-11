@@ -659,8 +659,13 @@ input,textarea,select{font-family:'Inter',sans-serif}
     <!-- ── IMAGE MANAGER ── -->
     <div class="section-panel" id="panel-images">
       <div class="ed-card">
-        <div class="ed-card-title">🖼️ Website Image &amp; Photo Manager</div>
-        <div class="ed-card-sub">Upload your own photos or paste image URLs for all sections of your website. Click "Save Changes" at the top to apply globally.</div>
+        <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px; flex-wrap:wrap; gap:10px">
+          <div>
+            <div class="ed-card-title" style="margin-bottom:2px">🖼️ Website Image &amp; Photo Manager</div>
+            <div class="ed-card-sub" style="margin-bottom:0">Upload your own photos or paste image URLs for all sections of your website.</div>
+          </div>
+          <button class="btn-save" onclick="saveAll()" style="padding:10px 22px">💾 Save Image Changes</button>
+        </div>
 
         <div style="display:grid; grid-template-columns:repeat(3, 1fr); gap:16px">
 
@@ -1153,7 +1158,7 @@ function showPanel(name, btn){
   var meta = PANEL_META[name] || {};
   document.getElementById('panelTitle').textContent = meta.title || name;
   document.getElementById('panelSub').textContent   = meta.sub   || '';
-  var hasSave = ['hero','contact','stats','services','about','trustbar'].indexOf(name) >= 0;
+  var hasSave = ['hero','images','contact','stats','services','about','trustbar'].indexOf(name) >= 0;
   document.getElementById('topSaveBtn').style.display = hasSave ? 'inline-flex' : 'none';
   if(name === 'leads')    renderLeads();
   if(name === 'bookings') renderBookings();
