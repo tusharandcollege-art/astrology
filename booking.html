@@ -682,11 +682,11 @@ a { text-decoration:none; color:inherit }
       topic = document.getElementById('sManualTopic').value || 'अन्य समस्या';
     }
 
-    var bookingObj = { name: name, phone: phone, date: date, slot: selectedSlotTime, topic: topic, bookedAt: new Date().toLocaleString() };
+    var bookingObj = { name: name, phone: phone, date: date, slot: selectedSlotTime, topic: topic };
 
     // Save booking locally
     var bookings = JSON.parse(localStorage.getItem('scheduled_calls') || '[]');
-    bookings.push(bookingObj);
+    bookings.push(Object.assign({}, bookingObj, { bookedAt: new Date().toLocaleString() }));
     localStorage.setItem('scheduled_calls', JSON.stringify(bookings));
 
     // Push booking to Supabase

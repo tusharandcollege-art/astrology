@@ -1478,16 +1478,17 @@ function filterCategory(cat, btn) {
 
 document.getElementById('cForm').addEventListener('submit', function(e){
   e.preventDefault();
-  var leadObj = {
-    name: document.getElementById('fn').value,
-    phone: document.getElementById('fp').value,
-    dob: document.getElementById('fd').value,
-    place: document.getElementById('fpl').value,
-    problem: document.getElementById('fprob').value,
-    date: new Date().toLocaleString()
-  };
+  var name = document.getElementById('fn').value;
+  var phone = document.getElementById('fp').value;
+  var dob = document.getElementById('fd').value;
+  var place = document.getElementById('fpl').value;
+  var problem = document.getElementById('fprob').value;
+  
+  var leadObj = { name: name, phone: phone, dob: dob, place: place, problem: problem };
+
+  // Save locally
   var s = JSON.parse(localStorage.getItem('vedic_leads') || '[]');
-  s.push(leadObj);
+  s.push(Object.assign({}, leadObj, { date: new Date().toLocaleString() }));
   localStorage.setItem('vedic_leads', JSON.stringify(s));
 
   // Sync to Supabase
