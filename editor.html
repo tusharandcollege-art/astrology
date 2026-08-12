@@ -3,1070 +3,263 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Visual Editor | Vedic Jyotish Admin</title>
+<title>Text Editor | Vedic Jyotish Admin</title>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
 :root{
   --bg:#0F0F14;--panel:#16161E;--card:#1E1E28;--card2:#252532;
-  --border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.12);
-  --maroon:#8B1A1A;--gold:#C9980A;--gold-l:#E4B84D;
-  --blue:#6366F1;--green:#10B981;--red:#EF4444;
+  --border:rgba(255,255,255,.07);--border2:rgba(255,255,255,.14);
+  --maroon:#8B1A1A;--gold:#C9980A;--gold-l:#E4B84D;--green:#10B981;
   --t1:#F0F0F5;--t2:#8888A0;--t3:#505068;
-  --r:all .2s ease;
-  --topbar-h:52px;--right-w:300px;
+  --r:all .18s ease;--topbar-h:56px;--right-w:320px;
 }
 html,body{height:100%;overflow:hidden;font-family:'Inter',sans-serif;background:var(--bg);color:var(--t1)}
-a{text-decoration:none;color:inherit}
-input,textarea,select,button{font-family:'Inter',sans-serif}
-button{cursor:pointer}
-
-/* ── TOP BAR ── */
-#topbar{
-  position:fixed;top:0;left:0;right:0;height:var(--topbar-h);z-index:1000;
-  background:var(--panel);border-bottom:1px solid var(--border);
-  display:flex;align-items:center;gap:0;padding:0 12px;
-}
-.tb-logo{display:flex;align-items:center;gap:8px;padding-right:14px;border-right:1px solid var(--border);margin-right:10px}
-.tb-logo-om{width:30px;height:30px;border-radius:8px;background:var(--maroon);display:flex;align-items:center;justify-content:center;font-size:.9rem;color:var(--gold-l)}
-.tb-logo-name{font-size:.78rem;font-weight:700;color:var(--t1)}
-.tb-sep{width:1px;height:26px;background:var(--border);margin:0 6px}
-.tb-btn{
-  display:flex;align-items:center;gap:6px;padding:7px 12px;border-radius:8px;
-  border:none;font-size:.78rem;font-weight:600;transition:var(--r);background:none;color:var(--t2);
-}
-.tb-btn:hover{background:var(--card);color:var(--t1)}
-.tb-btn.active{background:var(--card);color:var(--t1)}
-.tb-btn svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
-.tb-page-select{
-  background:var(--card);border:1px solid var(--border);color:var(--t1);
-  border-radius:8px;padding:6px 10px;font-size:.78rem;font-weight:600;outline:none;
-}
+button{cursor:pointer;font-family:'Inter',sans-serif}
+input,textarea,select{font-family:'Inter',sans-serif}
+#topbar{position:fixed;top:0;left:0;right:0;height:var(--topbar-h);z-index:1000;background:var(--panel);border-bottom:1px solid var(--border);display:flex;align-items:center;gap:6px;padding:0 14px;}
+.tb-logo{display:flex;align-items:center;gap:8px;padding-right:14px;border-right:1px solid var(--border);margin-right:4px}
+.tb-logo-om{width:32px;height:32px;border-radius:9px;background:var(--maroon);display:flex;align-items:center;justify-content:center;font-size:.95rem;color:var(--gold-l)}
+.tb-logo-name{font-size:.8rem;font-weight:700;color:var(--t1);line-height:1.2}
+.tb-logo-sub{font-size:.62rem;color:var(--t2);line-height:1.2}
+.tb-sep{width:1px;height:28px;background:var(--border);margin:0 4px}
+.tb-page-select{background:var(--card);border:1px solid var(--border);color:var(--t1);border-radius:8px;padding:7px 11px;font-size:.78rem;font-weight:600;outline:none;}
 .tb-device-grp{display:flex;background:var(--card);border:1px solid var(--border);border-radius:8px;overflow:hidden}
-.tb-device{
-  padding:6px 11px;border:none;background:none;color:var(--t2);font-size:.8rem;transition:var(--r);
-}
+.tb-device{padding:7px 12px;border:none;background:none;color:var(--t2);font-size:.8rem;transition:var(--r);}
 .tb-device.active{background:var(--card2);color:var(--t1)}
 .tb-spacer{flex:1}
-.tb-undo,.tb-redo{
-  padding:7px 10px;border-radius:8px;border:none;background:none;
-  color:var(--t2);font-size:.8rem;font-weight:600;transition:var(--r);
-}
-.tb-undo:hover,.tb-redo:hover{background:var(--card);color:var(--t1)}
-.tb-undo:disabled,.tb-redo:disabled{opacity:.3;pointer-events:none}
-.btn-save-main{
-  background:linear-gradient(135deg,var(--maroon),#5C0A0A);color:#fff;
-  border:none;border-radius:9px;padding:8px 18px;font-size:.8rem;font-weight:700;
-  box-shadow:0 4px 14px rgba(139,26,26,.35);transition:var(--r);
-}
-.btn-save-main:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(139,26,26,.45)}
-.btn-save-main:active{transform:scale(.97)}
-.btn-exit{
-  padding:7px 13px;border-radius:9px;border:1px solid var(--border);
-  background:none;color:var(--t2);font-size:.78rem;font-weight:600;transition:var(--r);
-}
+.badge-txt{font-size:.67rem;font-weight:700;padding:4px 10px;border-radius:6px;background:rgba(16,185,129,.12);color:#6EE7B7;border:1px solid rgba(16,185,129,.2);white-space:nowrap;}
+.btn-save{background:linear-gradient(135deg,var(--maroon),#5C0A0A);color:#fff;border:none;border-radius:9px;padding:9px 20px;font-size:.8rem;font-weight:700;box-shadow:0 4px 14px rgba(139,26,26,.35);transition:var(--r);white-space:nowrap;}
+.btn-save:hover{transform:translateY(-1px);box-shadow:0 6px 20px rgba(139,26,26,.45)}
+.btn-exit{padding:8px 14px;border-radius:9px;border:1px solid var(--border);background:none;color:var(--t2);font-size:.78rem;font-weight:600;transition:var(--r);white-space:nowrap;}
 .btn-exit:hover{border-color:var(--border2);color:var(--t1)}
-.save-indicator{font-size:.7rem;color:var(--green);display:none;align-items:center;gap:4px}
-.save-indicator.show{display:flex}
-
-/* ── MAIN CANVAS ── */
-#canvas{
-  position:fixed;top:var(--topbar-h);left:0;right:var(--right-w);bottom:0;
-  background:#2A2A38;
-  display:flex;align-items:flex-start;justify-content:center;
-  overflow:auto;padding:20px;
-  transition:right .3s ease;
-}
-#canvas.panel-hidden{right:0}
-#iframeWrap{
-  background:#fff;border-radius:8px;overflow:hidden;
-  box-shadow:0 20px 60px rgba(0,0,0,.5);
-  transition:all .3s ease;
-  flex-shrink:0;
-}
+.save-ind{font-size:.7rem;color:var(--green);display:none;align-items:center;gap:4px}
+.save-ind.show{display:flex}
+#canvas{position:fixed;top:var(--topbar-h);left:0;right:var(--right-w);bottom:0;background:#22222e;display:flex;align-items:flex-start;justify-content:center;overflow:auto;padding:20px;}
+#iframeWrap{background:#fff;border-radius:10px;overflow:hidden;box-shadow:0 20px 60px rgba(0,0,0,.55);flex-shrink:0;}
 #iframeWrap.desktop{width:100%;max-width:1280px;min-height:800px}
 #iframeWrap.mobile{width:390px;min-height:700px}
-#iframeWrap.tablet{width:768px;min-height:700px}
 #siteFrame{width:100%;border:none;display:block}
-
-/* ── RIGHT PANEL ── */
-#rightPanel{
-  position:fixed;top:var(--topbar-h);right:0;bottom:0;width:var(--right-w);
-  background:var(--panel);border-left:1px solid var(--border);
-  display:flex;flex-direction:column;z-index:900;
-  transition:transform .3s ease;
-  overflow:hidden;
-}
-#rightPanel.hidden{transform:translateX(100%)}
-
-/* Panel header */
-.rp-head{
-  padding:14px 16px;border-bottom:1px solid var(--border);
-  display:flex;align-items:center;justify-content:space-between;flex-shrink:0;
-}
-.rp-head-title{font-size:.82rem;font-weight:700;color:var(--t1)}
-.rp-head-sub{font-size:.68rem;color:var(--t3);margin-top:2px}
-.rp-close-panel{background:none;border:none;color:var(--t2);font-size:.85rem;padding:4px;transition:var(--r)}
-.rp-close-panel:hover{color:var(--t1)}
-
-/* Tabs */
-.rp-tabs{display:flex;border-bottom:1px solid var(--border);flex-shrink:0}
-.rp-tab{
-  flex:1;padding:10px 6px;text-align:center;border:none;background:none;
-  font-size:.72rem;font-weight:600;color:var(--t3);transition:var(--r);
-  border-bottom:2px solid transparent;margin-bottom:-1px;
-}
-.rp-tab.active{color:var(--gold-l);border-bottom-color:var(--gold)}
-.rp-tab:hover{color:var(--t1)}
-
-/* Panel body */
-.rp-body{flex:1;overflow-y:auto;padding:14px;scrollbar-width:thin;scrollbar-color:var(--border) transparent}
-
-/* Empty state */
-.rp-empty{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
-  height:100%;gap:10px;color:var(--t3);text-align:center;padding:20px;
-}
-.rp-empty-ico{font-size:2.2rem}
+#rightPanel{position:fixed;top:var(--topbar-h);right:0;bottom:0;width:var(--right-w);background:var(--panel);border-left:1px solid var(--border);display:flex;flex-direction:column;z-index:900;overflow:hidden;}
+.rp-head{padding:14px 16px 10px;border-bottom:1px solid var(--border);flex-shrink:0;}
+.rp-head-title{font-size:.85rem;font-weight:800;color:var(--t1)}
+.rp-head-sub{font-size:.7rem;color:var(--t3);margin-top:3px;line-height:1.4}
+.rp-body{flex:1;overflow-y:auto;padding:14px;scrollbar-width:thin;}
+.rp-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;height:200px;gap:10px;color:var(--t3);text-align:center;padding:20px;}
+.rp-empty-ico{font-size:2.5rem}
 .rp-empty-text{font-size:.78rem;line-height:1.5}
-.rp-empty-hint{font-size:.7rem;color:var(--t3);opacity:.6}
-
-/* Element tag badge */
-.el-badge{
-  display:inline-flex;align-items:center;gap:5px;
-  background:rgba(99,102,241,.15);border:1px solid rgba(99,102,241,.25);
-  color:#A5B4FC;border-radius:6px;padding:3px 9px;
-  font-size:.68rem;font-weight:700;margin-bottom:12px;
-}
-
-/* Property groups */
-.prop-group{margin-bottom:16px}
-.prop-group-label{
-  font-size:.65rem;font-weight:700;color:var(--t3);
-  text-transform:uppercase;letter-spacing:.8px;
-  margin-bottom:8px;padding-bottom:5px;
-  border-bottom:1px solid var(--border);
-}
-.prop-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px;gap:8px}
-.prop-label{font-size:.72rem;color:var(--t2);font-weight:500;flex-shrink:0}
-.prop-input{
-  background:var(--card);border:1.5px solid var(--border);border-radius:7px;
-  padding:6px 9px;font-size:.78rem;color:var(--t1);outline:none;transition:var(--r);flex:1;
-}
-.prop-input:focus{border-color:var(--gold);box-shadow:0 0 0 2px rgba(201,152,10,.12)}
-.prop-input::placeholder{color:var(--t3)}
-.prop-textarea{
-  width:100%;background:var(--card);border:1.5px solid var(--border);border-radius:7px;
-  padding:8px 9px;font-size:.8rem;color:var(--t1);outline:none;transition:var(--r);
-  resize:vertical;min-height:72px;line-height:1.5;
-}
-.prop-textarea:focus{border-color:var(--gold);box-shadow:0 0 0 2px rgba(201,152,10,.12)}
-.prop-color-row{display:flex;align-items:center;gap:6px}
-.prop-color{
-  width:32px;height:32px;border-radius:7px;border:2px solid var(--border);
-  padding:2px;background:var(--card);cursor:pointer;flex-shrink:0;
-}
-.prop-color-val{
-  background:var(--card);border:1.5px solid var(--border);border-radius:7px;
-  padding:6px 9px;font-size:.75rem;color:var(--t1);outline:none;flex:1;
-}
-.prop-range{width:100%;accent-color:var(--gold);height:4px;border-radius:2px;cursor:pointer}
-.prop-range-row{display:grid;grid-template-columns:1fr 50px;gap:8px;align-items:center}
-.prop-range-val{
-  background:var(--card);border:1.5px solid var(--border);border-radius:7px;
-  padding:5px 7px;font-size:.75rem;color:var(--t1);outline:none;text-align:center;
-}
-.format-btns{display:flex;gap:5px}
-.fmt-btn{
-  flex:1;padding:7px;border:1.5px solid var(--border);border-radius:7px;
-  background:none;color:var(--t2);font-size:.78rem;font-weight:700;transition:var(--r);
-}
-.fmt-btn:hover{border-color:var(--border2);color:var(--t1)}
-.fmt-btn.on{background:rgba(201,152,10,.15);border-color:rgba(201,152,10,.4);color:var(--gold-l)}
-.align-btns{display:flex;border:1.5px solid var(--border);border-radius:7px;overflow:hidden}
-.align-btn{
-  flex:1;padding:7px 4px;border:none;background:none;color:var(--t2);
-  font-size:.8rem;transition:var(--r);
-}
-.align-btn:hover{background:var(--card2);color:var(--t1)}
-.align-btn.on{background:var(--card2);color:var(--gold-l)}
-.prop-select{
-  background:var(--card);border:1.5px solid var(--border);border-radius:7px;
-  padding:7px 9px;font-size:.78rem;color:var(--t1);outline:none;width:100%;
-}
-.prop-select:focus{border-color:var(--gold)}
-.apply-btn{
-  width:100%;padding:10px;border:none;border-radius:8px;
-  background:linear-gradient(135deg,var(--maroon),#5C0A0A);color:#fff;
-  font-size:.82rem;font-weight:700;box-shadow:0 4px 14px rgba(139,26,26,.25);
-  transition:var(--r);margin-top:4px;
-}
-.apply-btn:hover{transform:translateY(-1px)}
-.apply-btn:active{transform:scale(.98)}
-.delete-btn{
-  width:100%;padding:9px;border:1.5px solid rgba(239,68,68,.25);border-radius:8px;
-  background:rgba(239,68,68,.07);color:#FCA5A5;
-  font-size:.78rem;font-weight:600;transition:var(--r);margin-top:6px;
-}
-.delete-btn:hover{background:rgba(239,68,68,.15);border-color:rgba(239,68,68,.4)}
-
-/* Layers panel */
-.layer-item{
-  display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:8px;
-  cursor:pointer;transition:var(--r);font-size:.75rem;color:var(--t2);
-  border:1px solid transparent;margin-bottom:3px;
-}
-.layer-item:hover{background:var(--card);color:var(--t1);border-color:var(--border)}
-.layer-item.selected{background:rgba(139,26,26,.2);border-color:rgba(139,26,26,.3);color:var(--t1)}
-.layer-ico{font-size:.8rem;flex-shrink:0;width:16px;text-align:center}
-.layer-tag{
-  font-size:.58rem;font-weight:700;padding:1px 5px;border-radius:3px;
-  background:rgba(99,102,241,.15);color:#A5B4FC;margin-left:auto;flex-shrink:0;
-}
-
-/* History panel */
-.hist-item{
-  display:flex;align-items:flex-start;gap:9px;padding:8px 10px;
-  border-radius:8px;cursor:pointer;transition:var(--r);border:1px solid transparent;
-  margin-bottom:4px;
-}
-.hist-item:hover{background:var(--card);border-color:var(--border)}
-.hist-item.current{background:rgba(16,185,129,.08);border-color:rgba(16,185,129,.2)}
-.hist-dot{width:8px;height:8px;border-radius:50%;background:var(--t3);flex-shrink:0;margin-top:4px}
-.hist-item.current .hist-dot{background:var(--green)}
-.hist-desc{font-size:.75rem;color:var(--t2);line-height:1.4}
-.hist-time{font-size:.65rem;color:var(--t3)}
-
-/* Page selector dots */
-.rp-pages{display:flex;flex-direction:column;gap:6px;padding:12px 14px;border-bottom:1px solid var(--border)}
-.page-btn{
-  display:flex;align-items:center;gap:8px;padding:8px 10px;border-radius:8px;
-  border:1.5px solid var(--border);background:none;color:var(--t2);
-  font-size:.75rem;font-weight:600;transition:var(--r);
-}
-.page-btn.active{border-color:rgba(139,26,26,.4);background:rgba(139,26,26,.1);color:var(--t1)}
-.page-dot{width:8px;height:8px;border-radius:50%;background:var(--t3);flex-shrink:0}
-.page-btn.active .page-dot{background:var(--maroon)}
-
-/* Toast */
-.toast{
-  position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);
-  background:#1E2830;border:1px solid rgba(16,185,129,.3);
-  color:#6EE7B7;border-radius:12px;padding:11px 20px;
-  font-size:.8rem;font-weight:600;z-index:9999;transition:.3s cubic-bezier(.4,0,.2,1);
-  display:flex;align-items:center;gap:8px;white-space:nowrap;
-  box-shadow:0 8px 24px rgba(0,0,0,.4);
-}
+.rp-empty-hint{font-size:.68rem;color:var(--t3);opacity:.7;line-height:1.4}
+.edit-card{background:var(--card);border:1.5px solid var(--border);border-radius:10px;padding:14px;margin-bottom:10px;}
+.edit-card-label{font-size:.65rem;font-weight:700;color:var(--t2);text-transform:uppercase;letter-spacing:.9px;margin-bottom:8px;display:flex;align-items:center;gap:6px;}
+.edit-card textarea{width:100%;background:var(--card2);border:1.5px solid var(--border);border-radius:7px;padding:9px 10px;font-size:.82rem;color:var(--t1);outline:none;resize:vertical;min-height:60px;line-height:1.5;transition:border-color .15s;}
+.edit-card textarea:focus{border-color:var(--gold);box-shadow:0 0 0 2px rgba(201,152,10,.1)}
+.edit-card-hint{font-size:.63rem;color:var(--t3);margin-top:5px;line-height:1.4}
+.sel-ind{background:rgba(99,102,241,.12);border:1px solid rgba(99,102,241,.25);border-radius:8px;padding:10px 12px;margin-bottom:12px;font-size:.72rem;color:#A5B4FC;display:flex;align-items:center;gap:8px;}
+.apply-btn{width:100%;padding:9px;border:none;border-radius:8px;background:linear-gradient(135deg,#1e3a3a,#0d2a2a);color:#6EE7B7;font-size:.78rem;font-weight:700;border:1px solid rgba(16,185,129,.2);transition:var(--r);margin-top:6px;}
+.apply-btn:hover{background:rgba(16,185,129,.15)}
+.info-box{background:rgba(201,152,10,.07);border:1px solid rgba(201,152,10,.18);border-radius:8px;padding:10px 12px;margin-bottom:12px;font-size:.7rem;color:var(--gold-l);line-height:1.5;}
+.toast{position:fixed;bottom:24px;left:50%;transform:translateX(-50%) translateY(80px);background:#1E2830;border:1px solid rgba(16,185,129,.3);color:#6EE7B7;border-radius:12px;padding:11px 22px;font-size:.8rem;font-weight:600;z-index:9999;transition:.3s cubic-bezier(.4,0,.2,1);white-space:nowrap;box-shadow:0 8px 24px rgba(0,0,0,.45);}
 .toast.show{transform:translateX(-50%) translateY(0)}
-
-/* Highlight overlay */
-.frame-overlay{
-  position:absolute;inset:0;pointer-events:none;z-index:50;
-}
-
-/* Scrollbar */
-::-webkit-scrollbar{width:5px;height:5px}
-::-webkit-scrollbar-track{background:transparent}
-::-webkit-scrollbar-thumb{background:var(--border2);border-radius:3px}
+.toast.err{background:#2a1414;border-color:rgba(239,68,68,.3);color:#FCA5A5}
 </style>
 </head>
 <body>
-
-<!-- ████ TOP BAR ████ -->
 <div id="topbar">
   <div class="tb-logo">
-    <div class="tb-logo-om">ॐ</div>
-    <div class="tb-logo-name">Visual Editor</div>
+    <div class="tb-logo-om">&#x0950;</div>
+    <div><div class="tb-logo-name">Text Editor</div><div class="tb-logo-sub">Click text &rarr; edit &rarr; Save</div></div>
   </div>
-
-  <!-- Page selector -->
   <select class="tb-page-select" id="pageSelect" onchange="loadPage(this.value)">
-    <option value="index.html">🏠 Home Page</option>
-    <option value="booking.html">📅 Booking Page</option>
+    <option value="index.html">&#127968; Home Page</option>
+    <option value="booking.html">&#128197; Booking Page</option>
   </select>
-
   <div class="tb-sep"></div>
-
-  <!-- Device preview -->
   <div class="tb-device-grp">
-    <button class="tb-device" id="dev-mobile"  onclick="setDevice('mobile')"  title="Mobile">📱</button>
-    <button class="tb-device active" id="dev-desktop" onclick="setDevice('desktop')" title="Desktop">🖥</button>
+    <button class="tb-device" id="dev-mobile" onclick="setDevice('mobile')">&#128241;</button>
+    <button class="tb-device active" id="dev-desktop" onclick="setDevice('desktop')">&#128421;</button>
   </div>
-
   <div class="tb-sep"></div>
-
-  <!-- Edit mode toggle -->
-  <button class="tb-btn active" id="editModeBtn" onclick="toggleEditMode()">
-    <svg viewBox="0 0 24 24"><path d="M11 4H4a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 013 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-    Edit Mode: ON
-  </button>
-
+  <div class="badge-txt">&#9999;&#65039; Text-Only Mode &mdash; Positions Locked</div>
   <div class="tb-spacer"></div>
-
-  <!-- Undo / Redo -->
-  <button class="tb-undo" id="undoBtn" onclick="doUndo()" disabled title="Undo">↩ Undo</button>
-  <button class="tb-redo" id="redoBtn" onclick="doRedo()" disabled title="Redo">↪ Redo</button>
-
-  <div class="tb-sep"></div>
-
-  <div class="save-indicator" id="saveInd">✓ Saved</div>
-
-  <button class="btn-save-main" onclick="saveChanges()">💾 Save Changes</button>
-  <div style="width:8px"></div>
-  <button class="btn-exit" onclick="goBack()">← Exit Editor</button>
+  <div class="save-ind" id="saveInd">&#10003; Saved</div>
+  <button class="btn-save" onclick="saveChanges()">&#128190; Save &amp; Publish</button>
+  <div style="width:6px"></div>
+  <button class="btn-exit" onclick="window.location.href='admin.html'">&larr; Back</button>
 </div>
-
-<!-- ████ CANVAS ████ -->
 <div id="canvas">
   <div id="iframeWrap" class="desktop">
     <iframe id="siteFrame" src="index.html" onload="onFrameLoad()"></iframe>
   </div>
 </div>
-
-<!-- ████ RIGHT PANEL ████ -->
 <div id="rightPanel">
-
-  <!-- Pages quick switch -->
-  <div class="rp-pages">
-    <button class="page-btn active" id="pg-home"    onclick="switchPage('index.html', this)"><span class="page-dot"></span> Home Page (index.html)</button>
-    <button class="page-btn"        id="pg-booking" onclick="switchPage('booking.html', this)"><span class="page-dot"></span> Booking Page (booking.html)</button>
+  <div class="rp-head">
+    <div class="rp-head-title">&#128221; Edit Text Content</div>
+    <div class="rp-head-sub">Click any text on the live preview to edit it. Layout and positions are fully locked.</div>
   </div>
-
-  <!-- Tabs -->
-  <div class="rp-tabs">
-    <button class="rp-tab active" onclick="switchTab(this,'tab-props')">Properties</button>
-    <button class="rp-tab"        onclick="switchTab(this,'tab-layers')">Layers</button>
-    <button class="rp-tab"        onclick="switchTab(this,'tab-history')">History</button>
-  </div>
-
-  <!-- Properties Tab -->
-  <div class="rp-body" id="tab-props">
-    <div class="rp-empty" id="noSelState">
-      <div class="rp-empty-ico">🖱</div>
-      <div class="rp-empty-text">Click any element on the page to select and edit it</div>
-      <div class="rp-empty-hint">Tip: Double-click to edit text directly on the page</div>
+  <div class="rp-body">
+    <div class="rp-empty" id="emptyState">
+      <div class="rp-empty-ico">&#128070;</div>
+      <div class="rp-empty-text">Click on any text in the preview to start editing</div>
+      <div class="rp-empty-hint">Only text changes &mdash;<br>positions, images &amp; layout stay the same.</div>
     </div>
-
-    <div id="propsPanel" style="display:none">
-      <div class="el-badge" id="elBadge">🔤 TEXT</div>
-
-      <!-- Text Content -->
-      <div class="prop-group" id="textGroup">
-        <div class="prop-group-label">Text Content</div>
-        <textarea class="prop-textarea" id="propText" placeholder="Element text..." oninput="applyText()"></textarea>
-        <div class="format-btns" style="margin-top:6px">
-          <button class="fmt-btn" id="fmtB" onclick="toggleFmt('bold')" title="Bold"><b>B</b></button>
-          <button class="fmt-btn" id="fmtI" onclick="toggleFmt('italic')" title="Italic"><i>I</i></button>
-          <button class="fmt-btn" id="fmtU" onclick="toggleFmt('underline')" title="Underline"><u>U</u></button>
-        </div>
-        <div class="align-btns" style="margin-top:6px">
-          <button class="align-btn" onclick="applyAlign('left')"   title="Left">⬅</button>
-          <button class="align-btn" onclick="applyAlign('center')" title="Center">↔</button>
-          <button class="align-btn" onclick="applyAlign('right')"  title="Right">➡</button>
-          <button class="align-btn" onclick="applyAlign('justify')" title="Justify">☰</button>
-        </div>
+    <div id="editState" style="display:none">
+      <div class="info-box">&#9989; Safe: Only text changes. Positions, images, font sizes and layout are 100% protected.</div>
+      <div class="sel-ind"><span>&#127991;</span><span id="selLabel">Selected element</span></div>
+      <div class="edit-card">
+        <div class="edit-card-label"><span>&#9999;&#65039;</span> Text Content</div>
+        <textarea id="editTextarea" rows="4" placeholder="Type new text here..." oninput="previewText()"></textarea>
+        <div class="edit-card-hint">Preview updates instantly. Click Save &amp; Publish to go live.</div>
       </div>
-
-      <!-- Typography -->
-      <div class="prop-group">
-        <div class="prop-group-label">Typography</div>
-        <div class="prop-row">
-          <span class="prop-label">Size</span>
-          <div class="prop-range-row" style="flex:1">
-            <input type="range" class="prop-range" id="propFontSize" min="8" max="96" value="16" oninput="applyFontSize()">
-            <input type="number" class="prop-range-val" id="propFontSizeVal" min="8" max="96" value="16" oninput="syncFontSize()" style="width:50px">
-          </div>
-        </div>
-        <div class="prop-row">
-          <span class="prop-label">Weight</span>
-          <select class="prop-select" id="propFontWeight" onchange="applyFontWeight()" style="flex:1">
-            <option value="300">Light (300)</option>
-            <option value="400">Regular (400)</option>
-            <option value="500">Medium (500)</option>
-            <option value="600">Semibold (600)</option>
-            <option value="700" selected>Bold (700)</option>
-            <option value="800">ExtraBold (800)</option>
-            <option value="900">Black (900)</option>
-          </select>
-        </div>
-        <div class="prop-row">
-          <span class="prop-label">Spacing</span>
-          <div class="prop-range-row" style="flex:1">
-            <input type="range" class="prop-range" id="propLetterSpacing" min="-2" max="10" step="0.1" value="0" oninput="applyLetterSpacing()">
-            <input class="prop-range-val" id="propLetterSpacingVal" value="0px" readonly style="width:50px">
-          </div>
-        </div>
-        <div class="prop-row">
-          <span class="prop-label">Height</span>
-          <div class="prop-range-row" style="flex:1">
-            <input type="range" class="prop-range" id="propLineHeight" min="1" max="3" step="0.05" value="1.5" oninput="applyLineHeight()">
-            <input class="prop-range-val" id="propLineHeightVal" value="1.5" readonly style="width:50px">
-          </div>
-        </div>
-      </div>
-
-      <!-- Colors -->
-      <div class="prop-group">
-        <div class="prop-group-label">Colors</div>
-        <div class="prop-row">
-          <span class="prop-label">Text</span>
-          <div class="prop-color-row" style="flex:1">
-            <input type="color" class="prop-color" id="propTextColor" oninput="applyColor('color')">
-            <input type="text"  class="prop-color-val" id="propTextColorVal" placeholder="#000000" oninput="syncColor('color')">
-          </div>
-        </div>
-        <div class="prop-row">
-          <span class="prop-label">Background</span>
-          <div class="prop-color-row" style="flex:1">
-            <input type="color" class="prop-color" id="propBgColor" oninput="applyColor('background')">
-            <input type="text"  class="prop-color-val" id="propBgColorVal" placeholder="transparent" oninput="syncColor('background')">
-          </div>
-        </div>
-      </div>
-
-      <!-- Spacing -->
-      <div class="prop-group">
-        <div class="prop-group-label">Spacing (px)</div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px">
-          <div class="fg">
-            <div style="font-size:.65rem;color:var(--t3);margin-bottom:3px">Padding Top</div>
-            <input type="number" class="prop-input" id="propPT" placeholder="0" oninput="applySpacing()" style="text-align:center">
-          </div>
-          <div class="fg">
-            <div style="font-size:.65rem;color:var(--t3);margin-bottom:3px">Padding Bottom</div>
-            <input type="number" class="prop-input" id="propPB" placeholder="0" oninput="applySpacing()" style="text-align:center">
-          </div>
-          <div class="fg">
-            <div style="font-size:.65rem;color:var(--t3);margin-bottom:3px">Padding Left</div>
-            <input type="number" class="prop-input" id="propPL" placeholder="0" oninput="applySpacing()" style="text-align:center">
-          </div>
-          <div class="fg">
-            <div style="font-size:.65rem;color:var(--t3);margin-bottom:3px">Padding Right</div>
-            <input type="number" class="prop-input" id="propPR" placeholder="0" oninput="applySpacing()" style="text-align:center">
-          </div>
-        </div>
-        <div style="display:grid;grid-template-columns:1fr 1fr;gap:6px;margin-top:6px">
-          <div>
-            <div style="font-size:.65rem;color:var(--t3);margin-bottom:3px">Margin Top</div>
-            <input type="number" class="prop-input" id="propMT" placeholder="0" oninput="applySpacing()" style="text-align:center">
-          </div>
-          <div>
-            <div style="font-size:.65rem;color:var(--t3);margin-bottom:3px">Margin Bottom</div>
-            <input type="number" class="prop-input" id="propMB" placeholder="0" oninput="applySpacing()" style="text-align:center">
-          </div>
-        </div>
-      </div>
-
-      <!-- Border Radius -->
-      <div class="prop-group">
-        <div class="prop-group-label">Border & Radius</div>
-        <div class="prop-row">
-          <span class="prop-label">Radius</span>
-          <div class="prop-range-row" style="flex:1">
-            <input type="range" class="prop-range" id="propRadius" min="0" max="50" value="0" oninput="applyRadius()">
-            <input class="prop-range-val" id="propRadiusVal" value="0px" readonly style="width:50px">
-          </div>
-        </div>
-      </div>
-
-      <!-- Visibility -->
-      <div class="prop-group">
-        <div class="prop-group-label">Visibility</div>
-        <div class="prop-row">
-          <span class="prop-label">Display</span>
-          <select class="prop-select" id="propDisplay" onchange="applyDisplay()" style="flex:1">
-            <option value="">Default</option>
-            <option value="block">Block</option>
-            <option value="flex">Flex</option>
-            <option value="inline">Inline</option>
-            <option value="inline-block">Inline Block</option>
-            <option value="none">Hidden</option>
-          </select>
-        </div>
-      </div>
-
-      <button class="delete-btn" onclick="deleteEl()">🗑 Hide This Element</button>
+      <button class="apply-btn" onclick="saveChanges()">&#128190; Save &amp; Publish Live</button>
     </div>
   </div>
-
-  <!-- Layers Tab -->
-  <div class="rp-body" id="tab-layers" style="display:none">
-    <div id="layersList"></div>
-  </div>
-
-  <!-- History Tab -->
-  <div class="rp-body" id="tab-history" style="display:none">
-    <div id="historyList">
-      <div class="rp-empty">
-        <div class="rp-empty-ico">📋</div>
-        <div class="rp-empty-text">No changes yet.<br>Start editing to see history.</div>
-      </div>
-    </div>
-  </div>
-
-</div><!-- /#rightPanel -->
-
-<!-- Toast -->
-<div class="toast" id="toast">✓ Changes saved successfully!</div>
-
+</div>
+<div class="toast" id="toast">Changes saved!</div>
 <script>
-/* ══════════════════════════════════════
-   STATE
-══════════════════════════════════════ */
-var currentPage   = 'index.html';
-var currentDevice = 'desktop';
-var editMode      = true;
-var selectedEl    = null;   // reference to iframe element
-var selectedPath  = null;   // CSS path string
-var undoStack     = [];
-var redoStack     = [];
-var changes       = {};     // {path: {style, text, display}}
-var history_log   = [];
-var STORAGE_KEY   = 'vedic_visual_edits';
+var SB_URL='https://mztygriwhmkujloggwjr.supabase.co';
+var SB_KEY='sb_publishable_x0xJkdW1eYFr4Nu6P0OU9A_8cP98C-Y';
+var currentPage='index.html';
+var selectedEl=null;
+var textChanges={};
 
-/* ══════════════════════════════════════
-   IFRAME LOAD
-══════════════════════════════════════ */
 function onFrameLoad(){
-  var frame = document.getElementById('siteFrame');
-  var fh = frame.contentDocument.body.scrollHeight;
-  frame.style.height = Math.max(fh, 600) + 'px';
-  buildLayers();
-  if(editMode) injectEditor();
-  applyStoredChanges();
+  var frame=document.getElementById('siteFrame');
+  var doc=frame.contentDocument;
+  if(!doc||!doc.body) return;
+  frame.style.height=Math.max(doc.body.scrollHeight,600)+'px';
+  injectClickHandlers();
 }
 
-function injectEditor(){
-  var frame = document.getElementById('siteFrame');
-  var doc   = frame.contentDocument;
+function injectClickHandlers(){
+  var frame=document.getElementById('siteFrame');
+  var doc=frame.contentDocument;
   if(!doc) return;
-
-  // Inject editor CSS into iframe
-  if(!doc.getElementById('__editorCSS')){
-    var style = doc.createElement('style');
-    style.id  = '__editorCSS';
-    style.textContent = `
-      [data-eid]:hover { outline: 2px dashed rgba(99,102,241,.5) !important; outline-offset: 2px; cursor:pointer; }
-      [data-eid].ed-selected { outline: 2px solid #6366F1 !important; outline-offset: 2px; }
-      [data-eid].ed-selected::before {
-        content: attr(data-eid-tag);
-        position: absolute;
-        top: -22px; left: -2px;
-        background: #6366F1; color: #fff;
-        font-family: Inter, sans-serif; font-size: 10px; font-weight: 700;
-        padding: 2px 7px; border-radius: 4px 4px 4px 0;
-        z-index: 9999; pointer-events: none; white-space: nowrap;
-        box-shadow: 0 2px 8px rgba(0,0,0,.3);
-      }
-      [data-eid] { position: relative !important; }
-    `;
-    doc.head.appendChild(style);
+  if(!doc.getElementById('__edCSS')){
+    var s=doc.createElement('style');
+    s.id='__edCSS';
+    s.textContent='.__ed:hover{outline:2px dashed rgba(99,102,241,.6)!important;outline-offset:2px;cursor:text!important}.__ed_sel{outline:2px solid #6366F1!important;outline-offset:2px!important}';
+    doc.head.appendChild(s);
   }
-
-  // Tag all elements with a unique id
-  var els = doc.querySelectorAll('h1,h2,h3,h4,h5,h6,p,span,a,button,div,section,nav,li,label,input,textarea,select,img');
-  var idx = 0;
-  els.forEach(function(el){
-    if(!el.getAttribute('data-eid')){
-      el.setAttribute('data-eid', 'e'+idx);
-      el.setAttribute('data-eid-tag', el.tagName.toLowerCase());
-      idx++;
-    }
-    // Click to select
-    el.addEventListener('click', function(ev){
-      ev.preventDefault();
-      ev.stopPropagation();
-      selectElement(el);
-    });
-    // Double-click to edit text inline
-    el.addEventListener('dblclick', function(ev){
-      ev.preventDefault();
-      ev.stopPropagation();
-      selectElement(el);
-      el.contentEditable = 'true';
-      el.focus();
-    });
-    el.addEventListener('blur', function(){
-      if(el.isContentEditable){
-        el.contentEditable = 'false';
-        // Record text change
-        var path = getPath(el);
-        if(!changes[path]) changes[path] = {};
-        changes[path].text = el.innerText;
-        // Sync to panel
-        document.getElementById('propText').value = el.innerText;
-        pushHistory('Text edited: ' + el.tagName);
-        updateUndoRedo();
-      }
+  var tags=['h1','h2','h3','h4','h5','h6','p','span','a','button','li','label','blockquote'];
+  doc.querySelectorAll(tags.join(',')).forEach(function(el){
+    var txt=(el.innerText||'').trim();
+    if(!txt||txt.length<2) return;
+    if(el.closest('script,style,noscript')) return;
+    el.classList.add('__ed');
+    el.addEventListener('click',function(e){
+      e.preventDefault(); e.stopPropagation();
+      doc.querySelectorAll('.__ed_sel').forEach(function(x){x.classList.remove('__ed_sel');});
+      el.classList.add('__ed_sel');
+      selectedEl=el;
+      document.getElementById('emptyState').style.display='none';
+      document.getElementById('editState').style.display='block';
+      var tag=el.tagName.toLowerCase();
+      var cls=Array.from(el.classList).filter(function(c){return c!=='__ed'&&c!=='__ed_sel';}).slice(0,2).join('.');
+      document.getElementById('selLabel').textContent='<'+tag+'>'+(cls?' .'+cls:'');
+      document.getElementById('editTextarea').value=(el.innerText||el.textContent||'').trim();
+      document.getElementById('editTextarea').focus();
     });
   });
 }
 
-/* ══════════════════════════════════════
-   ELEMENT SELECTION
-══════════════════════════════════════ */
-function selectElement(el){
-  var doc = document.getElementById('siteFrame').contentDocument;
-  // Remove previous selection
-  doc.querySelectorAll('.ed-selected').forEach(function(e){ e.classList.remove('ed-selected'); });
-  el.classList.add('ed-selected');
-  selectedEl   = el;
-  selectedPath = getPath(el);
-
-  // Show props panel
-  document.getElementById('noSelState').style.display  = 'none';
-  document.getElementById('propsPanel').style.display  = 'block';
-
-  // Element badge
-  document.getElementById('elBadge').textContent = '🏷 ' + el.tagName;
-
-  // Read computed styles
-  var cs = window.getComputedStyle
-    ? el.ownerDocument.defaultView.getComputedStyle(el)
-    : {};
-
-  // Text
-  var textEl = document.getElementById('propText');
-  textEl.value = el.innerText || el.textContent || '';
-  if(el.tagName === 'IMG') document.getElementById('textGroup').style.display='none';
-  else document.getElementById('textGroup').style.display='block';
-
-  // Font size
-  var fs = parseFloat(cs.fontSize) || 16;
-  document.getElementById('propFontSize').value    = Math.round(fs);
-  document.getElementById('propFontSizeVal').value = Math.round(fs);
-
-  // Font weight
-  document.getElementById('propFontWeight').value = cs.fontWeight || '400';
-
-  // Letter spacing
-  var ls = parseFloat(cs.letterSpacing) || 0;
-  document.getElementById('propLetterSpacing').value   = ls;
-  document.getElementById('propLetterSpacingVal').value = ls.toFixed(1) + 'px';
-
-  // Line height
-  var lh = parseFloat(cs.lineHeight) / parseFloat(cs.fontSize) || 1.5;
-  if(isNaN(lh)) lh = 1.5;
-  document.getElementById('propLineHeight').value   = lh.toFixed(2);
-  document.getElementById('propLineHeightVal').value = lh.toFixed(2);
-
-  // Colors
-  var tc = cs.color    || '#000000';
-  var bc = cs.backgroundColor || 'transparent';
-  document.getElementById('propTextColor').value   = rgbToHex(tc);
-  document.getElementById('propTextColorVal').value = rgbToHex(tc);
-  document.getElementById('propBgColor').value     = bc === 'transparent' || bc === 'rgba(0, 0, 0, 0)' ? '#ffffff' : rgbToHex(bc);
-  document.getElementById('propBgColorVal').value  = bc === 'transparent' || bc === 'rgba(0, 0, 0, 0)' ? 'transparent' : rgbToHex(bc);
-
-  // Padding
-  document.getElementById('propPT').value = parseFloat(cs.paddingTop)    || 0;
-  document.getElementById('propPB').value = parseFloat(cs.paddingBottom) || 0;
-  document.getElementById('propPL').value = parseFloat(cs.paddingLeft)   || 0;
-  document.getElementById('propPR').value = parseFloat(cs.paddingRight)  || 0;
-
-  // Margin
-  document.getElementById('propMT').value = parseFloat(cs.marginTop)    || 0;
-  document.getElementById('propMB').value = parseFloat(cs.marginBottom) || 0;
-
-  // Border radius
-  var br = parseFloat(cs.borderRadius) || 0;
-  document.getElementById('propRadius').value    = Math.min(br, 50);
-  document.getElementById('propRadiusVal').value = br + 'px';
-
-  // Display
-  document.getElementById('propDisplay').value = '';
-
-  // Switch to props tab
-  switchTab(document.querySelector('.rp-tab'), 'tab-props');
-
-  // Highlight in layers
-  highlightLayer(selectedPath);
-}
-
-/* ══════════════════════════════════════
-   APPLY CHANGES TO IFRAME ELEMENT
-══════════════════════════════════════ */
-function getOrCreate(path){
-  if(!changes[path]) changes[path] = {style:{}};
-  if(!changes[path].style) changes[path].style = {};
-  return changes[path];
-}
-
-function applyText(){
+function previewText(){
   if(!selectedEl) return;
-  var val = document.getElementById('propText').value;
-  selectedEl.innerText = val;
-  getOrCreate(selectedPath).text = val;
-  recordChange('Text changed');
-}
-function applyFontSize(){
-  if(!selectedEl) return;
-  var v = document.getElementById('propFontSize').value;
-  document.getElementById('propFontSizeVal').value = v;
-  selectedEl.style.fontSize = v + 'px';
-  getOrCreate(selectedPath).style.fontSize = v + 'px';
-  recordChange('Font size: ' + v + 'px');
-}
-function syncFontSize(){
-  var v = document.getElementById('propFontSizeVal').value;
-  document.getElementById('propFontSize').value = v;
-  if(selectedEl){ selectedEl.style.fontSize = v + 'px'; getOrCreate(selectedPath).style.fontSize = v + 'px'; }
-}
-function applyFontWeight(){
-  if(!selectedEl) return;
-  var v = document.getElementById('propFontWeight').value;
-  selectedEl.style.fontWeight = v;
-  getOrCreate(selectedPath).style.fontWeight = v;
-  recordChange('Font weight: ' + v);
-}
-function applyLetterSpacing(){
-  if(!selectedEl) return;
-  var v = document.getElementById('propLetterSpacing').value;
-  document.getElementById('propLetterSpacingVal').value = v + 'px';
-  selectedEl.style.letterSpacing = v + 'px';
-  getOrCreate(selectedPath).style.letterSpacing = v + 'px';
-}
-function applyLineHeight(){
-  if(!selectedEl) return;
-  var v = document.getElementById('propLineHeight').value;
-  document.getElementById('propLineHeightVal').value = v;
-  selectedEl.style.lineHeight = v;
-  getOrCreate(selectedPath).style.lineHeight = v;
-}
-function applyColor(prop){
-  if(!selectedEl) return;
-  var id  = prop === 'color' ? 'propTextColor' : 'propBgColor';
-  var vid = prop === 'color' ? 'propTextColorVal' : 'propBgColorVal';
-  var v   = document.getElementById(id).value;
-  document.getElementById(vid).value = v;
-  if(prop === 'color') selectedEl.style.color = v;
-  else selectedEl.style.backgroundColor = v;
-  getOrCreate(selectedPath).style[prop === 'color' ? 'color' : 'backgroundColor'] = v;
-  recordChange((prop === 'color' ? 'Text' : 'Background') + ' color changed');
-}
-function syncColor(prop){
-  var id  = prop === 'color' ? 'propTextColorVal' : 'propBgColorVal';
-  var cid = prop === 'color' ? 'propTextColor'    : 'propBgColor';
-  var v   = document.getElementById(id).value;
-  if(v.match(/^#[0-9a-fA-F]{6}$/)) document.getElementById(cid).value = v;
-}
-function applySpacing(){
-  if(!selectedEl) return;
-  var pt = document.getElementById('propPT').value || 0;
-  var pb = document.getElementById('propPB').value || 0;
-  var pl = document.getElementById('propPL').value || 0;
-  var pr = document.getElementById('propPR').value || 0;
-  var mt = document.getElementById('propMT').value || 0;
-  var mb = document.getElementById('propMB').value || 0;
-  selectedEl.style.padding = pt+'px '+pr+'px '+pb+'px '+pl+'px';
-  selectedEl.style.marginTop    = mt + 'px';
-  selectedEl.style.marginBottom = mb + 'px';
-  var c = getOrCreate(selectedPath);
-  c.style.padding       = pt+'px '+pr+'px '+pb+'px '+pl+'px';
-  c.style.marginTop     = mt + 'px';
-  c.style.marginBottom  = mb + 'px';
-}
-function applyRadius(){
-  if(!selectedEl) return;
-  var v = document.getElementById('propRadius').value;
-  document.getElementById('propRadiusVal').value = v + 'px';
-  selectedEl.style.borderRadius = v + 'px';
-  getOrCreate(selectedPath).style.borderRadius = v + 'px';
-}
-function applyAlign(val){
-  if(!selectedEl) return;
-  selectedEl.style.textAlign = val;
-  getOrCreate(selectedPath).style.textAlign = val;
-  document.querySelectorAll('.align-btn').forEach(function(b){ b.classList.remove('on'); });
-  event.target.classList.add('on');
-}
-function applyDisplay(){
-  if(!selectedEl) return;
-  var v = document.getElementById('propDisplay').value;
-  if(v) selectedEl.style.display = v;
-  else selectedEl.style.removeProperty('display');
-  getOrCreate(selectedPath).style.display = v;
-}
-function toggleFmt(cmd){
-  if(!selectedEl) return;
-  var id = 'fmt'+cmd.charAt(0).toUpperCase()+cmd.slice(1);
-  var btn = document.getElementById(id);
-  var isOn = btn.classList.toggle('on');
-  if(cmd === 'bold')      { selectedEl.style.fontWeight = isOn ? '700' : ''; getOrCreate(selectedPath).style.fontWeight = isOn ? '700' : ''; }
-  if(cmd === 'italic')    { selectedEl.style.fontStyle  = isOn ? 'italic' : ''; getOrCreate(selectedPath).style.fontStyle = isOn ? 'italic' : ''; }
-  if(cmd === 'underline') { selectedEl.style.textDecoration = isOn ? 'underline' : ''; getOrCreate(selectedPath).style.textDecoration = isOn ? 'underline' : ''; }
-}
-function deleteEl(){
-  if(!selectedEl) return;
-  if(!confirm('Hide this element?')) return;
-  selectedEl.style.display = 'none';
-  getOrCreate(selectedPath).style.display = 'none';
-  recordChange('Element hidden');
-  document.getElementById('noSelState').style.display = 'flex';
-  document.getElementById('propsPanel').style.display = 'none';
-  selectedEl = null;
+  var val=document.getElementById('editTextarea').value;
+  var hasChildEl=Array.from(selectedEl.childNodes).some(function(n){return n.nodeType===1;});
+  if(hasChildEl){
+    var tn=Array.from(selectedEl.childNodes).find(function(n){return n.nodeType===3&&n.textContent.trim().length>0;});
+    if(tn) tn.textContent=val;
+  } else {
+    selectedEl.textContent=val;
+  }
+  var path=getPath(selectedEl);
+  textChanges[path]=val;
 }
 
-/* ══════════════════════════════════════
-   UNDO / REDO
-══════════════════════════════════════ */
-function recordChange(desc){
-  undoStack.push({changes: JSON.parse(JSON.stringify(changes)), desc: desc, time: new Date().toLocaleTimeString()});
-  redoStack = [];
-  updateUndoRedo();
-  pushHistory(desc);
-}
-function doUndo(){
-  if(undoStack.length === 0) return;
-  redoStack.push({changes: JSON.parse(JSON.stringify(changes))});
-  var prev = undoStack.pop();
-  changes = prev.changes;
-  applyStoredChanges();
-  updateUndoRedo();
-  showToast('↩ Undone: ' + prev.desc);
-}
-function doRedo(){
-  if(redoStack.length === 0) return;
-  undoStack.push({changes: JSON.parse(JSON.stringify(changes))});
-  var next = redoStack.pop();
-  changes = next.changes;
-  applyStoredChanges();
-  updateUndoRedo();
-  showToast('↪ Redone');
-}
-function updateUndoRedo(){
-  document.getElementById('undoBtn').disabled = undoStack.length === 0;
-  document.getElementById('redoBtn').disabled = redoStack.length === 0;
+function getPath(el){
+  var parts=[]; var cur=el; var d=0;
+  while(cur&&cur.tagName&&d<4){
+    var t=cur.tagName.toLowerCase();
+    var c=Array.from(cur.classList).filter(function(x){return x!=='__ed'&&x!=='__ed_sel';}).slice(0,2).join('.');
+    parts.unshift(t+(c?'.'+c:''));
+    cur=cur.parentElement; d++;
+  }
+  return parts.join('>');
 }
 
-/* ══════════════════════════════════════
-   SAVE / LOAD
-══════════════════════════════════════ */
 function saveChanges(){
-  var stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-  stored[currentPage] = changes;
-  localStorage.setItem(STORAGE_KEY, JSON.stringify(stored));
-
-  // Sync edited text content to Supabase
-  var doc = document.getElementById('siteFrame').contentDocument;
-  var content = JSON.parse(localStorage.getItem('vedic_content') || '{}');
-  
-  // Always ensure img_hero defaults to acharya-arvind.png if set to old hero image
-  if(!content.img_hero || content.img_hero.indexOf('hero.png') >= 0) {
-    content.img_hero = 'acharya-arvind.png';
-  }
-  if(!content.img_booking) content.img_booking = 'acharya-arvind.png';
-  if(!content.img_about) content.img_about = 'acharya-arvind.png';
-
-  if(doc) {
-    var h1m = doc.querySelector('.h1m'); if(h1m) content.h_line1 = h1m.textContent.trim();
-    var h1g = doc.querySelector('.h1g'); if(h1g) content.h_line2 = h1g.textContent.trim();
-    var nameEl = doc.querySelector('.hero-name'); if(nameEl) content.h_name = nameEl.textContent.trim();
-    var quoteEl = doc.querySelector('.hero-quote'); if(quoteEl) content.h_quote = quoteEl.textContent.trim();
-    var subEl = doc.querySelector('.hero-sub'); if(subEl) content.h_sub = subEl.textContent.trim();
-    var b1 = doc.querySelector('.btn-main-maroon'); if(b1) content.h_btn1 = b1.textContent.trim();
-    var b2 = doc.querySelector('.btn-main-outline'); if(b2) content.h_btn2 = b2.textContent.trim();
-    var abName = doc.querySelector('.about-name'); if(abName) content.ab_name = abName.textContent.trim();
-    var abRole = doc.querySelector('.about-role'); if(abRole) content.ab_role = abRole.textContent.trim();
-  }
-  
-  localStorage.setItem('vedic_content', JSON.stringify(content));
-
-  fetch('https://mztygriwhmkujloggwjr.supabase.co/rest/v1/site_content', {
-    method: 'POST',
-    headers: {
-      'apikey': 'sb_publishable_x0xJkdW1eYFr4Nu6P0OU9A_8cP98C-Y',
-      'Authorization': 'Bearer sb_publishable_x0xJkdW1eYFr4Nu6P0OU9A_8cP98C-Y',
-      'Content-Type': 'application/json',
-      'Prefer': 'resolution=merge-duplicates'
-    },
-    body: JSON.stringify([{ id: 'main', data: content }])
-  }).catch(function(err){ console.warn('Supabase visual sync:', err); });
-
-  var si = document.getElementById('saveInd');
-  if(si) { si.classList.add('show'); setTimeout(function(){ si.classList.remove('show'); }, 3000); }
-  showToast('⚡ Live text changes published to website & Supabase!');
-}
-
-function applyStoredChanges(){
-  var stored = JSON.parse(localStorage.getItem(STORAGE_KEY) || '{}');
-  var pageChanges = Object.assign({}, stored[currentPage] || {}, changes);
-  var doc = document.getElementById('siteFrame').contentDocument;
-  if(!doc) return;
-
-  Object.keys(pageChanges).forEach(function(path){
-    try {
-      var el = doc.querySelector('[data-eid="'+path+'"]') || getElByPath(doc, path);
-      if(!el) return;
-      var ch = pageChanges[path];
-      if(ch.text !== undefined) el.innerText = ch.text;
-      if(ch.style){
-        Object.keys(ch.style).forEach(function(prop){
-          el.style[prop] = ch.style[prop];
-        });
-      }
-    } catch(e){}
-  });
-  // Also merge stored changes into current session
-  Object.assign(changes, pageChanges);
-}
-
-/* ══════════════════════════════════════
-   LAYERS PANEL
-══════════════════════════════════════ */
-function buildLayers(){
-  var doc = document.getElementById('siteFrame').contentDocument;
-  if(!doc) return;
-  var list = document.getElementById('layersList');
-  list.innerHTML = '';
-  var sections = doc.querySelectorAll('section,nav,footer,header,.hero,.about-sec,.srv-sec,.reviews-sec,.faq-sec,.contact-sec');
-  if(!sections.length){
-    sections = doc.querySelectorAll('div[class]');
-  }
-  sections.forEach(function(s){
-    var tag  = s.tagName.toLowerCase();
-    var cls  = s.className ? s.className.split(' ')[0] : '';
-    var label = cls || tag;
-    var ico  = tag === 'nav' ? '🧭' : tag === 'footer' ? '📄' : tag === 'section' ? '📦' : '📐';
-    var item = document.createElement('div');
-    item.className = 'layer-item';
-    item.innerHTML = '<span class="layer-ico">'+ico+'</span><span>'+label+'</span>'
-      +'<span class="layer-tag">'+tag+'</span>';
-    item.addEventListener('click', function(){
-      document.querySelectorAll('.layer-item').forEach(function(i){ i.classList.remove('selected'); });
-      item.classList.add('selected');
-      selectElement(s);
-      s.scrollIntoView({behavior:'smooth', block:'center'});
+  fetch(SB_URL+'/rest/v1/site_content?id=eq.main',{
+    headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY}
+  })
+  .then(function(r){return r.json();})
+  .then(function(rows){
+    var data=(rows&&rows[0]&&rows[0].data)?rows[0].data:{};
+    var doc=document.getElementById('siteFrame').contentDocument;
+    if(doc){
+      var g=function(sel){var e=doc.querySelector(sel);return e?(e.innerText||e.textContent||'').trim():null;};
+      var v;
+      v=g('.h1m');     if(v) data.h_line1=v;
+      v=g('.h1g');     if(v) data.h_line2=v;
+      v=g('.hero-name');  if(v) data.h_name=v;
+      v=g('.hero-quote'); if(v) data.h_quote=v;
+      v=g('.about-name'); if(v) data.ab_name=v;
+      v=g('.about-role'); if(v) data.ab_role=v;
+      v=g('.trust-text'); if(v) data.tb_text=v;
+      v=g('.trust-sub');  if(v) data.tb_sub=v;
+      v=g('footer p');    if(v) data.ft_copy=v;
+      v=g('.hdr-title');  if(v) data.bk_h1=v;
+      v=g('.hdr-sub');    if(v) data.bk_sub=v;
+      v=g('.notice-bar'); if(v) data.bk_notice=v;
+      var fi=doc.querySelectorAll('.faq-item');
+      [[0,'faq1'],[1,'faq2'],[2,'faq3'],[3,'faq4']].forEach(function(p){
+        var it=fi[p[0]]; if(!it) return;
+        var q=it.querySelector('.faq-q'); if(q) data[p[1]+'_q']=(q.innerText||q.textContent||'').trim();
+        var a=it.querySelector('.faq-a'); if(a) data[p[1]+'_a']=(a.innerText||a.textContent||'').trim();
+      });
+    }
+    localStorage.setItem('vtxt_'+currentPage,JSON.stringify(textChanges));
+    return fetch(SB_URL+'/rest/v1/site_content',{
+      method:'POST',
+      headers:{'apikey':SB_KEY,'Authorization':'Bearer '+SB_KEY,'Content-Type':'application/json','Prefer':'resolution=merge-duplicates'},
+      body:JSON.stringify([{id:'main',data:data}])
     });
-    list.appendChild(item);
-  });
-}
-function highlightLayer(path){
-  // Basic: just show props tab
-  switchTab(document.querySelectorAll('.rp-tab')[0], 'tab-props');
-}
-
-/* ══════════════════════════════════════
-   HISTORY
-══════════════════════════════════════ */
-function pushHistory(desc){
-  history_log.push({desc: desc, time: new Date().toLocaleTimeString()});
-  renderHistory();
-}
-function renderHistory(){
-  var list = document.getElementById('historyList');
-  if(!history_log.length){
-    list.innerHTML = '<div class="rp-empty"><div class="rp-empty-ico">📋</div><div class="rp-empty-text">No changes yet.</div></div>';
-    return;
-  }
-  list.innerHTML = history_log.slice().reverse().map(function(h, i){
-    return '<div class="hist-item'+(i===0?' current':'')+'"><span class="hist-dot"></span>'
-      +'<div><div class="hist-desc">'+h.desc+'</div><div class="hist-time">'+h.time+'</div></div></div>';
-  }).join('');
+  })
+  .then(function(res){
+    var ok=res&&(res.status===200||res.status===201);
+    var si=document.getElementById('saveInd');
+    if(si){si.classList.add('show');setTimeout(function(){si.classList.remove('show');},3000);}
+    showToast(ok?'Text published live on your website!':'Saved locally');
+  })
+  .catch(function(){showToast('Save failed. Check internet.',true);});
 }
 
-/* ══════════════════════════════════════
-   DEVICE / PAGE / EDIT MODE
-══════════════════════════════════════ */
 function setDevice(d){
-  currentDevice = d;
-  var wrap = document.getElementById('iframeWrap');
-  wrap.className = d;
-  var frame = document.getElementById('siteFrame');
-  frame.style.height = '';
-  setTimeout(function(){ frame.style.height = frame.contentDocument.body.scrollHeight + 'px'; }, 300);
-  document.querySelectorAll('.tb-device').forEach(function(b){ b.classList.remove('active'); });
+  document.getElementById('iframeWrap').className=d;
+  var frame=document.getElementById('siteFrame');
+  frame.style.height='';
+  setTimeout(function(){frame.style.height=frame.contentDocument.body.scrollHeight+'px';},300);
+  document.querySelectorAll('.tb-device').forEach(function(b){b.classList.remove('active');});
   document.getElementById('dev-'+d).classList.add('active');
 }
+
 function loadPage(url){
-  currentPage = url;
-  changes = {};
-  selectedEl = null;
-  document.getElementById('noSelState').style.display = 'flex';
-  document.getElementById('propsPanel').style.display = 'none';
-  document.getElementById('siteFrame').src = url;
-}
-function switchPage(url, btn){
-  document.querySelectorAll('.page-btn').forEach(function(b){ b.classList.remove('active'); });
-  btn.classList.add('active');
-  document.getElementById('pageSelect').value = url;
-  loadPage(url);
-}
-function toggleEditMode(){
-  editMode = !editMode;
-  var btn = document.getElementById('editModeBtn');
-  btn.textContent = 'Edit Mode: ' + (editMode ? 'ON' : 'OFF');
-  btn.classList.toggle('active', editMode);
-  if(editMode) injectEditor();
-  else{
-    // Remove contenteditable from all elements
-    var doc = document.getElementById('siteFrame').contentDocument;
-    doc.querySelectorAll('[contenteditable]').forEach(function(el){ el.removeAttribute('contenteditable'); });
-  }
-}
-function goBack(){
-  window.location.href = 'admin.html';
+  currentPage=url; textChanges={}; selectedEl=null;
+  document.getElementById('emptyState').style.display='block';
+  document.getElementById('editState').style.display='none';
+  document.getElementById('siteFrame').src=url;
 }
 
-/* ══════════════════════════════════════
-   TABS
-══════════════════════════════════════ */
-function switchTab(clickedTab, tabId){
-  if(!clickedTab) return;
-  document.querySelectorAll('.rp-tab').forEach(function(t){ t.classList.remove('active'); });
-  clickedTab.classList.add('active');
-  ['tab-props','tab-layers','tab-history'].forEach(function(id){
-    var el = document.getElementById(id);
-    if(el) el.style.display = id === tabId ? 'block' : 'none';
-  });
-}
-// Wire tabs
-document.querySelectorAll('.rp-tab').forEach(function(tab, i){
-  tab.onclick = function(){
-    var ids = ['tab-props','tab-layers','tab-history'];
-    switchTab(tab, ids[i]);
-  };
-});
-
-/* ══════════════════════════════════════
-   UTILITIES
-══════════════════════════════════════ */
-function getPath(el){
-  return el.getAttribute('data-eid') || el.tagName + '-' + Math.random();
-}
-function getElByPath(doc, path){
-  return doc.querySelector('[data-eid="'+path+'"]');
-}
-function rgbToHex(rgb){
-  if(!rgb || rgb === 'transparent' || rgb === 'rgba(0, 0, 0, 0)') return '#ffffff';
-  if(rgb.charAt(0) === '#') return rgb;
-  var parts = rgb.match(/\d+/g);
-  if(!parts || parts.length < 3) return '#000000';
-  return '#' + [parts[0],parts[1],parts[2]].map(function(x){
-    return ('0' + parseInt(x).toString(16)).slice(-2);
-  }).join('');
-}
-function showToast(msg){
-  var t = document.getElementById('toast');
-  t.textContent = msg;
+function showToast(msg,isErr){
+  var t=document.getElementById('toast');
+  t.textContent=msg;
+  t.className='toast'+(isErr?' err':'');
   t.classList.add('show');
-  setTimeout(function(){ t.classList.remove('show'); }, 3200);
+  setTimeout(function(){t.classList.remove('show');},3500);
 }
 
-/* Keyboard shortcuts */
-document.addEventListener('keydown', function(e){
-  if((e.ctrlKey || e.metaKey) && e.key === 'z' && !e.shiftKey){ e.preventDefault(); doUndo(); }
-  if((e.ctrlKey || e.metaKey) && (e.key === 'y' || (e.key === 'z' && e.shiftKey))){ e.preventDefault(); doRedo(); }
-  if((e.ctrlKey || e.metaKey) && e.key === 's'){ e.preventDefault(); saveChanges(); }
+document.addEventListener('keydown',function(e){
+  if((e.ctrlKey||e.metaKey)&&e.key==='s'){e.preventDefault();saveChanges();}
 });
-
-/* Initial load */
-var initInterval = setInterval(function(){
-  var frame = document.getElementById('siteFrame');
-  if(frame && frame.contentDocument && frame.contentDocument.body){
-    clearInterval(initInterval);
-  }
-}, 100);
 </script>
 </body>
 </html>
