@@ -1073,8 +1073,47 @@ function previewImg(prevId, val) {
    CONTENT LOAD / SAVE
 ════════════════════════════════════════ */
 function loadContent(){
+  // Reads from localStorage (used as fallback/cache)
   var saved = JSON.parse(localStorage.getItem(CONTENT_KEY) || '{}');
   return Object.assign({}, DEFAULTS, saved);
+}
+
+function fillFieldsFromData(data){
+  // Merge incoming data into localStorage cache
+  var merged = Object.assign({}, DEFAULTS, data);
+  localStorage.setItem(CONTENT_KEY, JSON.stringify(merged));
+  // Now fill the form fields
+  function set(id, val){ var el=document.getElementById(id); if(el) el.value=(val||''); }
+  set('h-line1', merged.h_line1); set('h-line2', merged.h_line2);
+  set('h-name',  merged.h_name);  set('h-badge', merged.h_badge);
+  set('h-quote', merged.h_quote); set('h-sub',   merged.h_sub);
+  set('h-btn1',  merged.h_btn1);  set('h-btn2',  merged.h_btn2);
+  set('c-phone', merged.c_phone); set('c-wa', merged.c_wa); set('c-wamsg', merged.c_wamsg);
+  set('s-val1', merged.s_val1); set('s-lbl1', merged.s_lbl1);
+  set('s-val2', merged.s_val2); set('s-lbl2', merged.s_lbl2);
+  set('s-val3', merged.s_val3); set('s-lbl3', merged.s_lbl3);
+  set('srv-sub', merged.srv_sub);
+  set('ab-name', merged.ab_name); set('ab-role', merged.ab_role);
+  set('ab-p1',   merged.ab_p1);   set('ab-p2',   merged.ab_p2);
+  set('ab-c1',   merged.ab_c1);   set('ab-c2',   merged.ab_c2);
+  set('ab-c3',   merged.ab_c3);   set('ab-c4',   merged.ab_c4);
+  set('tb-main', merged.tb_main); set('tb-sub',  merged.tb_sub); set('tb-btn', merged.tb_btn);
+  set('bk-h1', merged.bk_h1); set('bk-sub', merged.bk_sub); set('bk-notice', merged.bk_notice);
+  set('faq1-q', merged.faq1_q); set('faq1-a', merged.faq1_a);
+  set('faq2-q', merged.faq2_q); set('faq2-a', merged.faq2_a);
+  set('faq3-q', merged.faq3_q); set('faq3-a', merged.faq3_a);
+  set('faq4-q', merged.faq4_q); set('faq4-a', merged.faq4_a);
+  set('ft-copy', merged.ft_copy);
+  set('img-hero', merged.img_hero); previewImg('img-hero-prev', merged.img_hero);
+  set('img-booking', merged.img_booking); previewImg('img-booking-prev', merged.img_booking);
+  set('img-about', merged.img_about); previewImg('img-about-prev', merged.img_about);
+  set('img-srv1', merged.img_srv1); previewImg('img-srv1-prev', merged.img_srv1);
+  set('img-srv2', merged.img_srv2); previewImg('img-srv2-prev', merged.img_srv2);
+  set('img-srv3', merged.img_srv3); previewImg('img-srv3-prev', merged.img_srv3);
+  set('img-srv4', merged.img_srv4); previewImg('img-srv4-prev', merged.img_srv4);
+  set('img-srv5', merged.img_srv5); previewImg('img-srv5-prev', merged.img_srv5);
+  set('img-srv6', merged.img_srv6); previewImg('img-srv6-prev', merged.img_srv6);
+  buildSrvGrid(merged.srv || DEFAULTS.srv);
 }
 
 function fillFields(){
@@ -1194,10 +1233,23 @@ function syncToSupabase(content) {
 }
 
 function saveAll(){
-  var c = collectContent();
-  localStorage.setItem(CONTENT_KEY, JSON.stringify(c));
-  document.getElementById('ov-saved').textContent = 'Just now';
-  syncToSupabase(c);
+  var newContent = collectContent();
+  // Fetch existing Supabase data first, then MERGE on top — never wipe
+  fetch(SUPABASE_URL + '/rest/v1/site_content?id=eq.main', {
+    headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+  }).then(function(res){ return res.json(); }).then(function(rows){
+    var existing = (Array.isArray(rows) && rows[0] && rows[0].data) ? rows[0].data : {};
+    var merged = Object.assign({}, existing, newContent);
+    merged.last_saved = new Date().toLocaleString();
+    localStorage.setItem(CONTENT_KEY, JSON.stringify(merged));
+    document.getElementById('ov-saved').textContent = 'Just now';
+    syncToSupabase(merged);
+  }).catch(function(){
+    // Offline — save whatever we have
+    newContent.last_saved = new Date().toLocaleString();
+    localStorage.setItem(CONTENT_KEY, JSON.stringify(newContent));
+    syncToSupabase(newContent);
+  });
 }
 
 /* ════════════════════════════════════════
@@ -1337,11 +1389,25 @@ function showPanel(name, btn){
    INIT
 ════════════════════════════════════════ */
 function initDashboard(){
-  fillFields();
   renderLeads();
   renderBookings();
-  var c = loadContent();
-  document.getElementById('ov-saved').textContent = c.last_saved && c.last_saved !== 'Never' ? c.last_saved.split(',')[0] : 'Never';
+  // Always load fields from Supabase first (source of truth)
+  fetch(SUPABASE_URL + '/rest/v1/site_content?id=eq.main', {
+    headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
+  }).then(function(res){ return res.json(); }).then(function(rows){
+    if(Array.isArray(rows) && rows.length > 0 && rows[0].data){
+      fillFieldsFromData(rows[0].data);
+      var ts = rows[0].data.last_saved;
+      document.getElementById('ov-saved').textContent = ts && ts !== 'Never' ? ts.split(',')[0] : 'Supabase ✓';
+    } else {
+      // Fallback to localStorage
+      fillFields();
+    }
+  }).catch(function(){
+    // Offline — fallback to localStorage
+    fillFields();
+    showToast('Offline mode: showing cached data');
+  });
 }
 
 function showToast(msg){
