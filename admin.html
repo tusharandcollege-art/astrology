@@ -1223,32 +1223,47 @@ function syncToSupabase(content) {
     body: JSON.stringify([{ id: 'main', data: content }])
   }).then(function(res) {
     if (res.ok) {
-      showToast('⚡ Saved globally to Supabase & Live Site!');
+      showToast('✅ Saved! Changes are now LIVE on your website.');
     } else {
-      showToast('✓ Saved locally! (Run SQL setup in Supabase to sync live)');
+      res.text().then(function(t){ showToast('❌ Save failed (HTTP ' + res.status + '): ' + t.substring(0,80)); });
     }
   }).catch(function(err) {
-    showToast('✓ Saved locally!');
+    showToast('❌ Network error. Check internet connection.');
+    console.error('Supabase save error:', err);
   });
 }
 
 function saveAll(){
   var newContent = collectContent();
-  // Fetch existing Supabase data first, then MERGE on top — never wipe
+  // Fetch existing Supabase data first, then SMART MERGE:
+  // Only overwrite a field if the new value is non-empty
   fetch(SUPABASE_URL + '/rest/v1/site_content?id=eq.main', {
     headers: { 'apikey': SUPABASE_KEY, 'Authorization': 'Bearer ' + SUPABASE_KEY }
   }).then(function(res){ return res.json(); }).then(function(rows){
     var existing = (Array.isArray(rows) && rows[0] && rows[0].data) ? rows[0].data : {};
-    var merged = Object.assign({}, existing, newContent);
+    // Smart merge: only use newContent value if it is a non-empty string
+    var merged = Object.assign({}, existing);
+    Object.keys(newContent).forEach(function(k){
+      var v = newContent[k];
+      // Accept new value only if it's a non-empty string, number, or a non-empty array/object
+      if(v !== null && v !== undefined && v !== '' && !(Array.isArray(v) && v.length === 0)) {
+        merged[k] = v;
+      }
+    });
     merged.last_saved = new Date().toLocaleString();
     localStorage.setItem(CONTENT_KEY, JSON.stringify(merged));
     document.getElementById('ov-saved').textContent = 'Just now';
     syncToSupabase(merged);
   }).catch(function(){
-    // Offline — save whatever we have
-    newContent.last_saved = new Date().toLocaleString();
-    localStorage.setItem(CONTENT_KEY, JSON.stringify(newContent));
-    syncToSupabase(newContent);
+    // Offline — save non-empty fields
+    var safe = {};
+    Object.keys(newContent).forEach(function(k){
+      var v = newContent[k];
+      if(v !== null && v !== undefined && v !== '') safe[k] = v;
+    });
+    safe.last_saved = new Date().toLocaleString();
+    localStorage.setItem(CONTENT_KEY, JSON.stringify(safe));
+    syncToSupabase(safe);
   });
 }
 
