@@ -1523,59 +1523,90 @@ document.getElementById('cForm').addEventListener('submit', function(e){
       'Authorization': 'Bearer sb_publishable_x0xJkdW1eYFr4Nu6P0OU9A_8cP98C-Y'
     }
   }).then(function(r){ return r.json(); }).then(function(rows){
-    if(Array.isArray(rows) && rows.length > 0 && rows[0].data) {
-      var d = rows[0].data;
-      if(d.h_line1) { var el = document.querySelector('.h1m'); if(el) el.textContent = d.h_line1; }
-      if(d.h_line2) { var el = document.querySelector('.h1g'); if(el) el.textContent = d.h_line2; }
-      if(d.h_name)  { var el = document.querySelector('.hero-name'); if(el) el.textContent = d.h_name; }
-      if(d.h_quote) { var el = document.querySelector('.hero-quote'); if(el) el.textContent = d.h_quote; }
-      if(d.c_phone) {
-        document.querySelectorAll('a[href^="tel:"]').forEach(function(a){ a.href = 'tel:' + d.c_phone.replace(/\s+/g,''); });
-      }
-      if(d.c_wa) {
-        var waNum = d.c_wa.replace(/\+/g,'').replace(/\s+/g,'');
-        var waMsg = encodeURIComponent('नमस्ते आचार्य जी, मुझे वैदिक ज्योतिष परामर्श चाहिए।');
-        document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){
-          a.href = 'https://wa.me/' + waNum + '?text=' + waMsg;
-        });
-      }
-      // Image Updates
-      if(d.img_hero) { var img = document.querySelector('.portrait-container img'); if(img) img.src = d.img_hero; }
-      if(d.img_about) { var img = document.querySelector('.about-img img'); if(img) img.src = d.img_about; }
-      var srvImgs = document.querySelectorAll('.sol-card-img img');
-      if(srvImgs[0] && d.img_srv1) srvImgs[0].src = d.img_srv1;
-      if(srvImgs[1] && d.img_srv2) srvImgs[1].src = d.img_srv2;
-      if(srvImgs[2] && d.img_srv3) srvImgs[2].src = d.img_srv3;
-      if(srvImgs[3] && d.img_srv4) srvImgs[3].src = d.img_srv4;
-      if(srvImgs[4] && d.img_srv5) srvImgs[4].src = d.img_srv5;
-      if(srvImgs[5] && d.img_srv6) srvImgs[5].src = d.img_srv6;
+    if(!Array.isArray(rows) || rows.length === 0 || !rows[0].data) return;
+    var d = rows[0].data;
+    function setText(sel, val){ if(!val) return; var el = document.querySelector(sel); if(el) el.textContent = val; }
+    function setAll(sel, val){ if(!val) return; document.querySelectorAll(sel).forEach(function(el){ el.textContent = val; }); }
 
-      // FAQs Updates
-      var faqs = document.querySelectorAll('.faq-item');
-      if(faqs[0]) {
-        if(d.faq1_q) { var q = faqs[0].querySelector('.faq-q'); if(q) q.textContent = d.faq1_q; }
-        if(d.faq1_a) { var a = faqs[0].querySelector('.faq-a'); if(a) a.textContent = d.faq1_a; }
-      }
-      if(faqs[1]) {
-        if(d.faq2_q) { var q = faqs[1].querySelector('.faq-q'); if(q) q.textContent = d.faq2_q; }
-        if(d.faq2_a) { var a = faqs[1].querySelector('.faq-a'); if(a) a.textContent = d.faq2_a; }
-      }
-      if(faqs[2]) {
-        if(d.faq3_q) { var q = faqs[2].querySelector('.faq-q'); if(q) q.textContent = d.faq3_q; }
-        if(d.faq3_a) { var a = faqs[2].querySelector('.faq-a'); if(a) a.textContent = d.faq3_a; }
-      }
-      if(faqs[3]) {
-        if(d.faq4_q) { var q = faqs[3].querySelector('.faq-q'); if(q) q.textContent = d.faq4_q; }
-        if(d.faq4_a) { var a = faqs[3].querySelector('.faq-a'); if(a) a.textContent = d.faq4_a; }
-      }
+    // ── Hero ──
+    setText('.h1m', d.h_line1);
+    setText('.h1g', d.h_line2);
+    setText('.hero-name', d.h_name);
+    setText('.hero-quote', d.h_quote);
+    setText('.hero-sub', d.h_sub);
+    if(d.h_btn1){ var b1 = document.querySelector('.btn-main-maroon'); if(b1) b1.innerHTML = d.h_btn1; }
+    if(d.h_btn2){ var b2 = document.querySelector('.btn-main-outline'); if(b2) b2.innerHTML = d.h_btn2; }
 
-      // Footer Copyright Update
-      if(d.ft_copy) {
-        document.querySelectorAll('footer p').forEach(function(p){ p.textContent = d.ft_copy; });
-      }
+    // ── Stats ──
+    var statNums = document.querySelectorAll('.stat-num');
+    var statLbls = document.querySelectorAll('.stat-lbl');
+    if(statNums[0] && d.s_val1) statNums[0].textContent = d.s_val1;
+    if(statNums[1] && d.s_val2) statNums[1].textContent = d.s_val2;
+    if(statNums[2] && d.s_val3) statNums[2].textContent = d.s_val3;
+    if(statLbls[0] && d.s_lbl1) statLbls[0].textContent = d.s_lbl1;
+    if(statLbls[1] && d.s_lbl2) statLbls[1].textContent = d.s_lbl2;
+    if(statLbls[2] && d.s_lbl3) statLbls[2].textContent = d.s_lbl3;
+
+    // ── Phone & WhatsApp ──
+    if(d.c_phone) {
+      document.querySelectorAll('a[href^="tel:"]').forEach(function(a){ a.href = 'tel:' + d.c_phone.replace(/\s+/g,''); });
     }
-  }).catch(function(e){});
+    if(d.c_wa) {
+      var waNum = d.c_wa.replace(/\+/g,'').replace(/\s+/g,'');
+      var waMsg = encodeURIComponent(d.c_wamsg || 'नमस्ते आचार्य जी, मुझे वैदिक ज्योतिष परामर्श चाहिए।');
+      document.querySelectorAll('a[href*="wa.me"]').forEach(function(a){
+        a.href = 'https://wa.me/' + waNum + '?text=' + waMsg;
+      });
+    }
+
+    // ── About Section ──
+    setText('.about-name', d.ab_name);
+    setText('.about-role', d.ab_role);
+    var bios = document.querySelectorAll('.about-bio p, .about-text p');
+    if(bios[0] && d.ab_p1) bios[0].textContent = d.ab_p1;
+    if(bios[1] && d.ab_p2) bios[1].textContent = d.ab_p2;
+    var chips = document.querySelectorAll('.cred-chip');
+    if(chips[0] && d.ab_c1) chips[0].textContent = d.ab_c1;
+    if(chips[1] && d.ab_c2) chips[1].textContent = d.ab_c2;
+    if(chips[2] && d.ab_c3) chips[2].textContent = d.ab_c3;
+    if(chips[3] && d.ab_c4) chips[3].textContent = d.ab_c4;
+
+    // ── Trust Bar ──
+    setText('.trust-main', d.tb_main);
+    setText('.trust-sub',  d.tb_sub);
+    setText('.trust-btn',  d.tb_btn);
+    // Also mobile trust bar
+    var mobTrustMain = document.querySelector('#mobTrustBar .trust-main, #mobTrustBar strong');
+    var mobTrustSub  = document.querySelector('#mobTrustBar .trust-sub, #mobTrustBar small');
+    if(mobTrustMain && d.tb_main) mobTrustMain.textContent = d.tb_main;
+    if(mobTrustSub  && d.tb_sub)  mobTrustSub.textContent  = d.tb_sub;
+
+    // ── Images ──
+    if(d.img_hero)  { var img = document.querySelector('.portrait-container img'); if(img) img.src = d.img_hero; }
+    if(d.img_about) { var img = document.querySelector('.about-img img');          if(img) img.src = d.img_about; }
+    var srvImgs = document.querySelectorAll('.sol-card-img img');
+    if(srvImgs[0] && d.img_srv1) srvImgs[0].src = d.img_srv1;
+    if(srvImgs[1] && d.img_srv2) srvImgs[1].src = d.img_srv2;
+    if(srvImgs[2] && d.img_srv3) srvImgs[2].src = d.img_srv3;
+    if(srvImgs[3] && d.img_srv4) srvImgs[3].src = d.img_srv4;
+    if(srvImgs[4] && d.img_srv5) srvImgs[4].src = d.img_srv5;
+    if(srvImgs[5] && d.img_srv6) srvImgs[5].src = d.img_srv6;
+
+    // ── FAQs ──
+    var faqs = document.querySelectorAll('.faq-item');
+    [[0,'faq1'],[1,'faq2'],[2,'faq3'],[3,'faq4']].forEach(function(pair){
+      var item = faqs[pair[0]]; if(!item) return;
+      var key = pair[1];
+      var q = item.querySelector('.faq-q'); if(q && d[key+'_q']) q.textContent = d[key+'_q'];
+      var a = item.querySelector('.faq-a'); if(a && d[key+'_a']) a.textContent = d[key+'_a'];
+    });
+
+    // ── Footer ──
+    if(d.ft_copy) document.querySelectorAll('footer p').forEach(function(p){ p.textContent = d.ft_copy; });
+
+  }).catch(function(e){ console.warn('Live reader error:', e); });
 })();
+
 
 // Show mobile trust banner only on mobile
 function handleMobTrust() {
